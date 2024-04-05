@@ -8,14 +8,14 @@
         /* Estilo para a barra lateral */
         .sidebar {
             height: 100%;
-            width: 60px; /* Largura inicial da barra lateral */
+            width: 0;
             position: fixed;
             top: 0;
             left: 0;
             background-color: #333;
             padding-top: 20px;
-            overflow-x: hidden; /* Para esconder os links quando a barra estiver fechada */
-            transition: 0.5s; /* Transição suave para a animação */
+            transition: width 0.5s;
+            overflow-x: hidden;
         }
 
         /* Estilo para os links na barra lateral */
@@ -31,29 +31,36 @@
         .sidebar a.active {
             background-color: #555;
         }
+
+        /* Estilo para o ícone do menu */
+        #menu-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 
-<!-- Barra lateral -->
-<div class="sidebar" id="sidebar">
-    <a href="#sprints">S</a>
-    <a href="#arquitetura">A</a>
-    <a href="#tecnologias">T</a>
-    <a href="#participantes">P</a>
-    <a href="javascript:void(0);" class="closebtn" onclick="toggleSidebar()">×</a>
-</div>
+<!-- Ícone do menu -->
+<span id="menu-icon">&#9776;</span>
 
-<!-- Botão para abrir a barra lateral -->
-<div style="margin-left: 60px; padding: 20px;">
-    <button class="openbtn" onclick="toggleSidebar()">☰</button>  
+<!-- Barra lateral -->
+<div id="mySidebar" class="sidebar">
+    <a href="#sprints">Sprints</a>
+    <a href="#arquitetura">Arquitetura</a>
+    <a href="#tecnologias">Tecnologias</a>
+    <a href="#participantes">Participantes</a>
 </div>
 
 <!-- Conteúdo da página -->
-<div style="margin-left: 60px; padding: 20px;">
+<div style="margin-left: 0; padding: 20px;">
     <h1>Projeto de Análise de Licitações Culturais</h1>
 
-    <h2>Funcionalidades Previstas</h2>
+    <h2 id="sprints">Funcionalidades Previstas</h2>
     <ul>
         <li>Coleta de Dados</li>
         <li>Análise e Armazenamento</li>
@@ -62,14 +69,14 @@
         <li>Notificações</li>
     </ul>
 
-    <h2>Tecnologias Utilizadas</h2>
+    <h2 id="arquitetura">Tecnologias Utilizadas</h2>
     <p>Linguagem de Programação: (A definir)</p>
     <p>Framework Web: (A definir)</p>
     <p>Banco de Dados: (A definir)</p>
     <p>Ferramenta de Coleta de Dados: Querido Diário API</p>
     <p>Ferramentas Adicionais: HTML, CSS, JavaScript, Regex, CRUD</p>
 
-    <h2>Desenvolvedores</h2>
+    <h2 id="participantes">Desenvolvedores</h2>
     <center>
         <table style="margin-left: auto; margin-right: auto;">
             <tr>
@@ -86,14 +93,17 @@
 </div>
 
 <script>
-    function toggleSidebar() {
-        var sidebar = document.getElementById("sidebar");
-        if (sidebar.style.width === "60px") {
-            sidebar.style.width = "250px";
-        } else {
-            sidebar.style.width = "60px";
-        }
-    }
+    // Função para abrir e fechar a barra lateral quando o ícone do menu é clicado
+    document.getElementById("menu-icon").addEventListener("click", function() {
+        document.getElementById("mySidebar").style.width = "250px";
+    });
+
+    // Função para fechar a barra lateral quando um link na barra é clicado
+    document.querySelectorAll('.sidebar a').forEach(item => {
+        item.addEventListener('click', event => {
+            document.getElementById("mySidebar").style.width = "0";
+        });
+    });
 </script>
 
 </body>
