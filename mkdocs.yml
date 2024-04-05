@@ -5,5 +5,7 @@ theme:
 nav:
   - Home: index.md
   - Arquitetura: arquitetura.md
-  - Atas: ata-modelo.md 
+  - Atas:
+    - ata-modelo: atas/ata-modelo.md
+    - ata-23-03: atas/ata-23-03.md
     
