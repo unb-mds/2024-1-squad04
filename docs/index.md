@@ -31,8 +31,8 @@ Através desta aplicação, buscamos oferecer uma maneira mais transparente e ac
 <table style="margin-left: auto; margin-right: auto;">
     <tr>
         <td align="center">
-            <a href="https://github.com/Gxaite">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/111130521?v=4" width="150px;"/>
+            <a href="https://github.com/ana-pfeilsticker">
+                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/110688069?v=4" width="150px;"/>
                 <h5 class="text-center">Gabriel Scheidt</h5>
             </a>
         </td>
