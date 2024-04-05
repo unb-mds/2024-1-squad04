@@ -4,6 +4,7 @@ theme:
   name: material
 nav:
   - Home: index.md
+  - Ideação: ideacao.md
   - Arquitetura: arquitetura.md
   - Atas:
     - ata-modelo: atas/ata-modelo.md
