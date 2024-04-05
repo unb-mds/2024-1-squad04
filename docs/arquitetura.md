@@ -1,4 +1,4 @@
-# 2024-1-Squad07
+# Arquitetura
 
 ## Projeto de Análise de Licitações Culturais
 
