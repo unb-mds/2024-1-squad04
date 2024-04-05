@@ -1,77 +1,81 @@
-# 2024-1-Squad07
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Análise de Licitações Culturais</title>
+    <style>
+        /* Estilo para a barra lateral */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
 
-## Projeto de Análise de Licitações Culturais
+        /* Estilo para os links na barra lateral */
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
 
-Este é um projeto desenvolvido como parte da disciplina de Métodos de Desenvolvimento de Software (MDS) da Universidade de Brasília (UnB). O objetivo principal deste projeto é criar uma plataforma online para análise e armazenamento de dados de licitações relacionadas aos gastos culturais apoiados pelo Governo Federal, utilizando a plataforma e a API do Querido Diário.
+        /* Estilo para os links ativos */
+        .sidebar a.active {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
 
-Através desta aplicação, buscamos oferecer uma maneira mais transparente e acessível para que o público em geral possa consultar os gastos governamentais em eventos culturais, shows, teatros e outras atividades culturais.
+<!-- Barra lateral -->
+<div class="sidebar">
+    <a href="#sprints">Sprints</a>
+    <a href="#arquitetura">Arquitetura</a>
+    <a href="#tecnologias">Tecnologias</a>
+    <a href="#participantes">Participantes</a>
+</div>
 
-## Funcionalidades Previstas
+<!-- Conteúdo da página -->
+<div style="margin-left: 250px; padding: 20px;">
+    <h1>Projeto de Análise de Licitações Culturais</h1>
 
-- **Coleta de Dados:** Implementação de um mecanismo para coletar dados sobre as dispensas de licitações culturais da API do "Querido Diário".
-- **Análise e Armazenamento:** Desenvolvimento de algoritmos para analisar os dados coletados e armazená-los em um banco de dados, garantindo a integridade e segurança das informações.
-- **Visualização de Dados:** Criação de interfaces intuitivas para que os usuários possam visualizar os dados de forma clara e compreensível, através de gráficos, tabelas e outros elementos visuais.
-- **Pesquisa Avançada:** Possibilidade para os usuários realizarem pesquisas avançadas nos dados, filtrando por diferentes critérios como data, tipo de evento, valor, entre outros, facilitando a busca por informações específicas.
-- **Notificações:** Implementação de um sistema de notificações para informar os usuários sobre novas dispensas de licitações adicionadas ao sistema, mantendo-os atualizados sobre as últimas informações disponíveis.
+    <h2>Funcionalidades Previstas</h2>
+    <ul>
+        <li>Coleta de Dados</li>
+        <li>Análise e Armazenamento</li>
+        <li>Visualização de Dados</li>
+        <li>Pesquisa Avançada</li>
+        <li>Notificações</li>
+    </ul>
 
+    <h2>Tecnologias Utilizadas</h2>
+    <p>Linguagem de Programação: (A definir)</p>
+    <p>Framework Web: (A definir)</p>
+    <p>Banco de Dados: (A definir)</p>
+    <p>Ferramenta de Coleta de Dados: Querido Diário API</p>
+    <p>Ferramentas Adicionais: HTML, CSS, JavaScript, Regex, CRUD</p>
 
-## Tecnologias Utilizadas
+    <h2>Desenvolvedores</h2>
+    <center>
+        <table style="margin-left: auto; margin-right: auto;">
+            <tr>
+                <td align="center">
+                    <a href="https://github.com/Gxaite">
+                        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/111130521?v=4" width="150px;"/>
+                        <h5 class="text-center">Gabriel Scheidt</h5>
+                    </a>
+                </td>
+                <!-- Restante dos desenvolvedores -->
+            </tr>
+        </table>
+    </center>
+</div>
 
-- **Linguagem de Programação:** (A definir)
-- **Framework Web:** (A definir)
-- **Banco de Dados:** (A definir)
-- **Ferramenta de Coleta de Dados:** Querido Diário API
-- **Ferramentas Adicionais:** HTML, CSS, JavaScript, Regex, CRUD
-
-
-
-## Desenvolvedores
-
-<center>
-<table style="margin-left: auto; margin-right: auto;">
-    <tr>
-        <td align="center">
-            <a href="https://github.com/Gxaite">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/111130521?v=4" width="150px;"/>
-                <h5 class="text-center">Gabriel Scheidt</h5>
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://github.com/isaacbatista26">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/118384776?v=4" width="150px;"/>
-                <h5 class="text-center">Isaac Batista</h5>
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://github.com/rafaelcarvalhoj">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105162671?v=4" width="150px;"/>
-                <h5 class="text-center">Rafael Carvalho</h5>
-            </a>
-        </td>
-        </td>
-        <td align="center">
-            <a href="https://github.com/devMarcosVM">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/108913498?v=4" width="150px;"/>
-                <h5 class="text-center">Marcos Vieira</h5>
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://github.com/manuvaladares">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/119461383?v=4" width="150px;"/>
-                <h5 class="text-center">Manuella Magalhães</h5>
-            </a>
-        </td>
-          <td align="center">
-            <a href="https://github.com/Mateushqms">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/163928182?v=4" width="150px;"/>
-                <h5 class="text-center">Mateus Henrique</h5>
-            </a>
-        </td>
-          <td align="center">
-            <a href="https://github.com/WillxBernardo">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/124713089?v=4" width="150px;"/>
-                <h5 class="text-center">William Bernardo</h5>
-            </a>
-        </td>
-</table>
-</center>
+</body>
+</html>
