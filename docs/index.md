@@ -8,12 +8,14 @@
         /* Estilo para a barra lateral */
         .sidebar {
             height: 100%;
-            width: 250px;
+            width: 60px; /* Largura inicial da barra lateral */
             position: fixed;
             top: 0;
             left: 0;
             background-color: #333;
             padding-top: 20px;
+            overflow-x: hidden; /* Para esconder os links quando a barra estiver fechada */
+            transition: 0.5s; /* Transição suave para a animação */
         }
 
         /* Estilo para os links na barra lateral */
@@ -34,15 +36,21 @@
 <body>
 
 <!-- Barra lateral -->
-<div class="sidebar">
-    <a href="#sprints">Sprints</a>
-    <a href="#arquitetura">Arquitetura</a>
-    <a href="#tecnologias">Tecnologias</a>
-    <a href="#participantes">Participantes</a>
+<div class="sidebar" id="sidebar">
+    <a href="#sprints">S</a>
+    <a href="#arquitetura">A</a>
+    <a href="#tecnologias">T</a>
+    <a href="#participantes">P</a>
+    <a href="javascript:void(0);" class="closebtn" onclick="toggleSidebar()">×</a>
+</div>
+
+<!-- Botão para abrir a barra lateral -->
+<div style="margin-left: 60px; padding: 20px;">
+    <button class="openbtn" onclick="toggleSidebar()">☰</button>  
 </div>
 
 <!-- Conteúdo da página -->
-<div style="margin-left: 250px; padding: 20px;">
+<div style="margin-left: 60px; padding: 20px;">
     <h1>Projeto de Análise de Licitações Culturais</h1>
 
     <h2>Funcionalidades Previstas</h2>
@@ -76,6 +84,17 @@
         </table>
     </center>
 </div>
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById("sidebar");
+        if (sidebar.style.width === "60px") {
+            sidebar.style.width = "250px";
+        } else {
+            sidebar.style.width = "60px";
+        }
+    }
+</script>
 
 </body>
 </html>
