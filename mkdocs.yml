@@ -4,6 +4,7 @@ repo_url: https://github.com/unb-mds/2024-1-squad04
 nav:
   - Home: index.md
   - Arquitetura: arquitetura.md
+  - Atas: ata-modelo.md
 
 theme:
   name: material
