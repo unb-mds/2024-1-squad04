@@ -2,3 +2,6 @@ site_name: Squad 04
 theme:
   #name: dracula
   name: material
+nav:
+  - Home: index.md
+  - Arquitetura: arquitetura.md
