@@ -33,45 +33,34 @@ Através desta aplicação, buscamos oferecer uma maneira mais transparente e ac
         <td align="center">
             <a href="https://github.com/ana-pfeilsticker">
                 <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/110688069?v=4" width="150px;"/>
-                <h5 class="text-center">Gabriel Scheidt</h5>
+                <h5 class="text-center">Ana Pfeilsticker</h5>
             </a>
         </td>
         <td align="center">
             <a href="https://github.com/isaacbatista26">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/118384776?v=4" width="150px;"/>
-                <h5 class="text-center">Isaac Batista</h5>
+                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/137011464?v=4" width="150px;"/>
+                <h5 class="text-center">Vitor Valério</h5>
             </a>
         </td>
         <td align="center">
             <a href="https://github.com/rafaelcarvalhoj">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105162671?v=4" width="150px;"/>
-                <h5 class="text-center">Rafael Carvalho</h5>
+                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/143732873?v=4" width="150px;"/>
+                <h5 class="text-center">Mateus Magno</h5>
             </a>
         </td>
         </td>
         <td align="center">
             <a href="https://github.com/devMarcosVM">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/108913498?v=4" width="150px;"/>
-                <h5 class="text-center">Marcos Vieira</h5>
+                <img style="border-radius: 50%;" src="https://cdn.discordapp.com/attachments/1070861833596055612/1225892037916753980/IMG-20240318-WA0058_1.jpg?ex=6622c7ed&is=661052ed&hm=aa37234d79b92b929703cafc1aaf2d25ad22e6d020e93677c744ef609c0ac478&" width="150px;"/>
+                <h5 class="text-center">Atyrson Souto</h5>
             </a>
         </td>
         <td align="center">
             <a href="https://github.com/manuvaladares">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/119461383?v=4" width="150px;"/>
-                <h5 class="text-center">Manuella Magalhães</h5>
+                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/86434947?v=4" width="150px;"/>
+                <h5 class="text-center">Leticia Torres</h5>
             </a>
         </td>
-          <td align="center">
-            <a href="https://github.com/Mateushqms">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/163928182?v=4" width="150px;"/>
-                <h5 class="text-center">Mateus Henrique</h5>
-            </a>
-        </td>
-          <td align="center">
-            <a href="https://github.com/WillxBernardo">
-                <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/124713089?v=4" width="150px;"/>
-                <h5 class="text-center">William Bernardo</h5>
-            </a>
-        </td>
+        
 </table>
 </center>
