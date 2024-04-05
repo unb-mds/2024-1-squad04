@@ -1,42 +1,35 @@
-### ATA DE REUNIÃO - SPRINT 0
-DD/MM/YYYY
+# Ata - modelo
 
-**Redator:** Nome do redator.
+- **Data:** 
+- **Local:** 
+- **Presentes:** 
 
-#### 1.Membros presentes e ausentes
 
-**Presentes:** Integrante 1, Integrante 2, Integrante 3...
 
-**Ausentes:** Integrante 4, Integrante 5, Integrante 6...
+## Objetivos
 
-#### 2.Considerações iniciais da reunião
+Aqui iremos colocar quais são os objetivos da reunião em questão para podermos acompanhar se todos os tópicos necessários foram discutidos.
 
-A reunião iniciou às xx:xx hrs via plataforma(discord, teams, ...).
+## Acompanhamentos e definições
+Aqui iremos descrever com mais detalhes os assuntos discutidos durante a reunião. Todos os assuntos devem ser claros e concisos.
 
-#### 3.Pautas da reunião
 
-**EX:**
+- Assunto 1:
+    - **Descrição:**
 
-**1ª Pauta -  Pauta 1**
+- Assunto 2:
+    - **Descrição:**
 
-***
+- Assunto 3:
+    - **Descrição:**
 
-**2ª Pauta - Pauta 2**
+## Encaminhamento
+Aqui iremos colocar o que foi decidido de tarefas para cada membro.
 
-***
+-Responsável - Encaminhamento
+-Responsável - Encaminhamento
+-Responsável - Encaminhamento
 
-**3ª Pauta - Pauta 3**
+**Observações:**
 
-***
-
-**4ª Pauta - Pauta 4**
-
-***
-
-**5ª Pauta - Pauta 5**
-
-***
-
-#### 4.Considerações finais
-
-A reunião se encerrou às x:x hrs.
+- Durante a segunda reunião o time descobriu o .......
