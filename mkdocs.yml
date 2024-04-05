@@ -5,3 +5,4 @@ theme:
 nav:
   - Home: index.md
   - Arquitetura: arquitetura.md
+  - Ata: ata/ata-modelo.md
