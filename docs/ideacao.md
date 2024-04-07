@@ -70,4 +70,4 @@
   - (4) DEG - DEG - UnB. https://www.deg.unb.br/index.php?option=com_content&view=article&id=317.
   - (5) AvaliaçãoUnB - Avaliação docente pelo discente. https://bing.com/search?q=como+funciona+avalia%c3%a7%c3%a3o+docente+pelo+discente+UnB.
   - (6) AvaliaçãoUnB - Avaliação do Docente Pelo Discente. https://avaliacao.unb.br/avaliacao-interna/avaliacao-do-docente-pelo-discente.
-  - (7) Anubis - Avaliação de Professores. Criado por estudantes da FGA em 2020. https://github.com/fga-eps-mds/2020.2-Anunbis?tab=readme-ov-file.
+  - (7) Anubis - Avaliação de Professores. Criado por estudantes da FGA em 2020.
