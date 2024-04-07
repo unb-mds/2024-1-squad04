@@ -53,6 +53,16 @@
    - **Acesso Móvel**: Teremos certeza de que o site funcione bem em dispositivos móveis.
    - **Segurança e Privacidade**: Protegemos os dados dos alunos e iremos garantir a segurança, e a opção de manter o anonimato nas avaliações.
 
+## **Além disso, encontramos um projeto semelhante desenvolvido por outros alunos da UnB** ##
+
+### Projeto Anubis desenvolvido no segundo semestre de 2020 ###
+  - #### Para nos diferenciar em relação ao projeto Anubis, nosso grupo pretende implementar as seguintes melhorias. ####
+  - **Interface**: Pretendemos implementar uma interface mais amigavel para o usuario médio, tornando mais intuitiva a maneira que as avaliações serão realizadas.
+  - **Critérios de Avaliação**: Iremos oferecer mais opções para avaliar o corpo dicente, tentando promover a participação dos estudantes
+  - **Distribuição**: Iremos promover o uso do nosso site em diversos grupos estudantis, para que ele seja continuamente utilizado e conhecido quanto ele estiver concluído. Além disso, pretendemos deixa-lo funcionando online, sem a necessidade de instalação pela parte do usuário, para que seja mais amplamente utilizado.
+  - **Logistica**: O nome da plataforma sera mais intuitivo, para que seja fácil lembrar dele. As funcionalidades serão devidamente adaptadas à realidade atual da UnB no ano de 2024.
+  - **Funcionalidades**: Além da avaliação de professores, também será possível avaliar matérias. Procuraremos também ser flexiveis quanto a outras funcionalidades que entreguem um nível ainda maior de inovação.
+
 ##### links
   - (1) AvaliaçãoUnB - Avaliação docente pelo discente. https://avaliacao.unb.br/avaliacao-docente-pelo-discente. 
   - (2) DEG - Avaliação de Disciplinas e Desempenho Docente - UnB. https://deg.unb.br/avaliacao-de-disciplinas-e-desempenho-docente.
@@ -60,3 +70,4 @@
   - (4) DEG - DEG - UnB. https://www.deg.unb.br/index.php?option=com_content&view=article&id=317.
   - (5) AvaliaçãoUnB - Avaliação docente pelo discente. https://bing.com/search?q=como+funciona+avalia%c3%a7%c3%a3o+docente+pelo+discente+UnB.
   - (6) AvaliaçãoUnB - Avaliação do Docente Pelo Discente. https://avaliacao.unb.br/avaliacao-interna/avaliacao-do-docente-pelo-discente.
+  - (7) Anubis - Avaliação de Professores. Criado por estudantes da FGA em 2020. https://github.com/fga-eps-mds/2020.2-Anunbis?tab=readme-ov-file.
