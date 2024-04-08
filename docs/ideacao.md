@@ -1,6 +1,6 @@
 # Ideação 
 
-## problemas encontrados ao analisar o publico alvo:
+## Problemas encontrados ao analisar o publico alvo:
 
 ### 1. **Falta de Informações Confiáveis**:
   - Muitos estudantes da UnB enfrentam dificuldades devido à falta de acesso a informações confiáveis sobre os professores e as matérias oferecidas. Isso pode levar a escolhas acadêmicas inadequadas e experiências de aprendizado frustrantes.
