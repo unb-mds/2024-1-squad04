@@ -6,4 +6,4 @@ O Miro servirá para o controle do mapa de habilidades da equipe, brainstorm do 
 
 ### O Miro
 
-<iframe width="768" height="432" src="[https://miro.com/app/live-embed/uXjVKZNl948=/?moveToViewport=-3600,-837,7538,3609&embedId=720465992111](https://miro.com/welcomeonboard/NFZPVFpZTThQTDN0WkVLS09oMDZybndJbEZncjlLYmhBZ2NYWm1lNnhIYzNJaGFQNDJDb2JzczJNQjdrenNTdHwzMDc0NDU3MzUyODk5MjgxMDE3fDI=?share_link_id=794512295154)" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVKd3-q78=/?moveToViewport=2186,-1886,3484,3683&embedId=128974553648" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
