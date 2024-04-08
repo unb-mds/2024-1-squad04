@@ -6,6 +6,7 @@ nav:
   - Home: index.md
   - Ideação: ideacao.md
   - Arquitetura: arquitetura.md
+  - Miro: miro.md
   - Atas:
     - ata-modelo: Atas/ata-modelo.md
     - ata-23-03: Atas/ata-23-03.md
