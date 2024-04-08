@@ -12,4 +12,6 @@ nav:
     - ata-23-03: Atas/ata-23-03.md
     - ata-26-03: Atas/ata-26-03.md
     - ata-04-04: Atas/ata-04-04.md
-    
+  - Sprints:
+    -Sprint 0: Sprints/sprint0.md
+    -Sprint 1: Sprints/sprint1.md
