@@ -12,12 +12,6 @@ A parte da coleta de dados é uma das mais importantes do projeto, encontramos a
 
 - _[VueJS](https://vuejs.org/)_:
 - _[NodeJS](https://nodejs.org/)_: 
-- _[TailWind CSS](https://tailwindcss.com/)_:
-- _[Google cloud mySQL](https://cloud.google.com/sql?utm_source=google&utm_medium=cpc&utm_campaign=latam-BR-all-pt-dr-BKWS-all-all-trial-p-dr-1707800-LUAC0015918&utm_content=text-ad-none-any-DEV_c-CRE_536282978396-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt_Databases-SQL-KWID_43700079884153224-kwd-350210931721&utm_term=KW_mysql%20google%20cloud-ST_mysql+google+cloud&gad_source=1&gclid=Cj0KCQjwztOwBhD7ARIsAPDKnkDUZk8AIbofxBZ2yOm85iY_IqEeAlhr6Bqa7G4N3OPD936cV4e9EYMaArZYEALw_wcB&gclsrc=aw.ds)_:
-- _[Git e Github](https://github.com/)_:
-- _[Heroku](https://www.heroku.com/)_:
-- _[Vercel](https://vercel.com/)_:
-- _[Figma](https://www.figma.com/)_:
 - _[Axios](https://axios-http.com/docs/intro)_:
 - _[JSON Web Tokens](https://jwt.io/)_:
 - _[Helmet](https://www.npmjs.com/package/react-helmet)_:
@@ -40,7 +34,7 @@ Para análise dos dados do lado do **cliente**, há diversas bibliotecas para o 
 
 ### Armazenamento
 
-No armazenamento temos o _[Google cloud mySQL](https://cloud.google.com/sql?utm_source=google&utm_medium=cpc&utm_campaign=latam-BR-all-pt-dr-BKWS-all-all-trial-p-dr-1707800-LUAC0015918&utm_content=text-ad-none-any-DEV_c-CRE_536282978396-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt_Databases-SQL-KWID_43700079884153224-kwd-350210931721&utm_term=KW_mysql%20google%20cloud-ST_mysql+google+cloud&gad_source=1&gclid=Cj0KCQjwztOwBhD7ARIsAPDKnkDUZk8AIbofxBZ2yOm85iY_IqEeAlhr6Bqa7G4N3OPD936cV4e9EYMaArZYEALw_wcB&gclsrc=aw.ds)_, uma opção simples, barata e efieciente para o armazenamento de dados da nossa aplicação.
+No armazenamento temos o _[Google cloud mySQL](https://cloud.google.com/sql?utm_source=google&utm_medium=cpc&utm_campaign=latam-BR-all-pt-dr-BKWS-all-all-trial-p-dr-1707800-LUAC0015918&utm_content=text-ad-none-any-DEV_c-CRE_536282978396-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt_Databases-SQL-KWID_43700079884153224-kwd-350210931721&utm_term=KW_mysql%20google%20cloud-ST_mysql+google+cloud&gad_source=1&gclid=Cj0KCQjwztOwBhD7ARIsAPDKnkDUZk8AIbofxBZ2yOm85iY_IqEeAlhr6Bqa7G4N3OPD936cV4e9EYMaArZYEALw_wcB&gclsrc=aw.ds)_, uma opção simples, barata e eficiente para o armazenamento de dados da nossa aplicação.
 
 ## Visualização de Dados
 
