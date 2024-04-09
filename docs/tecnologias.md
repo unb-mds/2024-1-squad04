@@ -8,12 +8,7 @@ Analisando os requisitos do projeto podemos identificar algumas funcionalidades,
 
 ## Coleta de Dados
 
-A parte da coleta de dados é uma das mais importantes do projeto, encontramos algumas tecnologias que podem nos ajudar durante o processo de desenvolvimento e de produção, sendo elas:
-
-- _[VueJS](https://vuejs.org/)_: Framework para fazer a renderização do servidor.
-- _[NodeJS](https://nodejs.org/)_: Se conecta com o banco de dados e retorna seu conteúdo.
-- _[Express.js](https://expressjs.com/)_: Utilizado para facilitar a conexão do servidor com o banco de dados.
-- _[Google OAuth API](https://cloud.google.com/apigee/docs/api-platform/security/oauth/access-tokens?hl=pt-br)_: Biblioteca utilizada para autenticar usuários logados com a conta Google.
+Na coleta de dados, iremos receber os dados do usuário que está logado bem como os dados de cada professor por meio de uma API da UnB, para que a aplicação se conecte e receba esses dados da API utilizaremos o _[NodeJS](https://nodejs.org/)_ com o auxilio da biblioteca _[Express.js](https://expressjs.com/)_ e da biblioteca _[Axios](https://axios-http.com/docs/intro)_ para enviarmos os dados do back-end para o front-end
 
 ## Prototipação
 
