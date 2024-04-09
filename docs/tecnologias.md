@@ -10,9 +10,9 @@ Analisando os requisitos do projeto podemos identificar algumas funcionalidades,
 
 A parte da coleta de dados é uma das mais importantes do projeto, e baseado na API do querido diário, encontramos algumas tecnologias que podem nos ajudar durante o processo de desenvolvimento e de produção, sendo elas:
 
-- _[ReactJS](https://react.dev/)_:
-- _[NodeJS](https://nodejs.org/)_:
-- _[TailWind CSS](https://tailwindcss.com/)_: 
+- [ReactJS](https://react.dev/){:target="_blank"}:
+- [NodeJS](https://nodejs.org/){:target="_blank"}:
+- [TailWind CSS](https://tailwindcss.com/){:target="_blank"}: 
 
 ## Análise e Armazenamento
 
