@@ -28,11 +28,12 @@ Facilita a busca por informações desejadas.
 
 ## Tecnologias Utilizadas
 
-- **Linguagem de Programação:** Node JS
-- **Web:** ReactJS
-- **Banco de Dados:** MySQL
-- **Ferramenta de Coleta de Dados:**  Plano de Dados Abertos (PDA) da UnB (entre outras a definir)
-- **Ferramentas Adicionais:** HTML, CSS, JavaScript, Bootstrap, CRUD
+- **Linguagem de Programação:** Javascript, Typescript, HTML e CSS.
+- **Prototipação:** Figma.
+- **Framework Web:** VueJS.
+- **Banco de Dados:** Google cloud mySQL storage.
+- **Ferramenta de Coleta de Dados:** Axios, ExpressJS, Google OAtuh API, JSON Web Tokens.
+- **Tecnologias Adicionais:** Figma, miro, Git e Github, Helmet, Heroku e Vercel, React e Tailwind.
 
 
 
