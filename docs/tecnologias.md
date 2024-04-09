@@ -8,11 +8,25 @@ Analisando os requisitos do projeto podemos identificar algumas funcionalidades,
 
 ## Coleta de Dados
 
-A parte da coleta de dados é uma das mais importantes do projeto, e baseado na API do querido diário, encontramos algumas tecnologias que podem nos ajudar durante o processo de desenvolvimento e de produção, sendo elas:
+A parte da coleta de dados é uma das mais importantes do projeto, encontramos algumas tecnologias que podem nos ajudar durante o processo de desenvolvimento e de produção, sendo elas:
 
-- _[ReactJS](https://react.dev/)_:
+- _[VueJS](https://vuejs.org/)_:
 - _[NodeJS](https://nodejs.org/)_: 
-- _[TailWind CSS](https://tailwindcss.com/)_:  
+- _[TailWind CSS](https://tailwindcss.com/)_:
+- _[Google cloud mySQL](https://cloud.google.com/sql?utm_source=google&utm_medium=cpc&utm_campaign=latam-BR-all-pt-dr-BKWS-all-all-trial-p-dr-1707800-LUAC0015918&utm_content=text-ad-none-any-DEV_c-CRE_536282978396-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt_Databases-SQL-KWID_43700079884153224-kwd-350210931721&utm_term=KW_mysql%20google%20cloud-ST_mysql+google+cloud&gad_source=1&gclid=Cj0KCQjwztOwBhD7ARIsAPDKnkDUZk8AIbofxBZ2yOm85iY_IqEeAlhr6Bqa7G4N3OPD936cV4e9EYMaArZYEALw_wcB&gclsrc=aw.ds)_:
+- _[Git e Github](https://github.com/)_:
+- _[Heroku](https://www.heroku.com/)_:
+- _[Vercel](https://vercel.com/)_:
+- _[Figma](https://www.figma.com/)_:
+- _[Axios](https://axios-http.com/docs/intro)_:
+- _[JSON Web Tokens](https://jwt.io/)_:
+- _[Helmet](https://www.npmjs.com/package/react-helmet)_:
+- _[Express.js](https://expressjs.com/)_:
+- _[Google OAuth API](https://cloud.google.com/apigee/docs/api-platform/security/oauth/access-tokens?hl=pt-br)_:
+
+## Prototipação
+
+Antes de iniciar o desenvolvimento do front-end e do back-end, precisamos ter um prototipo, um guia de como a aplicação deverá ficar. Para isso utilizaremos o _[Figma](https://www.figma.com/)_ em conjunto com o grupo para chegar em uma solução visual para a nossa aplicação. Ficará a critério do grupo decidir se a versão final do projeto seguirá o prototipo ou não.
 
 ## Análise e Armazenamento
 
@@ -20,32 +34,34 @@ A análise dos dados podem ser feitas tanto de forma iterativas, na interface we
 
 ### Análise
 
-Para a análise do lado do **servidor**, podemos utilizar tanto o a API em _[Python](https://www.python.org/)_ quanto uma API em _[Node.js](https://nodejs.org/en)_.
+Para a análise do lado do **servidor**, utilizamos uma API em _[Node.js](https://nodejs.org/en)_.
 
 Para análise dos dados do lado do **cliente**, há diversas bibliotecas para o _[React](https://react.dev/)_, que permite o desenvolvimento de gráficos e renderização dos dados de forma dinâmica.
 
 ### Armazenamento
 
-No armazenamento temos duas opções muito atrativas, o _[MongoDB](https://www.mongodb.com/pt-br)_ e o _[Postgres](https://www.postgresql.org/)_. Ambos são ótimos para armazenar os dados, mas para cada parte da aplicação precisamos decidir se um modelo relacional, otimizado para buscas complexas e inserção é melhor que um modelo não-relacional, com liberdade de estrutura e organização por documentos.
+No armazenamento temos o _[Google cloud mySQL](https://cloud.google.com/sql?utm_source=google&utm_medium=cpc&utm_campaign=latam-BR-all-pt-dr-BKWS-all-all-trial-p-dr-1707800-LUAC0015918&utm_content=text-ad-none-any-DEV_c-CRE_536282978396-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt_Databases-SQL-KWID_43700079884153224-kwd-350210931721&utm_term=KW_mysql%20google%20cloud-ST_mysql+google+cloud&gad_source=1&gclid=Cj0KCQjwztOwBhD7ARIsAPDKnkDUZk8AIbofxBZ2yOm85iY_IqEeAlhr6Bqa7G4N3OPD936cV4e9EYMaArZYEALw_wcB&gclsrc=aw.ds)_, uma opção simples, barata e efieciente para o armazenamento de dados da nossa aplicação.
 
 ## Visualização de Dados
 
-Quando se trata de visualização, estamos tratando da nossa interface Web, que sem dúvidas um ótimo framework para resolver este problema é o _[Next.js](https://nextjs.org/)_. Ele permite fazer renderização do lado do servidor, trabalhar com rotas de uma forma descomplicada, estrutura de pastas dinâmicas e diversas outras features.
-Como o _[Next.js](https://nextjs.org/)_ é um framework construído por cima do _[React](https://react.dev/)_, podemos utilizar muitas bibliotecas para plotagem dos dados, dentre elas se destacam: _[React-Charts](https://react-charts.tanstack.com/)_ e a _[Apexcharts](https://react-charts.tanstack.com/)_. Fica a critério do time em tempo de desenvolvimento decidir quais são as mais adequadas para cada situação.
+Quando se trata de visualização, estamos tratando da nossa interface Web, que sem dúvidas um ótimo framework para resolver este problema é o _[VueJS](https://vuejs.org/)_. Ele permite fazer renderização do lado do servidor, trabalhar com rotas de uma forma descomplicada, estrutura de pastas dinâmicas e diversas outras features.
+Como o _[VueJS](https://vuejs.org/)_ é um framework construído por cima do _[React](https://react.dev/)_, podemos utilizar muitas bibliotecas que irá nos auxiliar na parte de exposição de dados para o usuário.
 
 ## API Intermediária
 
-Uma das idéias é fazer um sistema de notificação para avisar aos inscritos da plataforma sobre novas licitações com gastos culturais do estado de Minas Gerais, também queremos salvas algumas licitações no nosso banco de dados, e para fazer todo esse trabalho uma ótima ferramenta é o _[Node.js](https://nodejs.org/en)_, dado que nós estaremos trabalhando com _[Next.js](https://nextjs.org/)_, trabalhar com a mesma linguagem tanto do lado do servidor quanto do lado do cliente otimiza os estudos e o tempo de desenvolvimento do time. Para fazer essa API, podemos utilizar algumas bibliotecas, sendo elas:
+Queremos que cada avaliação feito pelo usuário fique salva no banco de dados, para que em outros semestres o usuário possa ter uma base mais sólida sobre a avaliação de cada professor, e para fazer todo esse trabalho uma ótima ferramenta é o _[Node.js](https://nodejs.org/en)_, dado que nós estaremos trabalhando com _[VueJS](https://vuejs.org/)_, trabalhar com a mesma linguagem tanto do lado do servidor quanto do lado do cliente otimiza os estudos e o tempo de desenvolvimento do time. Para fazer essa API, podemos utilizar algumas bibliotecas, sendo elas:
 
 - _[Express](https://expressjs.com/)_: Criação de servidor para receber requisições HTTP e processar os dados.
-- _[Nodemailer](https://www.nodemailer.com/)_: Enviar emails de dentro da nossa aplicação para os inscritos da plataforma.
-- _[Prisma](https://www.prisma.io/)_: ORM para manipulação dos bancos de dados.
+- _[Axios](https://axios-http.com/docs/intro)_: 
+- _[JSON Web Tokens](https://jwt.io/)_:
+- _[Helmet](https://www.npmjs.com/package/react-helmet)_:
+- _[Google OAuth API](https://cloud.google.com/apigee/docs/api-platform/security/oauth/access-tokens?hl=pt-br)_: 
 
-Vale resaltar que ambos, Node.js e o React.js podem ser escritos por cima das linguagens _[Javascript](https://www.javascript.com/)_ e _[Typescript](https://www.typescriptlang.org/)_. Portanto vai depender da escolha do time em tempo de desenvolvimento qual será a mais aquada para cada serviço.
+Vale resaltar que ambos, Node.js e o VueJS podem ser escritos por cima das linguagens _[Javascript](https://www.javascript.com/)_ e _[Typescript](https://www.typescriptlang.org/)_. Portanto vai depender da escolha do time em tempo de desenvolvimento qual será a mais aquada para cada serviço.
 
 ## Infraestrutura
 
-Uma parte importante da nossa aplicação é aonde vamos publicar. Como não temos uma plataforma definitiva, é crucial desenvolver todo o ecossistema em microsserviços. Com o _[Docker](https://www.docker.com/)_ podemos desenvolver a aplicação em um ambiente controlado, onde determinamos de ponta a ponta os recursos que vão ser utilizados, bibliotecas que vão ser instaladas e configuração de rede para a comunicação dos microsserviços.
+Para o deploy da aplicação iremos utilizar duas tecnologias, primeiramente utilizaremos o _[Heroku](https://www.heroku.com/)_ para hospedar o back-end da aplicação e simultaneamente utilizaremos o _[Vercel](https://vercel.com/)_ para hospedar o front-end da aplicação, amabas opções simples, eficazes e baratas.
 
 # Conclusão das Tecnologias Escolhidas
 
