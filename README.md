@@ -25,6 +25,10 @@ Opção de anonimato garante liberdade de expressão.
 Os usuários podem filtrar por data, relevância e popularidade.
 Facilita a busca por informações desejadas.
 
+## Documentação
+
+A documentação do projeto pode ser acessada pelo link: https://unb-mds.github.io/2024-1-squad04/
+
 
 ## Tecnologias Utilizadas
 
