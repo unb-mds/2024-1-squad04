@@ -3,7 +3,9 @@
 </template>
     
 <script setup>
-
+    export default{
+        name: "login"
+    };
 </script>
 
 <style lang="scss" scoped>
