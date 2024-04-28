@@ -19,13 +19,8 @@ const router = createRouter({
         },
         {
             path: '/:catchAll(.*)',
-            redirect: to => { // verifica se o usuário está logado
-                const isAuthenticated = false;
-                if (!isAuthenticated) {
-                    return '/login'; // se não estiver logado é redirecionado para o login
-                } else {
-                    return to.fullPath; // se estiver logado continua para a rota
-                }
+            redirect: () => {
+                return '/login';
             }
         }
     ]

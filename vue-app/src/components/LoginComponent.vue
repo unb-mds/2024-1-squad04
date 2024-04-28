@@ -1,5 +1,5 @@
 <template>
-    <h2 class="h2-text">pagina de login</h2>
+    <h2 class="h2-login">pagina de login</h2>
 </template>
 
 <script>
