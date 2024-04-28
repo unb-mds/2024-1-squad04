@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import '../styles/HomeComponent.css';
 export default {
     name: "HomeComponent",
     data() {

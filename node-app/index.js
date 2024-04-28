@@ -1,17 +1,31 @@
-// index.js
-const http = require('http');
+const { Sequelize } = require('sequelize')
+const express = require('express')
+const cors = require('cors')
+require('dotenv').config();
 
-// Crie um servidor HTTP
-const server = http.createServer((req, res) => {
-  // Configurar o cabeçalho da resposta com o tipo de conteúdo e código de status 200 (OK)
-  res.writeHead(200, {'Content-Type': 'text/plain'});
+const app = new express()
+app.use(cors())
+app.use(express.json())
 
-  // Escreva a resposta "Hello, world!" no corpo da resposta
-  res.end('Hello, world!\n');
+const sequelize = new Sequelize({ 
+    dialect: 'mysql',
+    host: "35.193.233.216",
+    username: 'root',
+    password: 'mdssquad4avaliaunbdb24',
+    database: 'avalia_unb',
 });
-
-// Ouvir na porta 3000
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+sequelize.authenticate().then(function(){ 
+    console.log("Conectado ao Banco de Dados")
+}).catch(function(erro){
+    console.log(erro)
+})
+app.get('/', async (req, res) => {
+  try {
+    const [results] = await sequelize.query("SELECT * FROM Usuario");
+    res.json(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Houve um erro ao buscar os dados');
+  }
 });
+app.listen(3000)
