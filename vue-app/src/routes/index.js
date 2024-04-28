@@ -1,19 +1,32 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from'../components/HomeView.vue';
-import Login from'../components/LoginView.vue';
+import Home from'../components/HomeComponent.vue';
+import Login from'../components/LoginComponent.vue';
+import { authGuard } from '../guards/authGuard'; 
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHistory(''),
     routes: [
         {
             path: '/login',
-            name: 'login-page',
+            name: 'login',
             component: Login
         },
         {
-            path: '/',
-            name: 'home-page',
-            component: Home
+            path: '/home',
+            name: 'home',
+            component: Home,
+            beforeEnter: authGuard
+        },
+        {
+            path: '/:catchAll(.*)',
+            redirect: to => { // verifica se o usuário está logado
+                const isAuthenticated = false;
+                if (!isAuthenticated) {
+                    return '/login'; // se não estiver logado é redirecionado para o login
+                } else {
+                    return to.fullPath; // se estiver logado continua para a rota
+                }
+            }
         }
     ]
 });

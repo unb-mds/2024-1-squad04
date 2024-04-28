@@ -2,10 +2,10 @@
   <div>
     <ul>
       <li>
-        <router-link :to="{name:'login-page'}" >Login</router-link>
+        <router-link :to="{name:'login'}" >Login</router-link>
       </li>
       <li>
-       <router-link :to="{name:'home-page'}" >Home</router-link>
+       <router-link :to="{name:'home'}" >Home</router-link>
       </li>
     </ul>
   </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  
+
 }
 </script>
 

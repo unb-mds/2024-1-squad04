@@ -2,6 +2,6 @@
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './routes/index.js' // Importe o arquivo de rotas
+import router from './routes/index.js'
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).mount('#app') // monta o app
