@@ -5,12 +5,12 @@
                     <div className='inputs'>
                         <div className='email'>
                             <label className='email-login'>E-mail</label>
-                            <input type='email' placeholder='Insira o seu e-mail' className='form-control'/>
+                            <input type='email' placeholder='Insira o seu e-mail' className='form-control' ref="emailInput"/>
                         </div>
 
                         <div className='senha-login'>
                             <label className='senha'>Senha</label>
-                            <input type='password' placeholder='Insira sua senha' className='form-control'/>
+                            <input type='password' placeholder='Insira sua senha' className='form-control' ref="senhaInput"/>
                         </div>
                     </div>
                     <button className='login-button' @click.prevent="HandleLogin">Login</button>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-//import { authGuard } from '../guards/authGuard';
+const User = require('../../../node-app/controllers/UserMET');
 export default {
     name: "LoginComponent",
     data() {
@@ -29,8 +29,13 @@ export default {
         }
     },
     methods: {
-        HandleLogin() {
-            console.log('Botão de login clicado');
+        async HandleLogin() {
+            try{
+                await User.autenticarLogin(this.$refs.emailInput.value, this.$refs.senhaInput.value);
+            }
+            catch(erro){
+                console.log("Erro ao executar o login");
+            }
         }
     },
     mounted() {
