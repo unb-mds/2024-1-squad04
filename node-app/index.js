@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize')
 const express = require('express')
 const cors = require('cors')
 require('dotenv').config();
+const User = require('./controllers/UserMET');
 
 const app = new express()
 app.use(cors())
@@ -19,13 +20,10 @@ sequelize.authenticate().then(function(){
 }).catch(function(erro){
     console.log(erro)
 })
-app.get('/', async (req, res) => {
-  try {
-    const [results] = await sequelize.query("SELECT * FROM Usuario");
-    res.json(results);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Houve um erro ao buscar os dados');
-  }
-});
+
+
+User.getDados(app, sequelize);
+
+User.postDados(app, sequelize);
+
 app.listen(3000)
