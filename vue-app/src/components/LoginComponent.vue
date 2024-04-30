@@ -14,6 +14,7 @@
                         </div>
                     </div>
                     <button className='login-button' @click.prevent="HandleLogin">Login</button>
+                    <p class="login-error">{{erro}}</p>
                 </form>
         </div>
     </div>
@@ -25,16 +26,22 @@ export default {
     name: "LoginComponent",
     data() {
         return {
-
+            erro: ''
         }
     },
     methods: {
         async HandleLogin() {
-            try{
-                await User.autenticarLogin(this.$refs.emailInput.value, this.$refs.senhaInput.value);
-            }
-            catch(erro){
-                console.log("Erro ao executar o login");
+            try {
+                this.erro = '';
+                const response = await User.autenticarLogin(this.$refs.emailInput.value, this.$refs.senhaInput.value);
+                if (response == 0){
+                    this.erro = 'Erro ao fazer login. Por favor, verifique suas credenciais.'; 
+                }
+                setTimeout(() => {
+                    this.erro = '';
+                }, 5000);
+            } catch (error) {
+                console.error('Erro ao executar o login:', error);
             }
         }
     },
@@ -60,5 +67,8 @@ export default {
 .h2-login {
     color: blue;
 }
-
+.error-message {
+  color: red;
+  font-size: 14px;
+}
 </style>

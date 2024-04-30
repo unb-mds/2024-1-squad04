@@ -6,12 +6,11 @@ const autenticarLogin = async (emailEntrada, senhaEntrada) => {
     const usuarios = response.data;
     for (i = 0; i < usuarios.length; i++){
       if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){
-        console.log("Existe conta")
-        break;
+        console.log("Existe conta");
+        return 1;
       }
-      else{
-        console.log("Nao existe conta")
-        break
+      else {
+        return 0;
       }
     }
   } catch (error) {
