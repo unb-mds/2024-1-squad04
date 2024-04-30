@@ -28,7 +28,7 @@ const router = createRouter({
         {
             path: '/:catchAll(.*)',
             redirect: () => {
-                return '/login';
+                return '/cadastro';
             }
         }
     ]
