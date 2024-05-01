@@ -1,26 +1,25 @@
 <template>
     <div class="overlay">
         <div class="card">
-                <form className='form'>
-                    <div className='inputs'>
-                        <div className='email'>
-                            <label className='email-login'>E-mail</label>
-                            <input type='email' placeholder='Insira o seu e-mail' className='form-control' ref="emailInput"/>
-                        </div>
-
-                        <div className='senha-login'>
-                            <label className='senha'>Senha</label>
-                            <input type='password' placeholder='Insira sua senha' className='form-control' ref="senhaInput"/>
-                        </div>
+                <form class='form'>
+                    <div class='inputs'>
+                        <label class='email'>E-mail</label>
+                        <input type='email' placeholder='Insira o seu e-mail' class='form-control' ref="emailInput"/>
+                        <label class='senha'>Senha</label>
+                        <input type='password' placeholder='Insira sua senha' class='form-control' ref="senhaInput"/>
                     </div>
-                    <button className='login-button' @click.prevent="HandleLogin">Login</button>
-                    <p class="login-error">{{erro}}</p>
                 </form>
+                <div class="buttons-login">
+                    <button class='login-button' @click.prevent="HandleLogin">Login</button>
+                    <p class="cadastrar-p" @click.prevent="HandleCadastro">Cadastre-se</p>
+                </div>
+                <p class="login-error">{{erro}}</p>
         </div>
     </div>
 </template>
 
 <script>
+//import router from '../routes/index'; 
 const User = require('../../../node-app/controllers/UserMET');
 export default {
     name: "LoginComponent",
@@ -30,6 +29,10 @@ export default {
         }
     },
     methods: {
+        async HandleCadastro(){
+            //router.push('/cadastro');
+            console.log("cadastrar")
+        },
         async HandleLogin() {
             try {
                 this.erro = '';
@@ -63,6 +66,17 @@ export default {
 <style scoped>
 .card{
     background-color: white;
+    display: grid;
+    padding: 10px;
+    padding-bottom: 0;
+}
+.inputs{
+    display: grid;
+}
+.buttons-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .h2-login {
     color: blue;

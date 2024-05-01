@@ -1,9 +1,11 @@
-export function authGuard(to, from, next) {
-    
-    const isAuthenticated = true; // verifica se está logado
-    if (!isAuthenticated) {
-        next({ name: 'login' }); // se não é redirecionado para a rota de login
-    } else {
-        next(); // se estiver logado continua para a rota 
+import router from '../routes/index'
+
+export function authGuard(auth, matricula) {
+    if (auth) {
+        sessionStorage.setItem('matricula', matricula);
+        router.push('/home')
+    }
+    else{
+        console.log("errado")
     }
 }

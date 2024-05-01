@@ -17,6 +17,11 @@ const router = createRouter({
             component: Home,
             beforeEnter: authGuard
         },
+        // {
+        //     path: '/cadastro',
+        //     name: 'cadastro',
+        //     component: Cadastro,
+        // },
         {
             path: '/:catchAll(.*)',
             redirect: () => {
