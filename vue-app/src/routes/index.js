@@ -1,10 +1,37 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from'../components/HomeComponent.vue';
 import Login from'../components/LoginComponent.vue';
+import axios from 'axios'
+import CryptoJS from "crypto-js";
 
-const beforeEnterCheck = () => {
-    if (sessionStorage.getItem('matricula') == null){
-        router.push('/login')
+const beforeEnterCheck = async () => {
+    if (sessionStorage.getItem('matricula') != null){
+        try {
+            const responsekey = await axios.get('http://localhost:3000/chave');
+            const responseuser = await axios.get('http://localhost:3000/usuario');
+    
+            const key = responsekey.data
+            const user = responseuser.data
+    
+            const decryptedBytes = CryptoJS.AES.decrypt(sessionStorage.getItem('matricula'), key);
+            const matriculadec = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    
+            for (let i = 0; i < user.length; i++){
+                if (user[i].matricula.toString() === matriculadec){
+                    console.log("tem")
+                    return;
+                }
+                else {
+                    router.push('/login')
+                    return;
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    else{
+        return;
     }
 }
 

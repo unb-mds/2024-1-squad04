@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize'
 import express from 'express'
 import cors from 'cors' 
+import CryptoJS from 'crypto-js';
 
 const app = new express()
 app.use(cors())
@@ -27,6 +28,11 @@ app.get('/usuario', async (req, res) => {
     console.error(error);
     res.status(500).send('Houve um erro ao buscar os dados');
   }
+});
+
+app.get('/chave', async (req, res) => {
+  const segredo = "chave_de_criptografia"; // Use a chave de criptografia adequada
+  res.json(segredo);
 });
 
 app.listen(3000)
