@@ -1,11 +1,13 @@
 import router from '../routes/index'
 
-export function authGuard(auth, matricula) {
+export async function authGuard(auth, matricula) {
     if (auth) {
         sessionStorage.setItem('matricula', matricula);
         router.push('/home')
+        return 1;
     }
     else{
-        console.log("errado")
+        sessionStorage.setItem('matricula', null);
+        return 0;
     }
 }

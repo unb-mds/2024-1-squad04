@@ -31,7 +31,6 @@ export default {
     methods: {
         async HandleCadastro(){
             //router.push('/cadastro');
-            console.log("cadastrar")
         },
         async HandleLogin() {
             try {

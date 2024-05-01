@@ -1,10 +1,6 @@
-const { Sequelize } = require('sequelize')
-const express = require('express')
-const cors = require('cors')
-require('dotenv').config();
-
-
-const User = require('./controllers/UserMET'); 
+import { Sequelize } from 'sequelize'
+import express from 'express'
+import cors from 'cors' 
 
 const app = new express()
 app.use(cors())

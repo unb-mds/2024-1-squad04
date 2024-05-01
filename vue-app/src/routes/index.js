@@ -1,7 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from'../components/HomeComponent.vue';
 import Login from'../components/LoginComponent.vue';
-import { authGuard } from '../guards/authGuard'; 
+
+const beforeEnterCheck = () => {
+    if (sessionStorage.getItem('matricula') == null){
+        router.push('/login')
+    }
+}
 
 const router = createRouter({
     history: createWebHistory(''),
@@ -15,17 +20,19 @@ const router = createRouter({
             path: '/home',
             name: 'home',
             component: Home,
-            beforeEnter: authGuard
+            beforeEnter: beforeEnterCheck
         },
+
         // {
         //     path: '/cadastro',
         //     name: 'cadastro',
         //     component: Cadastro,
         // },
+        
         {
             path: '/:catchAll(.*)',
             redirect: () => {
-                return '/login';
+                return '/home';
             }
         }
     ]
