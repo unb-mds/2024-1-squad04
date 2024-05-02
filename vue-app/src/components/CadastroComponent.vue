@@ -54,11 +54,11 @@
                   <label for="curso" class="mr-2"></label>
                   <select id="curso" v-model="formData.curso" class="form-control" required>
                     <option value="">Selecione o curso</option>
-                    <option value="Opção 1">Engenharia de Software</option>
-                    <option value="Opção 2">Engenharia Aeroespacial</option>
-                    <option value="Opção 3">Engenharia Automotiva</option>
-                    <option value="Opção 4">Engenharia Eletrônica</option>
-                    <option value="Opção 5">Engenharia de Energia</option>
+                    <option value="Engenharia de Software">Engenharia de Software</option>
+                    <option value="Engenharia Aeroespacial">Engenharia Aeroespacial</option>
+                    <option value="Engenharia Automotiva">Engenharia Automotiva</option>
+                    <option value="Engenharia Eletrônica">Engenharia Eletrônica</option>
+                    <option value="Engenharia de Energia">Engenharia de Energia</option>
                   </select>
                 </div>
                 <div class="form-group">

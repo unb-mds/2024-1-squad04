@@ -45,10 +45,10 @@ export default {
             const usuarios = response.data;
             
             for (let i = 0; i < usuarios.length; i++){
-            if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){
-                authGuard(true, usuarios[i].matricula)
-                return 1;
-            }
+                if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){
+                    authGuard(true, usuarios[i].matricula)
+                    return 1;
+                }
             }
 
             authGuard(false)
