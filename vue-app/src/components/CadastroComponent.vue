@@ -96,7 +96,7 @@ export default {
     async handleCadastro() {
       try {
         if (this.formData.senha !== this.confirmacao_senha) {
-          console.error("Senhas diferentes");
+          //implementar lidar com senha incorreta ************************************************************************
           return;
         }
         const response = await fetch("http://localhost:3000/usuario", {
@@ -107,7 +107,6 @@ export default {
           body: JSON.stringify(this.formData)
         });
         const data = await response.json();
-        console.log("Resposta do servidor:", data);
         // Limpar o formulário após o envio bem-sucedido
         this.formData.nome = "";
         this.formData.sobrenome = "";
@@ -117,6 +116,7 @@ export default {
         this.formData.matricula = "";
         this.formData.cpf = "";
         this.confirmacao_senha = ""
+        router.push('/login');
       } catch (error) {
         console.error("Erro ao cadastrar:", error);
       }
