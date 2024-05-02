@@ -1,32 +1,9 @@
-import axios from 'axios';
-import { authGuard } from '../../vue-app/src/guards/authGuard';
+import  Sequelize  from "sequelize";
+export const getDados = ((app, sequelize)=>{
 
-export async function autenticarLogin(emailEntrada, senhaEntrada){
-  try {
-    const response = await axios.get('http://localhost:3000/usuario');
-    const usuarios = response.data;
-    
-    for (let i = 0; i < usuarios.length; i++){
-      if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){
-        authGuard(true, usuarios[i].matricula)
-        return 1;
-      }
-    }
-
-    authGuard(false)
-    return 0;
-
-  } catch (error) {
-    console.log(error);
-  }
-};const { Sequelize } = require('sequelize');
-
-
-const getDados = ((app, sequelize)=>{
-
-    app.get('/', async (req, res) => {
+    app.get('/usuario', async (req, res) => {
         try {
-          const [results] = await sequelize.query("SELECT * FROM Usuario");
+          const [results] = await sequelize.query("SELECT * FROM usuario");
           res.json(results);
         } catch (error) {
           console.error(error);
@@ -36,32 +13,39 @@ const getDados = ((app, sequelize)=>{
 
 })
 
-const postDados = ((app, sequelize)=>{
+export const postDados = ((app, sequelize)=>{
 
-    app.post('/', (req, res) => {
-        const {nome, sobrenome, email, senha, curso, matricula} = req.body;
-      
-        sequelize.query(
-          'INSERT INTO Usuario (nome, sobrenome, email, senha, curso, matricula) VALUES (?, ?, ?, ?, ?, ?)',
-          {
-            replacements: [nome, sobrenome, email, senha, curso, matricula], 
-            type: Sequelize.QueryTypes.INSERT,
-          }
-        )
-      
-        .then(()=>{
+  app.post('/usuario', (req, res) => {
+      console.log("Dados recebidos no req.body:", req.body); // Verifica se os dados estão sendo recebidos corretamente
+
+      const {matricula, cpf, nome, sobrenome, email, senha, curso} = req.body;
+
+      console.log("Dados a serem inseridos no banco de dados:", {matricula, cpf, nome, sobrenome, email, senha, curso}); // Verifica os dados a serem inseridos no banco de dados
+
+      sequelize.query(
+        'INSERT INTO usuario (matricula, cpf, nome, sobrenome, email, senha, curso) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        {
+          replacements: [matricula, cpf, nome, sobrenome, email, senha, curso], 
+          type: Sequelize.QueryTypes.INSERT,
+        }
+      ).then(() => {
+          console.log("Cadastro feito com sucesso"); // Loga quando o cadastro é bem-sucedido
           res.json({ success:true, message: 'Cadastro feito com sucesso'});
-      
-        })
-      
-        .catch((error)=>{
-          console.error('Erro ao cadastrar', error);
+      }).catch((error) => {
+          console.error('Erro ao cadastrar:', error); // Loga o erro caso ocorra algum problema
           res.status(500).json({success: false, message: 'Erro ao cadastrar'});
-        });
-      
       });
+    
+    });
 
+});
+
+
+
+export const getChave = ((app) => {
+  app.get('/chave', async (req, res) => {
+    const segredo = "chave_de_criptografia"; // Use a chave de criptografia adequada
+    res.json(segredo);
+  });
 })
   
-
-module.exports = {getDados, postDados};

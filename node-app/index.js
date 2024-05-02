@@ -1,9 +1,8 @@
 import { Sequelize } from 'sequelize'
 import express from 'express'
 import cors from 'cors' 
-import CryptoJS from 'crypto-js';
-require('dotenv').config();
-const User = require('./controllers/UserMET');
+import * as User from './controllers/UserMET.js';
+
 
 
 const app = new express()

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router from '../routes/index'
+import  router  from '../routes/index.js'
 import CryptoJS from 'crypto-js';
 
 

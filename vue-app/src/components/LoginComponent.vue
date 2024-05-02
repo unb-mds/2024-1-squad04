@@ -19,8 +19,11 @@
 </template>
 
 <script>
-//import router from '../routes/index'; 
-const User = require('../../../node-app/controllers/UserMET');
+
+import  axios  from "axios";
+import { authGuard } from "../guards/authGuard.js";
+import router from '../routes/index'; 
+
 export default {
     name: "LoginComponent",
     data() {
@@ -29,13 +32,39 @@ export default {
         }
     },
     methods: {
-        async HandleCadastro(){
-            //router.push('/cadastro');
+
+        async HandleCadastro() {
+
+            router.push('/cadastro');
         },
+
+
+        async autenticarLogin(emailEntrada, senhaEntrada){
+        try {
+            const response = await axios.get('http://localhost:3000/usuario');
+            const usuarios = response.data;
+            
+            for (let i = 0; i < usuarios.length; i++){
+            if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){
+                authGuard(true, usuarios[i].matricula)
+                return 1;
+            }
+            }
+
+            authGuard(false)
+            return 0;
+
+        } catch (error) {
+            console.log(error);
+        }
+        },
+
+
+      
         async HandleLogin() {
             try {
                 this.erro = '';
-                const response = await User.autenticarLogin(this.$refs.emailInput.value, this.$refs.senhaInput.value);
+                const response = await this.autenticarLogin(this.$refs.emailInput.value, this.$refs.senhaInput.value);
                 if (response == 0){
                     this.erro = 'Erro ao fazer login. Por favor, verifique suas credenciais.'; 
                 }

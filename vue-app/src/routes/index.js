@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from'../components/HomeComponent.vue';
 import Login from'../components/LoginComponent.vue';
 import Cadastro from '../components/CadastroComponent.vue'
-import { authGuard } from '../guards/authGuard'; 
 import axios from 'axios'
 import CryptoJS from "crypto-js";
 
@@ -33,6 +32,7 @@ const beforeEnterCheck = async () => {
         }
     }
     else{
+        router.push('/login');
         return;
     }
 }
