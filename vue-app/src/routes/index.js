@@ -19,11 +19,6 @@ const beforeEnterCheck = async () => {
     
             for (let i = 0; i < user.length; i++){
                 if (user[i].matricula.toString() === matriculadec){
-                    console.log("tem")
-                    return;
-                }
-                else {
-                    router.push('/login')
                     return;
                 }
             }

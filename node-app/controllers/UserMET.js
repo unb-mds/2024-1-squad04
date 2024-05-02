@@ -40,8 +40,6 @@ export const postDados = ((app, sequelize)=>{
 
 });
 
-
-
 export const getChave = ((app) => {
   app.get('/chave', async (req, res) => {
     const segredo = "chave_de_criptografia"; // Use a chave de criptografia adequada
