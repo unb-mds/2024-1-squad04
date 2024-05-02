@@ -1,36 +1,50 @@
 <template>
     <div class="overlay">
         <div class="card">
-                <form className='form'>
-                    <div className='inputs'>
-                        <div className='email'>
-                            <label className='email-login'>E-mail</label>
-                            <input type='email' placeholder='Insira o seu e-mail' className='form-control'/>
-                        </div>
-
-                        <div className='senha-login'>
-                            <label className='senha'>Senha</label>
-                            <input type='password' placeholder='Insira sua senha' className='form-control'/>
-                        </div>
+                <form class='form'>
+                    <div class='inputs'>
+                        <label class='email'>E-mail</label>
+                        <input type='email' placeholder='Insira o seu e-mail' class='form-control' ref="emailInput"/>
+                        <label class='senha'>Senha</label>
+                        <input type='password' placeholder='Insira sua senha' class='form-control' ref="senhaInput"/>
                     </div>
-                    <button className='login-button' @click.prevent="HandleLogin">Login</button>
                 </form>
+                <div class="buttons-login">
+                    <button class='login-button' @click.prevent="HandleLogin">Login</button>
+                    <p class="cadastrar-p" @click.prevent="HandleCadastro">Cadastre-se</p>
+                </div>
+                <p class="login-error">{{erro}}</p>
         </div>
     </div>
 </template>
 
 <script>
-//import { authGuard } from '../guards/authGuard';
+//import router from '../routes/index'; 
+const User = require('../../../node-app/controllers/UserMET');
 export default {
     name: "LoginComponent",
     data() {
         return {
-
+            erro: ''
         }
     },
     methods: {
-        HandleLogin() {
-            console.log('Botão de login clicado');
+        async HandleCadastro(){
+            //router.push('/cadastro');
+        },
+        async HandleLogin() {
+            try {
+                this.erro = '';
+                const response = await User.autenticarLogin(this.$refs.emailInput.value, this.$refs.senhaInput.value);
+                if (response == 0){
+                    this.erro = 'Erro ao fazer login. Por favor, verifique suas credenciais.'; 
+                }
+                setTimeout(() => {
+                    this.erro = '';
+                }, 5000);
+            } catch (error) {
+                console.error('Erro ao executar o login:', error);
+            }
         }
     },
     mounted() {
@@ -51,9 +65,23 @@ export default {
 <style scoped>
 .card{
     background-color: white;
+    display: grid;
+    padding: 10px;
+    padding-bottom: 0;
+}
+.inputs{
+    display: grid;
+}
+.buttons-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .h2-login {
     color: blue;
 }
-
+.error-message {
+  color: red;
+  font-size: 14px;
+}
 </style>

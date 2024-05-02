@@ -1,8 +1,10 @@
-const { Sequelize } = require('sequelize')
-const express = require('express')
-const cors = require('cors')
+import { Sequelize } from 'sequelize'
+import express from 'express'
+import cors from 'cors' 
+import CryptoJS from 'crypto-js';
 require('dotenv').config();
 const User = require('./controllers/UserMET');
+
 
 const app = new express()
 app.use(cors())
@@ -21,9 +23,11 @@ sequelize.authenticate().then(function(){
     console.log(erro)
 })
 
-
 User.getDados(app, sequelize);
 
 User.postDados(app, sequelize);
+
+User.getChave(app);
+
 
 app.listen(3000)

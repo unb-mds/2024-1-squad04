@@ -1,9 +1,19 @@
-export function authGuard(to, from, next) {
-    
-    const isAuthenticated = true; // verifica se está logado
-    if (!isAuthenticated) {
-        next({ name: 'login' }); // se não é redirecionado para a rota de login
-    } else {
-        next(); // se estiver logado continua para a rota 
+import axios from 'axios';
+import router from '../routes/index'
+import CryptoJS from 'crypto-js';
+
+
+
+export async function authGuard(auth, matricula) {
+    if (auth) {
+        const response = await axios.get('http://localhost:3000/chave');
+        const encryptedMatricula = CryptoJS.AES.encrypt(matricula.toString(), response.data).toString();
+        sessionStorage.setItem('matricula', encryptedMatricula);
+        router.push('/home');
+        return 1;
+    }
+    else{
+        sessionStorage.removeItem('matricula');
+        return 0;
     }
 }
