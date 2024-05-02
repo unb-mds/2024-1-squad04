@@ -24,7 +24,7 @@
                 <!-- Fim do grupo Nome e CPF -->
                 <div class="form-group">
                 <label for="email" class="d-flex"></label>
-                <input id="email" v-model="formData.email" type="email" class="form-control" placeholder="E-mail" required>
+                <input id="email" v-model="formData.email" type="email" class="email" placeholder="E-mail" required>
               </div>
                 <!-- Div para agrupar os campos Senha e Confirmação de Senha -->
                 <div class="form-group">
@@ -110,6 +110,7 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
   display: flex;
 }
@@ -130,7 +131,7 @@ export default {
 .card {
   position: absolute;
   top: 55%;
-  right: 15%; /* Ajuste fino para espaçamento da borda direita */
+  right: 19%; /* Ajuste fino para espaçamento da borda direita */
   transform: translate(0, -50%);
   width: 55%; /* Largura do elemento */
   height: 45%;
@@ -144,18 +145,19 @@ export default {
 /* Estilos adicionais para o título "Cadastre-se" */
 .title {
   font-family: 'Open Sans', sans-serif;
-  font-size: 44px;
+  font-size: 450%;
   color: #fff; /* Cor branca */
-  padding: 20px; /* Padding para todos os lados */
+  padding: 20px; /* Padding para todos os lados */    
   margin-bottom: 55px; /* Margem inferior para criar espaço entre o título e a caixa do card */
   margin-top: 140px;
-  margin-left: 55px;
+  margin-left: 19%;
 }
 
 /* Estilos adicionais para os outros textos */
 .text {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
+  letter-spacing: 5%;
   color: #6D6B71; /* Cor cinza */
 }
 .inputs {
@@ -171,9 +173,10 @@ export default {
   align-items: center; /* Centralizar itens horizontalmente */
 }
 
-#email {
-  width: 350px; /* Defina o tamanho desejado para o campo de e-mail */
-  padding: 12px;
+.email {
+  width: 79%; /* Defina o tamanho desejado para o campo de e-mail */
+  align-self: center;
+  margin-bottom: 16px;
 }
 
 .form-group input {
