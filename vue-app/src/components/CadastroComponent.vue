@@ -8,6 +8,8 @@
       <div class="col-lg-6 px-4 py-5 bg-blue">
         <h1 class="title">Cadastre-se</h1>
         <div class="card">
+
+          <p v-if="mensagemErro" class="erro">{{ mensagemErro }}</p>
           <form @submit.prevent="handleCadastro" class="form">
             <div class="inputs">
               <!-- Div para agrupar os campos Nome e CPF -->
@@ -50,7 +52,14 @@
               <div class="form-group">
                 <div class="form-group">
                   <label for="curso" class="mr-2"></label>
-                  <input id="curso" v-model="formData.curso" class="form-control" placeholder="Curso" required>
+                  <select id="curso" v-model="formData.curso" class="form-control" required>
+                    <option value="">Selecione o curso</option>
+                    <option value="Opção 1">Engenharia de Software</option>
+                    <option value="Opção 2">Engenharia Aeroespacial</option>
+                    <option value="Opção 3">Engenharia Automotiva</option>
+                    <option value="Opção 4">Engenharia Eletrônica</option>
+                    <option value="Opção 5">Engenharia de Energia</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="matricula" class="mr-2"></label>
@@ -60,7 +69,7 @@
               <!-- Fim do grupo Curso e Matrícula -->
               <div class="d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary btn-block btn-cadastrar">Cadastrar</button>
-                <button type="submit" class="btn btn-secondary btn-block btn-cancelar" @click.prevent="HandleCancelar">Cancelar</button>
+                <button class="btn btn-secondary btn-block btn-cancelar" @click.prevent="HandleCancelar">Cancelar</button>
               </div>
             </div>
           </form>
@@ -72,11 +81,13 @@
 
 <script>
 import router from '../routes/index';
+import  axios  from "axios";
 
 export default {
   name: "CadastroComponent",
   data() {
     return {
+      mensagemErro: "",
       confirmacao_senha: "",
       formData: {
         matricula: "",
@@ -90,26 +101,62 @@ export default {
     };
   },
   methods: {
-    async HandleCancelar() {
+
+  async verificarExistencia() {
+  try {
+    const response = await axios.get('http://localhost:3000/usuario');
+    const usuarios = response.data;
+
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].email === this.formData.email) {
+        return "O e-mail já está cadastrado.";
+      }
+
+      if (usuarios[i].matricula.toString() === this.formData.matricula) {
+        return "A matrícula já está cadastrada.";
+      }
+
+      if (usuarios[i].cpf === this.formData.cpf) {
+        return "O CPF já está cadastrado.";
+      }
+
+    }
+    return null;
+
+  } catch (error) {
+    console.log(error);
+    return "Erro ao verificar cadastro."; // Mensagem de erro genérica
+  }
+},
+
+  async HandleCancelar() {
       router.push('/login');
     },
-    async handleCadastro() {
-      try {
-        if (this.formData.senha !== this.confirmacao_senha) {
-          //implementar lidar com senha incorreta ************************************************************************
-          return;
-        }
-        const response = await fetch("http://localhost:3000/usuario", {
+
+   async handleCadastro() {
+   try {
+    this.mensagemErro = ""; // Limpa a mensagem de erro ao tentar cadastrar novamente
+
+    const existe = await this.verificarExistencia();
+    if (existe) {
+      this.mensagemErro = existe; // Define a mensagem de erro para exibição
+      return;
+    }
+
+    if (this.formData.senha !== this.confirmacao_senha) {
+      this.mensagemErro = "As senhas são diferentes! Confirme sua senha.";
+      return;
+    }
+      
+       await fetch("http://localhost:3000/usuario", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
           body: JSON.stringify(this.formData)
         });
-        const data = await response.json();
-        // Limpar o formulário após o envio bem-sucedido
         this.formData.nome = "";
-        this.formData.sobrenome = "";
+        this.formData.sobrenome =  "";
         this.formData.email = "";
         this.formData.senha = "";
         this.formData.curso = "";
@@ -208,6 +255,19 @@ export default {
   padding: 12px;
 }
 
+.form-group select {
+  margin-right: 20px; /* Espaçamento entre os campos */
+  border-radius: 12px;
+  border: none; /* Remove a sombra */
+  padding: 12px;
+  color: #6D6B71;
+}
+
+
+
+
+
+
 .btn-cadastrar {
   margin-right: 10px; /* Espaçamento entre os campos */
   width: 120px; /* Defina a largura desejada para o botão */
@@ -251,5 +311,10 @@ export default {
   transform: translate(-50%, -50%);
   max-width: 100%;
   max-height: 100%;
+}
+
+.erro{
+  color: white;
+  font-family: 'Inter', sans-serif;
 }
 </style>
