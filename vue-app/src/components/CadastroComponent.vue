@@ -15,11 +15,11 @@
               <!-- Div para agrupar os campos Nome e CPF -->
               <div class="form-group">
                 <!-- element agrupa a label e o input para o campo do forum-->
-                <div class="element">
+                <div class="form-group">
                   <label for="nome" class="mr-flex"></label>
                   <input id="nome" v-model="formData.nome" class="form-control" placeholder="Nome" required>
                 </div>
-                <div class="element">
+                <div class="form-group">
                   <label for="sobrenome" class="mr-flex"></label>
                   <input id="sobrenome" v-model="formData.sobrenome" class="form-control" placeholder="Sobrenome" required>
                 </div>
@@ -29,12 +29,12 @@
               <!-- Div para agrupar CPF e Email-->
               <div class="form-group">
 
-                <div class="element">
+                <div class ="form-group">
                   <label for="cpf" class="mr-flex"></label>
                   <input id="cpf" v-model="formData.cpf" @input="formatarCPF" class="form-control" placeholder="CPF" required>
                 </div>
 
-                <div class="element">
+                <div class="form-group">
                   <label for="email" class="d-flex"></label>
                   <input id="email" v-model="formData.email" type="email" class="form-control" placeholder="E-mail" required>
                 </div>
@@ -45,12 +45,12 @@
               <!-- Div para agrupar os campos Senha e Confirmação de Senha -->
               <div class="form-group">
 
-                <div class="element">
+                <div class="form-group">
                   <label for="senha" class="mr-2"></label>
                   <input id="senha" v-model="formData.senha" type="password" class="form-control" placeholder="Senha" required>
                 </div>
 
-                <div class="element">
+                <div class="form-group">
                   <label for="confirma_senha" class="mr-2"></label>
                   <input id="confirma_senha" v-model="confirmacao_senha" type="password" class="form-control" placeholder="Confirme sua senha" required>
                 </div>
@@ -60,7 +60,7 @@
               <!-- Div para agrupar os campos Curso e Matrícula -->
               <div class="form-group">
 
-                <div class="element">
+                <div class="form-group">
                   <label for="curso" class="mr-2"></label>
                   <select id="curso" v-model="formData.curso" class="form-control" required>
                     <option value="">Selecione o curso</option>
@@ -72,7 +72,7 @@
                   </select>
                 </div>
 
-                <div class="element">
+                <div class="form-group">
                   <label for="matricula" class="mr-2"></label>
                   <input id="matricula" v-model="formData.matricula" class="form-control" placeholder="Matrícula" required>
                 </div>
