@@ -9,15 +9,16 @@
                 <div class="card">
                     <form class='form'>
                         <div class='inputs'>
-                            <label class='email'>E-mail</label>
+                            <label class='email'></label>
                             <input type='email' placeholder='Insira o seu e-mail' class='form-control' ref="emailInput"/>
-                            <label class='senha'>Senha</label>
+                            <label class='senha'></label>
                             <input type='password' placeholder='Insira sua senha' class='form-control' ref="senhaInput"/>
+                            <p class="cadastrar-p" @click.prevent="HandleCadastro">Não possui conta? Cadastre-se aqui.</p>
+
                         </div>
                     </form>
                     <div class="buttons-login">
                         <button class='login-button' @click.prevent="HandleLogin">Login</button>
-                        <p class="cadastrar-p" @click.prevent="HandleCadastro">Cadastre-se</p>
                     </div>
                     <p class="login-error">{{erro}}</p>
                 </div>
@@ -139,7 +140,7 @@ export default {
 .inputs{
     display: grid;
     gap: 10px;
-    margin-bottom: 20px;
+    padding: 8%;
 }
 
 .buttons-login{
@@ -147,25 +148,36 @@ export default {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+
 }
 
 .login-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 12px;
-    background-color: #102C46;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-right: 5%; /* Espaçamento entre os campos */
+    width: 120px; /* Defina a largura desejada para o botão */
+    height: fit-content; /* Defina a altura desejada para o botão */
+    padding: 4%;
+    background-color: #102C46; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 12px; /* Raio da borda do botão */
+    font-size: 14px; /* Tamanho da fonte do texto do botão */
+    font-family: 'Inter', sans-serif;
+    cursor: pointer; /* Altera o cursor ao passar o mouse sobre o botão */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave para a cor de fundo */
 }
 
 .login-button:hover {
     background-color: #003366;
+    
 }
 
 .cadastrar-p {
     margin-left: 10px;
     cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+
 }
 
 .login-error {
