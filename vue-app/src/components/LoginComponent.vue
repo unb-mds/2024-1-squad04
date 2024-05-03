@@ -1,22 +1,31 @@
 <template>
-    <div class="overlay">
-        <div class="card">
-                <form class='form'>
-                    <div class='inputs'>
-                        <label class='email'>E-mail</label>
-                        <input type='email' placeholder='Insira o seu e-mail' class='form-control' ref="emailInput"/>
-                        <label class='senha'>Senha</label>
-                        <input type='password' placeholder='Insira sua senha' class='form-control' ref="senhaInput"/>
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="@/assets/TelaCadastro.png" alt="Tela de Cadastro" class="custom-image">
+            </div>
+            <div class="col-lg-6 px-4 py-5 bg-blue">
+                <h1 class="title">Entrar</h1>
+                <div class="card">
+                    <form class='form'>
+                        <div class='inputs'>
+                            <label class='email'>E-mail</label>
+                            <input type='email' placeholder='Insira o seu e-mail' class='form-control' ref="emailInput"/>
+                            <label class='senha'>Senha</label>
+                            <input type='password' placeholder='Insira sua senha' class='form-control' ref="senhaInput"/>
+                        </div>
+                    </form>
+                    <div class="buttons-login">
+                        <button class='login-button' @click.prevent="HandleLogin">Login</button>
+                        <p class="cadastrar-p" @click.prevent="HandleCadastro">Cadastre-se</p>
                     </div>
-                </form>
-                <div class="buttons-login">
-                    <button class='login-button' @click.prevent="HandleLogin">Login</button>
-                    <p class="cadastrar-p" @click.prevent="HandleCadastro">Cadastre-se</p>
+                    <p class="login-error">{{erro}}</p>
                 </div>
-                <p class="login-error">{{erro}}</p>
+            </div>
         </div>
     </div>
 </template>
+
 
 <script>
 
@@ -34,32 +43,28 @@ export default {
     methods: {
 
         async HandleCadastro() {
-
             router.push('/cadastro');
         },
 
-
         async autenticarLogin(emailEntrada, senhaEntrada){
-        try {
-            const response = await axios.get('http://localhost:3000/usuario');
-            const usuarios = response.data;
-            
-            for (let i = 0; i < usuarios.length; i++){
-                if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){
-                    authGuard(true, usuarios[i].matricula)
-                    return 1;
+            try {
+                const response = await axios.get('http://localhost:3000/usuario');
+                const usuarios = response.data;
+                
+                for (let i = 0; i < usuarios.length; i++){
+                    if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){
+                        authGuard(true, usuarios[i].matricula)
+                        return 1;
+                    }
                 }
+
+                authGuard(false)
+                return 0;
+
+            } catch (error) {
+                console.log(error);
             }
-
-            authGuard(false)
-            return 0;
-
-        } catch (error) {
-            console.log(error);
-        }
         },
-
-
       
         async HandleLogin() {
             try {
@@ -75,42 +80,105 @@ export default {
                 console.error('Erro ao executar o login:', error);
             }
         }
-    },
-    mounted() {
-        document.body.style.backgroundColor = 'gray';
-        document.body.style.display = 'flex';
-        document.body.style.justifyContent = 'center';
-        document.body.style.alignItems = 'center';
-        document.body.style.height = '100vh';
-        document.body.style.flexDirection = 'column';
-        document.body.style.overflow = 'hidden';
-    },
-    beforeUnmount() {
-        document.body.style.backgroundColor = null;
     }
 }
 </script>
 
 <style scoped>
-.card{
+.container {
+    display: flex;
     background-color: white;
-    display: grid;
-    padding: 10px;
-    padding-bottom: 0;
-}
+  }
+  
+  .bg-white {
+    flex: 1; /* Ocupa todo o espaço restante */
+  }
+  
+  .bg-blue {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%; /* Largura do elemento */
+    height: 100%;
+    background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+  }
+   
+  .card {
+    position: relative;
+    top: 50%; /* Define o topo como 50% da altura da div pai */
+    left: 50%; /* Define a margem esquerda como 50% da largura da div pai */
+    transform: translate(-50%, -50%); /* Move o elemento de volta metade de sua largura e metade de sua altura */
+    width: 55%; /* Largura do elemento */
+    height: 45%;
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 12px;
+    padding: 6%;
+    margin-bottom: 50px;
+  }
+
+/* Estilos adicionais para o título "Entrar" */
+.title {
+    position: absolute; /* Define o título como posição absoluta */
+    top: calc(50% - 46%); /* Ajusta a posição vertical do topo do título */
+    left: calc(50% - 36%); /* Ajusta a posição horizontal para alinhar com o card */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 400%;
+    color: #fff; /* Cor branca */
+    padding: 20px; /* Padding para todos os lados */    
+  }
+  
+  /* Estilos adicionais para os outros textos */
+  .text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 5%;
+    color: #6D6B71; /* Cor cinza */
+  }
+
+
 .inputs{
     display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
 }
+
 .buttons-login{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
-.h2-login {
-    color: blue;
+
+.login-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: #102C46;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.error-message {
-  color: red;
-  font-size: 14px;
+
+.login-button:hover {
+    background-color: #003366;
 }
+
+.cadastrar-p {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.login-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.custom-image {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+  }
 </style>
