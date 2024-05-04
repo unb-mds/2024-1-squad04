@@ -18,7 +18,7 @@
                         </div>
                     </form>
                     <div class="buttons-login">
-                        <button class='login-button' @click.prevent="HandleLogin">Login</button>
+                        <button class='login-button' @click.prevent="HandleLogin">Entrar</button>
                     </div>
                     <p class="login-error">{{erro}}</p>
                 </div>
@@ -85,6 +85,7 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .container {
     display: flex;
@@ -110,9 +111,9 @@ export default {
     left: 50%; /* Define a margem esquerda como 50% da largura da div pai */
     transform: translate(-50%, -50%); /* Move o elemento de volta metade de sua largura e metade de sua altura */
     width: 55%; /* Largura do elemento */
-    height: 45%;
+    height: 25%;
     background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-    border-radius: 12px;
+    border-radius: 30px;
     padding: 6%;
     margin-bottom: 50px;
   }
@@ -120,7 +121,7 @@ export default {
 /* Estilos adicionais para o título "Entrar" */
 .title {
     position: absolute; /* Define o título como posição absoluta */
-    top: calc(50% - 46%); /* Ajusta a posição vertical do topo do título */
+    top: calc(50% - 37%); /* Ajusta a posição vertical do topo do título */
     left: calc(50% - 36%); /* Ajusta a posição horizontal para alinhar com o card */
     font-family: 'Open Sans', sans-serif;
     font-size: 400%;
@@ -140,22 +141,18 @@ export default {
 .inputs{
     display: grid;
     gap: 10px;
-    padding: 8%;
 }
 
 .buttons-login{
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 10px;
 
 }
 
 .login-button {
-    margin-right: 5%; /* Espaçamento entre os campos */
-    width: 120px; /* Defina a largura desejada para o botão */
+    width: 160px; /* Defina a largura desejada para o botão */
     height: fit-content; /* Defina a altura desejada para o botão */
-    padding: 4%;
+    padding: 3%;
     background-color: #102C46; /* Cor de fundo do botão */
     color: white; /* Cor do texto do botão */
     border: none; /* Remove a borda do botão */
@@ -172,13 +169,23 @@ export default {
 }
 
 .cadastrar-p {
-    margin-left: 10px;
+    
     cursor: pointer;
     color: #FFFFFF;
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
 
 }
+
+.form-control{
+    margin-top: 2%;
+    border-radius: 12px;
+    padding: 12px;
+    border: none;
+    outline: none;
+}
+
+
 
 .login-error {
     color: red;
@@ -193,4 +200,70 @@ export default {
     max-width: 100%;
     max-height: 100%;
   }
+
+
+
+  /* para telas menores do que 1203px*/ 
+  @media screen and (max-width: 1200px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .bg-blue {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+      z-index: -1;
+    }
+  
+    .card {
+      position: relative;
+      width: 50%;
+      height: auto;
+      border-radius: 12px;
+      background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+      z-index: 1;
+      margin-left: 10px;
+      margin-right: 20px;
+      margin-top: 60px; /* Espaçamento superior */
+      margin-bottom: 20px; /* Espaçamento inferior */
+    }
+
+    .title{
+        margin-left: 4%;
+        margin-top: 3%;
+    }
+
+  
+    .form-control {
+      width: calc(100% - 20px); /* Ajusta a largura para 100% menos a margem */
+      padding: 8px;
+      font-size: 14px;
+    }
+  
+  
+    .custom-image {
+    max-width: 100%;
+    max-height: 100%;
+    top: calc(100% + 20px); /* Posiciona a imagem abaixo do card */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media screen and (max-width: 768px) {
+    
+    .title{
+        margin-left: 3%;
+        margin-top: 15%;
+    }
+
+  }
+  
+  
+  }
+
 </style>

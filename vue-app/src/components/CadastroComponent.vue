@@ -222,7 +222,7 @@
     width: 55%; /* Largura do elemento */
     height: 45%;
     background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-    border-radius: 12px;
+    border-radius: 30px;
     padding: 6%;
     margin-bottom: 50px;
   }
@@ -283,6 +283,7 @@
     padding: 8%;
     align-self: center; /* Centralizar verticalmente */
     justify-content: center;
+    outline: none;
   }
 
   .form-group select {
@@ -291,6 +292,7 @@
     border: none; /* Remove a sombra */
     padding: 12px;
     color: #6D6B71;
+    
   }
   
   
