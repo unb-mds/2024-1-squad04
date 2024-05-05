@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from'../components/HomeComponent.vue';
 import Login from'../components/LoginComponent.vue';
 import Cadastro from '../components/CadastroComponent.vue'
+import Landing from '../components/LandingComponent.vue'
 import axios from 'axios'
 import CryptoJS from "crypto-js";
 
@@ -54,6 +55,13 @@ const router = createRouter({
             beforeEnter: beforeEnterCheck
         },
 
+        {
+            path: '/landingpage',
+            name: 'landing',
+            component: Landing
+
+        },
+
         // {
         //     path: '/cadastro',
         //     name: 'cadastro',
@@ -63,7 +71,7 @@ const router = createRouter({
         {
             path: '/:catchAll(.*)',
             redirect: () => {
-                return '/home';
+                return '/landingpage';
             }
         }
     ]
