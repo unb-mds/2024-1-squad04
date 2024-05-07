@@ -1,16 +1,19 @@
 <template>
-    <div class="containter-fluid p-0">
-       <!-- Tela inicial branca ocupando a tela inteira -->
-       <div class="col-lg-6 d-none d-lg-block"></div>
-        <!-- div da navbar com o titulo AVALIAUNB e o botão para o login-->
-        <nav> 
-            <div class = "element-group">
-                <h1 class="title">AvaliaUnB</h1>
-                <button class = "login-btn" @click.prevent="HandleLogin">entrar</button>
-            </div>
-            
-        </nav>
+    <div class = body>
+        <header class="scrollednav">
+            <nav>
+                <div class="branding">
+                    <h1 class="logo">AvaliaUnB</h1>
+                </div>
+                <ul class="navegation">
+                    <button class="loginbtn" @click.prevent="HandleLogin">ENTRAR</button>
+                </ul>
+            </nav>
+        </header>
+        
+        
     </div>
+    
 </template>
 
 
@@ -20,20 +23,20 @@
     import router from '../routes/index'; 
 
     export default{
-        name: "LoginComponent",
+        name: "LandingComponent",
         data() {
-            return {
-                erro: ''
-            }
-        },
+        return {
+            erro: ''
+        }
+    },
         methods: {
 
             async HandleCadastro() {
-                router.push('/cadastro');
+                router.push({name:'cadastro'});
             },  
         
             async HandleLogin(){
-                router.push('/login');
+                router.push({name:'login'});
             }
 
         
@@ -46,5 +49,85 @@
 
 
 <style scoped>
+
+    .body{
+        background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+    }
+
+    .logo{
+        background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+        color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+        background-clip: text;
+    }
+
+    .header{
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 99;
+        width: 100%;
+        position: fix;
+        transition: .5s ease all;
+        color: #fff;
+    }
+
+    .nav{
+        display: flex;
+        flex-direction: row;
+        padding: 12px 0;
+        transition: .5s ease all;
+        width: 100%;
+        margin: 0;
+
+    }
+
+    .scrollednav{
+        background: #333;
+    }
+
+    .navegation{
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .branding{
+        display:flex;
+        align-content: center;
+        font-size: 140%;
+
+        font-family: 'Open Sans';
+        font-style: sans-serif;
+        font-weight: 800;
+        font-size: 170%;
+
+    }
+
+
+    .loginbtn{
+        margin-right: 6%;
+        width: 14%;
+        border-radius: 12px;
+        font-weight: 500;
+        display: flex;
+        padding: 16px 60px;
+        width: 181px;
+        margin-top: -8%;
+        color: green;
+        background: #FAFAFA;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+    
+        /* lidar com a fonte*/
+        font-family: 'Open Sans';
+        font-style: sans-serif;
+        font-weight: 800;
+        font-size: 140%;
+    } 
+
+
+
+    
 
 </style>
