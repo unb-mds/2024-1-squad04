@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid p-0">
+    <div class="container-fluid">
         
-            <div class = "landing-container" style = "margin:0">
+            <div class = "landing-container" style = "margin: 0;">
                 <header class="scrollednav">
                     <nav>
                         <div class="branding">
@@ -53,86 +53,87 @@
 
 <style scoped>
 
-    
+
 
     .logo{
-        background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
-        color: transparent; /* Torna o texto transparente para mostrar o gradiente */
-        background-clip: text;
-        
-    }
+            background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+            color: transparent; /* Torna o texto transparente para mostrar o gradiente */
+            background-clip: text;
+            
+        }
 
     .landing-container {
-        background: linear-gradient(149deg, #102C46 25%, #085C48 60%); /* Cinza claro */
-        margin: none;
-        min-height: 100vh; /* Garante que o plano de fundo se estenda até o fundo da página */
-    }
+            background: linear-gradient(149deg, #102C46 25%, #085C48 60%); /* Cinza claro */
+            margin: none;
+            min-height: 100vh; /* Garante que o plano de fundo se estenda até o fundo da página */
+            margin: 0;
+        }
 
 
     .nav{
-        display: flex;
-        flex-direction: row;
-        padding: 12px 0;
-        transition: .5s ease all;
-        width: 100%;
-        margin: 0;
+            display: flex;
+            flex-direction: row;
+            padding: 12px 0;
+            transition: .5s ease all;
+            width: 100%;
+            margin: 0;
 
-    }
+        }
 
     .scrollednav{
-        background: #FAFAFA;
-        z-index: 99;
-        width: 100%;
-        position: fix;
-        transition: .5s ease all;
-        left: 0;
-    }
+            background: #FAFAFA;
+            z-index: 99;
+            width: 100%;
+            position: fix;
+            transition: .5s ease all;
+            left: 0;
+        }
 
     .navegation{
-        display: flex;
-        align-items: center;
-        flex: 1;
-        justify-content: flex-end;
-    }
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
 
     .branding{
-        display:flex;
-        align-content: center;
-        font-size: 140%;
+            display:flex;
+            align-content: center;
+            font-size: 140%;
 
-        font-family: 'Open Sans';
-        font-style: sans-serif;
-        font-weight: 800;
-        font-size: 170%;
+            font-family: 'Open Sans';
+            font-style: sans-serif;
+            font-weight: 800;
+            font-size: 170%;
 
-    }
+        }
 
 
     .loginbtn{
-        margin-right: 6%;
-        width: 14%;
-        border-radius: 12px;
-        font-weight: 500;
-        display: flex;
-        padding: 16px 60px;
-        width: 181px;
-        margin-top: -8%;
-        color: green;
-        background: #FAFAFA;
-        justify-content: center;
-        align-items: center;
+            margin-right: 6%;
+            width: 14%;
+            border-radius: 12px;
+            font-weight: 500;
+            display: flex;
+            padding: 16px 60px;
+            width: 181px;
+            margin-top: -8%;
+            color: green;
+            background: #FAFAFA;
+            justify-content: center;
+            align-items: center;
 
-        cursor: pointer;
-    
-        /* lidar com a fonte*/
-        font-family: 'Open Sans';
-        font-style: sans-serif;
-        font-weight: 800;
-        font-size: 140%;
-    } 
+            cursor: pointer;
+        
+            /* lidar com a fonte*/
+            font-family: 'Open Sans';
+            font-style: sans-serif;
+            font-weight: 800;
+            font-size: 140%;
+        } 
 
 
 
-    
+        
 
 </style>
