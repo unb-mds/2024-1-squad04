@@ -54,32 +54,40 @@
 
                 <div class="container-3-div-text2" >
                     <a class="container-3-div-text2-1">2</a>
-                    <a class="container-3-div-text2-2">Avaliações Detalhadas</a>
-                    <a class="container-3-div-text2-3">Avalie docentes e disciplinas com critérios específicos como didática, metodologia, 
-                        métodos de ensino e acesso para dúvidas, 
-                        garantindo uma avaliação abrangente e justa.
+                    <a class="container-3-div-text2-2">Explore a comunidade e Avalie</a>
+                    <a class="container-3-div-text2-3">Encontre os professores e disciplinas 
+                        da UnB, explore avaliações detalhadas e contribua 
+                        para uma comunidade acadêmica mais informada 
+                        e engajada.
                     </a>
                 </div>
 
                 <div class="container-3-div-text3" >
                     <a class="container-3-div-text3-1">3</a>
-                    <a class="container-3-div-text3-2">Avaliações Detalhadas</a>
-                    <a class="container-3-div-text3-3">Avalie docentes e disciplinas com critérios específicos como didática, metodologia, 
-                        métodos de ensino e acesso para dúvidas, 
-                        garantindo uma avaliação abrangente e justa.
+                    <a class="container-3-div-text3-2">Avaliações e Estatísticas</a>
+                    <a class="container-3-div-text3-3">Visualize as avaliações de
+                         professores e disciplinas, veja as notas médias, e contribua 
+                        para uma comunidade acadêmica mais informada e engajada.
                     </a>
                 </div>
 
                 <div class="container-3-div-text4" >
                     <a class="container-3-div-text4-1">4</a>
-                    <a class="container-3-div-text4-2">Avaliações Detalhadas</a>
-                    <a class="container-3-div-text4-3">Avalie docentes e disciplinas com critérios específicos como didática, metodologia, 
-                        métodos de ensino e acesso para dúvidas, 
-                        garantindo uma avaliação abrangente e justa.
+                    <a class="container-3-div-text4-2">Avaliações Anônimas ou Identificadas</a>
+                    <a class="container-3-div-text4-3">Avalie os professores de forma
+                         anônima ou identificada, 
+                        garantindo transparência e confiabilidade no processo de avaliação.
                     </a>
                 </div>
 
             </div>
+        </div>
+
+        <div class="footer-div" >
+            <footer class="footer">
+                <a href="/landingpage" class="footer-logo-a">AvaliaUnB</a>
+                <a class="sub-texto" >Avalie, inspire, aprimore.</a>
+            </footer>
         </div>
 
     </div>
@@ -106,50 +114,64 @@
 
 <style scoped>
 
+.footer-div{
+    background-color: #F0F0F0;
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+}
+.footer{
+    display: grid;
+    margin-left: 3.7vw;
+}
+.footer-logo-a{
+    font-size: 3vw;
+    font-family: 'Open Sans', sans-serif;
+    color: #102C46;
+    text-decoration: none
+}
+.sub-texto{
+    font-family: 'Inter', sans-serif;
+    font-weight: lighter;
+    font-size: 1.1vw;
+    color: #7A7A7A;
+}
 .container-3{
     background-color: #102C46;
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .container-3-div{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 3.7vw;
+    margin-right: 3.7vw;
+    margin-top: 12vw;
+    margin-bottom: 12vw;
+    gap: 8vw;
 }
+
 .container-3-div-text1, .container-3-div-text2, .container-3-div-text3, .container-3-div-text4{
-    color: white;
+    color: #F0F0F0;
     display: grid;
-    justify-items: center;
 }
 .container-3-div-text1-1, .container-3-div-text2-1, .container-3-div-text3-1, .container-3-div-text4-1{
     font-family: 'Open Sans', sans-serif;
+    font-size: 10vw;
+    font-weight: bolder;
 }
 .container-3-div-text1-2, .container-3-div-text2-2, .container-3-div-text3-2, .container-3-div-text4-2{
     font-family: 'Open Sans', sans-serif;
+    font-size: 1.3vw;
 }
 .container-3-div-text1-3, .container-3-div-text2-3, .container-3-div-text3-3, .container-3-div-text4-3{
     font-family: 'Inter', sans-serif;
+    font-weight: light;
+    font-size: 1vw;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .container-2{
-    background-color: white;
+    background-color: #F0F0F0;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -160,7 +182,7 @@
     display: grid;
     justify-items: center;
     margin: 300px;
-    gap: 150px;
+    gap: 100px;
 }
 .container-2-div-img{
     width: 14vw;
@@ -172,8 +194,8 @@
     text-align: center;
 }
 .container-2-div-button{
-    font-size: 18px;
-    background-color: white;
+    font-size: 1.4vw;
+    background-color: #F0F0F0;
     border-width: 1;
     border-radius: 10px;
     padding-right: 38px;
@@ -190,13 +212,15 @@
     transition: .3s;
     cursor: pointer;
 }
+.header-div{
+    background-color: #F0F0F0
+}
 .header{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    height: 8vw;
     margin-left: 80px;
     margin-right: 80px;
 }
@@ -240,7 +264,7 @@
 }
 .sub-container-1{
     border-radius: 40px;
-    background: linear-gradient(31deg, rgb(74, 74, 116) 0%, rgb(61, 61, 102) 36%, rgb(53, 53, 95) 70%, rgb(16, 16, 102) 100%);
+    background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(153,153,153,0.2) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -276,13 +300,38 @@
         flex-wrap: wrap-reverse;
     }
     .sub-container-1-img {
-        width: 80%;
+        width: 40vw;
     }
     .sub-container-1-div-titulo{
-        font-size: 3.5vw;
+        font-size: 3vw;
     }
     .sub-container-1-div-texto{
         font-size: 1.7vw;
+    }
+}
+@media screen and (max-width: 1052px) {
+    .container-2-div-button{
+        font-size: 1.7vw;
+    }
+    .container-2-div-img{
+    width: 14vw;
+    }
+    .container-2-div-texto{
+        font-size: 2vw;
+    }
+}
+@media screen and (max-width: 1052px) {
+    .container-3-div-text1-1, .container-3-div-text2-1, .container-3-div-text3-1, .container-3-div-text4-1{
+        margin: 0;
+        font-size: 9vw;
+    }
+    .container-3-div-text1-2, .container-3-div-text2-2, .container-3-div-text3-2, .container-3-div-text4-2{
+        margin: 0;
+        font-size: 2vw;
+    }
+    .container-3-div-text1-3, .container-3-div-text2-3, .container-3-div-text3-3, .container-3-div-text4-3{
+        margin-top: 1.3vw;
+        font-size: 1.2vw;
     }
 }
 </style>

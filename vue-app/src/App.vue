@@ -13,5 +13,6 @@ export default {
 <style>
 body {
   margin: 0; 
+  overflow-x: hidden;
 }
 </style>
