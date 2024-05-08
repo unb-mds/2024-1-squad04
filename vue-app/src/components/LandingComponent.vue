@@ -1,139 +1,99 @@
 <template>
-    <div class="container-fluid">
+
+    <div class="overlay">
+
+        <div class="header-div">
+            <header class="header">
+                <div class="header-logo-div">
+                    <a href="/landingpage" class="header-logo-a">AvaliaUnB</a>
+                </div>
+                <div class="header-entrar-div">
+                    <button v-on:click="HandleLogin" class="header-entrar-button">Entrar</button>
+                </div>
+            </header>
+        </div>
         
-            <div class = "landing-container" style = "margin: 0;">
-                <header class="scrollednav">
-                    <nav>
-                        <div class="branding">
-                            <h1 class="logo">AvaliaUnB</h1>
-                        </div>
-                        <ul class="navegation">
-                            <button class="loginbtn" @click.prevent="HandleLogin">ENTRAR</button>
-                        </ul>
-                    </nav>
-                </header>
-                
-                
-            </div> 
+        <div class="container-1">
+            <div class="sub-container-1">
+                <a class="cont">asdsad</a>
+            </div>
+        </div>
     </div>
     
 </template>
 
-
-
 <script>
-
     import router from '../routes/index'; 
-
     export default{
         name: "LandingComponent",
         data() {
         return {
-            erro: ''
         }
     },
         methods: {
-
             async HandleCadastro() {
                 router.push({name:'cadastro'});
             },  
-        
             async HandleLogin(){
                 router.push({name:'login'});
             }
-
-        
-
-
         }
-
     };
 </script>
 
-
 <style scoped>
 
+.header-div{
+    background-color: white;
+}
+.header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+.header-logo-a{
+    font-size: 54px;
+    font-family: 'Open Sans', sans-serif;
+    color: transparent;
+    background-clip: text;
+    cursor: pointer;
+    background-image: linear-gradient(150deg, #1b5994 20%, #0a745b 60%);
 
-
-    .logo{
-            background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
-            color: transparent; /* Torna o texto transparente para mostrar o gradiente */
-            background-clip: text;
-            
-        }
-
-    .landing-container {
-            background: linear-gradient(149deg, #102C46 25%, #085C48 60%); /* Cinza claro */
-            margin: none;
-            min-height: 100vh; /* Garante que o plano de fundo se estenda até o fundo da página */
-            margin: 0;
-        }
-
-
-    .nav{
-            display: flex;
-            flex-direction: row;
-            padding: 12px 0;
-            transition: .5s ease all;
-            width: 100%;
-            margin: 0;
-
-        }
-
-    .scrollednav{
-            background: #FAFAFA;
-            z-index: 99;
-            width: 100%;
-            position: fix;
-            transition: .5s ease all;
-            left: 0;
-        }
-
-    .navegation{
-            display: flex;
-            align-items: center;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-    .branding{
-            display:flex;
-            align-content: center;
-            font-size: 140%;
-
-            font-family: 'Open Sans';
-            font-style: sans-serif;
-            font-weight: 800;
-            font-size: 170%;
-
-        }
-
-
-    .loginbtn{
-            margin-right: 6%;
-            width: 14%;
-            border-radius: 12px;
-            font-weight: 500;
-            display: flex;
-            padding: 16px 60px;
-            width: 181px;
-            margin-top: -8%;
-            color: green;
-            background: #FAFAFA;
-            justify-content: center;
-            align-items: center;
-
-            cursor: pointer;
-        
-            /* lidar com a fonte*/
-            font-family: 'Open Sans';
-            font-style: sans-serif;
-            font-weight: 800;
-            font-size: 140%;
-        } 
-
-
-
-        
+}
+.header-entrar-button{
+    font-size: 18px;
+    background-color: white;
+    border-width: 1px;
+    border-radius: 10px;
+    padding-right: 38px;
+    padding-left: 38px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #008E4A;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    transition: .3s;
+}
+.header-entrar-button:hover{
+    background-color: rgb(224, 224, 224);
+    transition: .3s;
+    cursor: pointer;
+}
+.container-1{
+    background-color: #102C46;
+    width: 100%;
+    height: 90vh;
+}
+.sub-container-1{
+    background-color:  linear-gradient(149deg, rgba(255,255,255,1) 0%, rgba(153,153,153,1) 100%);
+}
+.cont{
+    color: white;
+}
 
 </style>

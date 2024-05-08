@@ -25,6 +25,7 @@ const beforeEnterCheck = async () => {
             }
         } catch (error) {
             console.log(error)
+            return;
         }
     }
     else{
@@ -61,12 +62,6 @@ const router = createRouter({
             component: Landing
 
         },
-
-        // {
-        //     path: '/cadastro',
-        //     name: 'cadastro',
-        //     component: Cadastro,
-        // },
         
         {
             path: '/:catchAll(.*)',
