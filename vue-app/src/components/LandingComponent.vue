@@ -179,7 +179,7 @@ html{
 .container-3-div-text1-3, .container-3-div-text2-3, .container-3-div-text3-3, .container-3-div-text4-3{
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     line-height:2.5rem;
     margin-top:20px;
 }
