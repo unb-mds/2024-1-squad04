@@ -119,9 +119,12 @@ html{
 }
 
 .footer-div{
+    padding-top: 10px;
+    padding-bottom: 10px;
+
     background-color: #F0F0F0;
     width: 100vw;
-    height: 20vh;
+    height: auto;
     display: flex;
     align-items: center;
 }
@@ -165,18 +168,18 @@ html{
 }
 .container-3-div-text1-1, .container-3-div-text2-1, .container-3-div-text3-1, .container-3-div-text4-1{
     font-family: 'Open Sans', sans-serif;
-    font-size: 20rem;
+    font-size: 18rem;
     font-weight: bolder;
 }
 .container-3-div-text1-2, .container-3-div-text2-2, .container-3-div-text3-2, .container-3-div-text4-2{
     font-family: 'Open Sans', sans-serif;
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height:4rem;
 }
 .container-3-div-text1-3, .container-3-div-text2-3, .container-3-div-text3-3, .container-3-div-text4-3{
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height:2.5rem;
     margin-top:20px;
 }
@@ -184,8 +187,8 @@ html{
     background-color: #F0F0F0;
     width: 100%;
     height: auto;
-    padding-top:60px;
-    padding-bottom:60px;   
+    padding-top:40px;
+    padding-bottom:40px;   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -193,22 +196,22 @@ html{
 .container-2-div{
     display: grid;
     justify-items: center;
-    gap: 60px;
+    gap: 40px;
     height:auto;
     padding:40px;
 }
 .container-2-div-img{
-    width: 20%;
+    width: 15%;
 }
 .container-2-div-texto{
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height:5rem;
     text-align: center;
 }
 .container-2-div-button{
-    font-size: 3rem;
+    font-size: 2.3rem;
     background-color: #F0F0F0;
     border-width: 1;
     border-radius: 10px;
@@ -337,21 +340,23 @@ html{
 
 
     .container-2-div{
-        gap:80px;
+        gap:40px;
     }
-    .container-2-div-img{
-    width: 40%;
-    height:auto;
-    }
+
     .container-2{
         height:auto;
-        padding-top:40px;
-        padding-bottom:40px;
+        padding-top:20px;
+        padding-bottom:20px;
     }
 }
 @media screen and (max-width: 600px) {
     .sub-container-1-div {
         gap: 20px;
+    }
+
+    .container-2-div-img{
+    width: 40%;
+    height:auto;
     }
     .sub-container-1 {
         padding:30px;
