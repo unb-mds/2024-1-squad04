@@ -172,8 +172,9 @@ export default {
     
     cursor: pointer;
     color: #FFFFFF;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight:100;
 
 }
 

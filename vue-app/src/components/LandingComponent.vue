@@ -146,17 +146,14 @@ html{
     width: 100%;
     height: auto;
     display: flex;
-    padding-top:80px;
-    padding-bottom:80px;
+    justify-content:center;
+    align-items:center;
 }
 .container-3-div{
     display: flex;
     justify-content:center;
-    margin-left: 3.7vw;
-    margin-right: 3.7vw;
-    margin-top: 12vw;
-    margin-bottom: 12vw;
     gap: 8vw;
+    padding:80px;
 }
 
 .container-3-div-text1, .container-3-div-text2, .container-3-div-text3, .container-3-div-text4{
@@ -187,8 +184,8 @@ html{
     background-color: #F0F0F0;
     width: 100%;
     height: auto;
-    padding-top:300px;
-    padding-bottom:300px;   
+    padding-top:60px;
+    padding-bottom:60px;   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,7 +193,7 @@ html{
 .container-2-div{
     display: grid;
     justify-items: center;
-    gap: 100px;
+    gap: 60px;
     height:auto;
     padding:40px;
 }
@@ -325,7 +322,7 @@ html{
         flex-wrap: wrap-reverse;
     }
     .sub-container-1-img {
-        width: 100%;
+        width: 80%;
     }
     .sub-container-1-div-titulo{
         text-align:center;

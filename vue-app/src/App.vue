@@ -13,7 +13,7 @@ export default {
 <style>
 
 html{
-  font-size:70%;
+  font-size:55%;
 }
 body {
   margin: 0; 
@@ -22,7 +22,7 @@ body {
 
 @media screen and (max-width: 1500px) {
   html{
-    font-size:62.5%;
+    font-size:50%;
   }
 
 }
@@ -30,7 +30,7 @@ body {
 
 @media screen and (max-width: 1266px) {
   html{
-    font-size:50%;
+    font-size:45%;
   }
 
 }
