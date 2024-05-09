@@ -211,7 +211,10 @@
     right: 0;
     width: 50%; /* Largura do elemento */
     height: 100%;
-    background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+    background: hsla(209, 63%, 17%, 1);
+    background: linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
   }
   
   .card {
@@ -361,7 +364,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+      background: hsla(209, 63%, 17%, 1);
+      background: linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+      background: -moz-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+      background: -webkit-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
       z-index: -1;
     }
   
@@ -438,7 +444,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(149deg, #102C46 25%, #085C48 60%);
+      background: hsla(209, 63%, 17%, 1);
+      background: linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+      background: -moz-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+      background: -webkit-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
       z-index: -1;
     }
   

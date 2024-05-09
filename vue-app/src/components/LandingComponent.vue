@@ -136,7 +136,8 @@ html{
     font-size: 4rem;
     font-family: 'Open Sans', sans-serif;
     color: #102C46;
-    text-decoration: none
+    text-decoration: none;
+    font-weight:900;
 }
 .sub-texto{
     font-family: 'Inter', sans-serif;
@@ -157,6 +158,7 @@ html{
     justify-content:center;
     gap: 10%;
     padding:80px;
+    max-width:2000px;
 }
 
 .container-3-div-text1, .container-3-div-text2, .container-3-div-text3, .container-3-div-text4{
@@ -275,7 +277,10 @@ html{
     cursor: pointer;
 }
 .container-1{
-    background-color: #102C46;
+     background: hsla(209, 63%, 17%, 1);
+    background: linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
