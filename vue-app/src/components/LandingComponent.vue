@@ -32,7 +32,7 @@
 
         <div class="container-2">
             <div class="container-2-div" >
-                <img class="container-2-div-img" src="../assets/LogoAvalia.png" >
+                <img class="container-2-div-img" src="../assets/Logoavaliaunb.svg" >
                 <a class="container-2-div-texto">Junte-se a nós e faça parte da transformação educacional, onde cada avaliação 
                     é um passo rumo à excelência acadêmica e ao crescimento coletivo
                 </a>
@@ -114,6 +114,10 @@
 
 <style scoped>
 
+html{
+    font-size: 70%;
+}
+
 .footer-div{
     background-color: #F0F0F0;
     width: 100vw;
@@ -126,7 +130,7 @@
     margin-left: 3.7vw;
 }
 .footer-logo-a{
-    font-size: 3vw;
+    font-size: 4rem;
     font-family: 'Open Sans', sans-serif;
     color: #102C46;
     text-decoration: none
@@ -134,17 +138,20 @@
 .sub-texto{
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
-    font-size: 1.1vw;
+    font-size: 2rem;
     color: #7A7A7A;
 }
 .container-3{
     background-color: #102C46;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: auto;
     display: flex;
+    padding-top:80px;
+    padding-bottom:80px;
 }
 .container-3-div{
     display: flex;
+    justify-content:center;
     margin-left: 3.7vw;
     margin-right: 3.7vw;
     margin-top: 12vw;
@@ -154,26 +161,34 @@
 
 .container-3-div-text1, .container-3-div-text2, .container-3-div-text3, .container-3-div-text4{
     color: #F0F0F0;
-    display: grid;
+    display: flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:baseline;
 }
 .container-3-div-text1-1, .container-3-div-text2-1, .container-3-div-text3-1, .container-3-div-text4-1{
     font-family: 'Open Sans', sans-serif;
-    font-size: 10vw;
+    font-size: 20rem;
     font-weight: bolder;
 }
 .container-3-div-text1-2, .container-3-div-text2-2, .container-3-div-text3-2, .container-3-div-text4-2{
     font-family: 'Open Sans', sans-serif;
-    font-size: 1.3vw;
+    font-size: 3rem;
+    line-height:4rem;
 }
 .container-3-div-text1-3, .container-3-div-text2-3, .container-3-div-text3-3, .container-3-div-text4-3{
     font-family: 'Inter', sans-serif;
-    font-weight: light;
-    font-size: 1vw;
+    font-weight: lighter;
+    font-size: 1.8rem;
+    line-height:2.5rem;
+    margin-top:20px;
 }
 .container-2{
     background-color: #F0F0F0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: auto;
+    padding-top:300px;
+    padding-bottom:300px;   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,20 +196,22 @@
 .container-2-div{
     display: grid;
     justify-items: center;
-    margin: 300px;
     gap: 100px;
+    height:auto;
+    padding:40px;
 }
 .container-2-div-img{
-    width: 14vw;
+    width: 20%;
 }
 .container-2-div-texto{
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
-    font-size: 1.55vw;
+    font-size: 3rem;
+    line-height:5rem;
     text-align: center;
 }
 .container-2-div-button{
-    font-size: 1.4vw;
+    font-size: 3rem;
     background-color: #F0F0F0;
     border-width: 1;
     border-radius: 10px;
@@ -213,19 +230,23 @@
     cursor: pointer;
 }
 .header-div{
-    background-color: #F0F0F0
+    background-color: #F0F0F0;
+    width:100%;
 }
 .header{
+    padding-top:20px;
+    padding-bottom:20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    height: 8vw;
+    height: auto;
     margin-left: 80px;
     margin-right: 80px;
 }
 .header-logo-a{
-    font-size: 54px;
+    font-size: 4rem;
+    font-weight: 900;
     font-family: 'Open Sans', sans-serif;
     color: transparent;
     background-clip: text;
@@ -234,15 +255,15 @@
 
 }
 .header-entrar-button{
-    font-size: 14px;
+    font-size: 1.6rem;
     background-color: white;
     border-width: 0;
     box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    padding-right: 38px;
-    padding-left: 38px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-right: 40%;
+    padding-left: 40%;
+    padding-top: 20%;
+    padding-bottom: 20%;
     color: #008E4A;
     font-weight: bold;
     font-family: 'Inter', sans-serif;
@@ -258,8 +279,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 90vh;
+    width: 100;
+    height: auto;
+    padding:4%;
     
 }
 .sub-container-1{
@@ -268,13 +290,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80vw;
-    
-    height: 70vh;
+    width: 100%;
+    padding:60px;
+    height: auto;
+    max-width:2000px;
 }
 .sub-container-1-div{
     
-    width: 70vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -284,54 +307,69 @@
     
     color: white;
     font-family: 'Open Sans', sans-serif;
-    font-size: 2.5vw;
+    font-size: 4rem;
 }
 .sub-container-1-div-texto{
     color: #c4c4c4;
     font-family: 'Inter', sans-serif;
-    font-size: 1.1vw;
+    font-size: 2rem;
     font-weight: lighter;
+
 }
 .sub-container-1-img{
-    width: 33vw;
+    width: 50%;
+    height:auto;
 }
-@media screen and (max-width: 1052px) {
+@media screen and (max-width: 1150px) {
     .sub-container-1-div {
         flex-wrap: wrap-reverse;
     }
     .sub-container-1-img {
-        width: 40vw;
+        width: 100%;
     }
     .sub-container-1-div-titulo{
-        font-size: 3vw;
+        text-align:center;
     }
     .sub-container-1-div-texto{
-        font-size: 1.7vw;
+        text-align:center;
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        height: 100%;
     }
-}
-@media screen and (max-width: 1052px) {
-    .container-2-div-button{
-        font-size: 1.7vw;
+
+
+    .container-2-div{
+        gap:80px;
     }
     .container-2-div-img{
-    width: 14vw;
+    width: 40%;
+    height:auto;
     }
-    .container-2-div-texto{
-        font-size: 2vw;
-    }
-}
-@media screen and (max-width: 1052px) {
-    .container-3-div-text1-1, .container-3-div-text2-1, .container-3-div-text3-1, .container-3-div-text4-1{
-        margin: 0;
-        font-size: 9vw;
-    }
-    .container-3-div-text1-2, .container-3-div-text2-2, .container-3-div-text3-2, .container-3-div-text4-2{
-        margin: 0;
-        font-size: 2vw;
-    }
-    .container-3-div-text1-3, .container-3-div-text2-3, .container-3-div-text3-3, .container-3-div-text4-3{
-        margin-top: 1.3vw;
-        font-size: 1.2vw;
+    .container-2{
+        height:auto;
+        padding-top:40px;
+        padding-bottom:40px;
     }
 }
+@media screen and (max-width: 600px) {
+    .sub-container-1-div {
+        gap: 20px;
+    }
+    .sub-container-1 {
+        padding:30px;
+    }
+}
+@media screen and (max-width: 950px) {
+
+    .container-3-div{
+        padding:30px;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+    }
+}
+
+
+
+
 </style>
