@@ -155,7 +155,7 @@ html{
 .container-3-div{
     display: flex;
     justify-content:center;
-    gap: 8vw;
+    gap: 10%;
     padding:80px;
 }
 
