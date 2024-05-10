@@ -1,11 +1,22 @@
 <template>
     <div>
-        <h2 class="h2-home">pagina de home</h2>
+        <NavBar/>
     </div>
 </template>
 
 <script>
+
+import NavBar from '../components/NavbarHome.vue'
+
+
 export default {
+    
+
+    components: {
+        NavBar // Registre o componente
+    },
+
+
     name: "HomeComponent",
     data() {
         return {
@@ -18,7 +29,7 @@ export default {
     mounted() {
         document.body.style.backgroundColor = 'gray';
         document.body.style.display = 'flex';
-        document.body.style.justifyContent = 'center';
+        document.body.style.justifyContent = 'flex-start';
         document.body.style.alignItems = 'center';
         document.body.style.height = '100vh';
         document.body.style.flexDirection = 'column';
@@ -30,5 +41,8 @@ export default {
 }
 </script>
 <style scoped>
+    .body{
+        margin: 0;
+    }
 
 </style>

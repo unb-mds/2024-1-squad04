@@ -3,14 +3,14 @@ import Home from'../pages/HomePage.vue';
 import Login from'../pages/LoginPage.vue';
 import Cadastro from '../pages/CadastroPage.vue'
 import Landing from '../pages/LandingPage.vue'
-import axios from 'axios'
+//import axios from 'axios'
 import CryptoJS from "crypto-js";
 
 const beforeEnterCheck = async () => {
     if (sessionStorage.getItem('matricula') != null){
         try {
-            const responsekey = await axios.get('http://localhost:3000/chave');
-            const responseuser = await axios.get('http://localhost:3000/usuario');
+            const responsekey = null //await axios.get('http://localhost:3000/chave');
+            const responseuser = null //await axios.get('http://localhost:3000/usuario');
     
             const key = responsekey.data
             const user = responseuser.data
@@ -53,13 +53,14 @@ const router = createRouter({
             path: '/home',
             name: 'home',
             component: Home,
-            beforeEnter: beforeEnterCheck
+            //beforeEnter: beforeEnterCheck
         },
 
         {
             path: '/landingpage',
             name: 'landing',
-            component: Landing
+            component: Landing,
+            beforeEnter: beforeEnterCheck
 
         },
         
