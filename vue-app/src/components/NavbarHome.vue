@@ -3,23 +3,10 @@
     <div class="div-logo">
         <h1 class="logo-text">AvaliaUnb</h1>
     </div>
-    
-    <div class="menu-hamburguer" @click="toggleMenu">
-        <div class="line1">
-    
-        </div>
-        <div class="line2">
-
-        </div>
-        <div class="line3">
-
-        </div>
-    </div>
+        
 
     <div class="overlay" :class="{ 'overlay-active': menuAberto }" @click="toggleMenu">
-        <div class="notification-picture">
-        <img class="profile" src="../assets/ProfilePictureExemple.svg">
-        </div>
+        
         <div class="nav2">
         <ul class="nav-itens">
             <li class="item">Home</li>
@@ -45,6 +32,17 @@
         <img class="profile" src="../assets/ProfilePictureExemple.svg">
     </div>
 
+    <div class="menu-hamburguer" @click="toggleMenu">
+        <div class="line1">
+    
+        </div>
+        <div class="line2">
+
+        </div>
+        <div class="line3">
+
+        </div>
+    </div>
 
 
   </div>
@@ -166,20 +164,14 @@ export default {
 
 .overlay-active{
     transform: translateX(0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .overlay .profile{
-    width: 25%;
+    width: 30%;
     height: auto;
-}
-
-.overlay .notification-picture{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    align-items: flex-end;
-    height: 30%;
-
 }
 
 
@@ -191,11 +183,12 @@ export default {
     align-items: center;
 }
 
-.nav2 ul{
+.nav2 .nav-itens{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 30px;
+    gap: 10%;
+    height: 100%;
 }
 
 
@@ -210,9 +203,9 @@ export default {
         display: none;
     }
 
-    .notification-picture{
-        display: none;
-    }
+
+
+
 
     .line1, .line2, .line3{
         width:50%;
