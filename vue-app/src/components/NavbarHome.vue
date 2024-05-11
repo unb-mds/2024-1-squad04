@@ -33,7 +33,7 @@
 
     <div class="nav">
         <ul class="nav-itens">
-            <li class="item-web">Home</li>
+            <li class="item-web" @click.prevent = 'HandleHome'>Home</li>
             <li class="item-web" @click.prevent = 'HandleProfessors'>Professores</li>
             <li class="item-web">Matérias</li>
             <li class="item-web">Minhas  Avaliações</li>
@@ -59,6 +59,9 @@ export default {
     methods: {
         async HandleProfessors(){
             router.push({name: 'professor'});
+        },
+        async HandleHome(){
+            router.push({name: 'home'});
         }
     }
 

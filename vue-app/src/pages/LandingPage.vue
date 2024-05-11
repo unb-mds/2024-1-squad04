@@ -96,11 +96,11 @@
 <script>
     import router from '../routes/index'; 
     export default{
-        name: "LandingComponent",
+        name: "LandingPage",
         data() {
-        return {
-        }
-    },
+            return {
+            }
+        },
         methods: {
             async HandleCadastro() {
                 router.push({name:'cadastro'});

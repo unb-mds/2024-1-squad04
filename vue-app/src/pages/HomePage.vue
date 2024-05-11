@@ -71,7 +71,7 @@ export default {
     },
 
     
-    name: "HomeComponent",
+    name: "HomePage",
     data() {
         return {
 
