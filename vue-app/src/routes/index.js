@@ -53,13 +53,14 @@ const router = createRouter({
             path: '/home',
             name: 'home',
             component: Home,
-            beforeEnter: beforeEnterCheck
+            //beforeEnter: beforeEnterCheck
         },
 
         {
             path: '/landingpage',
             name: 'landing',
             component: Landing,
+            beforeEnter: beforeEnterCheck
 
         },
         
