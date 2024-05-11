@@ -39,16 +39,17 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: 20px;
+        padding: 20px 0 20px 0px;
         gap: 20px;
         padding-left: 40px;
-        width: 80%;
+        width: 90%;
     }
 
     .picture-name{
         display: flex;
         align-items: center;
         gap: 10px;
+        width: 100%;
 
     }
 
@@ -60,10 +61,11 @@
     .name{
         font-family: 'Open Sans', sans-serif;
         color: #F0F0F0;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         display: flex;
         flex-wrap: wrap;
         text-align: left;
+        width: 100%;
     }
 
     .number{

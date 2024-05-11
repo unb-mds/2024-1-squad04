@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="first">
+            <div class="first" >
                 <div class="picture-position">
                     <div class="position"> 1 </div>
                     <img class="professor-picture" src="../assets/ProfilePictureExemple.svg">
@@ -29,7 +29,7 @@
 
             </div>
 
-            <div class="second-third">
+            <div class="second-third" >
                 <div class="picture-position">
                     <div class="position"> 3 </div>
                     <img class="professor-picture" src="../assets/ProfilePictureExemple.svg">
@@ -52,8 +52,10 @@
     </template>
     
     <script>
+
     export default {
         name: "CardProfessor",
+
     
     }
     </script>
@@ -112,7 +114,7 @@
 
     .name{
         font-family: 'Open Sans', sans-serif;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         color:#F0F0F0 ;
         margin: 0;
         display: flex;

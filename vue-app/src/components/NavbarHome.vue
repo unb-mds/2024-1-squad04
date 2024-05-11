@@ -92,6 +92,7 @@ export default {
     align-items: center;
     max-width: 2000px;
     padding: 20px;
+
 }
 
 .logo-text{
@@ -170,6 +171,7 @@ export default {
     list-style: none;
     padding: 0;
     padding:10px ;
+    margin-bottom: 10px;
 
 }
 
@@ -217,7 +219,7 @@ export default {
 
     .nav-mobile{
         display: flex;
-        position: fixed;
+        position:fixed;
         bottom: 0;
         width: 100%;
         background-color: #F0F0F0;
@@ -226,6 +228,7 @@ export default {
         padding-top: 10px;
         padding-bottom:10px;
         overflow-y: none;
+        z-index: 999;
 
     }
 
