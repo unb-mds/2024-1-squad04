@@ -34,7 +34,7 @@
     <div class="nav">
         <ul class="nav-itens">
             <li class="item-web">Home</li>
-            <li class="item-web">Professores</li>
+            <li class="item-web" @click.prevent = 'HandleProfessors'>Professores</li>
             <li class="item-web">Matérias</li>
             <li class="item-web">Minhas  Avaliações</li>
         </ul>
@@ -52,10 +52,17 @@
 </template>
 
 <script>
+import router from '../routes/index'
+
 export default {
     name: "NavBar",
+    methods: {
+        async HandleProfessors(){
+            router.push({name: 'professor'});
+        }
+    }
 
-}
+};
 
 
 </script>

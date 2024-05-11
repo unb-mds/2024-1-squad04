@@ -21,7 +21,7 @@
                         <img src="../assets/Home-1.svg">
                     </div>
                 </div>
-                <button class="veja-mais"> Veja Mais</button>
+                <button class="veja-mais" @click.prevent ='HandleProfessors'> Veja Mais</button>
             </div>
         </div>
             
@@ -59,7 +59,7 @@
 import NavBar from '../components/NavbarHome.vue'
 import CardProfessor from '../components/CardProfessorHomeComponent.vue'
 import CardProfessorTopRest from '../components/CardProfessorTopRestComponent.vue'
-
+import router from '../routes/index.js'
 
 export default {
     
@@ -70,7 +70,7 @@ export default {
         CardProfessorTopRest,
     },
 
-
+    
     name: "HomeComponent",
     data() {
         return {
@@ -79,6 +79,9 @@ export default {
     },
     methods: {
 
+        async HandleProfessors(){
+                router.push({name:'professor'});
+            }
     },
 
 
@@ -95,6 +98,7 @@ export default {
     border-radius: 5px;
     padding: 10px 20px 10px 20px;
     background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(153,153,153,0.2) 100%); 
+    cursor: pointer;
 }
 
 .home{

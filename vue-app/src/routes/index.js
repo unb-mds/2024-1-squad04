@@ -3,6 +3,7 @@ import Home from'../pages/HomePage.vue';
 import Login from'../pages/LoginPage.vue';
 import Cadastro from '../pages/CadastroPage.vue'
 import Landing from '../pages/LandingPage.vue'
+import Professor from '../pages/ProfessorPage.vue'
 import axios from 'axios'
 import CryptoJS from "crypto-js";
 
@@ -40,19 +41,19 @@ const router = createRouter({
         {
             path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
         },
 
         {
             path: '/cadastro',
             name: 'cadastro',
-            component: Cadastro
+            component: Cadastro,
         },
 
         {
             path: '/home',
             name: 'home',
-            component: Home,
+            component: Home
             //beforeEnter: beforeEnterCheck
         },
 
@@ -62,6 +63,12 @@ const router = createRouter({
             component: Landing,
             beforeEnter: beforeEnterCheck
 
+        },
+
+        {  
+            path: '/professores',
+            name: 'professor',
+            component: Professor
         },
         
         {
