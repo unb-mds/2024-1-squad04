@@ -114,9 +114,6 @@
 
 <style scoped>
 
-html{
-    font-size: 70%;
-}
 
 .footer-div{
     padding-top: 10px;

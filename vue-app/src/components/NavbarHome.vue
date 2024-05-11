@@ -56,6 +56,8 @@ export default {
     name: "NavBar",
 
 }
+
+
 </script>
 
 <style scoped>
@@ -136,11 +138,11 @@ export default {
     font-weight: 300;
 }
 
-.item:hover{
+.item-web:hover{
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
     color: #102C46;
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 0;
     height: auto;
     cursor:pointer;
@@ -177,11 +179,20 @@ export default {
     justify-content: center;
     align-items: center;
     color: #616161;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-family: 'Open Sans', sans-serif;
-    gap: 8px;
+    gap: 14px;
     font-weight: 400;
 
+}
+
+.item:hover{
+    font-size: 2rem;
+    color: #102C46;
+}
+
+.icons-mobile:hover{
+    width: 5.2rem;
 }
 
 .item p{
@@ -192,6 +203,9 @@ export default {
     width: 5rem;
     height: auto;
 }
+
+
+
 
 
 
@@ -208,10 +222,10 @@ export default {
         width: 100%;
         background-color: #F0F0F0;
         border-radius: 20px 20px 0px 0px;
-        
         height: auto;
         padding-top: 10px;
         padding-bottom:10px;
+        overflow-y: none;
 
     }
 
@@ -238,7 +252,11 @@ export default {
     }
 
     .profile{
-        width: 40%;
+        width: 60%;
+    }
+
+    .logo-text{
+        font-size: 4rem;
     }
 
     .notification{
