@@ -1,50 +1,52 @@
 <template>     
         <div class="home">
-        <NavBar/>
-        <div class="section1">
-            <div class="text-professor">
-                <div class="title-subtitle">
-                <div class="title">Sua jornada para o sucesso começa aqui!</div>
-                <div class="subtitle">Explore nossas ferramentas de avaliação.</div>
-            </div>
-
-            <div class="card-professores">
-                <div class="professores-image">
-                    <div class="professores">
-                        <CardProfessor/>
-                        <CardProfessorTopRest/>
-                        <CardProfessorTopRest/>
-                        <CardProfessorTopRest/>
-                    </div>
-
-                    <div class="image-1">
-                        <img src="../assets/Home-1.svg">
-                    </div>
+            <NavBar/>
+            <div class="section1">
+                <div class="text-professor">
+                    <div class="title-subtitle">
+                    <div class="title">Sua jornada para o sucesso começa aqui!</div>
+                    <div class="subtitle">Explore nossas ferramentas de avaliação.</div>
                 </div>
-                <button class="veja-mais" @click.prevent ='HandleProfessors'> Veja Mais</button>
-            </div>
-        </div>
-            
-        </div>
 
-        <div class="section1">
+                <div class="card-professores">
+                    <div class="professores-image">
+                        <div class="professores">
+                            <CardProfessor/>
+                            <CardProfessorTopRest/>
+                            <CardProfessorTopRest/>
+                            <CardProfessorTopRest/>
+                        </div>
 
-            <div class="card-professores">
-                <div class="professores-image">
-                    <div class="professores">
-                        <CardProfessor/>
-                        <CardProfessorTopRest/>
-                        <CardProfessorTopRest/>
-                        <CardProfessorTopRest/>
+                        <div class="image-1">
+                            <img src="../assets/Home-1.svg">
+                        </div>
                     </div>
-
-                    <div class="image-1">
-                        <img src="../assets/Home-1.svg">
-                    </div>
+                    <button class="veja-mais" @click.prevent ='HandleProfessors'> Veja Mais</button>
                 </div>
-                <button class="veja-mais"> Veja Mais</button>
             </div>
-        </div>
+                
+            </div>
+
+            <div class="section1">
+
+                <div class="card-professores">
+                    <div class="professores-image">
+                        <div class="professores">
+                            <CardProfessor/>
+                            <CardProfessorTopRest/>
+                            <CardProfessorTopRest/>
+                            <CardProfessorTopRest/>
+                        </div>
+
+                        <div class="image-1">
+                            <img src="../assets/Home-1.svg">
+                        </div>
+                    </div>
+                    <button class="veja-mais"> Veja Mais</button>
+                </div>
+            </div>
+            <FooterBar/>
+        
             
         </div>
 
@@ -60,6 +62,8 @@ import NavBar from '../components/NavbarHome.vue'
 import CardProfessor from '../components/CardProfessorHomeComponent.vue'
 import CardProfessorTopRest from '../components/CardProfessorTopRestComponent.vue'
 import router from '../routes/index.js'
+import FooterBar from '../components/Footer.vue'
+
 
 export default {
     
@@ -68,6 +72,7 @@ export default {
         NavBar, // Registre o componente
         CardProfessor,
         CardProfessorTopRest,
+        FooterBar,
     },
 
     

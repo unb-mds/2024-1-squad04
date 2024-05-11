@@ -48,12 +48,13 @@ const router = createRouter({
             path: '/cadastro',
             name: 'cadastro',
             component: Cadastro,
+            beforeEnter: beforeEnterCheck //Colocado aqui para testes, retirar de cadastro e colocar em home
         },
 
         {
             path: '/home',
             name: 'home',
-            component: Home
+            component: Home,
             //beforeEnter: beforeEnterCheck
         },
 
@@ -61,7 +62,7 @@ const router = createRouter({
             path: '/landingpage',
             name: 'landing',
             component: Landing,
-            beforeEnter: beforeEnterCheck
+            
 
         },
 

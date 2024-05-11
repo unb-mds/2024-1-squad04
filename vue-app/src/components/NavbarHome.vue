@@ -4,13 +4,13 @@
     <div class="nav-mobile">
         <ul class="itens-mobile">
             <li class="item">
-                <img class="icons-mobile" src="../assets/home-casinha.svg">    
+                <img class="icons-mobile" src="../assets/home-casinha.svg" @click.prevent = 'HandleHome'>    
                 <p class="name">Home</p>
             
             </li>
 
             <li class="item">
-                <img class="icons-mobile" src="../assets/professor.svg">
+                <img class="icons-mobile" src="../assets/professor.svg" @click.prevent = 'HandleProfessors'>
                 <p class="name">Professores</p>
             </li>
 
