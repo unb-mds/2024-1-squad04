@@ -4,7 +4,7 @@
             <div class="second-third" v-if="professor2">
                 <div class="picture-position">
                     <div class="position"> 2 </div>
-                    <img :src="professor2.foto_url" class="professor-picture" alt="First Professor">
+                    <img :src="verificarUrl(professor2.foto_professor)" class="professor-picture" alt="First Professor">
                 </div>
                 <div class="name-rating">
                     <h3 class="name">{{ getPrimeirosNomes(professor2.nome_professor) }}</h3>
@@ -17,7 +17,7 @@
             <div class="first" v-if="professor1">
                 <div class="picture-position">
                     <div class="position"> 1 </div>
-                    <img :src="professor1.foto_url" class="professor-picture" alt="First Professor">
+                    <img :src="verificarUrl(professor1.foto_professor)" class="professor-picture" alt="First Professor">
                 </div>
                 <div class="name-rating">
                     <h3 class="name">{{getPrimeirosNomes(professor1.nome_professor)}}</h3>
@@ -32,7 +32,7 @@
             <div class="second-third" v-if="professor3">
                 <div class="picture-position">
                     <div class="position"> 3 </div>
-                    <img :src="professor3.foto_url" class="professor-picture" alt="First Professor">
+                    <img :src="verificarUrl(professor3.foto_professor)" class="professor-picture" alt="First Professor">
                 </div>
                 <div class="name-rating">
                     <h3 class="name">{{getPrimeirosNomes(professor3.nome_professor)}}</h3>
@@ -69,9 +69,17 @@
       
       // Junta os dois primeiros nomes de volta em uma string
       return primeirosNomes.join(' ');
+    },
+
+    verificarUrl(urlProfessor){
+        if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
+            return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
+        }
+
+        return urlProfessor;
     }
 
-    }}
+    },}
     </script>
     
     <style scoped>
@@ -125,6 +133,7 @@
         gap:0;
         
     }
+
 
     .name{
         font-family: 'Open Sans', sans-serif;
@@ -191,12 +200,16 @@
 
     .first .professor-picture{
         width: 10rem;
-        height: auto;
+        height: 10rem;
+        border-radius: 100%;
+        object-fit:cover;
     }
 
     .second-third .professor-picture{
         width: 8rem;
-        height: auto;
+        height: 8rem;
+        border-radius: 100%;
+        object-fit: cover;
     }
     
     </style>

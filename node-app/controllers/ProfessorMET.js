@@ -8,7 +8,7 @@ export const getProfessoresAvaliados = ((app, sequelize)=>{
             SELECT 
                 p.nome AS nome_professor,
                 p.foto_url AS foto_professor,
-                AVG(ap.nota_total) AS nota_media
+                ROUND(AVG(ap.nota_total), 1) AS nota_media
             FROM 
                 professor p
             INNER JOIN 
