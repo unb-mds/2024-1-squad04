@@ -11,7 +11,7 @@
                 <div class="card-professores">
                     <div class="professores-image">
                         <div class="professores">
-                            <CardProfessor/>
+                            <CardProfessor :professor1="this.professores[0]" :professor2="this.professores[1]" :professor3="this.professores[2]"/>
                             <CardProfessorTopRest/>
                             <CardProfessorTopRest/>
                             <CardProfessorTopRest/>
@@ -78,16 +78,31 @@ export default {
     
     name: "HomePage",
     data() {
-        return {
-
-        }
+    return {
+      professores: [], 
+    };
+    },
+    mounted() {
+        this.obterProfessoresAvaliados();
     },
     methods: {
 
         async HandleProfessors(){
                 router.push({name:'professor'});
-            }
-    },
+            }, 
+
+        async obterProfessoresAvaliados() {
+        try {
+            const resposta = await fetch('http://localhost:3000/professores_avaliados');
+            const dados = await resposta.json();
+            this.professores = dados.data;
+            console.log(this.professores);
+            
+        } catch (erro) {
+            console.error('Erro ao obter professores avaliados:', erro);
+        }
+        }
+  }
 
 
 }
@@ -96,9 +111,9 @@ export default {
 
 .veja-mais{
     color: #e6e6e6;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 800;
     border: none;
     border-radius: 5px;
     padding: 10px 20px 10px 20px;
@@ -117,7 +132,7 @@ background: hsla(209, 63%, 17%, 1);
    align-items: center;
    width: 100vw;
    height: auto;
-    gap: 100px;
+    gap: 50px;
 }  
     .section1{
         width: 100vw;
@@ -154,9 +169,9 @@ background: hsla(209, 63%, 17%, 1);
 
     .subtitle{
         color: #c4c4c4;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 1.8rem;
-        font-weight: 200; 
+        font-family: 'Inter', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 300;
     }
 
     .card-professores{

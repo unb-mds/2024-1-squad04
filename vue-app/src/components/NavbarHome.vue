@@ -192,9 +192,9 @@ export default {
     align-items: center;
     color: #616161;
     font-size: 2rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     gap: 14px;
-    font-weight: 400;
+    font-weight: lighter;
 
 }
 

@@ -1,44 +1,44 @@
 <template>
     <div class="card-total">
         <div class="top3">
-            <div class="second-third">
+            <div class="second-third" v-if="professor2">
                 <div class="picture-position">
                     <div class="position"> 2 </div>
-                    <img class="professor-picture" src="../assets/ProfilePictureExemple.svg">
+                    <img :src="professor2.foto_url" class="professor-picture" alt="First Professor">
                 </div>
                 <div class="name-rating">
-                    <h3 class="name"> Professor 2</h3>
+                    <h3 class="name">{{ getPrimeirosNomes(professor2.nome_professor) }}</h3>
                     <div class="rating">
                         <img class="star" src="../assets/star.svg">
-                        <p class="rate">4.5</p>
+                        <p class="rate">{{ professor2.nota_media }}</p>
                     </div>
                 </div>
             </div>
-            <div class="first" >
+            <div class="first" v-if="professor1">
                 <div class="picture-position">
                     <div class="position"> 1 </div>
-                    <img class="professor-picture" src="../assets/ProfilePictureExemple.svg">
+                    <img :src="professor1.foto_url" class="professor-picture" alt="First Professor">
                 </div>
                 <div class="name-rating">
-                    <h3 class="name"> Daniel Sundfeld bla blabla</h3>
+                    <h3 class="name">{{getPrimeirosNomes(professor1.nome_professor)}}</h3>
                     <div class="rating">
                         <img class="star" src="../assets/star.svg">
-                        <p class="rate">4.5</p>
+                        <p class="rate">{{professor1.nota_media}}</p>
                     </div>
                 </div>
 
             </div>
 
-            <div class="second-third" >
+            <div class="second-third" v-if="professor3">
                 <div class="picture-position">
                     <div class="position"> 3 </div>
-                    <img class="professor-picture" src="../assets/ProfilePictureExemple.svg">
+                    <img :src="professor3.foto_url" class="professor-picture" alt="First Professor">
                 </div>
                 <div class="name-rating">
-                    <h3 class="name"> Professor 3</h3>
+                    <h3 class="name">{{getPrimeirosNomes(professor3.nome_professor)}}</h3>
                     <div class="rating">
                         <img class="star" src="../assets/star.svg">
-                        <p class="rate">4.5</p>
+                        <p class="rate">{{ professor3.nota_media }}</p>
                     </div>
                 </div>
 
@@ -52,12 +52,26 @@
     </template>
     
     <script>
-
     export default {
-        name: "CardProfessor",
-
-    
+      name: "CardProfessor",
+      props: {
+        professor1: Object,
+        professor2: Object,
+        professor3: Object
+      },
+      methods: {
+    getPrimeirosNomes(nomeCompleto) {
+      // Divide a string em partes utilizando o espaço como separador
+      const partes = nomeCompleto.split(' ');
+      
+      // Pega os dois primeiros elementos do array resultante
+      const primeirosNomes = partes.slice(0, 2);
+      
+      // Junta os dois primeiros nomes de volta em uma string
+      return primeirosNomes.join(' ');
     }
+
+    }}
     </script>
     
     <style scoped>
@@ -161,7 +175,7 @@
     }
 
     .rate{
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 1.8rem;
         color:#c4c4c4 ;
         margin: 0;

@@ -92,7 +92,7 @@
     }
 
     .rate{
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 1.8rem;
         color:#c4c4c4 ;
         margin: 0;

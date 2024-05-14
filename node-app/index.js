@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize'
 import express from 'express'
 import cors from 'cors' 
 import * as User from './controllers/UserMET.js';
+import * as Professor from './controllers/ProfessorMET.js';
 
 
 
@@ -27,6 +28,8 @@ User.getDados(app, sequelize);
 User.postDados(app, sequelize);
 
 User.getChave(app);
+
+Professor.getProfessoresAvaliados(app, sequelize);
 
 
 app.listen(3000)
