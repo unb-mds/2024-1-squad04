@@ -106,7 +106,7 @@ export default {
 }
 
 .logo-text{
-    font-size: 3.2rem;
+    font-size: 4rem;
     font-weight: 900;
     font-family: 'Open Sans', sans-serif;
     color: transparent;
@@ -231,7 +231,7 @@ export default {
         display: flex;
         position:fixed;
         bottom: 0;
-        width: 100%;
+        width: 100vw;
         background-color: #F0F0F0;
         border-radius: 20px 20px 0px 0px;
         height: auto;

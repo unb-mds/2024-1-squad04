@@ -1,8 +1,6 @@
 <template>
 
-  <div class = 'footer-div'>
-
-  
+  <div class = "footer-div">
       <footer class="container">
 
         <div class = "footer">
@@ -60,6 +58,12 @@ export default {
       color: #102C46;
       text-decoration: none;
       font-weight:900;
+  }
+
+  .sub-texto{
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #969696;
   }
 
   @media screen and (max-width: 800px) {

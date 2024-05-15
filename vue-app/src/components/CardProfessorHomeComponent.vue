@@ -105,7 +105,7 @@
         justify-content: center;
         gap: 10px;
         order: 0;
-        width: 40%;
+        width: 33%;
 
     }
 
@@ -116,7 +116,7 @@
         justify-content: center;
         gap: 10px;
         order: 0;
-        width: 30%;
+        width: 33%;
     }
 
     .star{

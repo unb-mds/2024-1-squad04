@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors' 
 import * as User from './controllers/UserMET.js';
 import * as Professor from './controllers/ProfessorMET.js';
+import * as Materia from './controllers/MateriaMET.js';
 
 
 
@@ -30,6 +31,8 @@ User.postDados(app, sequelize);
 User.getChave(app);
 
 Professor.getProfessoresAvaliados(app, sequelize);
+
+Materia.getMateriasAvaliadss(app, sequelize);
 
 
 app.listen(3000)

@@ -1,17 +1,16 @@
 <template>
 
-    <div class="card-top-rest" v-if="professor">
+    <div class="card-top-rest" v-if="materia">
         <div class="profile-picture-name">
-            <h3 class="number"> {{ position }} </h3>
+            <h3 class="number"> {{position}} </h3>
             <div class="picture-name">
-                <img :src="verificarUrl(professor.foto_professor)" class="professor-picture" alt="Professor">
-                <h3 class="name"> {{getPrimeirosNomes(professor.nome_professor)}}</h3>
+                <h3 class="name"> {{materia.cod_materia}} - {{materia.nome_materia}}</h3>
             </div>
         </div>
 
         <div class="rating">
             <img class="star" src="../assets/star.svg">
-            <p class="rate">{{professor.nota_media}}</p>
+            <p class="rate">{{materia.nota_media_total}}</p>
         </div>
 
     </div>      
@@ -20,33 +19,13 @@
     
     <script>
     export default {
-        name: "CardProfessorTopRest",
+        name: "CardMateriaTopComponent",
 
-        props: {
-        professor: Object,
-        position: Number,
+       props: {
+       materia: Object,
+       position: Number,
       },
-      methods: {
-    getPrimeirosNomes(nomeCompleto) {
-      // Divide a string em partes utilizando o espaço como separador
-      const partes = nomeCompleto.split(' ');
-      
-      // Pega os dois primeiros elementos do array resultante
-      const primeirosNomes = partes.slice(0, 2);
-      
-      // Junta os dois primeiros nomes de volta em uma string
-      return primeirosNomes.join(' ');
-    },
 
-    verificarUrl(urlProfessor){
-        if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
-            return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
-        }
-
-        return urlProfessor;
-    }
-
-    },
     
     }
     </script>
@@ -58,6 +37,10 @@
         height: auto;
         display: flex;
         justify-content: space-between;
+        max-width: 800px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(153,153,153,0.2) 100%);
+        margin-bottom: 10px;
+        border-radius: 10px;
 
     }
 
@@ -79,12 +62,6 @@
 
     }
 
-    .professor-picture{
-        width: 6rem;
-        height: 6rem;
-        border-radius: 100%;
-        object-fit: cover;
-    }
 
     .name{
         font-family: 'Open Sans', sans-serif;

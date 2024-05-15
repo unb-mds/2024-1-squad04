@@ -12,16 +12,19 @@
                     <div class="professores-image">
                         <div class="professores">
                             <CardProfessor :professor1="this.professores[0]" :professor2="this.professores[1]" :professor3="this.professores[2]"/>
-                            <CardProfessorTopRest/>
-                            <CardProfessorTopRest/>
-                            <CardProfessorTopRest/>
+                             <CardProfessorTopRest
+                            v-for="(professor, index) in professores.slice(3, 6)"
+                            :key="index"
+                            :professor="professor"
+                            :position="index + 4"
+                          />
                         </div>
 
                         <div class="image-1">
                             <img src="../assets/Home-1.svg">
                         </div>
                     </div>
-                    <button class="veja-mais" @click.prevent ='HandleProfessors'> Veja Mais</button>
+                    <button class="veja-mais" @click.prevent = "HandleProfessors"> Veja Mais</button>
                 </div>
             </div>
                 
@@ -29,18 +32,27 @@
 
             <div class="section1">
 
-                <div class="card-professores">
-                    <div class="professores-image">
-                        <div class="professores">
-                            <CardProfessor/>
-                            <CardProfessorTopRest/>
-                            <CardProfessorTopRest/>
-                            <CardProfessorTopRest/>
+                <div class="card-materias">
+                    <div class="materias-image">
+                        <div class="materias">
+                            <CardMateriaTopComponent
+                            v-for="(materia, index) in materias.slice(0,4)"
+                            :key="index"
+                            :materia="materia"
+                            :position="index+1"
+                            />
                         </div>
 
-                        <div class="image-1">
-                            <img src="../assets/Home-1.svg">
+                        <div class="image-title">
+                            <div class="title-subtitle">
+                                <div class="title">Top 4 Matérias</div>
+                                <div class="subtitle">Explore as favoritas dos estudantes.</div>
+                            </div>
+                            <div class="image-2">
+                            <img src="../assets/Home-2.svg">
+                            </div>
                         </div>
+                        
                     </div>
                     <button class="veja-mais"> Veja Mais</button>
                 </div>
@@ -63,6 +75,7 @@ import CardProfessor from '../components/CardProfessorHomeComponent.vue'
 import CardProfessorTopRest from '../components/CardProfessorTopRestComponent.vue'
 import router from '../routes/index.js'
 import FooterBar from '../components/Footer.vue'
+import CardMateriaTopComponent from '@/components/CardMateriaTopComponent.vue'
 
 
 export default {
@@ -73,6 +86,7 @@ export default {
         CardProfessor,
         CardProfessorTopRest,
         FooterBar,
+        CardMateriaTopComponent,
     },
 
     
@@ -80,10 +94,12 @@ export default {
     data() {
     return {
       professores: [], 
+      materias:[],
     };
     },
     mounted() {
         this.obterProfessoresAvaliados();
+        this.obterMateriasAvaliadas();
     },
     methods: {
 
@@ -101,7 +117,19 @@ export default {
         } catch (erro) {
             console.error('Erro ao obter professores avaliados:', erro);
         }
+        },
+
+        async obterMateriasAvaliadas() {
+        try {
+            const resposta = await fetch('http://localhost:3000/materias_avaliadas');
+            const dados = await resposta.json();
+            this.materias = dados.data;
+            console.log(this.materias);
+            
+        } catch (erro) {
+            console.error('Erro ao obter materias avaliadas:', erro);
         }
+        },
   }
 
 
@@ -109,11 +137,15 @@ export default {
 </script>
 <style scoped>
 
+.body{
+    overflow-x: hidden;
+}
+
 .veja-mais{
     color: #e6e6e6;
     font-family: 'Inter', sans-serif;
     font-size: 1.8rem;
-    font-weight: 800;
+    font-weight: 300;
     border: none;
     border-radius: 5px;
     padding: 10px 20px 10px 20px;
@@ -133,6 +165,7 @@ background: hsla(209, 63%, 17%, 1);
    width: 100vw;
    height: auto;
     gap: 50px;
+    overflow-x: hidden;
 }  
     .section1{
         width: 100vw;
@@ -206,9 +239,55 @@ background: hsla(209, 63%, 17%, 1);
         width: 100%;
     }
 
+    .image-1 img{
+        width: 100%;
+    }
+
 
     .professores{
        width: 60%;
+    }
+
+
+    .card-materias{
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(153,153,153,0.2) 100%);
+        padding: 4%;
+        border-radius: 40px;
+        gap: 4rem;
+    }
+
+    .materias-image{
+        display: flex;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .materias{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .image-title{
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+    }
+    .image-2{
+        width: 100%;
+        display: flex;
+    }
+    .image-2 img{
+        width: 100%;
     }
 
     @media screen and (max-width: 850px) {
@@ -216,12 +295,45 @@ background: hsla(209, 63%, 17%, 1);
             flex-direction: column-reverse;
  
         }
+
+        .materias-image{
+            flex-direction: column-reverse;
+            gap: 30px;
+        }
+
+        .materias{
+            width: 100%;
+            align-items: center;
+        }
         .professores{
             width: 100%;
         }
 
         .image-1{
-            width: 60%;
+            width: 80%;
+        }
+
+        .image-2 img{
+            width: 80%;
+        }
+
+        .image-2{
+            justify-content: center;
+        }
+
+        .image-title{
+            width: 100%;
+        }
+
+        .card-materias .title{
+            text-align: center;
+        }
+        .card-materias .subtitle{
+            text-align: center
+        }
+
+        .card-materias .title-subtitle{
+            align-items: center;
         }
     }
 
