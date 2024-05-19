@@ -2,7 +2,7 @@
     <div class="container-fluid p-0">
         <div class="row m-0">
             <div class="col-lg-6 d-none d-lg-block">
-                <img src="@/assets/TelaCadastro.png" alt="Tela de Cadastro" class="custom-image">
+                <img src="../assets/images/images_cadastro_login/image-cadastro-login-section-1.svg" alt="Tela de Cadastro" class="custom-image">
             </div>
             <div class="col-lg-6 px-4 py-5 bg-blue">
                 <h1 class="title">Entrar</h1>
@@ -30,9 +30,10 @@
 
 <script>
 
-import  axios  from "axios";
+//import  axios  from "axios";
 import { authGuard } from "../guards/authGuard.js";
 import router from '../routes/index'; 
+import { getUsuarios } from "@/repositories/usuario/obterUsuarios.js";
 
 export default {
     name: "LoginComponent",
@@ -49,8 +50,8 @@ export default {
 
         async autenticarLogin(emailEntrada, senhaEntrada){
             try {
-                const response = await axios.get('http://localhost:3000/usuario');
-                const usuarios = response.data;
+
+                const usuarios = await getUsuarios();
                 
                 for (let i = 0; i < usuarios.length; i++){
                     if (usuarios[i].email === emailEntrada && usuarios[i].senha === senhaEntrada){

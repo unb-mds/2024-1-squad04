@@ -4,23 +4,23 @@
     <div class="nav-mobile">
         <ul class="itens-mobile">
             <li class="item">
-                <img class="icons-mobile" src="../assets/home-casinha.svg" @click.prevent = 'HandleHome'>    
+                <img class="icons-mobile" src="../../assets/icons/menu_celular/icone-casa.svg" @click.prevent = 'HandleHome'>    
                 <p class="name">Home</p>
             
             </li>
 
             <li class="item">
-                <img class="icons-mobile" src="../assets/professor.svg" @click.prevent = 'HandleProfessors'>
+                <img class="icons-mobile" src="../../assets/icons/menu_celular/icone-professor.svg" @click.prevent = 'HandleProfessors'>
                 <p class="name">Professores</p>
             </li>
 
             <li class="item">
-                <img class="icons-mobile" src="../assets/materias.svg">
+                <img class="icons-mobile" src="../../assets/icons/menu_celular/icone-materias.svg">
             <p class="name">Matérias</p>
             </li>
 
             <li class="item">
-                <img class="icons-mobile" src="../assets/rating.svg">
+                <img class="icons-mobile" src="../../assets/icons/menu_celular/icone-avaliacao.svg">
             <p class="name">Avaliações</p>
             </li>
         </ul>
@@ -42,7 +42,7 @@
 
     <div class="notification-picture">
 
-        <img class="profile" src="../assets/ProfilePictureExemple.svg">
+        <img class="profile" src="../../assets/provisorio/foto-perfil-navbar-provisoria.svg">
     </div>
 
   </div>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import router from '../routes/index'
+import router from '../../routes/index'
 
 export default {
     name: "NavBar",

@@ -9,7 +9,7 @@
         </div>
 
         <div class="rating">
-            <img class="star" src="../assets/star.svg">
+            <img class="star" src="../../assets/icons/avaliacao/icone-estrela.svg">
             <p class="rate">{{materia.nota_media_total}}</p>
         </div>
 
@@ -19,7 +19,7 @@
     
     <script>
     export default {
-        name: "CardMateriaTopComponent",
+        name: "CardMateriaRankingComponent",
 
        props: {
        materia: Object,

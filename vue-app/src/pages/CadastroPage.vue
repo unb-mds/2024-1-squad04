@@ -3,7 +3,7 @@
       <div class="row m-0">
         <!-- Tela inicial branca ocupando a tela inteira -->
         <div class="col-lg-6 d-none d-lg-block"></div>
-        <img src="@/assets/TelaCadastro.png" alt="Tela de Cadastro" class="custom-image">
+        <img src="../assets/images/images_cadastro_login/image-cadastro-login-section-1.svg" alt="Tela de Cadastro" class="custom-image">
         <!-- Frame para realizar o cadastro -->
         <div class="col-lg-6 px-4 py-5 bg-blue">
           <h1 class="title">Cadastre-se</h1>
@@ -92,12 +92,16 @@
   
   <script>
   import router from '../routes/index';
-  import  axios  from "axios";
+  //import  axios  from "axios";
+  import { getUsuarios } from '@/repositories/usuario/obterUsuarios';
+  import { cadastrarUsuarioDB } from '@/repositories/usuario/cadastrarUsuario';
   
   export default {
     name: "CadastroComponent",
     data() {
       return {
+
+        usuarios:[],
         mensagemErro: "",
         confirmacao_senha: "",
         formData: {
@@ -111,23 +115,32 @@
         }
       };
     },
+
+    mounted(){
+      getUsuarios()
+            .then(usuarios => {
+              console.log(usuarios)
+                this.usuarios = usuarios;
+            })
+            .catch(erro => {
+                console.error('Erro ao obter usuarios:', erro);
+            });
+    },
     methods: {
   
     async verificarExistencia() {
     try {
-      const response = await axios.get('http://localhost:3000/usuario');
-      const usuarios = response.data;
-  
-      for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].email === this.formData.email) {
+
+      for (let i = 0; i < this.usuarios.length; i++) {
+        if (this.usuarios[i].email === this.formData.email) {
           return "O e-mail já está cadastrado.";
         }
   
-        if (usuarios[i].matricula.toString() === this.formData.matricula) {
+        if (this.usuarios[i].matricula.toString() === this.formData.matricula) {
           return "A matrícula já está cadastrada.";
         }
   
-        if (usuarios[i].cpf === this.formData.cpf) {
+        if (this.usuarios[i].cpf === this.formData.cpf) {
           return "O CPF já está cadastrado.";
         }
   
@@ -159,13 +172,7 @@
         return;
       }
         
-         await fetch("http://localhost:3000/usuario", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.formData)
-          });
+         cadastrarUsuarioDB(this.formData);
           this.formData.nome = "";
           this.formData.sobrenome =  "";
           this.formData.email = "";

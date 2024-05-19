@@ -9,7 +9,7 @@
                 <div class="name-rating">
                     <h3 class="name">{{ getPrimeirosNomes(professor2.nome_professor) }}</h3>
                     <div class="rating">
-                        <img class="star" src="../assets/star.svg">
+                        <img class="star" src="../../assets/icons/avaliacao/icone-estrela.svg">
                         <p class="rate">{{ professor2.nota_media }}</p>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="name-rating">
                     <h3 class="name">{{getPrimeirosNomes(professor1.nome_professor)}}</h3>
                     <div class="rating">
-                        <img class="star" src="../assets/star.svg">
+                        <img class="star" src="../../assets/icons/avaliacao/icone-estrela.svg">
                         <p class="rate">{{professor1.nota_media}}</p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="name-rating">
                     <h3 class="name">{{getPrimeirosNomes(professor3.nome_professor)}}</h3>
                     <div class="rating">
-                        <img class="star" src="../assets/star.svg">
+                        <img class="star" src="../../assets/icons/avaliacao/icone-estrela.svg">
                         <p class="rate">{{ professor3.nota_media }}</p>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
     
     <script>
     export default {
-      name: "CardProfessor",
+      name: "Top3ProfessoresComponent",
       props: {
         professor1: Object,
         professor2: Object,

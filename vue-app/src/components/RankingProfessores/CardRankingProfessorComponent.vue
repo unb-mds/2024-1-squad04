@@ -10,7 +10,7 @@
         </div>
 
         <div class="rating">
-            <img class="star" src="../assets/star.svg">
+            <img class="star" src="../../assets/icons/avaliacao/icone-estrela.svg">
             <p class="rate">{{professor.nota_media}}</p>
         </div>
 
@@ -20,7 +20,7 @@
     
     <script>
     export default {
-        name: "CardProfessorTopRest",
+        name: "CardRankingProfessorComponent",
 
         props: {
         professor: Object,

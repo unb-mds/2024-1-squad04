@@ -25,14 +25,14 @@
                             para o aprimoramento contínuo do ensino superior.
                         </a>
                     </div>
-                    <img class="sub-container-1-img" src="../assets/LandingPageHero.svg">
+                    <img class="sub-container-1-img" src="../assets/images/images_landing_page/langin-page-section-1.svg">
                 </div>
             </div>
         </div>
 
         <div class="container-2">
             <div class="container-2-div" >
-                <img class="container-2-div-img" src="../assets/Logoavaliaunb.svg" >
+                <img class="container-2-div-img" src="../assets/images/logo/logo-avalia-unb.svg" >
                 <a class="container-2-div-texto">Junte-se a nós e faça parte da transformação educacional, onde cada avaliação 
                     é um passo rumo à excelência acadêmica e ao crescimento coletivo
                 </a>

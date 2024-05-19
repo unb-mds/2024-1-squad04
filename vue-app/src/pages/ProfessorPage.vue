@@ -1,7 +1,16 @@
 <template>
-    <div class = 'home'>
+    <div class="professores">
         <NavBar/>
+       
+        <div class="listagem-professores">
+            <CardListagemProfessoresComponent/>
+            <CardListagemProfessoresComponent/>
+            <CardListagemProfessoresComponent/>
+            <CardListagemProfessoresComponent/>
+        </div>
+
         <FooterBar/>
+        
 
 
     </div>
@@ -9,14 +18,16 @@
 
 <script>
     import router from '../routes/index';
-    import NavBar from '../components/NavbarHome.vue'; 
-    import FooterBar from '../components/Footer.vue';
+    import NavBar from '../components/Navegacao/NavBar.vue'; 
+    import FooterBar from '../components/Navegacao/FooterBar.vue';
+    import CardListagemProfessoresComponent from '@/components/Professores/CardListagemProfessoresComponent.vue';
 
     export default{
         //registrando o componente
         components: {
             NavBar,
             FooterBar,
+            CardListagemProfessoresComponent,
         },
 
         name: "ProfessorPage",
@@ -36,6 +47,25 @@
     
 </script>
 
-<style>
+<style mounted>
+
+    .listagem-professores{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+
+
+    }
+
+    .professores{
+        width: 100vw;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+    }
 
 </style>
