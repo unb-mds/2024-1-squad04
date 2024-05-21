@@ -32,7 +32,13 @@ User.getChave(app);
 
 Professor.getProfessoresAvaliados(app, sequelize);
 
+Professor.getProfessores(app, sequelize);
+
 Materia.getMateriasAvaliadss(app, sequelize);
+
+Materia.getMaterias(app, sequelize);
+
+
 
 
 app.listen(3000)

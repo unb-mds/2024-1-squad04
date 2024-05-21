@@ -5,18 +5,18 @@
                 <div class="card-front">
                     <div class="profile-picture-name">
                     <div class="profile-picture-div">                    
-                        <img src="../../assets/provisorio/foto-perfil-navbar-provisoria.svg" alt="" class="profile-picture">
+                        <img  :src="verificarUrl(professor.foto_professor)"  alt="" class="profile-picture">
                     </div>
                     <div class="professor-name">
-                        Oliver Smith
+                        {{professor.nome_professor}}
                     </div>
                     <div class="name-details">
                         Professor
                     </div>
                 </div>
                 <div class="rating-and-number">
-                    <div class="rating"><p class="nota">4.7</p><p class="de-cinco">/ 5</p></div>
-                    <div class="total-reviews">Total reviews (30)</div>
+                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total}}</p><p class="de-cinco">/ 5</p></div>
+                    <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
                     <img src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
@@ -36,74 +36,76 @@
                 <div class="details-list">
                     <div class="details">
                     <div class="number-stars">
-                        5
+                        Acesso
                     </div>
-                    <div class="barra-porcentagem">
-                        <div class="barra-preenchida">
+                    <div class="barra-texto">
+                        <div class="barra-porcentagem">
+                        <div class="barra-preenchida"  :style="{ width: professor.contribuicoes.contribuicao_acesso + '%' }">
 
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        73%
+                        {{professor.contribuicoes.contribuicao_acesso}}%
                     </div>
                 </div>
+                    
+                </div>
+
                 <div class="details">
                     <div class="number-stars">
-                        4
+                        Didática
                     </div>
-                    <div class="barra-porcentagem">
-                        <div class="barra-preenchida">
-                            
+                    <div class="barra-texto">
+                        <div class="barra-porcentagem">
+                        <div class="barra-preenchida" :style="{ width: professor.contribuicoes.contribuicao_didatica + '%' }">
+
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        16%
+                        {{professor.contribuicoes.contribuicao_didatica}}%
                     </div>
                 </div>
+                    
+                </div>
+
                 <div class="details">
                     <div class="number-stars">
-                        3
+                        Metodologia
                     </div>
-                    <div class="barra-porcentagem">
-                        <div class="barra-preenchida">
-                            
+                    <div class="barra-texto">
+                        <div class="barra-porcentagem">
+                        <div class="barra-preenchida" :style="{ width: professor.contribuicoes.contribuicao_metodologia + '%' }">
+
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        9%
+                        {{professor.contribuicoes.contribuicao_metodologia}}%
                     </div>
                 </div>
+                    
+                </div>
+
                 <div class="details">
                     <div class="number-stars">
-                        2
+                        Método de Ensino
                     </div>
-                    <div class="barra-porcentagem">
-                        <div class="barra-preenchida">
-                            
+                    <div class="barra-texto">
+                        <div class="barra-porcentagem">
+                        <div class="barra-preenchida" :style="{ width: professor.contribuicoes.contribuicao_metodo_ensino + '%' }">
+
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        2%
+                        {{professor.contribuicoes.contribuicao_metodo_ensino}}%
                     </div>
                 </div>
-                <div class="details">
-                    <div class="number-stars">
-                        1
-                    </div>
-                    <div class="barra-porcentagem">
-                        <div class="barra-preenchida">
-                            
-                        </div>
-                    </div>
-
-                    <div class="porcentagem">
-                        0%
-                    </div>
+                    
                 </div>
+                
             </div></div>
 
                 
@@ -115,18 +117,27 @@
 export default {
     name: "CardListagemProfessoresComponent",
     props: {
-        materia: Object,
-        position: Number,
+        professor: Object,
     },
+
+    methods: {
+        verificarUrl(urlProfessor){
+        if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
+            return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
+        }
+
+        return urlProfessor;
+    },
+
+    }
 }
 </script>
 
 <style scoped>
 .container {
     width: 100%;
-    max-width: 400px;;
-    height: 100%;
-    max-height: 400px;
+    max-width: 350px;
+    height: 450px;
     display: flex;
     justify-content: center
 }
@@ -171,9 +182,9 @@ export default {
 
 
 .card-professor {
-    width: 80%;
+    width: 100%;
     max-width: 450px;
-    height: auto;
+    height: 100%;
     border-radius: 14px;
 
     background-color: rgb(243, 243, 243);
@@ -182,8 +193,6 @@ export default {
     transform-style: preserve-3d;
     display: flex;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .container:hover > .card-professor {
@@ -202,7 +211,8 @@ export default {
 
 .profile-picture-div {
     padding: 2.4px;
-    width: 28%;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     background: rgb(8,54,80);
     background: linear-gradient(150deg, #1b5994 40%, #0a745b 60%);
@@ -213,15 +223,18 @@ export default {
 
 .profile-picture {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .professor-name {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 2.4rem;
     letter-spacing: 0.5px;
     color: rgb(32, 32, 32);
+    margin-right: 10px;
 }
 
 .name-details {
@@ -289,12 +302,19 @@ export default {
 
 .details{
     display: flex;
-    width: 70%;
+    flex-direction: column;
+    width: 100%;
     justify-content: flex-start;
     margin-bottom: 10px;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
     margin-left: 40px;
+}
+
+.barra-texto{
+    display: flex;
+    width: 100%;
+    gap: 10px;
 }
 
 .number-stars,
@@ -310,7 +330,7 @@ export default {
 .details-list{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
     gap: 16px;
 
 }
@@ -336,22 +356,15 @@ export default {
 }
 @media screen and (max-width: 1000px) {
 
-
+.container{
+    height: 400px;
+}
 .card-professor{
     padding-top: 0;
     padding-bottom: 0;
     width: 70%;
     height: 90%;
 }
-
-.front{
-
-}
-
-.back{
-
-}
-
 
 }
 

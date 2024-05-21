@@ -69,7 +69,7 @@
   
     @media screen and (max-width: 800px) {
   
-      .footer{
+      .footer-div{
         display: none;
       }
       
