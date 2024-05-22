@@ -18,6 +18,7 @@ html{
 body {
   margin: 0; 
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 @media screen and (max-width: 1500px) {
