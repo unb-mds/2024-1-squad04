@@ -27,6 +27,7 @@ const beforeEnterCheck = async () => {
             }
         } catch (error) {
             console.log(error)
+            router.push('/login');
             return;
         }
     }
