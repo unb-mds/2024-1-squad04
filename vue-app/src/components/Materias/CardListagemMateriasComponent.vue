@@ -12,8 +12,8 @@
                     </div>
                 </div>
                 <div class="rating-and-number">
-                    <div class="rating"><p class="nota">{{(materia.avaliacoes.nota_total/2)}}</p><p class="de-cinco">/ 5</p></div>
-                    <div class="total-reviews">Total reviews ({{materia.avaliacoes.quantidade_avaliacoes}})</div>
+                    <div class="rating"><p class="nota">{{materia.contribuicoes.nota_total}}</p><p class="de-cinco">/ 5</p></div>
+                    <div class="total-reviews">Total reviews ({{materia.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
                     <img src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
@@ -33,17 +33,17 @@
                 <div class="details-list">
                     <div class="details">
                     <div class="number-stars">
-                        Acesso
-                    </div>
+                        Experiência
+                                        </div>
                     <div class="barra-texto">
                         <div class="barra-porcentagem">
-                        <div class="barra-preenchida" >
+                        <div class="barra-preenchida" :style="{ width: materia.contribuicoes.contribuicao_experiencia + '%' }">
 
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        50%
+                        {{materia.contribuicoes.contribuicao_experiencia}}%
                     </div>
                 </div>
                     
@@ -51,17 +51,17 @@
 
                 <div class="details">
                     <div class="number-stars">
-                        Didática
+                        Dificuldade
                     </div>
                     <div class="barra-texto">
                         <div class="barra-porcentagem">
-                        <div class="barra-preenchida">
+                        <div class="barra-preenchida" :style="{ width: materia.contribuicoes.contribuicao_dificuldade + '%' }">
 
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        50%
+                        {{materia.contribuicoes.contribuicao_dificuldade}}%
                     </div>
                 </div>
                     
@@ -91,7 +91,8 @@ export default {
 .container {
     width: 100%;
     max-width: 350px;
-    height: 300px;
+    height: 400px;
+
     display: flex;
     justify-content: center
 }

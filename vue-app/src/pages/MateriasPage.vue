@@ -20,7 +20,7 @@
     import NavBar from '../components/Navegacao/NavBar.vue'; 
     import FooterBar from '../components/Navegacao/FooterBar.vue';
     import CardListagemMateriasComponent from '@/components/Materias/CardListagemMateriasComponent'
-    import { obterMaterias } from '@/service/materia/ManipularDadosMateriaListagem';
+    import { obterInformacoesMaterias } from '@/service/materia/ManipularDadosMateriaListagem';
 
 
 
@@ -41,7 +41,7 @@
         },
 
         mounted() {
-            obterMaterias()
+            obterInformacoesMaterias()
             .then(materias => {
                 this.materias = materias;
                 console.log(materias);
