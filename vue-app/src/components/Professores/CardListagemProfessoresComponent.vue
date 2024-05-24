@@ -19,11 +19,7 @@
                     <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
-                    <img src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
-                    <img src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
-                    <img src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
-                    <img src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
-                    <img src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
+                    <img v-for="(index) in 5" :key="index" ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
                 </div>
             </div>
                 
@@ -114,21 +110,50 @@
 </template>
 
 <script>
+import { nextTick } from 'vue';
 export default {
     name: "CardListagemProfessoresComponent",
     props: {
         professor: Object,
     },
-
+    mounted(){
+        nextTick(() => {
+            this.handleEstrelasProfessor();
+        });
+    },
+    watch: {
+        professor: {
+            handler() {
+                nextTick(() => {
+                    this.handleEstrelasProfessor();
+                });
+            },
+            deep: true,
+        },
+    },
     methods: {
         verificarUrl(urlProfessor){
-        if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
-            return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
+            if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
+                return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
+            }
+            return urlProfessor;
+        },
+        handleEstrelasProfessor() {
+            const estrelas = this.$refs.estrelas;
+            const media = this.professor.contribuicoes.media_nota_total;
+            
+            estrelas.forEach((estrela, index) => {
+                if (media >= index + 1) {
+                    estrela.style.filter = "none";
+                } else if (media > index) {
+                    estrela.style.filter = "none";
+                    estrela.style.webkitMaskImage = "linear-gradient(to left, transparent 40%, black 60%)";
+                    estrela.style.opacity = "1";
+                } else {
+                    estrela.style.filter = "invert(50%) opacity(30%)";
+                }
+            });
         }
-
-        return urlProfessor;
-    },
-
     }
 }
 </script>
@@ -140,6 +165,10 @@ export default {
     height: 450px;
     display: flex;
     justify-content: center
+}
+
+.container:last-of-type {
+  margin-bottom: 5vh;
 }
 
 .front, .back {
