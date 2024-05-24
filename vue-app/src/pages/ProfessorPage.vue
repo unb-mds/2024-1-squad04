@@ -26,7 +26,6 @@
 
 
     export default{
-        //registrando o componente
         components: {
             NavBar,
             FooterBar,

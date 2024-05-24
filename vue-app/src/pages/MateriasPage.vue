@@ -1,10 +1,11 @@
 <template>
     <div class="professores">
         <NavBar/>
+        <BarraDePesquisaComponente @search="handleSearch"/>
        
         <div class="listagem-professores">
-            <CardListagemMateriasComponent
-            v-for="(materia, index) in materias.slice(0,10)"
+            <CardListagemMateriasComponente
+            v-for="(materia, index) in filteredMaterias"
             :key="index"
             :materia="materia"/>
         </div>
@@ -19,17 +20,16 @@
 <script>
     import NavBar from '../components/Navegacao/NavBar.vue'; 
     import FooterBar from '../components/Navegacao/FooterBar.vue';
-    import CardListagemMateriasComponent from '@/components/Materias/CardListagemMateriasComponent'
     import { obterInformacoesMaterias } from '@/service/materia/ManipularDadosMateriaListagem';
 
 
 
     export default{
-        //registrando o componente
         components: {
             NavBar,
             FooterBar,
-            CardListagemMateriasComponent,
+            CardListagemMateriasComponente,
+            BarraDePesquisaComponente,
         },
 
         name: "MateriasPage",
@@ -37,6 +37,24 @@
         data() {
             return {
                 materias: [],
+                searchQuery: ''
+            }
+        },
+
+        computed: {
+        filteredMaterias() {
+            if (!this.searchQuery) {
+                return this.materias;
+            }
+            const query = this.searchQuery.toLowerCase();
+            return this.materias.filter(materia => 
+                materia.nome_materia.toLowerCase().includes(query)
+                )   ;
+            }
+        },
+        methods: {
+            handleSearch(query) {
+                this.searchQuery = query;
             }
         },
 

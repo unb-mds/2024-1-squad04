@@ -104,7 +104,7 @@ export default {
     height: auto;
     align-items: center;
     max-width: 2000px;
-    padding: 20px;
+    padding: 10px;
 
 }
 

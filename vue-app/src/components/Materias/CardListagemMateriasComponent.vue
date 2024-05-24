@@ -16,7 +16,7 @@
                     <div class="total-reviews">Total reviews ({{materia.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
-                    <img v-for="(estrela, index) in 5" :key="index" ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
+                    <img v-for="(index) in 5" :key="index" ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
                 </div>
             </div>
                 
@@ -75,9 +75,6 @@
 </template>
 
 <script>
-//const estrela = document.getElementById("estrela1")
-//estrela.style.filter = "invert(50%) opacity(30%)"
-//i++;
 export default {
     name: "CardListagemMateriasComponent",
     props: {
@@ -163,7 +160,6 @@ export default {
     height: 400px;
 
     display: flex;
-    justify-content: center
 }
 
 .front, .back {
@@ -208,9 +204,8 @@ export default {
 .card-professor {
     width: 100%;
     max-width: 450px;
-    height: 100%;
     border-radius: 14px;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(223, 223, 223);
     position: relative;
     transition: transform 1.5s;
     transform-style: preserve-3d;
@@ -236,7 +231,7 @@ export default {
 .professor-name {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 2.4rem;
+    font-size: 2rem;
     letter-spacing: 0.5px;
     color: rgb(32, 32, 32);
     margin-right: 10px;
