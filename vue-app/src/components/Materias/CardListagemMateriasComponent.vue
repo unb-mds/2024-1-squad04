@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <div class="card-professor">
+        <div class="card-materia">
             <div class="front">
                 <div class="card-front">
                     <div class="profile-picture-name">
-                    <div class="professor-name">
+                    <div class="materia-name">
                        {{ materia.nome_materia }}
                     </div>
                     <div class="name-details">
@@ -62,14 +62,8 @@
                 </div>
                     
                 </div>
-
-                
-                    
                 </div>
-                
-            </div>
-
-                
+            </div>  
         </div>
     </div>      
 </template>
@@ -85,7 +79,7 @@ export default {
     },
     methods: {
         handleEstrelas() {
-            if (this.materia.avaliacoes.nota_total / 2 < 1) {
+            if (this.materia.contribuicoes.nota_total / 2 < 1) {
                 const estrelas = this.$refs.estrelas;
                 if (estrelas) {
                     estrelas.forEach((estrela) => {
@@ -93,32 +87,32 @@ export default {
                     });
                 }
             }
-            else if (this.materia.avaliacoes.nota_total / 2 == 1) {
+            else if (this.materia.contribuicoes.nota_total == 1) {
                 const estrelas = this.$refs.estrelas;
                 for(let i = 1; i < estrelas.length; i++){
                     estrelas[i].style.filter = "invert(50%) opacity(30%)";
                 }
             }
-            else if (this.materia.avaliacoes.nota_total / 2 == 2) {
+            else if (this.materia.contribuicoes.nota_total == 2) {
                 const estrelas = this.$refs.estrelas;
                 for(let i = 2; i < estrelas.length; i++){
                     estrelas[i].style.filter = "invert(50%) opacity(30%)";
                 }
             }
-            else if (this.materia.avaliacoes.nota_total / 2 == 3) {
+            else if (this.materia.contribuicoes.nota_total == 3) {
                 const estrelas = this.$refs.estrelas;
                 for(let i = 3; i < estrelas.length; i++){
                     estrelas[i].style.filter = "invert(50%) opacity(30%)";
                 }
             }
-            else if (this.materia.avaliacoes.nota_total / 2 == 4) {
+            else if (this.materia.contribuicoes.nota_total == 4) {
                 const estrelas = this.$refs.estrelas;
                 estrelas[4].style.filter = "invert(50%) opacity(30%)";
             }
-            else if (this.materia.avaliacoes.nota_total / 2 == 5) {
+            else if (this.materia.contribuicoes.nota_total == 5) {
                 return    
             }
-            else if (this.materia.avaliacoes.nota_total / 2 < 2) {
+            else if (this.materia.contribuicoes.nota_total < 2) {
                 const estrelas = this.$refs.estrelas;
                 for(let i = 2; i < estrelas.length; i++){
                     estrelas[i].style.filter = "invert(50%) opacity(30%)";
@@ -126,7 +120,7 @@ export default {
                 estrelas[1].style.webkitMaskImage = "linear-gradient(to left, transparent 40%, black 60%)";
                 estrelas[1].style.opacity = "1";
             }
-            else if (this.materia.avaliacoes.nota_total / 2 < 3) {
+            else if (this.materia.contribuicoes.nota_total < 3) {
                 const estrelas = this.$refs.estrelas;
                 for(let i = 3; i < estrelas.length; i++){
                     estrelas[i].style.filter = "invert(50%) opacity(30%)";
@@ -134,7 +128,7 @@ export default {
                 estrelas[2].style.webkitMaskImage = "linear-gradient(to left, transparent 40%, black 60%)";
                 estrelas[2].style.opacity = "1";
             }
-            else if (this.materia.avaliacoes.nota_total / 2 < 4) {
+            else if (this.materia.contribuicoes.nota_total < 4) {
                 const estrelas = this.$refs.estrelas;
                 for(let i = 4; i < estrelas.length; i++){
                     estrelas[i].style.filter = "invert(50%) opacity(30%)";
@@ -142,7 +136,7 @@ export default {
                 estrelas[3].style.webkitMaskImage = "linear-gradient(to left, transparent 40%, black 60%)";
                 estrelas[3].style.opacity = "1";
             }
-            else if (this.materia.avaliacoes.nota_total / 2 < 5) {
+            else if (this.materia.contribuicoes.nota_total < 5) {
                 const estrelas = this.$refs.estrelas;
                 estrelas[4].style.webkitMaskImage = "linear-gradient(to left, transparent 40%, black 60%)";
                 estrelas[4].style.opacity = "1";
@@ -158,10 +152,11 @@ export default {
     width: 100%;
     max-width: 350px;
     height: 400px;
-
     display: flex;
 }
-
+.container:last-of-type {
+  margin-bottom: 5vh;
+}
 .front, .back {
     width: 100%;
     height: 100%;
@@ -201,7 +196,7 @@ export default {
 }
 
 
-.card-professor {
+.card-materia {
     width: 100%;
     max-width: 450px;
     border-radius: 14px;
@@ -213,7 +208,7 @@ export default {
     align-items: center;
 }
 
-.container:hover > .card-professor {
+.container:hover > .card-materia {
     cursor: pointer;
     transform: rotateY(180deg);
 }
@@ -228,7 +223,7 @@ export default {
 }
 
 
-.professor-name {
+.materia-name {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 2rem;
@@ -359,7 +354,7 @@ export default {
 .container{
     height: 400px;
 }
-.card-professor{
+.card-materia{
     padding-top: 0;
     padding-bottom: 0;
     width: 70%;

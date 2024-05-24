@@ -28,14 +28,27 @@ export default {
 
 <style scoped>
 .container {
+    margin-top: 7vh;
+    margin-bottom: 5vh;
+    position: relative;
     display: flex;
-    align-items: center;
 }
 
 .search-input {
-    flex: 1;
     padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #a8a8a8;
+    border-radius: 14px;
+    width: 650px;
+    height: 28px;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    outline: none;
+}
+::placeholder {
+    color: #a8a8a8;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.38rem;
+    
 }
 </style>

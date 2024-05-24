@@ -62,7 +62,7 @@
     
 </script>
 
-<style mounted>
+<style scoped>
 
     .listagem-professores{
         margin-top: 30px;
@@ -86,7 +86,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        height: 200vh;
+        height: 100vh;
     }
 
 </style>

@@ -1,9 +1,9 @@
 <template>
-    <div class="professores">
+    <div class="materias">
         <NavBar/>
         <BarraDePesquisaComponente @search="handleSearch"/>
        
-        <div class="listagem-professores">
+        <div class="listagem-materias">
             <CardListagemMateriasComponente
             v-for="(materia, index) in filteredMaterias"
             :key="index"
@@ -21,8 +21,8 @@
     import NavBar from '../components/Navegacao/NavBar.vue'; 
     import FooterBar from '../components/Navegacao/FooterBar.vue';
     import { obterInformacoesMaterias } from '@/service/materia/ManipularDadosMateriaListagem';
-
-
+    import CardListagemMateriasComponente from '../components/Materias/CardListagemMateriasComponent.vue'
+    import BarraDePesquisaComponente from '../components/Navegacao/BarraDePesquisaComponent.vue'
 
     export default{
         components: {
@@ -42,14 +42,17 @@
         },
 
         computed: {
-        filteredMaterias() {
-            if (!this.searchQuery) {
-                return this.materias;
-            }
-            const query = this.searchQuery.toLowerCase();
-            return this.materias.filter(materia => 
-                materia.nome_materia.toLowerCase().includes(query)
-                )   ;
+            filteredMaterias() {
+                if (!this.searchQuery) {
+                    return this.materias;
+                }
+                const query = this.searchQuery.toLowerCase();
+                const normalizedQuery = query.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                
+                return this.materias.filter(materia => {
+                    const normalizedMateria = materia.nome_materia.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                    return normalizedMateria.includes(normalizedQuery);
+                });
             }
         },
         methods: {
@@ -74,9 +77,9 @@
     
 </script>
 
-<style mounted>
+<style scoped>
 
-    .listagem-professores{
+    .listagem-materias{
         margin-top: 30px;
         width: 100%;
         max-width: 2000px;
@@ -86,19 +89,15 @@
         align-items: flex-start;
         min-height: fit-content;
         gap: 50px;
-
-
-
-
     }
 
-    .professores{
+    .materias{
+        background: linear-gradient(163deg, rgba(169,197,252,1) 0%, rgba(101,117,150,1) 70%);
         width: 100vw;
         display:flex;
         flex-direction: column;
-        justify-content: space-between;
         align-items: center;
-        height: 200vh;
+        height: 100%;
     }
 
 </style>
