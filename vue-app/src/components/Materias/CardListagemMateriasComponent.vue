@@ -75,10 +75,10 @@ export default {
         materia: Object,
     },
     mounted(){
-        this.handleEstrelas();
+        this.handleEstrelasMateria();
     },
-    methods: {
-        handleEstrelas() {
+    methods:{
+        handleEstrelasMateria() {
             if (this.materia.contribuicoes.nota_total / 2 < 1) {
                 const estrelas = this.$refs.estrelas;
                 if (estrelas) {
@@ -142,7 +142,7 @@ export default {
                 estrelas[4].style.opacity = "1";
             }
         }
-    }
+    },
 }
 
 </script>
