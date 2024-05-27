@@ -1,22 +1,19 @@
 <template>
     <div class="container">
-        <div class="card-professor">
+        <div class="card-materia">
             <div class="front">
                 <div class="card-front">
                     <div class="profile-picture-name">
-                    <div class="profile-picture-div">                    
-                        <img  :src="verificarUrl(professor.foto_professor)"  alt="" class="profile-picture">
-                    </div>
-                    <div class="professor-name">
-                        {{professor.nome_professor}}
+                    <div class="materia-name">
+                       {{ materia.nome_materia }}
                     </div>
                     <div class="name-details">
-                        Professor
+                        {{materia.cod_materia}}
                     </div>
                 </div>
                 <div class="rating-and-number">
-                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total}}</p><p class="de-cinco">/ 5</p></div>
-                    <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
+                    <div class="rating"><p class="nota">{{materia.contribuicoes.nota_total}}</p><p class="de-cinco">/ 5</p></div>
+                    <div class="total-reviews">Total reviews ({{materia.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
                     <img v-for="(index) in 5" :key="index" ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
@@ -32,17 +29,17 @@
                 <div class="details-list">
                     <div class="details">
                     <div class="number-stars">
-                        Acesso
-                    </div>
+                        Experiência
+                                        </div>
                     <div class="barra-texto">
                         <div class="barra-porcentagem">
-                        <div class="barra-preenchida"  :style="{ width: professor.contribuicoes.contribuicao_acesso + '%' }">
+                        <div class="barra-preenchida" :style="{ width: materia.contribuicoes.contribuicao_experiencia + '%' }">
 
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        {{professor.contribuicoes.contribuicao_acesso}}%
+                        {{materia.contribuicoes.contribuicao_experiencia}}%
                     </div>
                 </div>
                     
@@ -50,61 +47,23 @@
 
                 <div class="details">
                     <div class="number-stars">
-                        Didática
+                        Dificuldade
                     </div>
                     <div class="barra-texto">
                         <div class="barra-porcentagem">
-                        <div class="barra-preenchida" :style="{ width: professor.contribuicoes.contribuicao_didatica + '%' }">
+                        <div class="barra-preenchida" :style="{ width: materia.contribuicoes.contribuicao_dificuldade + '%' }">
 
                         </div>
                     </div>
 
                     <div class="porcentagem">
-                        {{professor.contribuicoes.contribuicao_didatica}}%
+                        {{materia.contribuicoes.contribuicao_dificuldade}}%
                     </div>
                 </div>
                     
                 </div>
-
-                <div class="details">
-                    <div class="number-stars">
-                        Metodologia
-                    </div>
-                    <div class="barra-texto">
-                        <div class="barra-porcentagem">
-                        <div class="barra-preenchida" :style="{ width: professor.contribuicoes.contribuicao_metodologia + '%' }">
-
-                        </div>
-                    </div>
-
-                    <div class="porcentagem">
-                        {{professor.contribuicoes.contribuicao_metodologia}}%
-                    </div>
                 </div>
-                    
-                </div>
-
-                <div class="details">
-                    <div class="number-stars">
-                        Método de Ensino
-                    </div>
-                    <div class="barra-texto">
-                        <div class="barra-porcentagem">
-                        <div class="barra-preenchida" :style="{ width: professor.contribuicoes.contribuicao_metodo_ensino + '%' }">
-
-                        </div>
-                    </div>
-
-                    <div class="porcentagem">
-                        {{professor.contribuicoes.contribuicao_metodo_ensino}}%
-                    </div>
-                </div>
-                    
-                </div>
-                
-            </div></div>
-
-                
+            </div>  
         </div>
     </div>      
 </template>
@@ -112,35 +71,29 @@
 <script>
 import { nextTick } from 'vue';
 export default {
-    name: "CardListagemProfessoresComponent",
+    name: "CardListagemMateriasComponent",
     props: {
-        professor: Object,
+        materia: Object,
     },
     mounted(){
         nextTick(() => {
-            this.handleEstrelasProfessor();
+            this.handleEstrelasMateria();
         });
     },
     watch: {
-    professor: {
-        handler() {
-            this.$nextTick(() => {
-                this.handleEstrelasProfessor()      
-            })
+        materia: {
+            handler() {
+                nextTick(() => {
+                    this.handleEstrelasMateria();
+                });
+            },
+            deep: true,
         },
-        deep: true,
     },
-},
-    methods: {
-        verificarUrl(urlProfessor){
-            if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
-                return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
-            }
-            return urlProfessor;
-        },
-        handleEstrelasProfessor() {
+    methods:{
+        handleEstrelasMateria() {
             const estrelas = this.$refs.estrelas;
-            const media = this.professor.contribuicoes.media_nota_total;
+            const media = this.materia.contribuicoes.nota_total;
             
             estrelas.forEach((estrela, index) => {
                 // Remove todas as classes para garantir que começamos com uma estrela "limpa"
@@ -155,8 +108,9 @@ export default {
                 }
             });
         }
-    }
+    },
 }
+
 </script>
 
 <style scoped>
@@ -173,19 +127,15 @@ export default {
 .empty-star {
     filter: invert(50%) opacity(30%);
 }
-
 .container {
     width: 100%;
     max-width: 350px;
-    height: 450px;
+    height: 400px;
     display: flex;
-    justify-content: center
 }
-
 .container:last-of-type {
   margin-bottom: 5vh;
 }
-
 .front, .back {
     width: 100%;
     height: 100%;
@@ -225,13 +175,11 @@ export default {
 }
 
 
-.card-professor {
+.card-materia {
     width: 100%;
     max-width: 450px;
-    height: 100%;
     border-radius: 14px;
-
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(223, 223, 223);
     position: relative;
     transition: transform 1.5s;
     transform-style: preserve-3d;
@@ -239,7 +187,7 @@ export default {
     align-items: center;
 }
 
-.container:hover > .card-professor {
+.container:hover > .card-materia {
     cursor: pointer;
     transform: rotateY(180deg);
 }
@@ -253,29 +201,11 @@ export default {
     height: auto;
 }
 
-.profile-picture-div {
-    padding: 2.4px;
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50%;
-    background: rgb(8,54,80);
-    background: linear-gradient(150deg, #1b5994 40%, #0a745b 60%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.profile-picture {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.professor-name {
+.materia-name {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 2.4rem;
+    font-size: 2rem;
     letter-spacing: 0.5px;
     color: rgb(32, 32, 32);
     margin-right: 10px;
@@ -403,7 +333,7 @@ export default {
 .container{
     height: 400px;
 }
-.card-professor{
+.card-materia{
     padding-top: 0;
     padding-bottom: 0;
     width: 70%;

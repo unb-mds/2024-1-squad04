@@ -35,7 +35,7 @@
         <ul class="nav-itens">
             <li class="item-web" @click.prevent = 'HandleHome'>Home</li>
             <li class="item-web" @click.prevent = 'HandleProfessors'>Professores</li>
-            <li class="item-web">Matérias</li>
+            <li class="item-web" @click.prevent = 'HandleMaterias'>Matérias</li>
             <li class="item-web">Minhas  Avaliações</li>
         </ul>
     </div>
@@ -62,6 +62,9 @@ export default {
         },
         async HandleHome(){
             router.push({name: 'home'});
+        },
+        async HandleMaterias(){
+            router.push({name: 'materia'});
         }
     }
 
@@ -101,7 +104,7 @@ export default {
     height: auto;
     align-items: center;
     max-width: 2000px;
-    padding: 20px;
+    padding: 10px;
 
 }
 
