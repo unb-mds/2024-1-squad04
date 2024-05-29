@@ -3,9 +3,7 @@
         <!--o que esta na tag PopUp so aparece quando
         button Trigger for True-->
         
-        <PopUp v-if="popupTrigger.buttonTrigger" 
-            :TogglePopup = "() => TogglePopup('buttonTrigger')"
-            :professor="professor"/>
+        <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
         
             <div class="card-professor">
             <div class="front">
@@ -125,7 +123,7 @@ export default {
         //cria o trigger para ativar o popup.
         //quando for true, o popup aparece
         const popupTrigger = ref({
-            buttonTrigger: false
+            buttonTrigger: true //true para testes| default: false
         });
 
         const TogglePopup = (trigger) => {
