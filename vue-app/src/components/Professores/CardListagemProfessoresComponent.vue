@@ -4,6 +4,9 @@
         button Trigger for True-->
         
         <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')"/>
+        
+
+
         <div class="card-professor">
             <div class="front">
                 <div class="card-front">
@@ -23,12 +26,12 @@
                     <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
-                    <img v-for="(index) in 5" :key="index" ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
+                    <img ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela" v-for="n in 5" :key="n">
                 </div>
             </div>
                 
             </div>
-            <div class="back">
+            <div class="back" @click="() => TogglePopup('buttonTrigger')">
                 <div class="review-breakdown">
                     Review breakdown
                 </div>
@@ -90,7 +93,7 @@
 
                 <div class="details">
                     <div class="number-stars">
-                        Método de Ensino
+                        Carisma
                     </div>
                     <div class="barra-texto">
                         <div class="barra-porcentagem">
