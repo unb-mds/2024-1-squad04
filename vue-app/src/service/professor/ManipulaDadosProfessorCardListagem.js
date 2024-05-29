@@ -5,9 +5,9 @@ import { getProfessores } from "@/repositories/professor/obterProfessor";
 //para o card sem filtro as informações serão: nome_professor, foto_professor, cod_professor, media_nota_total / 2 (pois são 5 estrelas) OK, o peso de media_nota_acesso, media_nota_didatica, media_nota_metodologia, media_nota_metodo_ensino, que influencia na nota media_nota_total OK
 
 
-async function obterProfessores(){ //chama o repositories e obtem as informações da api
+async function obterProfessores(materia){ //chama o repositories e obtem as informações da api
     try{
-        const professores = await getProfessores();
+        const professores = await getProfessores(materia);
         return professores;
 
     } catch (error){
@@ -58,17 +58,16 @@ function CalcularPesoCriteriosAvaliacaoSemFiltro(medias) {
 
 
 
-export async function obterInformacoesProfessoresNaoFiltrados() {
+export async function obterInformacoesProfessoresFiltrados(materia) {
     try {
-        const professores = await obterProfessores();
+        const professores = await obterProfessores(materia);
         const professoresComContribuicoes = professores.map(professor => {
             const contribuicoes = CalcularPesoCriteriosAvaliacaoSemFiltro(professor.medias);
-            const qtdavaliacoes = Array.isArray(professor.avaliacoes) ? professor.avaliacoes.length : 0;
             return {
                 nome_professor: professor.nome_professor,
                 cod_professor: professor.cod_professor,
                 foto_professor: professor.foto_professor,
-                qtd_avaliacoes: qtdavaliacoes,
+                qtd_avaliacoes: professor.quantidade_avaliacoes,
                 contribuicoes: contribuicoes
             };
         });

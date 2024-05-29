@@ -38,6 +38,8 @@ Materia.getMateriasAvaliadss(app, sequelize);
 
 Materia.getMaterias(app, sequelize);
 
+Materia.getMateriasParaFiltragem(app, sequelize);
+
 
 
 
