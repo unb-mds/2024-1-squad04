@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+        <!--o que esta na tag PopUp so aparece quando
+        button Trigger for True-->
+        
+        <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')"/>
         <div class="card-professor">
             <div class="front">
                 <div class="card-front">
@@ -111,7 +115,28 @@
 
 <script>
 import { nextTick } from 'vue';
+import PopUp from './PopupAvaliaProfessor.vue'
+import { ref } from 'vue';
 export default {
+    setup () {
+        //cria o trigger para ativar o popup.
+        //quando for true, o popup aparece
+        const popupTrigger = ref({
+            buttonTrigger: true
+        });
+
+        const TogglePopup = (trigger) => {
+            popupTrigger.value[trigger]= !popupTrigger.value[trigger]
+        };
+
+        return{
+            popupTrigger,
+            TogglePopup
+        }
+    },
+    components: {
+        PopUp,
+    },
     name: "CardListagemProfessoresComponent",
     props: {
         professor: Object,
