@@ -1,7 +1,12 @@
 <template>
     <div class = "popup">
         <div class="popup-inner">
-            <header><slot class = "slot-items"/></header>
+            <header>
+                <slot/>
+                <img  :src="verificarUrl(professor.foto_professor)"  alt="" class="profile-picture"/>
+                <div class="professor-name">{{professor.nome_professor}}</div>
+            </header>
+                
             <button class="popup-close" @click="()=>TogglePopup()">Close</button>
         </div>
         
@@ -9,18 +14,32 @@
 </template>
 
 <script>
-
-
-
     export default{
         name: "PopUp",
-        props: ['TogglePopup'],
-        methods:{
-        async enviarAvaliacao(/*usuario, cod_prof, comentario, nota_acesso, nota_didatica, nota_metodologia, nota_carisma*/){
-                return
+        props: {
+            TogglePopup: {
+                type: Boolean,
+                required: true,
+                default: false
+            },
+            professor: {
+                type: Object,
+                required: true,
+                default: () => ({})
             }
         },
+
+        methods: {
+            verificarUrl(urlProfessor){
+                if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
+                    return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
+                }
+
+                return urlProfessor;
+            }
+        }
     }
+
 </script>
 
 <style scoped>
