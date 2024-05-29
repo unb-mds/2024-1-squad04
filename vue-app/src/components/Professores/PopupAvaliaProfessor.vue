@@ -6,9 +6,10 @@
                 <div class="foto-professor-div">
                     <img  :src="verificarUrl(professor.foto_professor)"  alt="" class="foto-professor"/>
                 </div>
-                
                 <div class="professor-nome">{{professor.nome_professor}}</div>
             </header>
+
+            <rantingStars></rantingStars>
                 
             <button class="popup-close" @click="()=>TogglePopup()">Close</button>
         </div>
@@ -17,8 +18,15 @@
 </template>
 
 <script>
+
+    import rantingStars from "../ratingStars.vue"
     export default{
         name: "PopUp",
+
+        components: {
+            rantingStars
+        },
+
         props: {
             TogglePopup: {
                 type: Boolean,
