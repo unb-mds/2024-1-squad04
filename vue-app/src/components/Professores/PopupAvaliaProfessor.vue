@@ -9,9 +9,17 @@
 </template>
 
 <script>
+
+
+
     export default{
         name: "PopUp",
-        props: ['TogglePopup']
+        props: ['TogglePopup'],
+        methods:{
+        async enviarAvaliacao(/*usuario, cod_prof, comentario, nota_acesso, nota_didatica, nota_metodologia, nota_carisma*/){
+                return
+            }
+        },
     }
 </script>
 
