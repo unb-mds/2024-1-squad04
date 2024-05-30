@@ -125,7 +125,7 @@ export default {
         //cria o trigger para ativar o popup.
         //quando for true, o popup aparece
         const popupTrigger = ref({
-            buttonTrigger: true
+            buttonTrigger: false
         });
 
         const TogglePopup = (trigger) => {
