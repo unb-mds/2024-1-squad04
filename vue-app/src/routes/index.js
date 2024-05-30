@@ -4,6 +4,7 @@ import Login from'../pages/LoginPage.vue';
 import Cadastro from '../pages/CadastroPage.vue'
 import Landing from '../pages/LandingPage.vue'
 import Professor from '../pages/ProfessorPage.vue'
+import ProfessorIndividual from '../pages/ProfessorIndividualPage.vue'
 import Materias from '../pages/MateriasPage.vue'
 import axios from 'axios'
 import CryptoJS from "crypto-js";
@@ -72,6 +73,12 @@ const router = createRouter({
             path: '/professores',
             name: 'professor',
             component: Professor
+        },
+
+        {
+            path:'/paginaProfessor/:id',
+            name: 'paginaProfessor',
+            component: ProfessorIndividual
         },
 
         {  
