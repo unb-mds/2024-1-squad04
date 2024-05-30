@@ -13,7 +13,8 @@
     "crypto-js": "^4.2.0",
     "scrollreveal": "^4.0.9",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "vuwe": "^0.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

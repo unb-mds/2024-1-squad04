@@ -96,14 +96,15 @@ export default {
             const media = this.materia.contribuicoes.nota_total;
             
             estrelas.forEach((estrela, index) => {
+                // Remove todas as classes para garantir que começamos com uma estrela "limpa"
+                estrela.classList.remove('full-star', 'partial-star', 'empty-star');
+                
                 if (media >= index + 1) {
-                    estrela.style.filter = "none";
+                    estrela.classList.add('full-star');
                 } else if (media > index) {
-                    estrela.style.filter = "none";
-                    estrela.style.webkitMaskImage = "linear-gradient(to left, transparent 40%, black 60%)";
-                    estrela.style.opacity = "1";
+                    estrela.classList.add('partial-star');
                 } else {
-                    estrela.style.filter = "invert(50%) opacity(30%)";
+                    estrela.classList.add('empty-star');
                 }
             });
         }
@@ -113,6 +114,19 @@ export default {
 </script>
 
 <style scoped>
+.full-star {
+    filter: none;
+}
+
+.partial-star {
+    filter: none;
+    -webkit-mask-image: linear-gradient(to left, transparent 40%, black 60%);
+    opacity: 1;
+}
+
+.empty-star {
+    filter: invert(50%) opacity(30%);
+}
 .container {
     width: 100%;
     max-width: 350px;

@@ -34,6 +34,8 @@ Professor.getProfessoresAvaliados(app, sequelize);
 
 Professor.getProfessores(app, sequelize);
 
+Professor.getProfessorById(app, sequelize);
+
 Materia.getMateriasAvaliadss(app, sequelize);
 
 Materia.getMaterias(app, sequelize);
