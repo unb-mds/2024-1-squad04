@@ -2,7 +2,10 @@
     <div class = "popup">
         <div class="popup-inner">
             <header><slot class = "slot-items"/></header>
-            <button class="popup-close" @click="()=>TogglePopup()">Close</button>
+            <a class="nome-prof">Nome {{ this.professor.nome_professor }}</a>
+            <a class="nome-prof">Nota {{ this.professor.contribuicoes.media_nota_total }}</a>
+            <button class="popup-close" @click="()=>TogglePopup()">Voltar</button>
+            <button class="popup-close" @click="()=>SubmitAvaliacao()">Enviar</button>
         </div>
         
     </div>
@@ -10,20 +13,33 @@
 
 <script>
 
-
+    import { enviarAvaliacaoProfessor } from '@/generals/enviarAvaliacaoProfessor.js';
 
     export default{
         name: "PopUp",
-        props: ['TogglePopup'],
-        methods:{
-        async enviarAvaliacao(/*usuario, cod_prof, comentario, nota_acesso, nota_didatica, nota_metodologia, nota_carisma*/){
-                return
-            }
+        props: {
+            TogglePopup: Function,
+            professor: Object,
         },
+        methods: {
+            async SubmitAvaliacao() {
+                try {
+                    await enviarAvaliacaoProfessor(this.professor);
+                } catch (error) {
+                    console.error("Erro ao enviar avaliação do professor:", error);
+                }
+            }
+        }
     }
+    
 </script>
 
 <style scoped>
+
+.nome-prof{
+    font-size: 2rem;
+    color: red;
+}
 
 .popup{
     display: flex;

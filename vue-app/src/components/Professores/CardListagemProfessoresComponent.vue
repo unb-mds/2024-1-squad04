@@ -3,7 +3,7 @@
         <!--o que esta na tag PopUp so aparece quando
         button Trigger for True-->
         
-        <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')"/>
+        <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
         
 
 
