@@ -13,14 +13,21 @@
             <p class="quote">If you equip people with the right tools, they will build the most extraordinary things.</p>
             
             <div class="all-personal-info">
+
                 <div class="academic-info">
-                    <h3>Formação Acadêmica</h3>
-                    <ul>
-                        <li>27</li>
-                        <li>Paris</li>
-                        <li>Female</li>
-                        <li>Student</li>
-                    </ul>
+                    <div class="container-academic-info">
+                        <h3>Formação Acadêmica</h3>
+                        <ul>
+                            <li>27</li>
+                            <li>Paris</li>
+                            <li>Female</li>
+                            <li>Student</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class= "">
+
                 </div>
                 <div class="professor-contact-info">
                     <h3>Contatos</h3>
@@ -29,15 +36,6 @@
                 </div>
             </div>
 
-            
-            <!-- <div class="traits">
-                <button>Cooperative</button>
-                <button>King</button>
-                <button>Creative</button>
-                <button>Smart</button>
-                <button>Reliable</button>
-                <button>Organized</button>
-            </div> -->
         </div>
 
         <!-- Content1 -->
@@ -183,12 +181,14 @@ html, body {
 
 .academic-info{
     height: 50%;
-    background-color: blue;
+    background-color: #f5f5f5;
+    border-radius: 10px;
 }
 
 .professor-contact-info{
     height: 50%;
-    background-color: red;
+    background-color: #f5f5f5;
+    border-radius: 10px;
 }
 .academic-info ul {
     list-style: none;
