@@ -48,36 +48,11 @@
 
 <style scoped>
 
-    .listagem-professores{
-        margin-top: 30px;
-        width: 100%;
-        max-width: 2000px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: fit-content;
-        gap: 50px;
-
-
-
-
+    .professores {
+        height: 100vh;
     }
 
-    
 
-    .footer-div {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #F0F0F0;
-    width: 100vw;
-    height: auto;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    }    
+    
 
 </style>

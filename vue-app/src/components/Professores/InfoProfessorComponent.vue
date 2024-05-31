@@ -1,10 +1,11 @@
 <template>
-    <div class="container">
+    <div class="container-frame">
+        <div class="container">
         <!-- Sidebar -->
         <div id="sidebar">
             <div id="image-content">
-                <img src="https://arquivos.unb.br/arquivos/2024150224ff243068307f3c4b15a8090/abso_2024.jpg" alt="Alice Kaushik" class="profile-pic"/>
-                <h2>ALESSANDRO BORGES DE SOUSA OLIVEIRA</h2>
+                <img :src="verificarUrl(professor.foto_professor)" alt="Alice Kaushik" class="profile-pic"/>
+                <h2>{{ professor.nome_professor }}</h2>
                 <h3>Faculdade do Gama</h3>
             </div>
             
@@ -41,60 +42,77 @@
 
         <!-- Content1 -->
         <div id="content1">
-            <div class="section" id="user-environment">
-                <h3>User Environment</h3>
+            <div class="section" id="general-reviews">
+                <h3>Avaliações Gerais</h3>
                 <p>Home Space</p>
                 <p>Solo Worker</p>
                 <p>Mobile</p>
                 <!-- Example content for user environment -->
             </div>
-            <div class="section" id="frustration">
-                <h3>Frustration</h3>
-                <ul>
-                    <li>Getting buy-in for the new department's activities</li>
-                    <li>Dealing with more bureaucracy than in her old job</li>
-                    <li>Communicating necessity for change to development team</li>
-                    <li>Not terribly tech savvy - doesn't like the process</li>
+            <div class="section" id="given-subjects">
+                <div class="subjects_container">
+                    <div class="subjects-title">
+                    <img src="@/assets/icons/pagina_professor/purpose.png" alt="" id="subjects_icon">
+                    <h3>Disciplinas Ministradas</h3>
+                </div>
+                
+                <ul id = "materias_dadas" v-if="professor.materias && professor.materias.length > 0">
+                    <div id = "materias">
+                        <li v-for="materia in professor.materias" :key="materia.cod_materia">{{ materia.nome_materia }}</li>
+                    </div>
+                    <div id = "codigos-materias">
+                        <li v-for="materia in professor.materias" :key="materia.cod_materia">{{ materia.cod_materia }}</li>
+                    </div>
+                    
                 </ul>
+                </div>
+                
+                
             </div>
         </div>
 
         <!-- Content2 -->
         <div id="content2">
-            <div class="section" id="technology">
-                <h3>Technology</h3>
-                <p>Mobile, Desktop, iOS, Android, Windows</p>
-                <!-- Example content for technology -->
+                <div class="section" id="teacher-review">
+                    <h3>Avaliações dos Alunos</h3>
+                    <div v-if="professor.avaliacoes && professor.avaliacoes.length > 0">
+                        <div v-for="avaliacao in professor.avaliacoes" :key="avaliacao.usuario.matricula" class="avaliacao">
+                            <p><strong>Usuário:</strong> {{ avaliacao.usuario.nome_usuario }}</p>
+                            <p><strong>Matéria:</strong> {{ avaliacao.cod_materia }}</p>
+                            <p><strong>Nota Total:</strong> {{ avaliacao.nota_total }}</p>
+                            <p><strong>Número de Likes:</strong> {{ avaliacao.num_likes }}</p>
+                            <p><strong>Comentário:</strong> {{ avaliacao.comentario }}</p>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <p>Nenhuma avaliação disponível.</p>
+                    </div>
+                </div>
             </div>
-            <div class="section" id="personality">
-                <h3>Personality</h3>
-                <p>Introvert - Extrovert</p>
-                <p>Analytical - Creative</p>
-                <p>Loyal - Fickle</p>
-                <p>Passive - Active</p>
-            </div>
-            <div class="section" id="goal">
-                <h3>Goal</h3>
-                <ul>
-                    <li>Introduce user-focused mentality and methods into traditional company landscape</li>
-                    <li>Improve usability of bank's customer-facing interfaces</li>
-                    <li>Grow the UX team</li>
-                </ul>
-            </div>
-            <div class="section" id="tools">
-                <h3>Tools</h3>
-                <p>Figma, Adobe XD, Photoshop, Illustrator</p>
-                <!-- Example content for tools -->
-            </div>
-        </div>
     </div>
+    </div> 
 </template>
 
 <style scoped>
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container-frame{
+    height: 100%;
+    
+}
+
 .container {
+    height: calc(100% - 40px);
+    width: calc(100% - 40px);
     display: grid;
-    height: 100vh;
-    grid-template-columns: 0.7fr 1fr 1fr;
+    /* height: 100vh; */
+    grid-template-columns: 0.7fr 1fr 0.7fr;
     gap: 20px;
     padding: 20px;
     background-color: #f5f5f5;
@@ -118,14 +136,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #image-content h2 {
+    text-align: center;
+    font-size: 22px;
     padding-top: 10px;
 }
 
 #image-content h3 {
+    font-size: 18px;
     margin-top: 0px;
 }
 
@@ -160,10 +182,12 @@
 }
 
 .academic-info{
+    height: 50%;
     background-color: blue;
 }
 
 .professor-contact-info{
+    height: 50%;
     background-color: red;
 }
 .academic-info ul {
@@ -191,6 +215,71 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+#given-subjects, #general-reviews{
+    height: 50%;
+}
+
+.subjects-title {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.subjects-title h3 {
+    text-align: center;
+    align-content: center;
+    margin: 0;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#subjects_icon {
+    width: 40px;
+}
+
+#materias_dadas {
+    display: flex;
+    width: 400px;
+}
+
+.subjects-title {
+    padding: 30px;
+}
+
+#given-subjects {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+#materias_dadas {
+    list-style-type: none;
+    padding-left: 30px;
+}
+
+#codigos-materias {
+    padding-left: 20%;
+}
+
+#materias_dadas li {
+    padding: 3px;
+}
+
+#teacher-review{
+    height: 100%;
+}
+
+.avaliacao {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.avaliacao p {
+    margin: 5px 0;
 }
 
 /* Estilos para dispositivos móveis */
@@ -213,7 +302,39 @@
 </style>
 
 <script>
+
+import { getProfessoresByID } from "@/repositories/professor/obterProfessor.js";
+
 export default {
-    name: "UserProfile"
-}
+    name: "UserProfile",
+    
+    data() {
+        return {
+            professor: {} 
+        };
+    },
+    methods: {
+        async fetchProfessor(id) {
+            try {
+                const data = await getProfessoresByID(id);
+                this.professor = data[0];
+                console.log(data[0]);
+            } catch (error) {
+                console.error('Erro ao obter professor', error);
+            }
+        },
+
+        verificarUrl(urlProfessor) {
+            if(urlProfessor === 'https://sigaa.unb.br/sigaa/img/no_picture.png') {
+                return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
+            }
+            return urlProfessor;
+        }
+    },
+    mounted() {
+        const cod_professor = this.$route.params.id; 
+        this.fetchProfessor(cod_professor);
+    }
+
+};
 </script>
