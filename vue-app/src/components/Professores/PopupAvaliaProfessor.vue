@@ -9,9 +9,13 @@
                 <div class="professor-nome">{{professor.nome_professor}}</div>
             </header>
 
-            <rantingStars></rantingStars>
-                
-            <button class="popup-close" @click="()=>TogglePopup()">Close</button>
+            <div class="rating-stars-div"><ratingStars/></div>
+            
+            
+            
+            <div class="btn-container">
+                <button class="popup-close" @click="()=>TogglePopup()">voltar</button>
+            </div> 
         </div>
         
     </div>
@@ -19,12 +23,12 @@
 
 <script>
 
-    import rantingStars from "../ratingStars.vue"
+    import ratingStars from "./RatingStarsProfessor.vue"
     export default{
         name: "PopUp",
 
         components: {
-            rantingStars
+            ratingStars
         },
 
         props: {
@@ -99,11 +103,11 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 2.4rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.5rem;
     color: rgb(32, 32, 32);
     margin-right: 2rem;
     margin-top: 1.2rem;
-    width: 60%;
+    width: 70%;
     white-space: normal;
 }
 
@@ -117,19 +121,30 @@
     border: none;
     cursor: pointer;
     margin: 3rem;
+
+}
+
+.rating-stars-div {
+    display: flex;
+    margin-left: 5rem;
 }
 
 .popup-inner{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     font-display: inter;
     background: #fff;
     height: 60rem;
-    gap: 8rem;
     width: 60rem;
     border-radius: 3rem;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 
