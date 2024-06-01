@@ -28,27 +28,45 @@ export default {
 
 <style scoped>
 .container {
-    margin-top: 7vh;
-    margin-bottom: 5vh;
     position: relative;
     display: flex;
+    width: 100%;
+    max-width: 800px;
+    min-width: 350px;
 }
 
 .search-input {
-    padding: 8px;
-    border: 1px solid #a8a8a8;
-    border-radius: 14px;
-    width: 650px;
+    padding: 14px;
+    border: 1px solid #dadada;
+    border-radius: 8px;
+    width: 95%;
     height: 28px;
-    color: #000;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.3rem;
+    color: #1b1b1b;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.8rem;
     outline: none;
+
+}
+
+
+.search-input:focus{
+    border: 0.3rem solid #008E4A;
+}
+
+.search-input:focus::placeholder{
+    color: transparent;
 }
 ::placeholder {
-    color: #a8a8a8;
+    color: #acacac;
     font-family: 'Inter', sans-serif;
-    font-size: 1.38rem;
-    
+    font-size: 2rem;
+    letter-spacing: 0.8px;
+    font-weight: 300;
 }
+
+@media screen and (max-width:600px) {
+    .container{
+        min-width: 200px;
+    }
+ }
 </style>
