@@ -3,16 +3,10 @@
 <template>
     <div class="professores">
         <NavBar/>
-        <BarraDePesquisaComponente @search="handleSearch"/>
-        <div class="element">
-                    <label for="curso" class="mr-2"></label>
-                    <select id="curso" class="form-control" required @change="handleMateriaSelection">
-                      <option value="">Selecione uma matéria</option>
-                      <option v-for="(materia, index) in materias" 
-                      :key="index"
-                      :value="materia.cod_materia" >{{ materia.nome }}</option>
-                    </select>
-                  </div>
+        <div class="search-filter">
+            <BarraDePesquisaComponente @search="handleSearch"/>
+            <FiltroProfessores @materiaSelecionada="handleMateriaSelecionada"/>
+        </div>
        
         <div class="listagem-professores">
             <CardListagemProfessoresComponent
@@ -36,6 +30,8 @@
     import { obterInformacoesProfessoresFiltrados } from '@/service/professor/ManipulaDadosProfessorCardListagem';
     import BarraDePesquisaComponente from '../components/Navegacao/BarraDePesquisaComponent.vue'
     import { obterMateriasParaFiltragem } from '@/service/materia/PegarMateriasParaFiltragemDeProfessores';
+    import FiltroProfessores from '@/components/Navegacao/FiltroProfessoresPorMateriaComponent.vue';
+    
 
 
     export default{
@@ -44,13 +40,13 @@
             FooterBar,
             CardListagemProfessoresComponent,
             BarraDePesquisaComponente,
+            FiltroProfessores,
         },
 
         name: "ProfessorPage",
         data() {
             return {
                 professores: [],
-                materias:[],
                 materia_para_filtragem:'',
                 searchQuery: ''
             }
@@ -77,11 +73,10 @@
             handleSearch(query) {
                 this.searchQuery = query;
             },
-            handleMateriaSelection(event){
 
+            handleMateriaSelecionada(materiaSelecionada) {
 
-                this.materia_para_filtragem = event.target.value;
-                console.log(this.materia_para_filtragem);
+                this.materia_para_filtragem = materiaSelecionada;
 
                 obterInformacoesProfessoresFiltrados(this.materia_para_filtragem)
                 .then(professores => {
@@ -91,7 +86,7 @@
                 .catch(erro => {
                     console.error('Erro ao obter professores:', erro);
                 });
-            }
+            },
         },
         mounted() {
             obterInformacoesProfessoresFiltrados()
@@ -135,12 +130,13 @@
     }
 
     .professores{
-        background: linear-gradient(163deg, rgba(169,197,252,1) 0%, rgba(101,117,150,1) 70%);
+        /*background: linear-gradient(163deg, rgba(169,197,252,1) 0%, rgba(101,117,150,1) 70%);*/
         width: 100vw;
         display:flex;
         flex-direction: column;
         align-items: center;
         height: 100%;
+        gap: 30px;
     }
 
     .element {
@@ -171,6 +167,16 @@
     padding: 12px;
     color: #6D6B71;
     
+  }
+
+  .search-filter{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 5vh;
+    height: fit-content;
   }
 
 </style>
