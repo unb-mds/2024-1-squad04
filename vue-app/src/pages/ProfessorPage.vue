@@ -1,7 +1,7 @@
 <template>
     <div class="professores">
         <NavBar/>
-        <BarraDePesquisaComponente @search="handleSearch"/>
+        <!-- <BarraDePesquisaComponente @search="handleSearch"/> -->
        
         <div class="listagem-professores">
             <CardListagemProfessoresComponent
@@ -23,7 +23,7 @@
     import FooterBar from '../components/Navegacao/FooterBar.vue';
     import CardListagemProfessoresComponent from '@/components/Professores/CardListagemProfessoresComponent.vue';
     import { obterInformacoesProfessoresNaoFiltrados } from '@/service/professor/ManipulaDadosProfessorCardListagem';
-    import BarraDePesquisaComponente from '../components/Navegacao/BarraDePesquisaComponent.vue'
+    //import BarraDePesquisaComponente from '../components/Navegacao/BarraDePesquisaComponent.vue'
 
 
     export default{
@@ -31,7 +31,7 @@
             NavBar,
             FooterBar,
             CardListagemProfessoresComponent,
-            BarraDePesquisaComponente,
+            //BarraDePesquisaComponente,
         },
 
         name: "ProfessorPage",

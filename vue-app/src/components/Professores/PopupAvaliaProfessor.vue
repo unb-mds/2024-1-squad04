@@ -11,24 +11,24 @@
       
           <form class = "form-items" @submit.prevent="SubmitAvaliacao">
               <div class="inputs">
-              <div class="select-container">
-                <select class = "select-box" v-model.number="comentario_materia.materia" required>
-                    <option class="opcao" disabled value="">Materia para avaliar</option>
-                    <option class="opcao" v-for="option in this.professor.materias_professor" :key="option.nome_materia" :value="option.cod_materia">{{ option.nome_materia }}</option>
-                </select>
-              </div>
-              
-              <div class="rating-stars-div"><ratingStars @avaliacao-atualizada="handle"/></div>
-              
-              <div class= "camp-txt">
-                <textarea v-model="comentario_materia.comentario" placeholder="Escreva seu comentário" maxlength="250" class = "comentario"/>
-              </div>
-              
+                <div class="select-container">
+                  <select class = "select-box" v-model.number="comentario_materia.materia" required>
+                      <option class="opcao" disabled value="">Materia para avaliar</option>
+                      <option class="opcao" v-for="option in this.professor.materias_professor" :key="option.nome_materia" :value="option.cod_materia">{{ option.nome_materia }}</option>
+                  </select>
+                </div>
+                
+                <div class="rating-stars-div"><ratingStars @avaliacao-atualizada="handle"/></div>
+                
+                <div class= "camp-txt">
+                  <textarea v-model="comentario_materia.comentario" placeholder="Escreva seu comentário" maxlength="250" class = "comentario"/>
+                </div>
               </div>
               <p v-if="erro" class="error-message">{{ erro }}</p>
               <div class="btn-container">
+                <button type="submit" class="send-btn">Enviar</button>
                   <button type="button" class="close-btn" @click="() => TogglePopup('buttonTrigger')" required >Voltar</button>
-                  <button type="submit" class="send-btn">Enviar</button>
+                  
               </div>
           </form>
       </div>
@@ -119,35 +119,29 @@
     display: flex;
     justify-content: center;
     position: relative;
-    min-width: 25rem;
-  }
-
-  .camp-txt{
-    display: flex;
-    justify-content: center;
+    max-width: 400px;
+    width: 90vw;
   }
 
   .select-box {
     appearance: none;
-    width: 90%;
-    padding: 1rem;
+    padding: 1rem 0 1rem 1rem;
+    margin-right: 10px;
     font-size: 1.6rem;
+    width: 90vw;
     border-radius: 1rem;
-    border: 2px solid #0a745b;
     background-color: #f5f5f5;
     color: #333;
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     outline: none;    
   }
 
   
   .select-box:hover {
-    background-color: #d9f2e6; 
-    border-color: #1b5994;
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   }
 
@@ -156,12 +150,20 @@
   }
 
 
-
+  .inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
   .popup{
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
+    padding: 0;
+    margin: 0;
     top: 0;
     left: 0;
     right: 0;
@@ -175,6 +177,7 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     gap: 0.4rem;
     flex-wrap: wrap;
     margin: 2.5rem;
@@ -198,40 +201,48 @@
 
   .professor-nome{
 
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 2.4rem;
-    letter-spacing: 0.5rem;
     color: rgb(32, 32, 32);
     margin-right: 2rem;
     margin-top: 1.2rem;
     width: 70%;
     white-space: normal;
   }
-
- 
-   
-
   .send-btn, 
   .close-btn{
-    width: fit-content;
-    height: fit-content;
-    font-size: 3.5rem;
+    font-size: 1.8rem;
     color: #034939b9;
-    border: 0.25rem solid #045c47b9;
-    background: #fff;
-    border-radius: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    border-radius: 10px;
+    padding: .8rem 16% .8rem 16%;
     cursor: pointer;
-    margin: 1rem;
-    margin-bottom: 3rem;
     transition: all 0.4s;
+    margin-right: 10px;
+  }
+  .send-btn{
+    background-color: #034939b9;
+    color: white;
+    border: none;
+  }
+  .close-btn{
+    border: 1px solid black;
+    background-color: white;
   }
 
   .close-btn:hover, 
   .send-btn:hover{
     transform: scale(1.025);
-    color: #093e70d3;
-    border-color:#0a457cd3;
+  }
+  .btn-container {
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+    display: flex;
+    gap: .5vw;
+    justify-content: center;
+    width: 100%;
   }
 
 
@@ -245,36 +256,34 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-display: inter;
     background: #fff;
-    height: 60rem;
-    width: 60rem;
-    border-radius: 3rem;
+    padding: 25px 25px 25px 25px;
+    height: fit-content;
+    width: 95vw;
+    max-width: 500px;
+    border-radius: 20px;
   }
 
-  .btn-container {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
+  
 
   .comentario{
-    width: 90%;
-    height: 10rem;
-    font-size: 1.6rem;
-    border-radius: 1rem;
+    width: 80vw;
+    max-width: 350px;
+    height: 6vh;
+    font-size: 1.3rem;
+    border-radius: 10px;
     background-color: #f5f5f5;
+    margin-right: 10px;
     color: #333;
     padding: 1rem;
-    font-family: 'Open Sans', sans-serif;
-    margin-top: 2rem;
-    transition: all 0.5s;
+    font-family: 'Inter', sans-serif;
     outline: none;
     resize: none;
+    transition: 0.3s;
   }
 
   .comentario:hover {
+    transition: 0.3s;
     border-color: #1b5994;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   }
@@ -289,7 +298,15 @@
     flex-direction: column;
     justify-content: space-evenly;
   }
-
-
+  @media (max-width: 650px) {
+      .select-box{
+        font-size: 1.8rem;
+        padding: 1rem;
+      }
+      .comentario{
+        padding: 0.8rem;
+        font-size: 1.8rem;
+      }
+  }
 
 </style>
