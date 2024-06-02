@@ -5,7 +5,9 @@
         
         <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
         
-            <div class="card-professor">
+
+
+        <div class="card-professor">
             <div class="front">
                 <div class="card-front">
                     <div class="profile-picture-name">
@@ -20,7 +22,7 @@
                     </div>
                 </div>
                 <div class="rating-and-number">
-                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total}}</p><p class="de-cinco">/ 5</p></div>
+                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total.toFixed(2)}}</p><p class="de-cinco">/ 5</p></div>
                     <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
@@ -123,11 +125,11 @@ export default {
         //cria o trigger para ativar o popup.
         //quando for true, o popup aparece
         const popupTrigger = ref({
-            buttonTrigger: false //true para testes| default: false
+            buttonTrigger: false
         });
 
         const TogglePopup = (trigger) => {
-            popupTrigger.value[trigger]= !popupTrigger.value[trigger]
+            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
         };
 
         return{

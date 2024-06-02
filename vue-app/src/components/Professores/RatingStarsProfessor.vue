@@ -1,61 +1,98 @@
-
 <template>
-    <div class="container">
-        <div class="rating">
-            <input type="radio" name="star1" id="star1-5" style="--c: #0a745b;"/>
-            <input type="radio" name="star1" id="star1-4" style="--c: #0a745b;"/>
-            <input type="radio" name="star1" id="star1-3" style="--c: #0a745b;"/>
-            <input type="radio" name="star1" id="star1-2" style="--c: #0a745b;"/>
-            <input type="radio" name="star1" id="star1-1" style="--c: #0a745b;"/>
-        </div>
-
-        <div class="rating">
-            <input type="radio" name="star2" id="star2-5" style="--c: #0a745b;"/>
-            <input type="radio" name="star2" id="star2-4" style="--c: #0a745b;"/>
-            <input type="radio" name="star2" id="star2-3" style="--c: #0a745b;"/>
-            <input type="radio" name="star2" id="star2-2" style="--c: #0a745b;"/>
-            <input type="radio" name="star2" id="star2-1" style="--c: #0a745b;"/>
-        </div>
-
-        <div class="rating">
-            <input type="radio" name="star3" id="star3-5" style="--c: #0a745b;"/>
-            <input type="radio" name="star3" id="star3-4" style="--c: #0a745b;"/>
-            <input type="radio" name="star3" id="star3-3" style="--c: #0a745b;"/>
-            <input type="radio" name="star3" id="star3-2" style="--c: #0a745b;"/>
-            <input type="radio" name="star3" id="star3-1" style="--c: #0a745b;"/>
-        </div>
+  <div class="container">
     
-        <div class="rating">
-            <input type="radio" name="star4" id="star4-5" style="--c: #0a745b;"/>
-            <input type="radio" name="star4" id="star4-4" style="--c: #0a745b;"/>
-            <input type="radio" name="star4" id="star4-3" style="--c: #0a745b;"/>
-            <input type="radio" name="star4" id="star4-2" style="--c: #0a745b;"/>
-            <input type="radio" name="star4" id="star4-1" style="--c: #0a745b;"/>
-        </div>
+    <div class="rating">
+      <input type="radio" name="notaAcesso" id="star1-5" value=5 @change="emitirAvaliacao" v-model="rating.notaAcesso" style="--c: #0a745b;" />
+      <input type="radio" name="notaAcesso" id="star1-4" value=4 @change="emitirAvaliacao" v-model="rating.notaAcesso" style="--c: #0a745b;" />
+      <input type="radio" name="notaAcesso" id="star1-3" value=3 @change="emitirAvaliacao" v-model="rating.notaAcesso" style="--c: #0a745b;" />
+      <input type="radio" name="notaAcesso" id="star1-2" value=2 @change="emitirAvaliacao" v-model="rating.notaAcesso" style="--c: #0a745b;" />
+      <input type="radio" name="notaAcesso" id="star1-1" value=1 @change="emitirAvaliacao" v-model="rating.notaAcesso" style="--c: #0a745b;" />
+      <p class = "tipo-nota">Acesso:</p>
     </div>
+    
+    <div class="rating">
+      <input type="radio" name="notaDidatica" id="star2-5" value=5  @change="emitirAvaliacao" v-model="rating.notaDidatica" style="--c: #0a745b;" />
+      <input type="radio" name="notaDidatica" id="star2-4" value=4  @change="emitirAvaliacao" v-model="rating.notaDidatica" style="--c: #0a745b;" />
+      <input type="radio" name="notaDidatica" id="star2-3" value=3  @change="emitirAvaliacao" v-model="rating.notaDidatica" style="--c: #0a745b;" />
+      <input type="radio" name="notaDidatica" id="star2-2" value=2  @change="emitirAvaliacao" v-model="rating.notaDidatica" style="--c: #0a745b;" />
+      <input type="radio" name="notaDidatica" id="star2-1" value=1  @change="emitirAvaliacao" v-model="rating.notaDidatica" style="--c: #0a745b;" />
+      <p class = "tipo-nota">Didática:</p>
+    </div>
+    
+    <div class="rating">
+      <input type="radio" name="notaMetodologia" id="star3-5" value=5  @change="emitirAvaliacao" v-model="rating.notaMetodologia" style="--c: #0a745b;" />
+      <input type="radio" name="notaMetodologia" id="star3-4" value=4  @change="emitirAvaliacao" v-model="rating.notaMetodologia" style="--c: #0a745b;" />
+      <input type="radio" name="notaMetodologia" id="star3-3" value=3  @change="emitirAvaliacao" v-model="rating.notaMetodologia" style="--c: #0a745b;" />
+      <input type="radio" name="notaMetodologia" id="star3-2" value=2  @change="emitirAvaliacao" v-model="rating.notaMetodologia" style="--c: #0a745b;" />
+      <input type="radio" name="notaMetodologia" id="star3-1" value=1  @change="emitirAvaliacao" v-model="rating.notaMetodologia" style="--c: #0a745b;" />
+      <p class = "tipo-nota">Metodologia:</p>
+    </div>
+    
+    <div class="rating">
+      <input type="radio" name="notaCarisma" id="star4-5" value=5  @change="emitirAvaliacao" v-model="rating.notaCarisma" style="--c: #0a745b;" />
+      <input type="radio" name="notaCarisma" id="star4-4" value=4  @change="emitirAvaliacao" v-model="rating.notaCarisma" style="--c: #0a745b;" />
+      <input type="radio" name="notaCarisma" id="star4-3" value=3  @change="emitirAvaliacao" v-model="rating.notaCarisma" style="--c: #0a745b;" />
+      <input type="radio" name="notaCarisma" id="star4-2" value=2  @change="emitirAvaliacao" v-model="rating.notaCarisma" style="--c: #0a745b;" />
+      <input type="radio" name="notaCarisma" id="star4-1" value=1  @change="emitirAvaliacao" v-model="rating.notaCarisma" style="--c: #0a745b;" />
+      <p class = "tipo-nota">Carisma:</p>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "ratingStars"
+  name: "ratingStars",
+  data() {
+      return {
+          rating: {
+              notaAcesso: '',
+              notaDidatica: '',
+              notaMetodologia: '',
+              notaCarisma: '',
+          }
+      };
+  },
+  methods: {
+  emitirAvaliacao() {
+    // Emitir evento com os dados de avaliação
+    this.$emit('avaliacao-atualizada', this.rating);
+  }
 }
+};
 </script>
 
 <style scoped>
-.container{
+
+.tipo-nota {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0;
+    padding-left: 1rem; /* Adiciona espaço entre as estrelas e o texto */
+    flex: 1;
+    text-align: left; /* Alinha o texto à esquerda */
+  }
+
+  .container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
-}
+    align-items: flex-start; /* Alinhar itens à esquerda */
+    margin: 0; 
 
-.rating{
+  }
+
+  .rating{
     display: flex;
     flex-direction: row-reverse;
-    padding: 1rem 0; /* Adjusted padding for better spacing */
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.2rem 0; /* Adjusted padding for better spacing */
     border: none;
-}
+    margin: 0;
+  }
 
-.rating input{
+  .rating input{
     position: relative;
     width: 4rem;
     height: 4rem;
@@ -65,28 +102,23 @@ export default {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-}
+  }
 
-.rating input::before{
+  .rating input::before{
     content: "\f005";
     position: absolute;
     font-family: fontAwesome;
     font-size: 3rem;
     color: #313131a2;
     transition: 0.5s;
-}
+  }
 
-.rating input:hover ~ input::before,
-.rating input:hover::before,
-.rating input:checked ~ input::before,
-.rating input:checked::before{
+  .rating input:hover ~ input::before,
+  .rating input:hover::before,
+  .rating input:checked ~ input::before,
+  .rating input:checked::before{
     color: var(--c);
-}
+  }
 </style>
-```
 
-### Alterações feitas:
 
-1. **Mudança nos nomes dos inputs**: Cada fileira de estrelas tem um nome de grupo diferente (`star1`, `star2`, `star3`, `star4`), garantindo que a seleção de uma fileira não afete as outras.
-2. **Alinhamento à esquerda**: Alinhei os itens da coluna à esquerda usando `align-items: flex-start` no contêiner `.container` e mudei a direção das estrelas para `row` em vez de `row-reverse` no `.rating`.
-3. **Ajustes de padding**: Ajustei o padding para `1rem 0` para uma melhor aparência visual.
