@@ -130,7 +130,6 @@
     }
 
     .professores{
-        /*background: linear-gradient(163deg, rgba(169,197,252,1) 0%, rgba(101,117,150,1) 70%);*/
         width: 100vw;
         display:flex;
         flex-direction: column;

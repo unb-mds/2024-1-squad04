@@ -36,7 +36,7 @@
             <li class="item-web" @click.prevent = 'HandleHome'>Home</li>
             <li class="item-web" @click.prevent = 'HandleProfessors'>Professores</li>
             <li class="item-web" @click.prevent = 'HandleMaterias'>Matérias</li>
-            <li class="item-web">Minhas  Avaliações</li>
+            <li class="item-web" @click.prevent = 'HandleAvaliacao'>Minhas  Avaliações</li>
         </ul>
     </div>
 
@@ -65,7 +65,10 @@ export default {
         },
         async HandleMaterias(){
             router.push({name: 'materia'});
-        }
+        },
+        async HandleAvaliacao(){
+            router.push({name: 'avaliacao'});
+        },
     }
 
 };
