@@ -73,4 +73,24 @@ export const getMateriasAvaliadss = ((app, sequelize)=>{
     });
   };
   
+  export const getMateriasParaFiltragem = (app, sequelize) => {
+    app.get('/materias_para_filtragem', async (req, res) => {
+      try {
+        const sqlQuery = `
+          SELECT 
+            nome,
+            cod_materia
+          FROM 
+            materia m
+        `;
+  
+        const materias = await sequelize.query(sqlQuery, { type: sequelize.QueryTypes.SELECT });
+  
+        res.json({ success: true, data: materias });
+      } catch (error) {
+        console.error('Erro ao consultar materias :', error);
+        res.status(500).json({ success: false, message: 'Erro ao consultar materias' });
+      }
+    });
+  };
   

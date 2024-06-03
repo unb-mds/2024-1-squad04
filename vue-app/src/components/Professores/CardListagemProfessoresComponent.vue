@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" @click="goToProfessorDetail(professor.cod_professor)">
         <div class="card-professor">
             <div class="front">
                 <div class="card-front">
@@ -111,6 +111,7 @@
 
 <script>
 import { nextTick } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
     name: "CardListagemProfessoresComponent",
     props: {
@@ -121,6 +122,19 @@ export default {
             this.handleEstrelasProfessor();
         });
     },
+
+    setup(){
+        const router = useRouter(); 
+        const goToProfessorDetail = (id) => { 
+            console.log(id)
+            router.push({name: 'paginaProfessor' , params: {id: id}});
+        };
+
+        return {
+            goToProfessorDetail 
+        };
+    },
+
     watch: {
     professor: {
         handler() {

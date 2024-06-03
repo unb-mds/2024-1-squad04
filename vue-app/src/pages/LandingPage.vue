@@ -6,6 +6,7 @@
                 <div class="header-logo-div">
                     <a href="/landingpage" class="header-logo-a">AvaliaUnB</a>
                 </div>
+            
                 <div class="header-entrar-div">
                     <button v-on:click="HandleLogin" class="header-entrar-button">ENTRAR</button>
                 </div>
@@ -94,7 +95,7 @@
 </template>
 
 <script>
-    import router from '../routes/index'; 
+import router from '../routes/index'; 
     export default{
         name: "LandingPage",
         data() {

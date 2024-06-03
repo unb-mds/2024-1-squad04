@@ -19,3 +19,13 @@
                 .catch(erro => reject(erro));
         });
     }
+
+
+    export async function getMateriasParaFiltro() {  
+        return new Promise((resolve, reject) => {
+            fetch('http://localhost:3000/materias_para_filtragem')
+                .then(resposta => resposta.json())
+                .then(dados => resolve(dados.data))
+                .catch(erro => reject(erro));
+        });
+    }

@@ -66,7 +66,15 @@ const router = createRouter({
             name: 'professor',
             component: Professor,
         },
+
         {
+            path:'/paginaProfessor/:id',
+            name: 'paginaProfessor',
+            component: ProfessorIndividual
+        },
+
+        {  
+
             path: '/materias',
             name: 'materia',
             component: Materias,
