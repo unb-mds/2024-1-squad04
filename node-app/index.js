@@ -30,6 +30,8 @@ User.postDados(app, sequelize);
 
 User.getChave(app);
 
+User.getAvaliacoesUsuario(app, sequelize);
+
 Professor.getProfessoresAvaliados(app, sequelize);
 
 Professor.getProfessores(app, sequelize);

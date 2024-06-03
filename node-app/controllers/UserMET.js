@@ -47,3 +47,48 @@ export const getChave = ((app) => {
   });
 })
   
+export const getAvaliacoesUsuario = (app, sequelize) => {
+  app.get('/avaliacoes/:matricula', async (req, res) => {
+    const { matricula } = req.params;
+
+    try {
+      const sqlQuery = `
+        SELECT 
+          p.nome AS nome_professor,
+          p.foto_url AS foto_professor,
+          m.nome AS nome_materia,
+          pau.cod_materia,
+          COALESCE(ap.nota_total, 0) AS nota_total,
+          COALESCE(ap.nota_didatica, 0) AS nota_didatica,
+          COALESCE(ap.nota_metodo_ensino, 0) AS nota_metodo_ensino,
+          COALESCE(ap.nota_metodologia, 0) AS nota_metodologia, 
+          COALESCE(ap.nota_acesso, 0) AS nota_acesso,
+          COALESCE(cp.comentario, '') AS comentario,
+          COALESCE(cp.num_likes, 0) AS num_likes,
+          COALESCE(cp.num_dislikes, 0) AS num_dislikes
+        FROM 
+          professor_avaliacao_usuario pau
+        LEFT JOIN 
+          avaliacao_professor ap ON pau.cod_avaliacao = ap.cod_avaliacao
+        LEFT JOIN 
+          comentario_professor cp ON pau.cod_comentario = cp.cod_comentario
+        LEFT JOIN 
+          professor p ON pau.cod_professor = p.cod_professor
+        LEFT JOIN 
+          materia m ON pau.cod_materia = m.cod_materia
+        WHERE 
+          pau.matricula = :matricula;
+      `;
+
+      const avaliacoes = await sequelize.query(sqlQuery, {
+        type: sequelize.QueryTypes.SELECT,
+        replacements: { matricula }
+      });
+
+      res.json({ success: true, data: avaliacoes });
+    } catch (error) {
+      console.error('Erro ao consultar avaliações:', error);
+      res.status(500).json({ success: false, message: 'Erro ao consultar avaliações' });
+    }
+  });
+}
