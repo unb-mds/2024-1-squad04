@@ -1,12 +1,10 @@
 <template>
-    <div class="container">
+    <div class="container" @click="goToProfessorDetail(professor.cod_professor)">
         <!--o que esta na tag PopUp so aparece quando
         button Trigger for True-->
         
         <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
         
-
-
         <div class="card-professor">
             <div class="front">
                 <div class="card-front">
@@ -120,6 +118,7 @@
 import { nextTick } from 'vue';
 import PopUp from './PopupAvaliaProfessor.vue'
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
     setup () {
         //cria o trigger para ativar o popup.
@@ -149,6 +148,19 @@ export default {
             this.handleEstrelasProfessor();
         });
     },
+
+    setup(){
+        const router = useRouter(); 
+        const goToProfessorDetail = (id) => { 
+            console.log(id)
+            router.push({name: 'paginaProfessor' , params: {id: id}});
+        };
+
+        return {
+            goToProfessorDetail 
+        };
+    },
+
     watch: {
     professor: {
         handler() {

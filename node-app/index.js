@@ -35,11 +35,14 @@ Professor.getProfessoresAvaliados(app, sequelize);
 
 Professor.getProfessores(app, sequelize);
 
+Professor.getProfessorById(app, sequelize);
+
 Materia.getMateriasAvaliadss(app, sequelize);
 
 Materia.getMaterias(app, sequelize);
 
 Avaliar.getProfessoresAvaliar(app, sequelize)
+Materia.getMateriasParaFiltragem(app, sequelize);
 
 
 app.listen(3000)

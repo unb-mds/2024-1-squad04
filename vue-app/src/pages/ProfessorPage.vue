@@ -1,7 +1,12 @@
+
+
 <template>
     <div class="professores">
         <NavBar/>
-        <!-- <BarraDePesquisaComponente @search="handleSearch"/> -->
+        <div class="search-filter">
+            <BarraDePesquisaComponente @search="handleSearch"/>
+            <FiltroProfessores @materiaSelecionada="handleMateriaSelecionada"/>
+        </div>
        
         <div class="listagem-professores">
             <CardListagemProfessoresComponent
@@ -23,7 +28,11 @@
     import FooterBar from '../components/Navegacao/FooterBar.vue';
     import CardListagemProfessoresComponent from '@/components/Professores/CardListagemProfessoresComponent.vue';
     import { obterInformacoesProfessoresNaoFiltrados } from '@/service/professor/ManipulaDadosProfessorCardListagem';
-    //import BarraDePesquisaComponente from '../components/Navegacao/BarraDePesquisaComponent.vue'
+    import { obterInformacoesProfessoresFiltrados } from '@/service/professor/ManipulaDadosProfessorCardListagem';
+    import BarraDePesquisaComponente from '../components/Navegacao/BarraDePesquisaComponent.vue'
+    import { obterMateriasParaFiltragem } from '@/service/materia/PegarMateriasParaFiltragemDeProfessores';
+    import FiltroProfessores from '@/components/Navegacao/FiltroProfessoresPorMateriaComponent.vue';
+   
 
 
     export default{
@@ -31,13 +40,15 @@
             NavBar,
             FooterBar,
             CardListagemProfessoresComponent,
-            //BarraDePesquisaComponente,
+            BarraDePesquisaComponente,
+            FiltroProfessores,
         },
 
         name: "ProfessorPage",
         data() {
             return {
                 professores: [],
+                materia_para_filtragem:'',
                 searchQuery: ''
             }
         },
@@ -62,16 +73,39 @@
             },
             handleSearch(query) {
                 this.searchQuery = query;
-            }
+            },
+
+            handleMateriaSelecionada(materiaSelecionada) {
+
+                this.materia_para_filtragem = materiaSelecionada;
+
+                obterInformacoesProfessoresFiltrados(this.materia_para_filtragem)
+                .then(professores => {
+                    this.professores = professores;
+                    console.log(professores);
+                })
+                .catch(erro => {
+                    console.error('Erro ao obter professores:', erro);
+                });
+            },
         },
         mounted() {
-            obterInformacoesProfessoresNaoFiltrados()
+            obterInformacoesProfessoresFiltrados()
             .then(professores => {
                 this.professores = professores;
                 console.log(professores);
             })
             .catch(erro => {
                 console.error('Erro ao obter professores:', erro);
+            });
+
+            
+        obterMateriasParaFiltragem()
+        .then(materias => {
+                this.materias = materias;
+            })
+            .catch(erro => {
+                console.error('Erro ao obter materias:', erro);
             });
         },
     };
@@ -97,12 +131,52 @@
     }
 
     .professores{
-        background: linear-gradient(163deg, rgba(169,197,252,1) 0%, rgba(101,117,150,1) 70%);
         width: 100vw;
         display:flex;
         flex-direction: column;
         align-items: center;
         height: 100%;
+        gap: 30px;
     }
+
+    .element {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    height: fit-content;
+  }
+  
+  .form-group .element:last-child{
+    margin-right: 0%;
+  }
+  
+  .form-control {
+    width: 100%;
+    border-radius: 12px;
+    border: none; /* Remove a sombra */
+    padding: 8%;
+    align-self: center; /* Centralizar verticalmente */
+    justify-content: center;
+    outline: none;
+  }
+
+  .form-group select {
+    margin-right: 20px; /* Espaçamento entre os campos */
+    border-radius: 12px;
+    border: none; /* Remove a sombra */
+    padding: 12px;
+    color: #6D6B71;
+    
+  }
+
+  .search-filter{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 5vh;
+    height: fit-content;
+  }
 
 </style>
