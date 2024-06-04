@@ -4,6 +4,7 @@ import Login from '../pages/LoginPage.vue';
 import Cadastro from '../pages/CadastroPage.vue';
 import Landing from '../pages/LandingPage.vue';
 import Professor from '../pages/ProfessorPage.vue';
+import ProfessorIndividualPage from "@/pages/ProfessorIndividualPage.vue";
 import Materias from '../pages/MateriasPage.vue';
 import Avaliacao from '../pages/AvaliacaoPage.vue'; 
 import axios from 'axios';
@@ -70,7 +71,7 @@ const router = createRouter({
         {
             path:'/paginaProfessor/:id',
             name: 'paginaProfessor',
-            component: ProfessorIndividual
+            component: ProfessorIndividualPage,
         },
 
         {  
