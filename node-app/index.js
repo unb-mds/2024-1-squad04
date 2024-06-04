@@ -4,6 +4,7 @@ import cors from 'cors'
 import * as User from './controllers/UserMET.js';
 import * as Professor from './controllers/ProfessorMET.js';
 import * as Materia from './controllers/MateriaMET.js';
+import * as Avaliar from './controllers/AvaliacaoMET.js';
 
 
 
@@ -40,9 +41,8 @@ Materia.getMateriasAvaliadss(app, sequelize);
 
 Materia.getMaterias(app, sequelize);
 
+Avaliar.getProfessoresAvaliar(app, sequelize)
 Materia.getMateriasParaFiltragem(app, sequelize);
-
-
 
 
 app.listen(3000)

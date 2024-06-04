@@ -1,5 +1,10 @@
 <template>
     <div class="container" @click="goToProfessorDetail(professor.cod_professor)">
+        <!--o que esta na tag PopUp so aparece quando
+        button Trigger for True-->
+        
+        <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
+        
         <div class="card-professor">
             <div class="front">
                 <div class="card-front">
@@ -15,16 +20,16 @@
                     </div>
                 </div>
                 <div class="rating-and-number">
-                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total}}</p><p class="de-cinco">/ 5</p></div>
+                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total.toFixed(2)}}</p><p class="de-cinco">/ 5</p></div>
                     <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
-                    <img v-for="(index) in 5" :key="index" ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
+                    <img ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela" v-for="n in 5" :key="n">
                 </div>
             </div>
                 
             </div>
-            <div class="back">
+            <div class="back" @click="() => TogglePopup('buttonTrigger')">
                 <div class="review-breakdown">
                     Review breakdown
                 </div>
@@ -86,7 +91,7 @@
 
                 <div class="details">
                     <div class="number-stars">
-                        Método de Ensino
+                        Carisma
                     </div>
                     <div class="barra-texto">
                         <div class="barra-porcentagem">
@@ -111,8 +116,29 @@
 
 <script>
 import { nextTick } from 'vue';
+import PopUp from './PopupAvaliaProfessor.vue'
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
+    setup () {
+        //cria o trigger para ativar o popup.
+        //quando for true, o popup aparece
+        const popupTrigger = ref({
+            buttonTrigger: false
+        });
+
+        const TogglePopup = (trigger) => {
+            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+        };
+
+        return{
+            popupTrigger,
+            TogglePopup
+        }
+    },
+    components: {
+        PopUp,
+    },
     name: "CardListagemProfessoresComponent",
     props: {
         professor: Object,
