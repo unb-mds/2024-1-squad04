@@ -68,7 +68,7 @@ export async function obterInformacoesProfessoresFiltrados(materia) {
                 cod_professor: professor.cod_professor,
                 foto_professor: professor.foto_professor,
                 materias_professor: professor.materias,
-                qtd_avaliacoes: qtdavaliacoes,
+                qtd_avaliacoes: professor.qtdavaliacoes,
                 contribuicoes: contribuicoes
             };
         });

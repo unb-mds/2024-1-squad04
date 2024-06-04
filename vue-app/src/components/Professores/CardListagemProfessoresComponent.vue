@@ -1,12 +1,12 @@
 <template>
-    <div class="container" @click="goToProfessorDetail(professor.cod_professor)">
+    <div class="container">
         <!--o que esta na tag PopUp so aparece quando
         button Trigger for True-->
         
         <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
         
         <div class="card-professor">
-            <div class="front">
+            <div class="front" @click="goToProfessorDetail(professor.cod_professor)">
                 <div class="card-front">
                     <div class="profile-picture-name">
                     <div class="profile-picture-div">                    
@@ -120,22 +120,6 @@ import PopUp from './PopupAvaliaProfessor.vue'
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
-    setup () {
-        //cria o trigger para ativar o popup.
-        //quando for true, o popup aparece
-        const popupTrigger = ref({
-            buttonTrigger: false
-        });
-
-        const TogglePopup = (trigger) => {
-            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
-        };
-
-        return{
-            popupTrigger,
-            TogglePopup
-        }
-    },
     components: {
         PopUp,
     },
@@ -155,10 +139,20 @@ export default {
             console.log(id)
             router.push({name: 'paginaProfessor' , params: {id: id}});
         };
+        const popupTrigger = ref({
+            buttonTrigger: false
+        });
 
-        return {
-            goToProfessorDetail 
+        const TogglePopup = (trigger) => {
+            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
         };
+
+        return{
+            popupTrigger,
+            TogglePopup,
+            goToProfessorDetail 
+        }
+        
     },
 
     watch: {
