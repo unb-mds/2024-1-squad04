@@ -4,18 +4,18 @@
     <h1 class="titulo-avaliacao">Avaliações</h1>
 
     <div class="professores-materias">
-      <div class="professores">
+      <div class="professores" :class="{toggle: isToggled , 'bg-transition': isToggled}" @click="toggleProfessores">
         <h2 class="professores-text">Professores</h2>
       </div>
-      <div class="materias">
+      <div class="materias" :class="{toggle: !isToggled , 'bg-transition': !isToggled}" @click="toggleMaterias">
         <h2 class="materias-text">Materias</h2>
       </div>
     </div>
-    <p class="reviews">{{ avaliacoes.length }} Comentários</p>
-    <div class="listagem-avaliacoes-professores">
+    <p class="reviews">{{ avaliacoes.length }} Avaliações</p>
+    <div class="listagem-avaliacoes-professores" v-if=isToggled>
       <CardMinhaAvaliacaoProfessor />
     </div>
-    <div class="listagem-avaliacoes-materias">
+    <div class="listagem-avaliacoes-materias" v-if=!isToggled>
       <CardMinhaAvaliacao v-for="avaliacao in avaliacoes" :key="avaliacao.id" :avaliacao="avaliacao" />
     </div>
     <FooterBar />
@@ -44,8 +44,18 @@ export default {
 
         // Adicione mais avaliações conforme necessário
       ],
+      isToggled: true,
     };
   },
+
+  methods: {
+    toggleProfessores(){
+      this.isToggled = true;
+    },
+    toggleMaterias(){
+      this.isToggled = false;
+    }
+  }
 };
 </script>
 
@@ -80,12 +90,31 @@ export default {
 
 .professores{
   padding: 10px 20px 10px 20px;
+  border-radius: 20px 0 0 20px;
+  border: solid 2px aliceblue;
+  border-right: none;
+  cursor: pointer;
+  transition: background-color 01s ease;
+}
+
+.professores.toggle{
+  padding: 10px 20px 10px 20px;
   background-color: aliceblue;
   border-radius: 20px 0 0 20px;
+  cursor: pointer;
+  transition: background-color 01s ease;
+}
+
+.professores.toggle .professores-text{
+  color: #2e2e2e;
+}
+
+.bg-transition {
+  transition: background-color 0.5s ease-in;
 }
 
 .professores-text{
-  color: #333333;
+  color: #ffffff;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
@@ -96,7 +125,20 @@ export default {
   padding: 10px 20px 10px 20px;
   border-radius: 0px 20px 20px 0;
   border: solid 2px aliceblue;
+  cursor: pointer;
 }
+
+.materias.toggle{
+  padding: 10px 20px 10px 20px;
+  background-color: aliceblue;
+  border-radius: 0px 20px 20px 0;
+  cursor: pointer;
+}
+
+.materias.toggle .materias-text{
+  color: #2e2e2e;
+}
+
 
 .materias-text{
   color: #ffffff;
@@ -113,20 +155,8 @@ export default {
   font-size: 16px;
 }
 
-.listagem-avaliacoes-professores{
-  margin-top: 30px;
-  width: 100%;
-  max-width: 834px; /* Ajuste conforme necessário */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding-bottom: 100px; /* espaço para o FooterBar */
-  box-sizing: border-box; /* incluir padding na altura */
-}
 
-
-.listagem-avaliacoes-materias{
+.listagem-avaliacoes-professores, .listagem-avaliacoes-materias{
   margin-top: 30px;
   width: 100%;
   max-width: 834px; /* Ajuste conforme necessário */
