@@ -47,16 +47,15 @@ export const getChave = ((app) => {
   });
 })
   
-export const getAvaliacoesUsuario = (app, sequelize) => {
-  app.get('/avaliacoes/:matricula', async (req, res) => {
+export const getAvaliacoesProfessorUsuario = (app, sequelize) => {
+  app.get('/avaliacoes_professor/:matricula', async (req, res) => {
     const { matricula } = req.params;
 
     try {
-      const sqlQuery = `
+      const sqlQueryProfessores = `
         SELECT 
           p.nome AS nome_professor,
           p.foto_url AS foto_professor,
-          m.nome AS nome_materia,
           pau.cod_materia,
           COALESCE(ap.nota_total, 0) AS nota_total,
           COALESCE(ap.nota_didatica, 0) AS nota_didatica,
@@ -74,21 +73,64 @@ export const getAvaliacoesUsuario = (app, sequelize) => {
           comentario_professor cp ON pau.cod_comentario = cp.cod_comentario
         LEFT JOIN 
           professor p ON pau.cod_professor = p.cod_professor
-        LEFT JOIN 
-          materia m ON pau.cod_materia = m.cod_materia
         WHERE 
           pau.matricula = :matricula;
       `;
 
-      const avaliacoes = await sequelize.query(sqlQuery, {
+      const avaliacoesProfessores = await sequelize.query(sqlQueryProfessores, {
         type: sequelize.QueryTypes.SELECT,
         replacements: { matricula }
       });
 
-      res.json({ success: true, data: avaliacoes });
+
+      res.json({ success: true, data:  {avaliacoesProfessores}  });
     } catch (error) {
-      console.error('Erro ao consultar avaliações:', error);
-      res.status(500).json({ success: false, message: 'Erro ao consultar avaliações' });
+      console.error('Erro ao consultar avaliações de professores:', error);
+      res.status(500).json({ success: false, message: 'Erro ao consultar avaliações de professores' });
+    }
+  });
+}
+
+
+
+export const getAvaliacoesMateriaUsuario = (app, sequelize) => {
+  app.get('/avaliacoes_materia/:matricula', async (req, res) => {
+    const { matricula } = req.params;
+
+    try {
+      const sqlQueryMaterias = `
+      SELECT 
+        m.cod_materia,
+        m.nome AS nome_materia,
+        m.qtd_hrs_materia,
+        COALESCE(am.nota_total, 0) AS nota_total,
+        COALESCE(am.nota_experiencia, 0) AS nota_experiencia,
+        COALESCE(am.nota_dificuldade, 0) AS nota_dificuldade,
+        COALESCE(cm.comentario, '') AS comentario,
+        COALESCE(cm.num_likes, 0) AS num_likes,
+        COALESCE(cm.num_dislikes, 0) AS num_dislikes
+      FROM 
+        materia_avaliacao_usuario mau
+      LEFT JOIN 
+        avaliacao_materia am ON mau.cod_avaliacao = am.cod_avaliacao
+      LEFT JOIN 
+        comentario_materia cm ON mau.cod_comentario = cm.cod_comentario
+      LEFT JOIN 
+        materia m ON mau.cod_materia = m.cod_materia
+      WHERE 
+        mau.matricula = :matricula;
+    `;
+
+
+      const avaliacoesMaterias = await sequelize.query(sqlQueryMaterias, {
+        type: sequelize.QueryTypes.SELECT,
+        replacements: { matricula }
+      });
+
+      res.json({ success: true, data:  {avaliacoesMaterias}  });
+    } catch (error) {
+      console.error('Erro ao consultar avaliações de matérias:', error);
+      res.status(500).json({ success: false, message: 'Erro ao consultar avaliações de matérias' });
     }
   });
 }

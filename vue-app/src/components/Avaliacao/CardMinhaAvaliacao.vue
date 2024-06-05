@@ -12,7 +12,7 @@
       </button>
     </div>
     <div class="professor-info">
-      <span class="professor">Professor</span>
+      <span class="professor">FGA0017</span>
     </div>
     <div class="five-estrelas">
       <img
@@ -64,11 +64,10 @@ export default {
   background-color: #F3F3F3;
   border: 1px solid #ccc;
   border-radius: 14px;
-  padding: 10px;
+  padding: 30px;
   margin-bottom: 20px;
-  width: 434px;
-  width: 90%; /* Definindo a largura como 100% para ocupar todo o espaço disponível */
-  max-width: 600px; /* Limitando a largura máxima para que o card não fique muito largo */
+  width: 75%;
+  max-width: 600px; 
 }
 
 .card-header {
@@ -85,8 +84,9 @@ export default {
 .materia {
   font-weight: bold;
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  color: black;
+  font-size: 2.6rem;
+  color: rgb(41, 41, 41);
+  margin-bottom: 10px;
 }
 
 .professor-info {
@@ -98,8 +98,8 @@ export default {
 .professor {
   font-weight: lighter;
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  color: #333333 65%;
+  font-size: 1.6rem;
+  color: #555555;
 }
 
 .flex-container {
@@ -114,14 +114,15 @@ export default {
 }
 
 .estrela {
-  width: 4%;
+  width: 4rem;
 }
 
 .comment-text {
   margin-bottom: 10px;
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  font-size: 1.8rem;
   font-weight: lighter;
+  color: #333333
 }
 
 .trash-button {
