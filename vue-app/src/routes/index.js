@@ -22,8 +22,6 @@ const beforeEnterCheck = async () => {
             const decryptedBytes = CryptoJS.AES.decrypt(sessionStorage.getItem('matricula'), key);
             const matriculadec = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
-            console.log(user)
-
             for (let i = 0; i < user.length; i++) {
                 if (user[i].matricula === parseInt(matriculadec)) {
                     return;
