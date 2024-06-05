@@ -120,15 +120,15 @@
     justify-content: center;
     position: relative;
     max-width: 400px;
-    width: 90vw;
+    width: 90%;
   }
 
   .select-box {
     appearance: none;
     padding: 1rem 0 1rem 1rem;
-    margin-right: 10px;
     font-size: 1.6rem;
-    width: 90vw;
+    width: 100%;
+    min-width: 253px;
     border-radius: 1rem;
     background-color: #f5f5f5;
     color: #333;
@@ -147,6 +147,7 @@
 
   select option.opcao {
     background-color: #ffffff; /* Fundo branco */
+
   }
 
 
@@ -154,11 +155,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     gap: 10px;
   }
   .popup{
     display: flex;
+    width: 100vw;
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -168,11 +171,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 99;
+    z-index: 1000;
     background-color: rgba(0, 0, 0, 0.7);
     overflow-y: hidden;
 
   }
+
+
   .popup-header{
     width: 100%;
     display: flex;
@@ -216,11 +221,10 @@
     color: #034939b9;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    border-radius: 10px;
-    padding: .8rem 16% .8rem 16%;
+    border-radius: 4px;
+    padding: 10px 16% 10px 16%;
     cursor: pointer;
     transition: all 0.4s;
-    margin-right: 10px;
   }
   .send-btn{
     background-color: #034939b9;
@@ -240,8 +244,7 @@
     margin-top: 3vh;
     margin-bottom: 1vh;
     display: flex;
-    gap: .5vw;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
   }
 
@@ -249,6 +252,11 @@
   .rating-stars-div {
     display: flex;
     justify-content: center;
+    width: 90%;
+  }
+
+  .container{
+    width: 100%
   }
 
   .popup-inner{
@@ -259,21 +267,25 @@
     background: #fff;
     padding: 25px 25px 25px 25px;
     height: fit-content;
-    width: 95vw;
+    width: 78%;
     max-width: 500px;
     border-radius: 20px;
+    align-self: center;
   }
 
-  
+  .camp-txt{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   .comentario{
-    width: 80vw;
-    max-width: 350px;
+    width: 90%;
     height: 6vh;
     font-size: 1.3rem;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-    margin-right: 10px;
+    border-radius: 4px;
+    background-color: #f8f8f8ad;
     color: #333;
     padding: 1rem;
     font-family: 'Inter', sans-serif;
@@ -297,6 +309,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
   }
   @media (max-width: 650px) {
       .select-box{
