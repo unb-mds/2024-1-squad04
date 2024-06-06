@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :materia="materia"/>
         <div class="card-materia">
             <div class="front">
                 <div class="card-front">
@@ -21,7 +22,7 @@
             </div>
                 
             </div>
-            <div class="back">
+            <div class="back" @click="() => TogglePopup('buttonTrigger')">
                 <div class="review-breakdown">
                     Review breakdown
                 </div>
@@ -69,16 +70,35 @@
 </template>
 
 <script>
+import {ref} from "vue";
+import PopUp from './PopupAvaliaMaterias.vue'
 import { nextTick } from 'vue';
 export default {
     name: "CardListagemMateriasComponent",
     props: {
         materia: Object,
     },
+    components: {
+            PopUp,
+    }, 
     mounted(){
         nextTick(() => {
             this.handleEstrelasMateria();
         });
+    },
+    setup(){
+        const popupTrigger = ref({
+            buttonTrigger: false
+        });
+
+        const TogglePopup = (trigger) => {
+            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+        };
+
+        return{
+            popupTrigger,
+            TogglePopup
+        }
     },
     watch: {
         materia: {
@@ -108,7 +128,12 @@ export default {
                 }
             });
         }
-    },
+    }
+
+
+    
+
+       
 }
 
 </script>

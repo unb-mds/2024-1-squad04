@@ -67,7 +67,7 @@ export async function obterInformacoesProfessoresFiltrados(materia) {
                 nome_professor: professor.nome_professor,
                 cod_professor: professor.cod_professor,
                 foto_professor: professor.foto_professor,
-                materias_professor: professor.materias,
+                materias: professor.materias,
                 qtd_avaliacoes: professor.qtdavaliacoes,
                 contribuicoes: contribuicoes
             };

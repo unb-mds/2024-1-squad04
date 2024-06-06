@@ -1,6 +1,7 @@
 <template>
     <div class="container-frame">
         <div class="container">
+            <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
         <!-- Sidebar -->
         <div id="sidebar">
             <div id="image-content">
@@ -9,7 +10,7 @@
                 <h3>Faculdade do Gama</h3>
             </div>
             
-            <button class="role-button">UX Designer</button>
+            <button class="role-button" @click="() => TogglePopup('buttonTrigger')">UX Designer</button>
             <p class="quote">If you equip people with the right tools, they will build the most extraordinary things.</p>
             
             <div class="all-personal-info">
@@ -304,14 +305,35 @@ html, body {
 <script>
 
 import { getProfessoresByID } from "@/repositories/professor/obterProfessor.js";
+import PopUp from './PopupAvaliaProfessor.vue'
+import { ref } from 'vue';
 
 export default {
     name: "UserProfile",
     
+    components: {
+        PopUp,
+    },
+
     data() {
         return {
-            professor: {} 
+            professor: Object,
         };
+    },
+    setup(){
+        const popupTrigger = ref({
+            buttonTrigger: false
+        });
+
+        const TogglePopup = (trigger) => {
+            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+        };
+
+        return{
+            popupTrigger,
+            TogglePopup,
+        }
+        
     },
     methods: {
         async fetchProfessor(id) {
