@@ -11,12 +11,14 @@
         <h2 class="materias-text">Materias</h2>
       </div>
     </div>
-    <p class="reviews">{{ avaliacoes.length }} Avaliações</p>
+    <p class="reviews">{{ avaliacoes_professores.qtd_avaliacoes }} Avaliações</p>
     <div class="listagem-avaliacoes-professores" v-if=isToggled>
-      <CardMinhaAvaliacaoProfessor />
+      <CardMinhaAvaliacaoProfessor v-for="(avaliacao, index) in avaliacoes_professores.avaliacoes_professor"
+      :key="index"
+      :avaliacao="avaliacao"/>
     </div>
     <div class="listagem-avaliacoes-materias" v-if=!isToggled>
-      <CardMinhaAvaliacao v-for="avaliacao in avaliacoes" :key="avaliacao.id" :avaliacao="avaliacao" />
+      <CardMinhaAvaliacao  />
     </div>
     <FooterBar />
   </div>
@@ -27,6 +29,7 @@ import NavBar from '@/components/Navegacao/NavBar.vue';
 import FooterBar from '@/components/Navegacao/FooterBar.vue';
 import CardMinhaAvaliacao from '@/components/Avaliacao/CardMinhaAvaliacao.vue';
 import CardMinhaAvaliacaoProfessor from '@/components/Avaliacao/CardMinhaAvaliacaoProfessor.vue';
+import { obterMinhasAvaliacoesProfessores } from '@/service/usuario/getMInhasAvaliacoes';
 
 export default {
   name: 'AvaliacaoPage',
@@ -38,13 +41,8 @@ export default {
   },
   data() {
     return {
-      avaliacoes: [
-        { id: 1, titulo: 'Avaliação 1', nome_usuario: 'Usuário 1', nota: 4.5, detalhes: 'Detalhes da avaliação 1' },
-
-
-        // Adicione mais avaliações conforme necessário
-      ],
       isToggled: true,
+      avaliacoes_professores: [],
     };
   },
 
@@ -55,7 +53,19 @@ export default {
     toggleMaterias(){
       this.isToggled = false;
     }
+  },
+
+  mounted(){
+    obterMinhasAvaliacoesProfessores()
+            .then(avaliacoes_professores => {
+                this.avaliacoes_professores = avaliacoes_professores;
+                console.log(this.avaliacoes_professores);
+            })
+            .catch(erro => {
+                console.error('Erro ao obter avaliação de professores:', erro);
+            });
   }
+
 };
 </script>
 

@@ -54,6 +54,7 @@ export const getAvaliacoesProfessorUsuario = (app, sequelize) => {
     try {
       const sqlQueryProfessores = `
         SELECT 
+          
           p.nome AS nome_professor,
           p.foto_url AS foto_professor,
           pau.cod_materia,

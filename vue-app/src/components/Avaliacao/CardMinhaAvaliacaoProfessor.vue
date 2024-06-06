@@ -3,10 +3,10 @@
       <div class="card-header">
 
         <div class="professor-info">
-            <img src="../../assets/provisorio/foto-perfil-navbar-provisoria.svg" alt="" class="foto-professor">
+            <img :src="verificarUrl(avaliacao.foto_professor)" alt="" class="foto-professor">
 
             <div class="professor-texts">
-                <span class="materia">Alfredo</span>
+                <span class="materia">{{avaliacao.nome_professor}}</span>
                 <span class="professor">MÉTODOS DE DESENVOLVIMENTO DE SOFTWARE</span>
             </div>
 
@@ -30,9 +30,9 @@
         />
       </div>
   
-      <div class="comment-content">
+      <div class="comment-content" v-if="avaliacao.comentario !== ''">
         <p class="comment-text">
-          "Adorei a disciplina de Metódos de Desenvolvimento de Software. Os projetos práticos nos desafiam a aplicar conceitos teóricos de forma eficiente."
+          "{{avaliacao.comentario}}"
         </p>
       </div>
       <div class="reaction-buttons">
@@ -43,7 +43,7 @@
               <path d="M3.6905 4.51953H2.96091C1.863 4.51953 1.41675 4.94453 1.41675 5.99286V13.1187C1.41675 14.167 1.863 14.592 2.96091 14.592H3.6905C4.78841 14.592 5.23466 14.167 5.23466 13.1187V5.99286C5.23466 4.94453 4.78841 4.51953 3.6905 4.51953Z" fill="#171717" fill-opacity="0.5"/>
             </svg>
           </button>
-          <span class="like-count">25</span>
+          <span class="like-count">{{avaliacao.num_likes}}</span>
         </div>
         <div class="reaction">
           <button class="deslike-button">
@@ -52,19 +52,80 @@
               <path d="M3.6905 4.51953H2.96091C1.863 4.51953 1.41675 4.94453 1.41675 5.99286V13.1187C1.41675 14.167 1.863 14.592 2.96091 14.592H3.6905C4.78841 14.592 5.23466 14.167 5.23466 13.1187V5.99286C5.23466 4.94453 4.78841 4.51953 3.6905 4.51953Z" fill="#171717" fill-opacity="0.5"/>
             </svg>
           </button>
-          <span class="deslike-count">14</span>
+          <span class="deslike-count">{{avaliacao.num_dislikes}}</span>
         </div>
       </div>
     </div>
   </template>
   
   <script>
+  import { nextTick } from 'vue';
+
   export default {
-    name: 'MinhaAvaliacaoProfessor'
+    name: 'MinhaAvaliacaoProfessor',
+    props:{
+      avaliacao: Object,
+    },
+    methods:{
+      verificarUrl(urlProfessor){
+            if(urlProfessor==='https://sigaa.unb.br/sigaa/img/no_picture.png'){
+                return 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png';
+            }
+            return urlProfessor;
+        },
+        handleEstrelasProfessor() {
+            const estrelas = this.$refs.estrelas;
+            const media = this.avaliacao.nota_total;
+            
+            estrelas.forEach((estrela, index) => {
+                // Remove todas as classes para garantir que começamos com uma estrela "limpa"
+                estrela.classList.remove('full-star', 'partial-star', 'empty-star');
+                
+                if (media >= index + 1) {
+                    estrela.classList.add('full-star');
+                } else if (media > index) {
+                    estrela.classList.add('partial-star');
+                } else {
+                    estrela.classList.add('empty-star');
+                }
+            });
+        }
+    },
+    watch: {
+    professor: {
+        handler() {
+            this.$nextTick(() => {
+                this.handleEstrelasProfessor()      
+            })
+        },
+        deep: true,
+      },
+    },
+    mounted(){
+        nextTick(() => {
+            this.handleEstrelasProfessor();
+        });
+    },
+
   };
   </script>
   
   <style scoped>
+
+
+  .full-star {
+    filter: none;
+  }
+
+  .partial-star {
+      filter: none;
+      -webkit-mask-image: linear-gradient(to left, transparent 40%, black 60%);
+      opacity: 1;
+  }
+
+  .empty-star {
+      filter: invert(50%) opacity(30%);
+  }
   .comment-card {
     background-color: #F3F3F3;
     border: 1px solid #ccc;
@@ -102,6 +163,9 @@
   }
   .foto-professor{
     width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 8rem;
   }
 
   .professor-texts{
