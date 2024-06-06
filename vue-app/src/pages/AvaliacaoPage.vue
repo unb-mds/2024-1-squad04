@@ -11,14 +11,18 @@
         <h2 class="materias-text">Materias</h2>
       </div>
     </div>
-    <p class="reviews">{{ avaliacoes_professores.qtd_avaliacoes }} Avaliações</p>
-    <div class="listagem-avaliacoes-professores" v-if=isToggled>
-      <CardMinhaAvaliacaoProfessor v-for="(avaliacao, index) in avaliacoes_professores.avaliacoes_professor"
-      :key="index"
-      :avaliacao="avaliacao"/>
+    <p class="reviews">{{ reviews }} Avaliações</p>
+    <div v-if="isToggled">
+      <div class="listagem-avaliacoes-professores">
+        <CardMinhaAvaliacaoProfessor v-for="(avaliacao, index) in avaliacoes_professores.avaliacoes_professor"
+          :key="index" :avaliacao="avaliacao" />
+      </div>
     </div>
-    <div class="listagem-avaliacoes-materias" v-if=!isToggled>
-      <CardMinhaAvaliacao  />
+    <div v-else>
+      <div class="listagem-avaliacoes-materias">
+        <CardMinhaAvaliacao v-for="(avaliacao, index) in avaliacoes_materia.avaliacoesMateria"
+          :key="index" :avaliacao="avaliacao" />
+      </div>
     </div>
     <FooterBar />
   </div>
@@ -30,6 +34,7 @@ import FooterBar from '@/components/Navegacao/FooterBar.vue';
 import CardMinhaAvaliacao from '@/components/Avaliacao/CardMinhaAvaliacao.vue';
 import CardMinhaAvaliacaoProfessor from '@/components/Avaliacao/CardMinhaAvaliacaoProfessor.vue';
 import { obterMinhasAvaliacoesProfessores } from '@/service/usuario/getMInhasAvaliacoes';
+import { obterMinhasAvaliacoesMaterias } from '@/service/usuario/getMInhasAvaliacoes'; 
 
 export default {
   name: 'AvaliacaoPage',
@@ -43,28 +48,45 @@ export default {
     return {
       isToggled: true,
       avaliacoes_professores: [],
+      avaliacoes_materia: [],
     };
   },
 
   methods: {
-    toggleProfessores(){
+    toggleProfessores() {
       this.isToggled = true;
     },
-    toggleMaterias(){
+    toggleMaterias() {
       this.isToggled = false;
+    },
+  },
+
+  computed: {
+    reviews() {
+      return this.isToggled ? this.avaliacoes_professores.qtd_avaliacoes : this.avaliacoes_materia.qtdAvaliacoes;
     }
   },
 
-  mounted(){
+  mounted() {
+
     obterMinhasAvaliacoesProfessores()
-            .then(avaliacoes_professores => {
-                this.avaliacoes_professores = avaliacoes_professores;
-                console.log(this.avaliacoes_professores);
-            })
-            .catch(erro => {
-                console.error('Erro ao obter avaliação de professores:', erro);
-            });
-  }
+      .then(avaliacoes_professores => {
+        this.avaliacoes_professores = avaliacoes_professores;
+        console.log(this.avaliacoes_professores);
+      })
+      .catch(erro => {
+        console.error('Erro ao obter avaliação de professores:', erro);
+      });
+    
+      obterMinhasAvaliacoesMaterias() // Chame a função correta
+      .then(avaliacoes_materia => {
+        this.avaliacoes_materia = avaliacoes_materia; // Defina os dados corretamente
+        console.log(this.avaliacoes_materia);
+      })
+      .catch(erro => {
+        console.error('Erro ao obter avaliações de matérias:', erro);
+      });
+  },
 
 };
 </script>
