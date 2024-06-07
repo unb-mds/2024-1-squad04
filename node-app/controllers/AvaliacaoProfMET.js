@@ -186,7 +186,6 @@ export const getAvaliacoesProfessorUsuario = (app, sequelize) => {
 //código para avaliar professores
 
 export const getProfessoresAvaliar = ((app, sequelize) => {
-
     app.post('/avaliacao_professor', async (req, res) => {
         const { nota_acesso, nota_didatica, nota_metodologia, nota_carisma, usuario, cod_prof, materia, comentario } = req.body;
 
@@ -249,6 +248,4 @@ export const getProfessoresAvaliar = ((app, sequelize) => {
             res.status(500).json({ success: false, message: 'Erro ao enviar avaliação do professor, comentário e ligação' });
         }
     });
-
 });
-

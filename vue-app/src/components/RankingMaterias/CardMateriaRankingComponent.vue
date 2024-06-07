@@ -20,7 +20,6 @@
     <script>
     export default {
         name: "CardMateriaRankingComponent",
-
        props: {
        materia: Object,
        position: Number,

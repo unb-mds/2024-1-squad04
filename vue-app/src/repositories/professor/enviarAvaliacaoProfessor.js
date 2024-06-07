@@ -1,7 +1,6 @@
 
 export async function enviarAvaliacaoProfessor(usuario, cod_prof, materia, nota_acesso, nota_didatica, nota_metodologia, nota_carisma, comentario) {
     // carisma no banco vai ser metodo de ensino pq vai dar mt trabalho pra mudar o nome
-    console.log(usuario, cod_prof, materia, nota_acesso, nota_didatica, nota_metodologia, nota_carisma, comentario)
 
     // Crie um objeto com os dados da avaliação
     const avaliacao = {

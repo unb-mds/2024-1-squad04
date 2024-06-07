@@ -14,7 +14,7 @@
                 <div class="select-container">
                   <select class = "select-box" v-model.number="comentario_materia.materia" required>
                       <option class="opcao" disabled value="">Materia para avaliar</option>
-                      <option class="opcao" v-for="option in this.professor.materias_professor" :key="option.nome_materia" :value="option.cod_materia">{{ option.nome_materia }}</option>
+                      <option class="opcao" v-for="option in professor.materias" :key="option.nome_materia" :value="option.cod_materia">{{ option.nome_materia }}</option>
                   </select>
                 </div>
                 
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import { enviarAvaliacaoProfessor } from '@/generals/enviarAvaliacaoProfessor.js';
+  import { enviarAvaliacaoProfessor } from '@/repositories/professor/enviarAvaliacaoProfessor.js';
   import { getUsuarioLogado } from '@/generals/getUsuarioLogado.js';
   import { getUsuarios } from "../../repositories/usuario/obterUsuarios.js";
   import ratingStars from "./RatingStarsProfessor.vue"
@@ -321,5 +321,4 @@
         font-size: 1.8rem;
       }
   }
-
 </style>

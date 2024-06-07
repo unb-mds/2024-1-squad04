@@ -65,7 +65,6 @@
             obterInformacoesMaterias()
             .then(materias => {
                 this.materias = materias;
-                console.log(materias);
             })
             .catch(erro => {
                 console.error('Erro ao obter materias:', erro);
