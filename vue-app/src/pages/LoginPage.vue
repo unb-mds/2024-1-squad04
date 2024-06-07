@@ -36,7 +36,7 @@ import router from '../routes/index';
 import { getUsuarios } from "@/repositories/usuario/obterUsuarios.js";
 
 export default {
-    name: "LoginComponent",
+    name: "LoginPage",
     data() {
         return {
             erro: ''

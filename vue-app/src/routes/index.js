@@ -23,18 +23,17 @@ const beforeEnterCheck = async () => {
             const matriculadec = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
             for (let i = 0; i < user.length; i++) {
-                if (user[i].matricula.toString() === matriculadec) {
+                if (user[i].matricula === parseInt(matriculadec)) {
                     return;
                 }
             }
+            router.push('/login');
+            return;
         } catch (error) {
             console.log(error);
             router.push('/login');
             return;
         }
-    } else {
-        router.push('/login');
-        return;
     }
 };
 

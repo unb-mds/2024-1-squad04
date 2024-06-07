@@ -10,7 +10,7 @@
        
         <div class="listagem-professores">
             <CardListagemProfessoresComponent
-            v-for="(professor, index) in filteredProfessores.slice(0, 15)"
+            v-for="(professor, index) in filteredProfessores"
             :key="index"
             :professor="professor"/>
         </div>
@@ -27,11 +27,12 @@
     import NavBar from '../components/Navegacao/NavBar.vue'; 
     import FooterBar from '../components/Navegacao/FooterBar.vue';
     import CardListagemProfessoresComponent from '@/components/Professores/CardListagemProfessoresComponent.vue';
+    //import { obterInformacoesProfessoresNaoFiltrados } from '@/service/professor/ManipulaDadosProfessorCardListagem';
     import { obterInformacoesProfessoresFiltrados } from '@/service/professor/ManipulaDadosProfessorCardListagem';
     import BarraDePesquisaComponente from '../components/Navegacao/BarraDePesquisaComponent.vue'
     import { obterMateriasParaFiltragem } from '@/service/materia/PegarMateriasParaFiltragemDeProfessores';
     import FiltroProfessores from '@/components/Navegacao/FiltroProfessoresPorMateriaComponent.vue';
-    
+   
 
 
     export default{

@@ -1,8 +1,18 @@
 <template>
-    <div class="container" @click="goToProfessorDetail(professor.cod_professor)">
-        <div class="card-professor">
-            <div class="front">
-                <div class="card-front">
+    <div class="container">
+        <!--o que esta na tag PopUp so aparece quando
+        button Trigger for True-->
+        
+        <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :professor="professor"/>
+        
+        <div class="card-professor" :class="{flipped: isFlipped}">
+            <div class="front" >
+                <div class="three-dots" @click="flipCard">
+                    <div class="dot-1"></div>
+                    <div class="dot-2"></div>
+                    <div class="dot-3"></div>
+                </div>
+                <div class="card-front" @click="goToProfessorDetail(professor.cod_professor)">
                     <div class="profile-picture-name">
                     <div class="profile-picture-div">                    
                         <img  :src="verificarUrl(professor.foto_professor)"  alt="" class="profile-picture">
@@ -15,21 +25,21 @@
                     </div>
                 </div>
                 <div class="rating-and-number">
-                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total}}</p><p class="de-cinco">/ 5</p></div>
-                    <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
+                    <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total.toFixed(2)}}</p><p class="de-cinco">/ 5</p></div>
+                    <div class="total-reviews">Total reviews ({{professor.qtdavaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
-                    <img v-for="(index) in 5" :key="index" ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela">
+                    <img ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela" v-for="n in 5" :key="n">
                 </div>
             </div>
                 
             </div>
-            <div class="back">
+            <div class="back" >
                 <div class="review-breakdown">
                     Review breakdown
                 </div>
 
-                <div class="details-list">
+                <div class="details-list" @click="flipCard">
                     <div class="details">
                     <div class="number-stars">
                         Acesso
@@ -86,7 +96,7 @@
 
                 <div class="details">
                     <div class="number-stars">
-                        Método de Ensino
+                        Carisma
                     </div>
                     <div class="barra-texto">
                         <div class="barra-porcentagem">
@@ -101,8 +111,10 @@
                 </div>
                     
                 </div>
-                
-            </div></div>
+                <button class="avali" @click="() => TogglePopup('buttonTrigger')">Avaliar</button>
+            </div>
+            
+        </div>
 
                 
         </div>
@@ -111,11 +123,21 @@
 
 <script>
 import { nextTick } from 'vue';
+import PopUp from './PopupAvaliaProfessor.vue'
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
+    components: {
+        PopUp,
+    },
     name: "CardListagemProfessoresComponent",
     props: {
         professor: Object,
+    },
+    data(){
+        return{
+            isFlipped:false,
+        }
     },
     mounted(){
         nextTick(() => {
@@ -129,10 +151,20 @@ export default {
             console.log(id)
             router.push({name: 'paginaProfessor' , params: {id: id}});
         };
+        const popupTrigger = ref({
+            buttonTrigger: false
+        });
 
-        return {
-            goToProfessorDetail 
+        const TogglePopup = (trigger) => {
+            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
         };
+
+        return{
+            popupTrigger,
+            TogglePopup,
+            goToProfessorDetail 
+        }
+        
     },
 
     watch: {
@@ -168,6 +200,10 @@ export default {
                     estrela.classList.add('empty-star');
                 }
             });
+        },
+
+        flipCard(){
+            this.isFlipped = !this.isFlipped;
         }
     }
 }
@@ -191,7 +227,7 @@ export default {
 .container {
     width: 100%;
     max-width: 350px;
-    height: 450px;
+    height: 500px;
     display: flex;
     justify-content: center
 }
@@ -217,9 +253,9 @@ export default {
 
 .back {
     transform: rotateY(180deg);
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    gap: 50px;
+    gap: 30px;
 
 
 }
@@ -229,6 +265,33 @@ export default {
     flex-direction: column;
     padding-left: 40px;
     gap: 30px;
+}
+
+.three-dots{
+    display: flex;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 30;
+    gap: 2px;
+    cursor: pointer;
+
+}
+
+
+.card-professor.flipped{
+    cursor: pointer;
+    transform: rotateY(180deg);
+}
+
+
+.dot-1, .dot-2, .dot-3{
+    width: 4px;
+    height: 4px;
+    background-color: #535353;
+    border-radius: 100px;
+
+
 }
 
 .review-breakdown{
@@ -253,10 +316,7 @@ export default {
     align-items: center;
 }
 
-.container:hover > .card-professor {
-    cursor: pointer;
-    transform: rotateY(180deg);
-}
+
 
 .profile-picture-name {
     display: flex;
@@ -355,18 +415,40 @@ export default {
     font-weight: 500;
     color: rgb(83, 83, 83);
     width: 100%;
-    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.details-list{
+
 }
 
 .details{
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     margin-bottom: 10px;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
-    margin-left: 40px;
+}
+
+.avali{
+
+    width: 80%;
+    padding: 10px 0px 10px 0;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    background-color: #0a745b;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.avali:hover{
+    background-color: #07493a;
+    
 }
 
 .barra-texto{
@@ -389,7 +471,8 @@ export default {
     display: flex;
     flex-direction: column;
     width: 70%;
-    gap: 16px;
+    gap: 20px;
+    align-items: center;
 
 }
 
@@ -415,13 +498,13 @@ export default {
 @media screen and (max-width: 1000px) {
 
 .container{
-    height: 400px;
+    height: 450px;
 }
 .card-professor{
     padding-top: 0;
     padding-bottom: 0;
-    width: 70%;
-    height: 90%;
+    width: 90%;
+    height: 100%;
 }
 
 }
