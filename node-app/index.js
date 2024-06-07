@@ -49,5 +49,8 @@ Avaliacao.getAvaliacoesProfessorUsuario(app, sequelize);
 
 Avaliacao.deleteAvaliacaoComentarioProfessor(app, sequelize);
 
+Avaliacao.deleteAvaliacaoComentarioMateria(app, sequelize);
+
+
 
 app.listen(3000)

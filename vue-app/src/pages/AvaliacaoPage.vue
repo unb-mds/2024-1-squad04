@@ -16,13 +16,14 @@
       <div class="listagem-avaliacoes-professores">
         <CardMinhaAvaliacaoProfessor v-for="(avaliacao, index) in avaliacoes_professores.avaliacoes_professor"
           :key="index" :avaliacao="avaliacao" 
-          @delete="deletarAvaliacaoProfessor"/>
+          @deleteProfessor="deletarAvaliacaoProfessor"/>
       </div>
     </div>
     <div v-else>
       <div class="listagem-avaliacoes-materias">
         <CardMinhaAvaliacao v-for="(avaliacao, index) in avaliacoes_materia.avaliacoesMateria"
-          :key="index" :avaliacao="avaliacao" />
+          :key="index" :avaliacao="avaliacao" 
+          @deleteMateria="deletarAvaliacaoMateria"/>
       </div>
     </div>
     <FooterBar />
@@ -63,6 +64,11 @@ export default {
     deletarAvaliacaoProfessor(cod_avaliacao) { //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
       this.avaliacoes_professores.avaliacoes_professor = this.avaliacoes_professores.avaliacoes_professor.filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao);
       this.avaliacoes_professores.qtd_avaliacoes--;
+    },
+
+    deletarAvaliacaoMateria(cod_avaliacao) { //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+      this.avaliacoes_materia.avaliacoesMateria = this.avaliacoes_materia.avaliacoesMateria.filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao);
+      this.avaliacoes_materia.qtdAvaliacoes--;
     },
   },
 

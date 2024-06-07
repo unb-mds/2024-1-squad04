@@ -63,6 +63,8 @@ export const getAvaliacoesProfessorUsuario = (app, sequelize) => {
           m.cod_materia,
           m.nome AS nome_materia,
           m.qtd_hrs_materia,
+          mau.cod_avaliacao,
+          COALESCE(mau.cod_comentario, 0) AS cod_comentario,
           COALESCE(am.nota_total, 0) AS nota_total,
           COALESCE(am.nota_experiencia, 0) AS nota_experiencia,
           COALESCE(am.nota_dificuldade, 0) AS nota_dificuldade,
@@ -140,4 +142,45 @@ export const getAvaliacoesProfessorUsuario = (app, sequelize) => {
     });
   };
   
+
+  export const deleteAvaliacaoComentarioMateria = (app, sequelize) => {
+    app.delete('/avaliacoes_materia/:matricula/:cod_avaliacao/:cod_comentario', async (req, res) => {
+      const { matricula, cod_avaliacao, cod_comentario } = req.params;
+  
+      try {
+        // Deletar a relação na tabela materia_avaliacao_usuario
+        await sequelize.query(`
+          DELETE FROM materia_avaliacao_usuario
+          WHERE cod_avaliacao = :cod_avaliacao
+            AND (cod_comentario = :cod_comentario OR :cod_comentario IS NULL)
+            AND matricula = :matricula
+        `, {
+          replacements: { cod_avaliacao, cod_comentario, matricula }
+        });
+  
+        // Deletar a avaliação na tabela avaliacao_materia
+        await sequelize.query(`
+          DELETE FROM avaliacao_materia
+          WHERE cod_avaliacao = :cod_avaliacao
+        `, {
+          replacements: { cod_avaliacao }
+        });
+  
+        // Deletar o comentário na tabela comentario_materia, se existir
+        if (cod_comentario !== 0) {
+          await sequelize.query(`
+            DELETE FROM comentario_materia
+            WHERE cod_comentario = :cod_comentario
+          `, {
+            replacements: { cod_comentario }
+          });
+        }
+  
+        res.json({ success: true, message: 'Avaliação e comentário deletados com sucesso' });
+      } catch (error) {
+        console.error('Erro ao deletar avaliação e comentário:', error);
+        res.status(500).json({ success: false, message: 'Erro ao deletar avaliação e comentário' });
+      }
+    });
+  };
   

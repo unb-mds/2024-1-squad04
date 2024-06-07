@@ -74,6 +74,8 @@ export async function obterMinhasAvaliacoesMaterias() {
             comentario: avaliacao.comentario,
             num_likes: avaliacao.num_likes,
             num_dislikes: avaliacao.num_dislikes,
+            cod_avaliacao:avaliacao.cod_avaliacao,
+            cod_comentario: avaliacao.cod_comentario,
 
         }));
 

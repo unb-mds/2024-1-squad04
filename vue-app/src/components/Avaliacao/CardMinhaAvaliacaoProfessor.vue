@@ -94,7 +94,7 @@
 
         onDelete(){
             deletarAvaliacaoProfessor(this.avaliacao.cod_avaliacao, this.avaliacao.cod_comentario);
-            this.$emit('delete', this.avaliacao.cod_avaliacao); //emite o código de avaliação para que o elemento pai, a página, consiga fiiltrar o array e atuaçliozar ele sem necessidade de recarregamento da página
+            this.$emit('deleteProfessor', this.avaliacao.cod_avaliacao); //emite o código de avaliação para que o elemento pai, a página, consiga fiiltrar o array e atuaçliozar ele sem necessidade de recarregamento da página
 
         }
     },
