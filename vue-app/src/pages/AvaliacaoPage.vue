@@ -2,9 +2,29 @@
   <div class="avaliacoes">
     <NavBar />
     <h1 class="titulo-avaliacao">Avaliações</h1>
-    <p class="reviews">{{ avaliacoes.length }} Comentários</p>
-    <div class="listagem-avaliacoes">
-      <CardMinhaAvaliacao v-for="avaliacao in avaliacoes" :key="avaliacao.id" :avaliacao="avaliacao" />
+
+    <div class="professores-materias">
+      <div class="professores" :class="{toggle: isToggled , 'bg-transition': isToggled}" @click="toggleProfessores">
+        <h2 class="professores-text">Professores</h2>
+      </div>
+      <div class="materias" :class="{toggle: !isToggled , 'bg-transition': !isToggled}" @click="toggleMaterias">
+        <h2 class="materias-text">Materias</h2>
+      </div>
+    </div>
+    <p class="reviews">{{ reviews }} Avaliações</p>
+    <div v-if="isToggled">
+      <div class="listagem-avaliacoes-professores">
+        <CardMinhaAvaliacaoProfessor v-for="(avaliacao, index) in avaliacoes_professores.avaliacoes_professor"
+          :key="index" :avaliacao="avaliacao" 
+          @deleteProfessor="deletarAvaliacaoProfessor"/>
+      </div>
+    </div>
+    <div v-else>
+      <div class="listagem-avaliacoes-materias">
+        <CardMinhaAvaliacao v-for="(avaliacao, index) in avaliacoes_materia.avaliacoesMateria"
+          :key="index" :avaliacao="avaliacao" 
+          @deleteMateria="deletarAvaliacaoMateria"/>
+      </div>
     </div>
     <FooterBar />
   </div>
@@ -14,6 +34,9 @@
 import NavBar from '@/components/Navegacao/NavBar.vue';
 import FooterBar from '@/components/Navegacao/FooterBar.vue';
 import CardMinhaAvaliacao from '@/components/Avaliacao/CardMinhaAvaliacao.vue';
+import CardMinhaAvaliacaoProfessor from '@/components/Avaliacao/CardMinhaAvaliacaoProfessor.vue';
+import { obterMinhasAvaliacoesProfessores } from '@/service/usuario/getMInhasAvaliacoes';
+import { obterMinhasAvaliacoesMaterias } from '@/service/usuario/getMInhasAvaliacoes'; 
 
 export default {
   name: 'AvaliacaoPage',
@@ -21,27 +44,61 @@ export default {
     NavBar,
     FooterBar,
     CardMinhaAvaliacao,
+    CardMinhaAvaliacaoProfessor,
   },
   data() {
     return {
-      avaliacoes: [
-        { id: 1, titulo: 'Avaliação 1', nome_usuario: 'Usuário 1', nota: 4.5, detalhes: 'Detalhes da avaliação 1' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-        { id: 2, titulo: 'Avaliação 2', nome_usuario: 'Usuário 2', nota: 3.8, detalhes: 'Detalhes da avaliação 2' },
-
-
-        // Adicione mais avaliações conforme necessário
-      ],
+      isToggled: true,
+      avaliacoes_professores: [],
+      avaliacoes_materia: [],
     };
   },
+
+  methods: {
+    toggleProfessores() {
+      this.isToggled = true;
+    },
+    toggleMaterias() {
+      this.isToggled = false;
+    },
+    deletarAvaliacaoProfessor(cod_avaliacao) { //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+      this.avaliacoes_professores.avaliacoes_professor = this.avaliacoes_professores.avaliacoes_professor.filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao);
+      this.avaliacoes_professores.qtd_avaliacoes--;
+    },
+
+    deletarAvaliacaoMateria(cod_avaliacao) { //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+      this.avaliacoes_materia.avaliacoesMateria = this.avaliacoes_materia.avaliacoesMateria.filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao);
+      this.avaliacoes_materia.qtdAvaliacoes--;
+    },
+  },
+
+  computed: {
+    reviews() {
+      return this.isToggled ? this.avaliacoes_professores.qtd_avaliacoes : this.avaliacoes_materia.qtdAvaliacoes;
+    }
+  },
+
+  mounted() {
+
+    obterMinhasAvaliacoesProfessores()
+      .then(avaliacoes_professores => {
+        this.avaliacoes_professores = avaliacoes_professores;
+        console.log(this.avaliacoes_professores);
+      })
+      .catch(erro => {
+        console.error('Erro ao obter avaliação de professores:', erro);
+      });
+    
+      obterMinhasAvaliacoesMaterias() // Chame a função correta
+      .then(avaliacoes_materia => {
+        this.avaliacoes_materia = avaliacoes_materia; // Defina os dados corretamente
+        console.log(this.avaliacoes_materia);
+      })
+      .catch(erro => {
+        console.error('Erro ao obter avaliações de matérias:', erro);
+      });
+  },
+
 };
 </script>
 
@@ -62,10 +119,78 @@ export default {
 .titulo-avaliacao {
   color: #E0E0E0;
   font-family: 'Open Sans', sans-serif;
-  font-size: 64px;
+  font-size: 4rem;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 5vh;
 }
+
+.professores-materias{
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+}
+
+.professores{
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px 0 0 20px;
+  border: solid 2px aliceblue;
+  border-right: none;
+  cursor: pointer;
+  transition: background-color 01s ease;
+}
+
+.professores.toggle{
+  padding: 10px 20px 10px 20px;
+  background-color: aliceblue;
+  border-radius: 20px 0 0 20px;
+  cursor: pointer;
+  transition: background-color 01s ease;
+}
+
+.professores.toggle .professores-text{
+  color: #2e2e2e;
+}
+
+.bg-transition {
+  transition: background-color 0.5s ease-in;
+}
+
+.professores-text{
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.materias{
+  padding: 10px 20px 10px 20px;
+  border-radius: 0px 20px 20px 0;
+  border: solid 2px aliceblue;
+  cursor: pointer;
+}
+
+.materias.toggle{
+  padding: 10px 20px 10px 20px;
+  background-color: aliceblue;
+  border-radius: 0px 20px 20px 0;
+  cursor: pointer;
+}
+
+.materias.toggle .materias-text{
+  color: #2e2e2e;
+}
+
+
+.materias-text{
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
 
 .reviews {
   color: #BFBFBF;
@@ -73,7 +198,8 @@ export default {
   font-size: 16px;
 }
 
-.listagem-avaliacoes {
+
+.listagem-avaliacoes-professores, .listagem-avaliacoes-materias{
   margin-top: 30px;
   width: 100%;
   max-width: 834px; /* Ajuste conforme necessário */
@@ -84,6 +210,7 @@ export default {
   padding-bottom: 100px; /* espaço para o FooterBar */
   box-sizing: border-box; /* incluir padding na altura */
 }
+
 
 .FooterBar {
   margin-top: auto; /* empurrar para a parte inferior */
