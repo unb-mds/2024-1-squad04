@@ -53,7 +53,6 @@
                 </div>
                 
                 <p id="semestre-atual">2024.1</p>
-
                 <ul id = "materias_dadas" v-if="professor.materias && professor.materias.length > 0">
                     <div id = "materias">
                         <li v-for="materia in professor.materias" :key="materia.cod_materia">{{ materia.nome_materia }}</li>
@@ -128,8 +127,7 @@ html, body {
 .container-frame{
     height: 100%;
     background-color: #f5f5f5;
-    overflow: hidden;
-   
+    overflow: hidden;   
 }
 
 .container {
@@ -142,7 +140,12 @@ html, body {
     padding: 40px;
     
     background: -webkit-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+    gap: 40px;
+    padding: 40px;
+    
+    background: -webkit-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
 }
+
 
 
 #sidebar {
@@ -258,10 +261,6 @@ html, body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: auto;
-}
-
-.subjects_container{
-  
 }
 
 #given-subjects{
