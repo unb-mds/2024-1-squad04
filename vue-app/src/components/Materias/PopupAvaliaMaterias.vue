@@ -3,16 +3,16 @@
         <div class="popup-inner">
             <slot/>
             <header class = "popup-header">
-                <div class="materia-nome">{{materia.nome_materia}} ({{materia.cod_materia}})</div>
+                <div class="materia-nome">{{materia.nome_materia}}</div>
             </header>
         
-            <form class = "form-items">
+            <form class = "form-items" @submit.prevent="SubmitAvaliacaoMaterias">
                 <div class="inputs">
                   
                   <div class="rating-stars-div"><ratingStars @avaliacao-atualizada="handle"/></div>
                   
                   <div class= "camp-txt">
-                    <textarea  placeholder="Escreva seu comentário" maxlength="250" class = "comentario"/>
+                    <textarea v-model="comentario" placeholder="Escreva seu comentário" maxlength="250" class = "comentario"/>
                   </div>
                 </div>
                 <p v-if="erro" class="error-message">{{ erro }}</p>
@@ -27,7 +27,11 @@
   </template>
   
   <script>
+    let nota_exp, nota_dif
+    import { enviarAvaliacaoMateria } from "@/repositories/materias/enviarAvaliacaoMateria";
     import ratingStars from "./RatingStarsMaterias.vue";
+import { getUsuarioLogado } from "@/generals/getUsuarioLogado";
+import { getUsuarios } from "@/repositories/usuario/obterUsuarios";
     //matricula-int, cod_prof-char, materia-char, resto-int
 
     export default{
@@ -39,8 +43,47 @@
             TogglePopup: Function,
             materia: Object,
         },
+        methods: {
+          async SubmitAvaliacaoMaterias() {
+              if (isNaN(nota_exp) || isNaN(nota_dif)) {
+                  this.erro = "Preencha todas as avaliações antes de enviar!";
+                  return;
+              }
+              try {
+                  // carisma no banco vai ser metodo de ensino pq vai dar mt trabalho pra mudar o nome
+                  const matriculaLogadaStr = await getUsuarioLogado();
+                  const matriculaLogada = parseInt(matriculaLogadaStr, 10);
+                  const usuarios = await getUsuarios();
+                  this.erro = "";
+                  for (let i = 0; i < usuarios.length; i++){
+                      if (matriculaLogada === usuarios[i].matricula){
+                          await enviarAvaliacaoMateria(
+                              nota_dif,
+                              nota_exp,
+                              this.comentario,
+                              matriculaLogada,
+                              this.materia.cod_materia,
+                          );
+                          this.TogglePopup()
+                          location.reload();
+                          return
+                      }
+                  }
+                  this.erro = "Você precisa logar para avaliar!";
+              } 
+              catch (error) {
+                  this.erro = "Erro ao enviar avaliação, tente novamente!";
+              }
+          },
+          handle(avaliacao){
+              nota_exp = parseInt(avaliacao.notaExperiencia)
+              nota_dif = parseInt(avaliacao.notaDificuldade)
+          },
+        },
         data() {
             return {
+              comentario: '',
+              erro: '',
             };
         },
           

@@ -21,7 +21,7 @@
                 </div>
                 <div class="rating-and-number">
                     <div class="rating"><p class="nota">{{professor.contribuicoes.media_nota_total.toFixed(2)}}</p><p class="de-cinco">/ 5</p></div>
-                    <div class="total-reviews">Total reviews ({{professor.qtd_avaliacoes}})</div>
+                    <div class="total-reviews">Total reviews ({{ professor.qtdavaliacoes }})</div>
                 </div>
                 <div class="five-estrelas">
                     <img ref="estrelas" src="../../assets/icons/avaliacao/icone-estrela-azul.svg" alt="" class="estrela" v-for="n in 5" :key="n">

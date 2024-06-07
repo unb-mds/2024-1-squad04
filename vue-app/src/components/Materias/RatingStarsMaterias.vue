@@ -15,9 +15,9 @@
         <p class = "tipo-nota">Dificuldade:</p>
         <div class="rating">
           <input type="radio" name="notaDificuldade" id="star2-5" value=5  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" />
-          <input type="radio" name="notaDificuldade" id="star2-2" value=2  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" />
-          <input type="radio" name="notaDificuldade" id="star2-4" value=4  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" />
-          <input type="radio" name="notaDificuldade" id="star2-3" value=3  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" />
+          <input type="radio" name="notaDificuldade" id="star2-2" value=4  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" />
+          <input type="radio" name="notaDificuldade" id="star2-4" value=3  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" />
+          <input type="radio" name="notaDificuldade" id="star2-3" value=2  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" />
           <input type="radio" name="notaDificuldade" id="star2-1" value=1  @change="emitirAvaliacao" v-model="rating.notaDificuldade" style="--c: #0a745b;" /> 
         </div>
       </div>

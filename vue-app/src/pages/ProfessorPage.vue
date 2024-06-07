@@ -82,7 +82,6 @@
                 obterInformacoesProfessoresFiltrados(this.materia_para_filtragem)
                 .then(professores => {
                     this.professores = professores;
-                    console.log(professores);
                 })
                 .catch(erro => {
                     console.error('Erro ao obter professores:', erro);
@@ -93,7 +92,6 @@
             obterInformacoesProfessoresFiltrados()
             .then(professores => {
                 this.professores = professores;
-                console.log(professores);
             })
             .catch(erro => {
                 console.error('Erro ao obter professores:', erro);

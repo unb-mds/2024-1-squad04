@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import { enviarAvaliacaoProfessor } from '@/generals/enviarAvaliacaoProfessor.js';
+  import { enviarAvaliacaoProfessor } from '@/repositories/professor/enviarAvaliacaoProfessor.js';
   import { getUsuarioLogado } from '@/generals/getUsuarioLogado.js';
   import { getUsuarios } from "../../repositories/usuario/obterUsuarios.js";
   import ratingStars from "./RatingStarsProfessor.vue"

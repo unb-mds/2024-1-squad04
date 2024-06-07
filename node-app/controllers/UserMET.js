@@ -9,8 +9,7 @@ export const getDados = ((app, sequelize)=>{
           console.error(error);
           res.status(500).send('Houve um erro ao buscar os dados');
         }
-      });
-
+    });
 })
 
 export const postDados = ((app, sequelize)=>{
