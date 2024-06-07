@@ -35,6 +35,8 @@ const beforeEnterCheck = async () => {
             return;
         }
     }
+    router.push('/login');
+    return;
 };
 
 const router = createRouter({

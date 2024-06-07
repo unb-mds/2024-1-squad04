@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="rating-and-number">
-                    <div class="rating"><p class="nota">{{materia.contribuicoes.nota_total}}</p><p class="de-cinco">/ 5</p></div>
+                    <div class="rating"><p class="nota">{{materia.contribuicoes.nota_total.toFixed(2)}}</p><p class="de-cinco">/ 5</p></div>
                     <div class="total-reviews">Total reviews ({{materia.qtd_avaliacoes}})</div>
                 </div>
                 <div class="five-estrelas">
