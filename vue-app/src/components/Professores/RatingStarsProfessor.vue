@@ -74,8 +74,7 @@ export default {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.6rem;
     font-weight: 500;
-    margin: 0;
-    padding-left: 1rem; /* Adiciona espaço entre as estrelas e o texto */
+    margin: 0; 
     flex: 1;
     text-align: left; /* Alinha o texto à esquerda */
   }
@@ -88,7 +87,7 @@ export default {
   }
   .notas{
     display: flex;
-    gap: 30px;
+    gap: 20px;
     align-items: center;
     justify-content: space-between;
   }
@@ -96,11 +95,11 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
-    gap: 10px;
+    gap: 15px;
   }
   .rating input{
     position: relative;
-    width: 2.3vw;
+    width: 3rem;
     height: 5vh;
     margin: 0;
     padding: 0;
@@ -116,7 +115,7 @@ export default {
     content: "\f005";
     position: absolute;
     font-family: fontAwesome;
-    font-size: 2.6rem;
+    font-size: 3rem;
     color: #b4b4b4a2;
     transition: 0.3s;
   }
@@ -134,7 +133,7 @@ export default {
   }
   @media (max-width: 500px) {
     .rating{
-      gap: 15px;
+      gap: 10px;
     }
   }
   @media (max-width: 350px) {

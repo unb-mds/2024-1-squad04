@@ -210,7 +210,7 @@ export default {
     width: 1.5rem;
     height: 1.5rem;
     border: solid 1px #707070;
-    background-color: #008E4A;
+    background-color: #0a745b;
     border-radius: 2rem;
  }
 
@@ -227,7 +227,7 @@ export default {
     padding: 15px 0 15px 0;
     border:none;
     border-radius: 10px;
-    background: #008E4A;
+    background: #0a745b;
     color: white;
     font-family: 'Inter', sans-serif;
     letter-spacing: 1px;
