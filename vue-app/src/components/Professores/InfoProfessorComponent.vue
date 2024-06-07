@@ -4,7 +4,7 @@
         <!-- Sidebar -->
         <div id="sidebar">
             <div id="image-content">
-                <img :src="verificarUrl(professor.foto_professor)" alt="Alice Kaushik" class="profile-pic"/>
+                <img :src="verificarUrl(professor.foto_professor)" alt="Foto do Professor" class="profile-pic"/>
                 <h2>{{ professor.nome_professor }}</h2>
                 <h3>Faculdade do Gama</h3>
             </div>
@@ -123,6 +123,7 @@ html, body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto;
 }
 
 
@@ -177,6 +178,7 @@ html, body {
 
 .academic-info, .professor-contact-info {
     margin-top: 20px;
+    overflow: auto;
 }
 
 .academic-info{
@@ -208,6 +210,7 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: auto;
 }
 
 .section {
@@ -215,7 +218,7 @@ html, body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
+    overflow: auto;
 }
 
 #given-subjects, #general-reviews{
