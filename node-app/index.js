@@ -6,6 +6,7 @@ import * as Professor from './controllers/ProfessorMET.js';
 import * as Materia from './controllers/MateriaMET.js';
 import * as AvaliarProf from './controllers/AvaliacaoProfMET.js';
 import * as AvaliarMat from './controllers/AvaliacaoMatMET.js';
+import * as Avaliacao from './controllers/AvaliacaoMET.js';
 
 
 
@@ -48,5 +49,14 @@ AvaliarMat.getMateriasAvaliar(app, sequelize)
 
 Materia.getMateriasParaFiltragem(app, sequelize);
 
+Avaliacao.getProfessoresAvaliar(app, sequelize); //foi mudado de nome para ficar no padrão do controller : invés de Avaliar -> Avaliacao, assim como os outros: Professor, Materia, User, etc etc
+
+Avaliacao.getAvaliacoesMateriaUsuario(app, sequelize);
+
+Avaliacao.getAvaliacoesProfessorUsuario(app, sequelize);
+
+Avaliacao.deleteAvaliacaoComentarioProfessor(app, sequelize);
+
+Avaliacao.deleteAvaliacaoComentarioMateria(app, sequelize);
 
 app.listen(3000)
