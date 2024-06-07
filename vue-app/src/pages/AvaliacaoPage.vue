@@ -15,7 +15,8 @@
     <div v-if="isToggled">
       <div class="listagem-avaliacoes-professores">
         <CardMinhaAvaliacaoProfessor v-for="(avaliacao, index) in avaliacoes_professores.avaliacoes_professor"
-          :key="index" :avaliacao="avaliacao" />
+          :key="index" :avaliacao="avaliacao" 
+          @delete="deletarAvaliacaoProfessor"/>
       </div>
     </div>
     <div v-else>
@@ -58,6 +59,10 @@ export default {
     },
     toggleMaterias() {
       this.isToggled = false;
+    },
+    deletarAvaliacaoProfessor(cod_avaliacao) { //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+      this.avaliacoes_professores.avaliacoes_professor = this.avaliacoes_professores.avaliacoes_professor.filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao);
+      this.avaliacoes_professores.qtd_avaliacoes--;
     },
   },
 
