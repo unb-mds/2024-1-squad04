@@ -68,7 +68,6 @@
               return urlProfessor;
           },
           handle(avaliacao){
-              console.log(this.professor)
               nota_acesso = parseInt(avaliacao.notaAcesso)
               nota_didatica = parseInt(avaliacao.notaDidatica)
               nota_metodologia = parseInt(avaliacao.notaMetodologia)
