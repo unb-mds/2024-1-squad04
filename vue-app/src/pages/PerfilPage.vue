@@ -38,7 +38,7 @@
 			</div>
 			<div class="log-out-and-edit">
 				<button class="edit">Editar</button>
-				<button class="log-out">
+				<button class="log-out" @click="handleLogOut">
 					<img src="../assets/icons/perfil/log-out-icon.svg" alt="" />Log-out
 				</button>
 			</div>
@@ -54,6 +54,13 @@ export default {
 		return {
 			userInfo: {},
 		};
+	},
+
+	methods: {
+		handleLogOut() {
+			sessionStorage.setItem("matricula", "");
+			window.location.reload();
+		},
 	},
 	mounted() {
 		getInfoUserProfileService()
@@ -260,6 +267,7 @@ export default {
 	font-family: "Open Sans", sans-serif;
 	background: none;
 	border: solid 1px #0a745b;
+	cursor: pointer;
 }
 
 .log-out img {
