@@ -1,11 +1,18 @@
 <template>
 	<div class="profile-wraper">
 		<div class="card-profile">
+			<img
+				src="../assets/icons/navegacao/back_arrow.svg"
+				alt="back-arrow"
+				class="back-arrow"
+				@click="back"
+			/>
 			<div class="profile-picture-and-profile-name">
 				<div class="profile-picture-wraper">
 					<img
-						src="../assets/provisorio/foto-perfil-navbar-provisoria.svg"
-						alt=""
+						:src="verificarUrl(userInfo.foto_url)"
+						@error="carregarImgAlternativa"
+						alt="Profile-Picture"
 						class="profile-picture"
 					/>
 				</div>
@@ -37,29 +44,61 @@
 				</div>
 			</div>
 			<div class="log-out-and-edit">
-				<button class="edit">Editar</button>
+				<button class="edit" @click="togglePopUpEdit">Editar</button>
 				<button class="log-out" @click="handleLogOut">
 					<img src="../assets/icons/perfil/log-out-icon.svg" alt="" />Log-out
 				</button>
 			</div>
 		</div>
+		<PopUpEdicaoPerfil
+			v-if="togglePopUp"
+			@close-popup="togglePopUpEdit"
+			@dados-atualizados="atualizarDadosUsuario"
+			:usuarioInfo="userInfo"
+		/>
 	</div>
 </template>
 
 <script>
 import { getInfoUserProfileService } from "@/service/usuario/getInfoUserProfile";
+import PopUpEdicaoPerfil from "@/components/Usuario/PopUpEdicaoPerfil.vue";
+import router from "../routes/index";
 export default {
+	components: {
+		PopUpEdicaoPerfil,
+	},
 	name: "ProfilePage",
 	data() {
 		return {
 			userInfo: {},
+			togglePopUp: false,
 		};
 	},
 
 	methods: {
+		back() {
+			router.go(-1);
+		},
 		handleLogOut() {
 			sessionStorage.setItem("matricula", "");
+			sessionStorage.setItem("foto_perfil", "");
 			window.location.reload();
+		},
+		togglePopUpEdit() {
+			this.togglePopUp = !this.togglePopUp;
+		},
+		verificarUrl(url_profile_picture) {
+			if (url_profile_picture === "" || url_profile_picture === null) {
+				return "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
+			}
+			return url_profile_picture;
+		},
+		atualizarDadosUsuario(dadosAtualizados) {
+			this.userInfo = { ...this.userInfo, ...dadosAtualizados };
+		},
+		carregarImgAlternativa(event) {
+			event.target.src =
+				"https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
 		},
 	},
 	mounted() {
@@ -104,6 +143,7 @@ export default {
 }
 
 .card-profile {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -115,6 +155,13 @@ export default {
 	border-radius: 40px;
 	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.055);
 	gap: 5vh;
+}
+
+.back-arrow {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	width: 2rem;
 }
 
 .profile-picture-and-profile-name {

@@ -61,7 +61,8 @@ export const getDadosPerfil = (app, sequelize) => {
 			const [results] = await sequelize.query(
 				`
             SELECT 
-                u.nome, 
+                u.nome,
+								u.foto_url,
                 u.sobrenome, 
                 u.email, 
                 u.curso, 
@@ -83,5 +84,32 @@ export const getDadosPerfil = (app, sequelize) => {
 			console.error(error);
 			res.status(500).send("Houve um erro ao buscar os dados");
 		}
+	});
+};
+
+export const editarDadosPerfil = (app, sequelize) => {
+	app.put("/usuario_perfil", (req, res) => {
+		console.log("Dados recebidos no req.body:", req.body);
+
+		const { matricula, nome, sobrenome, email, foto_url, curso } = req.body;
+		sequelize
+			.query(
+				"UPDATE usuario SET nome = ?, sobrenome = ?, email = ?, foto_url = ?, curso = ? WHERE matricula = ?",
+				{
+					replacements: [nome, sobrenome, email, foto_url, curso, matricula],
+					type: Sequelize.QueryTypes.UPDATE,
+				}
+			)
+			.then(() => {
+				console.log("Informações atualizadas com sucesso");
+				res.json({
+					success: true,
+					message: "Informações atualizadas com sucesso",
+				});
+			})
+			.catch((error) => {
+				console.error("Erro ao atualizar:", error);
+				res.status(500).json({ success: false, message: "Erro ao atualizar" });
+			});
 	});
 };

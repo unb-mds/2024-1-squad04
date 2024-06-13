@@ -58,7 +58,9 @@
 			<div class="notification-picture" @click="HandleProfile">
 				<img
 					class="profile"
-					src="../../assets/provisorio/foto-perfil-navbar-provisoria.svg"
+					:src="verificarUrl(foto)"
+					@error="carregarImgAlternativa"
+					alt="Foto de Perfil"
 				/>
 			</div>
 		</div>
@@ -70,6 +72,11 @@ import router from "../../routes/index";
 
 export default {
 	name: "NavBar",
+	data() {
+		return {
+			foto: sessionStorage.getItem("foto_perfil"),
+		};
+	},
 	methods: {
 		async HandleProfessors() {
 			router.push({ name: "professor" });
@@ -86,6 +93,16 @@ export default {
 
 		async HandleProfile() {
 			router.push({ name: "profile" });
+		},
+		carregarImgAlternativa(event) {
+			event.target.src =
+				"https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
+		},
+		verificarUrl(url_profile_picture) {
+			if (!url_profile_picture) {
+				return "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
+			}
+			return url_profile_picture;
 		},
 	},
 };
@@ -176,8 +193,9 @@ export default {
 }
 
 .profile {
-	width: 80%;
+	width: 8rem;
 	height: auto;
+	border-radius: 8rem;
 }
 
 .itens-mobile {
@@ -257,7 +275,7 @@ export default {
 	}
 
 	.profile {
-		width: 60%;
+		width: 8rem;
 	}
 
 	.logo-text {

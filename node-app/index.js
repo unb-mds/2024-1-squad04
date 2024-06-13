@@ -34,6 +34,8 @@ User.getChave(app);
 
 User.getDadosPerfil(app, sequelize);
 
+User.editarDadosPerfil(app, sequelize);
+
 Professor.getProfessoresAvaliados(app, sequelize);
 
 Professor.getProfessores(app, sequelize);
