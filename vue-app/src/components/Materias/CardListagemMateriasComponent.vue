@@ -3,7 +3,7 @@
         <PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :materia="materia"/>
         <div class="card-materia">
             <div class="front">
-                <div class="card-front">
+                <div class="card-front" @click="materiaDetail(materia.cod_materia)">
                     <div class="profile-picture-name">
                     <div class="materia-name">
                        {{ materia.nome_materia }}
@@ -71,8 +71,10 @@
 
 <script>
 import {ref} from "vue";
-import PopUp from './PopupAvaliaMaterias.vue'
+import PopUp from './PopupAvaliaMaterias.vue';
 import { nextTick } from 'vue';
+import { useRouter } from 'vue-router';
+
 export default {
     name: "CardListagemMateriasComponent",
     props: {
@@ -87,6 +89,12 @@ export default {
         });
     },
     setup(){
+        const router = useRouter(); 
+
+        const materiaDetail = (cod) => {
+            router.push({name: 'paginaMateria' , params: {cod: cod}});
+        };
+
         const popupTrigger = ref({
             buttonTrigger: false
         });
@@ -97,7 +105,8 @@ export default {
 
         return{
             popupTrigger,
-            TogglePopup
+            TogglePopup,
+            materiaDetail
         }
     },
     watch: {

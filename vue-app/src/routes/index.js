@@ -5,6 +5,7 @@ import Cadastro from '../pages/CadastroPage.vue';
 import Landing from '../pages/LandingPage.vue';
 import Professor from '../pages/ProfessorPage.vue';
 import ProfessorIndividualPage from "@/pages/ProfessorIndividualPage.vue";
+import MateriaIndividualPage from "@/pages/MateriaIndividualPage.vue";
 import Materias from '../pages/MateriasPage.vue';
 import Avaliacao from '../pages/AvaliacaoPage.vue'; 
 import axios from 'axios';
@@ -81,6 +82,14 @@ const router = createRouter({
             name: 'materia',
             component: Materias,
         },
+
+        {
+            path: '/paginaMateria/:cod',
+            name: 'paginaMateria',
+            component: MateriaIndividualPage,
+
+        },
+
         {
             path: '/avaliacao',
             name: 'avaliacao',

@@ -147,8 +147,9 @@ export default {
 
     setup(){
         const router = useRouter(); 
+        
         const goToProfessorDetail = (id) => { 
-            console.log(id)
+            // console.log(id)
             router.push({name: 'paginaProfessor' , params: {id: id}});
         };
         const popupTrigger = ref({
