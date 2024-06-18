@@ -5,10 +5,10 @@
                 <div class="titulo-notas-gerais">
                     <h3>Notas Gerais</h3>
                 </div>
-
+               
                 <!-- Insira aqui as notas gerais dessa disciplina -->
                 <div class="container-notas-gerais-disciplina">
-
+               
                 </div>
             </div>
 
@@ -18,7 +18,7 @@
                         <div class="titulo-avaliacoes-gerais">
                             <h3>Avaliações Gerais</h3>
                         </div>
-                        
+
                         <!-- Coloque os cards das avaliações dos launos aqui -->
                         <div class="container-avaliacoes-alunos-cards">
 
@@ -43,6 +43,58 @@
         </div>
     </div>
 </template>
+<script>
+import { obterMateriasById } from '@/service/materia/ManipularDadosMateriaIndividual';
+
+
+export default {
+    name: "infoMateria",
+
+    data() {
+        return {
+            materia: Object,
+        };
+    },
+
+
+    methods: {
+        getStarClassMateria(nota_total) {
+            const notaPorEstrela = 1;
+            const totalEstrelas = 5;
+            let notaAtual = nota_total / notaPorEstrela;
+
+            notaAtual = Math.round(notaAtual * 2) / 2;
+
+            let estrelaClasses = [];
+
+            for (let i = 1; i <= totalEstrelas; i++) {
+                if (notaAtual >= i) {
+                    estrelaClasses.push("full-star");
+                } else if (notaAtual > i - 1 && notaAtual < i) {
+                    estrelaClasses.push("partial-star");
+                } else {
+                    estrelaClasses.push("empty-star");
+                }
+            }
+
+            return estrelaClasses;
+        },
+    },
+    mounted() {
+        const cod_materia = this.$route.params.id;
+        console.log(cod_materia)
+
+        obterMateriasById(cod_materia)
+      .then(materia => {
+        this.materia = materia;
+        console.log(this.materia);
+      })
+      .catch(erro => {
+        console.error('Erro ao obter matéria:', erro);
+      });
+    },
+};
+</script>
 
 <style scoped>
 html,
@@ -68,11 +120,9 @@ body {
     gap: 40px;
     padding: 40px;
 
-    background: -webkit-linear-gradient(
-        90deg,
-        hsla(209, 63%, 17%, 1) 0%,
-        hsla(183, 71%, 16%, 1) 100%
-    );
+    background: -webkit-linear-gradient(90deg,
+            hsla(209, 63%, 17%, 1) 0%,
+            hsla(183, 71%, 16%, 1) 100%);
 }
 
 .container-avaliacao {
@@ -159,9 +209,12 @@ body {
 
 #avaliacoes {
     display: flex;
-    flex-direction: column; /* This ensures the children elements stack vertically */
-    align-items: center; /* This centers the children horizontally */
-    justify-content: center; /* This centers the children vertically */
+    flex-direction: column;
+    /* This ensures the children elements stack vertically */
+    align-items: center;
+    /* This centers the children horizontally */
+    justify-content: center;
+    /* This centers the children vertically */
 }
 
 .container-avaliacao {
@@ -178,8 +231,4 @@ li,
 p {
     font-family: Inter, sans-serif;
 }
-
-
-
-
 </style>

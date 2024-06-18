@@ -7,14 +7,6 @@
 
 
 
-
-
-
-
-
-
-
-
 <script>
 import router from "../routes/index";
 import infoMateria from "../components/Materias/InfoMateriaComponent.vue";

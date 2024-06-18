@@ -29,3 +29,19 @@
                 .catch(erro => reject(erro));
         });
     }
+
+    export async function getMateriaByID(cod_materia) {
+        return new Promise((resolve, reject) => {
+            fetch(`http://localhost:3000/materia/${cod_materia}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => resolve(data.data))
+                .catch(error => reject(error));
+        });
+    }
+    
+    

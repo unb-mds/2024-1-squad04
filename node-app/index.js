@@ -41,6 +41,8 @@ Materia.getMateriasAvaliadss(app, sequelize);
 
 Materia.getMaterias(app, sequelize);
 
+Materia.getMateriaById(app, sequelize);
+
 Avaliacao.getProfessoresAvaliar(app, sequelize)
 
 Avaliacao.getMateriasAvaliar(app, sequelize)
