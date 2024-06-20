@@ -14,7 +14,7 @@
                 <div class="select-container">
                   <select class = "select-box" v-model.number="comentario_materia.materia" required>
                       <option class="opcao" disabled value="">Materia para avaliar</option>
-                      <option class="opcao" v-for="option in professor.materias_professor" :key="option.nome_materia" :value="option.cod_materia">{{ option.nome_materia }}</option>
+                      <option class="opcao" v-for="option in professor.materias" :key="option.nome_materia" :value="option.cod_materia">{{ option.nome_materia }}</option>
                   </select>
                 </div>
                 
