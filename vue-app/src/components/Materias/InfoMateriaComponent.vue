@@ -1,5 +1,6 @@
 <template>
 	<div class="container-frame">
+		<PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup = "() => TogglePopup('buttonTrigger')" :materia="materia"/>
 		<div class="container">
 			<div class="container-avaliacao">
 				<div class="titulo-notas-gerais">
@@ -7,10 +8,10 @@
 				</div>
 
 				<!-- Insira aqui as notas gerais dessa disciplina -->
-				<div class="container-notas-gerais-disciplina"></div>
+				<div class="container-notas-gerais-disciplina" ></div>
 			</div>
 
-			<div class="container-notas-gerais">
+			<div class="container-notas-gerais" @click="() => TogglePopup('buttonTrigger')">
 				<div class="section" id="general-reviews">
 					<div class="avaliacoes-gerais-container">
 						<div class="titulo-avaliacoes-gerais">
@@ -28,7 +29,9 @@
 					<h3>Professores</h3>
 
 					<!-- Coloque aqui os cards dos professores que ofertam essa disciplina -->
-					<div class="container-card-professores"></div>
+					<div class="container-card-professores">
+						<CardProfMateria></CardProfMateria>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -36,6 +39,9 @@
 </template>
 <script>
 import { obterMateriaByID } from "@/service/materia/ManipularDadosMateriaIndividual";
+import {ref} from "vue";
+import PopUp from './PopupAvaliaMaterias.vue';
+import CardProfMateria from "./ProfessorPorMateria.vue";
 
 export default {
 	name: "infoMateria",
@@ -45,6 +51,12 @@ export default {
 			materia: {},
 		};
 	},
+
+	components: {
+		PopUp,
+		CardProfMateria
+    }, 
+	
 
 	methods: {
 		getStarClassMateria(nota_total) {
@@ -69,6 +81,22 @@ export default {
 			return estrelaClasses;
 		},
 	},
+
+	setup(){
+
+        const popupTrigger = ref({
+            buttonTrigger: false
+        });
+
+        const TogglePopup = (trigger) => {
+            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+        };
+
+        return{
+            popupTrigger,
+            TogglePopup,
+        }
+    },
 	mounted() {
 		const cod_materia = this.$route.params.cod;
 		console.log(cod_materia);
