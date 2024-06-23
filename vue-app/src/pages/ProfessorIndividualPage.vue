@@ -44,4 +44,10 @@ export default {
 .professores {
   height: 100vh;
 }
+
+@media only screen and (max-width: 1128px) {
+  .professores{
+    height: 100%;
+  }
+}
 </style>
