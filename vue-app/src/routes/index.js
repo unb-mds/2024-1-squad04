@@ -10,25 +10,21 @@ import Materias from "../pages/MateriasPage.vue";
 import Avaliacao from "../pages/AvaliacaoPage.vue";
 import PerfilPage from "../pages/PerfilPage.vue";
 import axios from "axios";
-import CryptoJS from "crypto-js";
+import { descriptarDados } from "@/generals/descriptografarDados";
 
 const beforeEnterCheck = async () => {
 	if (sessionStorage.getItem("matricula") != null) {
 		try {
-			const responsekey = await axios.get("http://localhost:3000/chave");
 			const responseuser = await axios.get("http://localhost:3000/usuario");
-
-			const key = responsekey.data;
 			const user = responseuser.data;
+			const usuarioSessionStorage = sessionStorage.getItem("matricula");
 
-			const decryptedBytes = CryptoJS.AES.decrypt(
-				sessionStorage.getItem("matricula"),
-				key
+			const matriculaDescriptografada = await descriptarDados(
+				usuarioSessionStorage
 			);
-			const matriculadec = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
 			for (let i = 0; i < user.length; i++) {
-				if (user[i].matricula === parseInt(matriculadec)) {
+				if (user[i].matricula === parseInt(matriculaDescriptografada)) {
 					return;
 				}
 			}
@@ -85,12 +81,11 @@ const router = createRouter({
 			name: "materia",
 			component: Materias,
 		},
-    {
-      path: '/paginaMateria/:cod',
-      name: 'paginaMateria',
-      component: MateriaIndividualPage,
-
-     },
+		{
+			path: "/paginaMateria/:cod",
+			name: "paginaMateria",
+			component: MateriaIndividualPage,
+		},
 		{
 			path: "/avaliacao",
 			name: "avaliacao",

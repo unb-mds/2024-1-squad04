@@ -5,6 +5,7 @@ import * as User from "./controllers/UserMET.js";
 import * as Professor from "./controllers/ProfessorMET.js";
 import * as Materia from "./controllers/MateriaMET.js";
 import * as Avaliacao from "./controllers/AvaliacaoMET.js";
+import * as Comentario from "./controllers/ComentarioMET.js";
 
 const app = new express();
 app.use(cors());
@@ -28,6 +29,8 @@ sequelize
 
 User.getDados(app, sequelize);
 
+User.getDadosSessionStorage(app, sequelize);
+
 User.postDados(app, sequelize);
 
 User.getChave(app);
@@ -48,7 +51,7 @@ Materia.getMaterias(app, sequelize);
 
 Materia.getMateriaById(app, sequelize);
 
-Avaliacao.getProfessoresAvaliar(app, sequelize)
+Avaliacao.getProfessoresAvaliar(app, sequelize);
 
 Avaliacao.getMateriasAvaliar(app, sequelize);
 
@@ -63,5 +66,13 @@ Avaliacao.getAvaliacoesProfessorUsuario(app, sequelize);
 Avaliacao.deleteAvaliacaoComentarioProfessor(app, sequelize);
 
 Avaliacao.deleteAvaliacaoComentarioMateria(app, sequelize);
+
+Comentario.curtirDescurtirComentarioProfessor(app, sequelize);
+
+Comentario.usuarioCurteDescurteComentarioProfessor(app, sequelize);
+
+Comentario.deletarRelacionamentoUsuarioComentarioProfessor(app, sequelize);
+
+Comentario.editarRelacionamentoUsuarioComentarioProfessor(app, sequelize);
 
 app.listen(3000);

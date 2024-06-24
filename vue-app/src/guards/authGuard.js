@@ -1,16 +1,41 @@
-import axios from "axios";
 import router from "../routes/index.js";
-import CryptoJS from "crypto-js";
+import { getUsuarioByID } from "@/repositories/usuario/obterUsuarios.js";
+import { encriptarDados } from "@/generals/encripitarDados.js";
 
-export async function authGuard(auth, matricula, foto_perfil) {
+export async function authGuard(auth, matricula) {
 	if (auth) {
-		const response = await axios.get("http://localhost:3000/chave");
-		const encryptedMatricula = CryptoJS.AES.encrypt(
-			matricula.toString(),
-			response.data
-		).toString();
-		sessionStorage.setItem("matricula", encryptedMatricula);
-		sessionStorage.setItem("foto_perfil", foto_perfil);
+		const usuario = await getUsuarioByID(matricula);
+		const matriculaEncriptografada = await encriptarDados(usuario.matricula);
+		const professoresAvaliadosEncriptografado = await encriptarDados(
+			usuario.professoresAvaliados
+		);
+		const materiasAvaliadasEncriptografadas = await encriptarDados(
+			usuario.materiasAvaliadas
+		);
+		const likesDislikesProfessoresEncriptografado = await encriptarDados(
+			usuario.likesDislikesProfessores
+		);
+		const likesDislikesMateriasEncriptografado = await encriptarDados(
+			usuario.likesDislikesMaterias
+		);
+		sessionStorage.setItem("matricula", matriculaEncriptografada);
+		sessionStorage.setItem(
+			"materias_avaliadas",
+			materiasAvaliadasEncriptografadas
+		);
+		sessionStorage.setItem(
+			"professores_avaliados",
+			professoresAvaliadosEncriptografado
+		);
+		sessionStorage.setItem(
+			"likes_dislikes_professores",
+			likesDislikesProfessoresEncriptografado
+		);
+		sessionStorage.setItem(
+			"likes_dislikes_materias",
+			likesDislikesMateriasEncriptografado
+		);
+		sessionStorage.setItem("foto_perfil", usuario.foto_url);
 		router.push("/home");
 		return 1;
 	} else {

@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 
 export const getProfessoresAvaliados = (app, sequelize) => {
-  app.get("/professores_avaliados", (req, res) => {
-    const sqlQuery = `
+	app.get("/professores_avaliados", (req, res) => {
+		const sqlQuery = `
             SELECT 
                 p.nome AS nome_professor,
                 p.foto_url AS foto_professor,
@@ -19,31 +19,31 @@ export const getProfessoresAvaliados = (app, sequelize) => {
                 nota_media DESC;
         `;
 
-    sequelize
-      .query(sqlQuery, { type: sequelize.QueryTypes.SELECT })
-      .then((result) => {
-        console.log("Consulta realizada com sucesso");
-        res.json({ success: true, data: result });
-      })
-      .catch((error) => {
-        console.error("Erro ao consultar professores avaliados:", error);
-        res.status(500).json({
-          success: false,
-          message: "Erro ao consultar professores avaliados",
-        });
-      });
-  });
+		sequelize
+			.query(sqlQuery, { type: sequelize.QueryTypes.SELECT })
+			.then((result) => {
+				console.log("Consulta realizada com sucesso");
+				res.json({ success: true, data: result });
+			})
+			.catch((error) => {
+				console.error("Erro ao consultar professores avaliados:", error);
+				res.status(500).json({
+					success: false,
+					message: "Erro ao consultar professores avaliados",
+				});
+			});
+	});
 };
 
 //professores para a página de pesquisa de professores
 //essa função foi reformulada para lidar com filtro de materias, ou seja, quando eu quiser a informação por materia eu vou filtrar diretamente na consulta e trazer os elementos filtrados
 
 export const getProfessores = (app, sequelize) => {
-  app.get("/professores", async (req, res) => {
-    const { materia } = req.query;
+	app.get("/professores", async (req, res) => {
+		const { materia } = req.query;
 
-    try {
-      const sqlQuery = `
+		try {
+			const sqlQuery = `
         SELECT 
           p.nome AS nome_professor,
           p.cod_professor AS cod_professor,
@@ -80,42 +80,42 @@ export const getProfessores = (app, sequelize) => {
         FROM 
           professor p
         ${
-          materia
-            ? `
+					materia
+						? `
           INNER JOIN professor_materia pmf ON pmf.cod_professor = p.cod_professor
           INNER JOIN materia mf ON pmf.cod_materia = mf.cod_materia
           WHERE mf.cod_materia = :materia
         `
-            : ""
-        }
+						: ""
+				}
         GROUP BY 
           p.cod_professor;
       `;
 
-      const professores = await sequelize.query(sqlQuery, {
-        type: sequelize.QueryTypes.SELECT,
-        replacements: { materia },
-      });
+			const professores = await sequelize.query(sqlQuery, {
+				type: sequelize.QueryTypes.SELECT,
+				replacements: { materia },
+			});
 
-      res.json({ success: true, data: professores });
-    } catch (error) {
-      console.error("Erro ao consultar professores:", error);
-      res
-        .status(500)
-        .json({ success: false, message: "Erro ao consultar professores" });
-    }
-  });
+			res.json({ success: true, data: professores });
+		} catch (error) {
+			console.error("Erro ao consultar professores:", error);
+			res
+				.status(500)
+				.json({ success: false, message: "Erro ao consultar professores" });
+		}
+	});
 };
 
 //pegaremos os professores pelo ID aqui
 
 export const getProfessorById = (app, sequelize) => {
-  app.get("/professor/:cod_professor", async (req, res) => {
-    const { cod_professor } = req.params;
-    const { materia } = req.query;
+	app.get("/professor/:cod_professor", async (req, res) => {
+		const { cod_professor } = req.params;
+		const { materia } = req.query;
 
-    try {
-      const sqlQuery = `
+		try {
+			const sqlQuery = `
         SELECT 
           p.nome AS nome_professor,
           p.cod_professor AS cod_professor,
@@ -132,13 +132,15 @@ export const getProfessorById = (app, sequelize) => {
           (
             SELECT JSON_ARRAYAGG(JSON_OBJECT(
               'cod_materia', pau.cod_materia,
+              'nome_materia', m.nome,
               'nota_total', COALESCE(ap.nota_total, 0),
               'nota_didatica', COALESCE(ap.nota_didatica, 0),
               'nota_metodo_ensino', COALESCE(ap.nota_metodo_ensino, 0),
               'nota_metodologia', COALESCE(ap.nota_metodologia, 0), 
               'nota_acesso', COALESCE(ap.nota_acesso, 0),
-              'comentario', COALESCE(cp.comentario, ''),
-              'num_likes', COALESCE(cp.num_likes, 0),
+              'cod_comentario', COALESCE(cp.cod_comentario, ''),
+              'comentario', COALESCE(cp.comentario, ''),  
+              'num_likes', COALESCE(cp.num_likes, 0),  
               'num_dislikes', COALESCE(cp.num_dislikes, 0),
               'usuario', JSON_OBJECT(
                 'nome_usuario', u.nome,
@@ -146,7 +148,8 @@ export const getProfessorById = (app, sequelize) => {
                 'foto_url', u.foto_url
               )
             ))
-            FROM professor_avaliacao_usuario pau
+            FROM materia m
+            LEFT JOIN professor_avaliacao_usuario pau ON m.cod_materia = pau.cod_materia
             LEFT JOIN avaliacao_professor ap ON pau.cod_avaliacao = ap.cod_avaliacao
             LEFT JOIN comentario_professor cp ON pau.cod_comentario = cp.cod_comentario
             LEFT JOIN usuario u ON pau.matricula = u.matricula
@@ -171,8 +174,8 @@ export const getProfessorById = (app, sequelize) => {
         WHERE
           p.cod_professor = :cod_professor
         ${
-          materia
-            ? `
+					materia
+						? `
           AND EXISTS (
             SELECT 1
             FROM professor_materia pmf
@@ -180,28 +183,28 @@ export const getProfessorById = (app, sequelize) => {
             AND pmf.cod_materia = :materia
           )
         `
-            : ""
-        }
+						: ""
+				}
         GROUP BY 
           p.cod_professor;
       `;
 
-      const replacements = { cod_professor };
-      if (materia) {
-        replacements.materia = materia;
-      }
+			const replacements = { cod_professor };
+			if (materia) {
+				replacements.materia = materia;
+			}
 
-      const professor = await sequelize.query(sqlQuery, {
-        type: sequelize.QueryTypes.SELECT,
-        replacements: replacements,
-      });
+			const professor = await sequelize.query(sqlQuery, {
+				type: sequelize.QueryTypes.SELECT,
+				replacements: replacements,
+			});
 
-      res.json({ success: true, data: professor });
-    } catch (error) {
-      console.error("Erro ao consultar professor:", error);
-      res
-        .status(500)
-        .json({ success: false, message: "Erro ao consultar professor" });
-    }
-  });
+			res.json({ success: true, data: professor });
+		} catch (error) {
+			console.error("Erro ao consultar professor:", error);
+			res
+				.status(500)
+				.json({ success: false, message: "Erro ao consultar professor" });
+		}
+	});
 };

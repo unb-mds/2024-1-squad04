@@ -71,7 +71,7 @@ export default {
 						usuarios[i].email === emailEntrada &&
 						usuarios[i].senha === senhaEntrada
 					) {
-						authGuard(true, usuarios[i].matricula, usuarios[i].foto_url);
+						authGuard(true, usuarios[i].matricula);
 						return 1;
 					}
 				}

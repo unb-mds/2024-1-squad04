@@ -2,7 +2,84 @@ import Sequelize from "sequelize";
 export const getDados = (app, sequelize) => {
 	app.get("/usuario", async (req, res) => {
 		try {
-			const [results] = await sequelize.query("SELECT * FROM usuario");
+			const [results] = await sequelize.query(
+				"SELECT email, senha, matricula FROM usuario"
+			);
+			res.json(results);
+		} catch (error) {
+			console.error(error);
+			res.status(500).send("Houve um erro ao buscar os dados");
+		}
+	});
+};
+
+export const getDadosSessionStorage = (app, sequelize) => {
+	app.get("/usuario_session_storage/:matricula", async (req, res) => {
+		const { matricula } = req.params;
+		try {
+			const [results] = await sequelize.query(
+				`
+                SELECT 
+                    u.matricula,
+										u.foto_url,
+                    COALESCE(
+                        (
+                            SELECT JSON_ARRAYAGG(
+                                JSON_OBJECT(
+                                    'cod_materia', mau.cod_materia
+                                )
+                            )
+                            FROM materia_avaliacao_usuario mau
+                            WHERE mau.matricula = u.matricula
+                        ),
+                        JSON_ARRAY()
+                    ) AS materiasAvaliadas,
+                    COALESCE(
+                        (
+                            SELECT JSON_ARRAYAGG(
+                                JSON_OBJECT(
+                                    'cod_professor', pau.cod_professor,
+                                    'cod_materia', pau.cod_materia
+                                )
+                            )
+                            FROM professor_avaliacao_usuario pau
+                            WHERE pau.matricula = u.matricula
+                        ),
+                        JSON_ARRAY()
+                    ) AS professoresAvaliados,
+                    COALESCE(
+                        (
+                            SELECT JSON_ARRAYAGG(
+                                JSON_OBJECT(
+                                    'cod_comentario', uldp.cod_comentario,
+                                    'like', uldp.like,
+                                    'dislike', uldp.dislike
+                                )
+                            )
+                            FROM usuario_like_dislike_professor uldp
+                            WHERE uldp.matricula = u.matricula
+                        ),
+                        JSON_ARRAY()
+                    ) AS likesDislikesProfessores,
+                    COALESCE(
+                        (
+                            SELECT JSON_ARRAYAGG(
+                                JSON_OBJECT(
+                                    'cod_comentario', uldm.cod_comentario,
+                                    'like', uldm.like,
+                                    'dislike', uldm.dislike
+                                )
+                            )
+                            FROM usuario_like_dislike_materia uldm
+                            WHERE uldm.matricula = u.matricula
+                        ),
+                        JSON_ARRAY()
+                    ) AS likesDislikesMaterias
+                FROM usuario u
+                WHERE u.matricula = :matricula
+                `,
+				{ replacements: { matricula }, type: sequelize.QueryTypes.SELECT }
+			);
 			res.json(results);
 		} catch (error) {
 			console.error(error);
@@ -13,19 +90,7 @@ export const getDados = (app, sequelize) => {
 
 export const postDados = (app, sequelize) => {
 	app.post("/usuario", (req, res) => {
-		console.log("Dados recebidos no req.body:", req.body); // Verifica se os dados estão sendo recebidos corretamente
-
 		const { matricula, cpf, nome, sobrenome, email, senha, curso } = req.body;
-
-		console.log("Dados a serem inseridos no banco de dados:", {
-			matricula,
-			cpf,
-			nome,
-			sobrenome,
-			email,
-			senha,
-			curso,
-		}); // Verifica os dados a serem inseridos no banco de dados
 
 		sequelize
 			.query(
@@ -89,8 +154,6 @@ export const getDadosPerfil = (app, sequelize) => {
 
 export const editarDadosPerfil = (app, sequelize) => {
 	app.put("/usuario_perfil", (req, res) => {
-		console.log("Dados recebidos no req.body:", req.body);
-
 		const { matricula, nome, sobrenome, email, foto_url, curso } = req.body;
 		sequelize
 			.query(
