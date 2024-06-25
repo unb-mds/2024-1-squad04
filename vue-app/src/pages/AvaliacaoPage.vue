@@ -4,26 +4,42 @@
     <h1 class="titulo-avaliacao">Avaliações</h1>
 
     <div class="professores-materias">
-      <div class="professores" :class="{toggle: isToggled , 'bg-transition': isToggled}" @click="toggleProfessores">
+      <div
+        class="professores"
+        :class="{ toggle: isToggled, 'bg-transition': isToggled }"
+        @click="toggleProfessores"
+      >
         <h2 class="professores-text">Professores</h2>
       </div>
-      <div class="materias" :class="{toggle: !isToggled , 'bg-transition': !isToggled}" @click="toggleMaterias">
+      <div
+        class="materias"
+        :class="{ toggle: !isToggled, 'bg-transition': !isToggled }"
+        @click="toggleMaterias"
+      >
         <h2 class="materias-text">Materias</h2>
       </div>
     </div>
     <p class="reviews">{{ reviews }} Avaliações</p>
     <div v-if="isToggled">
       <div class="listagem-avaliacoes-professores">
-        <CardMinhaAvaliacaoProfessor v-for="(avaliacao, index) in avaliacoes_professores.avaliacoes_professor"
-          :key="index" :avaliacao="avaliacao" 
-          @deleteProfessor="deletarAvaliacaoProfessor"/>
+        <CardMinhaAvaliacaoProfessor
+          v-for="(
+            avaliacao, index
+          ) in avaliacoes_professores.avaliacoes_professor"
+          :key="index"
+          :avaliacao="avaliacao"
+          @deleteProfessor="deletarAvaliacaoProfessor"
+        />
       </div>
     </div>
     <div v-else>
       <div class="listagem-avaliacoes-materias">
-        <CardMinhaAvaliacao v-for="(avaliacao, index) in avaliacoes_materia.avaliacoesMateria"
-          :key="index" :avaliacao="avaliacao" 
-          @deleteMateria="deletarAvaliacaoMateria"/>
+        <CardMinhaAvaliacao
+          v-for="(avaliacao, index) in avaliacoes_materia.avaliacoesMateria"
+          :key="index"
+          :avaliacao="avaliacao"
+          @deleteMateria="deletarAvaliacaoMateria"
+        />
       </div>
     </div>
     <FooterBar />
@@ -31,15 +47,15 @@
 </template>
 
 <script>
-import NavBar from '@/components/Navegacao/NavBar.vue';
-import FooterBar from '@/components/Navegacao/FooterBar.vue';
-import CardMinhaAvaliacao from '@/components/Avaliacao/CardMinhaAvaliacao.vue';
-import CardMinhaAvaliacaoProfessor from '@/components/Avaliacao/CardMinhaAvaliacaoProfessor.vue';
-import { obterMinhasAvaliacoesProfessores } from '@/service/usuario/getMInhasAvaliacoes';
-import { obterMinhasAvaliacoesMaterias } from '@/service/usuario/getMInhasAvaliacoes'; 
+import NavBar from "@/components/Navegacao/NavBar.vue";
+import FooterBar from "@/components/Navegacao/FooterBar.vue";
+import CardMinhaAvaliacao from "@/components/Avaliacao/CardMinhaAvaliacao.vue";
+import CardMinhaAvaliacaoProfessor from "@/components/Avaliacao/CardMinhaAvaliacaoProfessor.vue";
+import { obterMinhasAvaliacoesProfessores } from "@/service/usuario/getMInhasAvaliacoes";
+import { obterMinhasAvaliacoesMaterias } from "@/service/usuario/getMInhasAvaliacoes";
 
 export default {
-  name: 'AvaliacaoPage',
+  name: "AvaliacaoPage",
   components: {
     NavBar,
     FooterBar,
@@ -61,53 +77,73 @@ export default {
     toggleMaterias() {
       this.isToggled = false;
     },
-    deletarAvaliacaoProfessor(cod_avaliacao) { //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
-      this.avaliacoes_professores.avaliacoes_professor = this.avaliacoes_professores.avaliacoes_professor.filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao);
+    deletarAvaliacaoProfessor(cod_avaliacao) {
+      //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+      this.avaliacoes_professores.avaliacoes_professor =
+        this.avaliacoes_professores.avaliacoes_professor.filter(
+          (avaliacao) => avaliacao.cod_avaliacao !== cod_avaliacao
+        );
       this.avaliacoes_professores.qtd_avaliacoes--;
     },
 
-    deletarAvaliacaoMateria(cod_avaliacao) { //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
-      this.avaliacoes_materia.avaliacoesMateria = this.avaliacoes_materia.avaliacoesMateria.filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao);
+    deletarAvaliacaoMateria(cod_avaliacao) {
+      //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+      this.avaliacoes_materia.avaliacoesMateria =
+        this.avaliacoes_materia.avaliacoesMateria.filter(
+          (avaliacao) => avaliacao.cod_avaliacao !== cod_avaliacao
+        );
       this.avaliacoes_materia.qtdAvaliacoes--;
     },
   },
 
   computed: {
     reviews() {
-      return this.isToggled ? this.avaliacoes_professores.qtd_avaliacoes : this.avaliacoes_materia.qtdAvaliacoes;
-    }
+      return this.isToggled
+        ? this.avaliacoes_professores.qtd_avaliacoes
+        : this.avaliacoes_materia.qtdAvaliacoes;
+    },
   },
 
   mounted() {
-
     obterMinhasAvaliacoesProfessores()
-      .then(avaliacoes_professores => {
+      .then((avaliacoes_professores) => {
         this.avaliacoes_professores = avaliacoes_professores;
         console.log(this.avaliacoes_professores);
       })
-      .catch(erro => {
-        console.error('Erro ao obter avaliação de professores:', erro);
+      .catch((erro) => {
+        console.error("Erro ao obter avaliação de professores:", erro);
       });
-    
-      obterMinhasAvaliacoesMaterias() // Chame a função correta
-      .then(avaliacoes_materia => {
+
+    obterMinhasAvaliacoesMaterias() // Chame a função correta
+      .then((avaliacoes_materia) => {
         this.avaliacoes_materia = avaliacoes_materia; // Defina os dados corretamente
         console.log(this.avaliacoes_materia);
       })
-      .catch(erro => {
-        console.error('Erro ao obter avaliações de matérias:', erro);
+      .catch((erro) => {
+        console.error("Erro ao obter avaliações de matérias:", erro);
       });
   },
-
 };
 </script>
 
 <style scoped>
 .avaliacoes {
   background: hsla(209, 63%, 17%, 1);
-  background: linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
-  background: -moz-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
-  background: -webkit-linear-gradient(90deg, hsla(209, 63%, 17%, 1) 0%, hsla(183, 71%, 16%, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    hsla(209, 63%, 17%, 1) 0%,
+    hsla(183, 71%, 16%, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(209, 63%, 17%, 1) 0%,
+    hsla(183, 71%, 16%, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(209, 63%, 17%, 1) 0%,
+    hsla(183, 71%, 16%, 1) 100%
+  );
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -117,21 +153,21 @@ export default {
 }
 
 .titulo-avaliacao {
-  color: #E0E0E0;
-  font-family: 'Open Sans', sans-serif;
+  color: #e0e0e0;
+  font-family: "Open Sans", sans-serif;
   font-size: 4rem;
   font-weight: bold;
   margin-top: 5vh;
 }
 
-.professores-materias{
+.professores-materias {
   display: flex;
   width: 100%;
   max-width: 500px;
   justify-content: center;
 }
 
-.professores{
+.professores {
   padding: 10px 20px 10px 20px;
   border-radius: 20px 0 0 20px;
   border: solid 2px aliceblue;
@@ -140,7 +176,7 @@ export default {
   transition: background-color 01s ease;
 }
 
-.professores.toggle{
+.professores.toggle {
   padding: 10px 20px 10px 20px;
   background-color: aliceblue;
   border-radius: 20px 0 0 20px;
@@ -148,7 +184,7 @@ export default {
   transition: background-color 01s ease;
 }
 
-.professores.toggle .professores-text{
+.professores.toggle .professores-text {
   color: #2e2e2e;
 }
 
@@ -156,50 +192,48 @@ export default {
   transition: background-color 0.5s ease-in;
 }
 
-.professores-text{
+.professores-text {
   color: #ffffff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
 }
 
-.materias{
+.materias {
   padding: 10px 20px 10px 20px;
   border-radius: 0px 20px 20px 0;
   border: solid 2px aliceblue;
   cursor: pointer;
 }
 
-.materias.toggle{
+.materias.toggle {
   padding: 10px 20px 10px 20px;
   background-color: aliceblue;
   border-radius: 0px 20px 20px 0;
   cursor: pointer;
 }
 
-.materias.toggle .materias-text{
+.materias.toggle .materias-text {
   color: #2e2e2e;
 }
 
-
-.materias-text{
+.materias-text {
   color: #ffffff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
 }
 
-
 .reviews {
-  color: #BFBFBF;
-  font-family:'Inter', sans-serif;
+  color: #bfbfbf;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
 }
 
-
-.listagem-avaliacoes-professores, .listagem-avaliacoes-materias{
+.listagem-avaliacoes-professores,
+.listagem-avaliacoes-materias {
   margin-top: 30px;
   width: 100%;
   max-width: 834px; /* Ajuste conforme necessário */
@@ -210,7 +244,6 @@ export default {
   padding-bottom: 100px; /* espaço para o FooterBar */
   box-sizing: border-box; /* incluir padding na altura */
 }
-
 
 .FooterBar {
   margin-top: auto; /* empurrar para a parte inferior */

@@ -1,4 +1,5 @@
 <template>
+
 	<div class="container-frame">
 		<div class="container">
 			<div class="container-avaliacao">
@@ -121,67 +122,88 @@
 		</div>
 	</div>
 </template>
-
-
 <script>
 import { obterMateriaByID } from "@/service/materia/ManipularDadosMateriaIndividual";
+import { ref } from "vue";
+import PopUp from "./PopupAvaliaMaterias.vue";
+import CardProfMateria from "./ProfessorPorMateria.vue";
+import { obterInformacoesProfessoresFiltrados } from "@/service/professor/ManipulaDadosProfessorCardListagem";
+//import router from '../routes/index';
 
 export default {
-	name: "infoMateria",
-	data() {
-		return {
-			materia: {},
-		};
-	},
-	methods: {
-		getStarClassMateria(nota_total) {
-			const notaPorEstrela = 1;
-			let notaAtual = nota_total / notaPorEstrela;
+  name: "infoMateria",
 
-			notaAtual = Math.round(notaAtual * 2) / 2;
+  data() {
+    return {
+      materia: {},
+      professores: [],
+    };
+  },
 
-			let estrelaClasses = [];
+  components: {
+    PopUp,
+    CardProfMateria,
+  },
 
-			for (let i = 1; i <= 5; i++) {  // Aqui, diretamente usar o número 5 em vez de totalEstrelas
-				if (notaAtual >= i) {
-					estrelaClasses.push("full-star");
-				} else if (notaAtual > i - 1 && notaAtual < i) {
-					estrelaClasses.push("partial-star");
-				} else {
-					estrelaClasses.push("empty-star");
-				}
-			}
+  methods: {
+    getStarClassMateria(nota_total) {
+      const notaPorEstrela = 1;
+      const totalEstrelas = 5;
+      let notaAtual = nota_total / notaPorEstrela;
 
-			return estrelaClasses;
-		},
-		getStarClass(index, nota_total) {
-			const notaPorEstrela = 1;
-			let notaAtual = nota_total / notaPorEstrela;
+      notaAtual = Math.round(notaAtual * 2) / 2;
 
-			notaAtual = Math.round(notaAtual * 2) / 2;
+      let estrelaClasses = [];
 
-			if (notaAtual >= index) {
-				return "full-star";
-			} else if (notaAtual > index - 1 && notaAtual < index) {
-				return "partial-star";
-			} else {
-				return "empty-star";
-			}
-		}
-	},
+      for (let i = 1; i <= totalEstrelas; i++) {
+        if (notaAtual >= i) {
+          estrelaClasses.push("full-star");
+        } else if (notaAtual > i - 1 && notaAtual < i) {
+          estrelaClasses.push("partial-star");
+        } else {
+          estrelaClasses.push("empty-star");
+        }
+      }
 
-	mounted() {
-		const cod_materia = this.$route.params.cod;
-		console.log(cod_materia);
-		obterMateriaByID(cod_materia)
-			.then((materia) => {
-				this.materia = materia;
-				console.log(this.materia);
-			})
-			.catch((erro) => {
-				console.error("Erro ao obter matéria:", erro);
-			});
-	},
+      return estrelaClasses;
+    },
+  },
+
+  setup() {
+    const popupTrigger = ref({
+      buttonTrigger: false,
+    });
+
+    const TogglePopup = (trigger) => {
+      popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+    };
+
+    return {
+      popupTrigger,
+      TogglePopup,
+    };
+  },
+  mounted() {
+    const cod_materia = this.$route.params.cod;
+    console.log(cod_materia);
+    obterMateriaByID(cod_materia)
+      .then((materia) => {
+        this.materia = materia;
+        console.log(this.materia);
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter matéria:", erro);
+      });
+
+    obterInformacoesProfessoresFiltrados(cod_materia)
+      .then((professores) => {
+        this.professores = professores;
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter professor: ", erro);
+      });
+  },
+
 };
 </script>
 
@@ -189,19 +211,20 @@ export default {
 <style scoped>
 html,
 body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .container-frame {
-	height: 100%;
-	background-color: #f5f5f5;
-	overflow: hidden;
+  height: 100%;
+  background-color: #f5f5f5;
+  overflow: hidden;
 }
 
 .container {
+
 	height: calc(100% - 60px);
 	width: calc(100% - 60px);
 	display: grid;
@@ -212,15 +235,15 @@ body {
 }
 
 .container-avaliacao {
-	background-color: #f5f5f5;
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	overflow: auto;
-	padding-bottom: 0px;
-	margin-bottom: 20px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  padding-bottom: 0px;
+  margin-bottom: 20px;
 }
 
 .five-estrelas {
@@ -251,66 +274,46 @@ body {
 
 .container-notas-gerais,
 .container-professores {
-	display: flex;
-	flex-direction: column;
-	gap: 40px;
-	overflow: auto;
-	margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 20px;
 }
 
 .section {
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  overflow: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 90vh;
 }
 
-#given-subjects {
-	display: flex;
-	justify-content: center;
-	padding-bottom: 0px;
+.section {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
-#given-subjects {
-	background-color: #f5f5f5;
-	height: 100%;
+.section::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 #general-reviews h3 {
-	font-size: 2.17em;
-}
-
-#general-reviews {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  font-size: 2.17em;
 }
 
 .avaliacoes-gerais-container {
-	display: flex;
-	flex-direction: column;
-	justify-items: center;
-	height: 100%;
-}
-
-#teacher-review {
-	height: 100%;
-	background-color: #f5f5f5;
-	margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  height: 100%;
 }
 
 #teacher-review h3 {
-	font-size: 2.17em;
-	text-align: center;
+  font-size: 2.17em;
+  text-align: center;
 }
 
-.titulo-notas-gerais {
-	height: 100%;
-	background-color: #f5f5f5;
-	padding-top: 20px;
-	margin-right: 20px;
-}
 
 .titulo-notas-gerais h3 {
 	font-size: 2.17em;
@@ -332,10 +335,13 @@ h3,
 h2 {
 	color: #4d4d4d;
 	font-family: "Open Sans", sans-serif;
+
 }
 
 li,
+h3,
 p {
+
 	font-family: Inter, sans-serif;
 	font-size: 15px;
 	color: #4d4d4d;
@@ -425,5 +431,6 @@ p {
 	/* Tamanho dos ícones de like e dislike */
 	height: 18px;
 	/* Tamanho dos ícones de like e dislike */
+
 }
 </style>
