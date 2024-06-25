@@ -58,6 +58,8 @@ async function dislikeComentario(cod_comentario, comentariosCurtidos) {
 		"likes_dislikes_professores",
 		comentariosAtualizadosEncriptados
 	);
+
+	return { num_likes: 0, num_dislikes: 1 };
 }
 
 async function dislikeComentarioComLike(cod_comentario, comentariosCurtidos) {
@@ -95,6 +97,7 @@ async function dislikeComentarioComLike(cod_comentario, comentariosCurtidos) {
 		"likes_dislikes_professores",
 		comentariosAtualizadosEncriptados
 	);
+	return { num_likes: -1, num_dislikes: 1 };
 }
 
 async function tirarDislikeComentario(cod_comentario, comentariosCurtidos) {
@@ -120,6 +123,7 @@ async function tirarDislikeComentario(cod_comentario, comentariosCurtidos) {
 		"likes_dislikes_professores",
 		comentariosAtualizadosEncriptados
 	);
+	return { num_likes: 0, num_dislikes: -1 };
 }
 
 export async function verificacaoDislike(comentariosCurtidos, cod_comentario) {
@@ -127,13 +131,15 @@ export async function verificacaoDislike(comentariosCurtidos, cod_comentario) {
 		(comentario) => comentario.cod_comentario == cod_comentario
 	);
 	if (!comentarioProcurado) {
-		await dislikeComentario(cod_comentario, comentariosCurtidos);
-		return;
+		return await dislikeComentario(cod_comentario, comentariosCurtidos);
 	} else {
 		if (comentarioProcurado.dislike == 1) {
-			await tirarDislikeComentario(cod_comentario, comentariosCurtidos);
+			return await tirarDislikeComentario(cod_comentario, comentariosCurtidos);
 		} else {
-			await dislikeComentarioComLike(cod_comentario, comentariosCurtidos);
+			return await dislikeComentarioComLike(
+				cod_comentario,
+				comentariosCurtidos
+			);
 		}
 	}
 }

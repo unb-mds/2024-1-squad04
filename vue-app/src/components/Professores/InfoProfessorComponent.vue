@@ -497,20 +497,41 @@ export default {
 			const comentariosDescriptografados = await descriptarDados(
 				sessionStorage.getItem("likes_dislikes_professores")
 			);
-			await verificacaoDislike(comentariosDescriptografados, cod_comentario);
+			const result = await verificacaoDislike(
+				comentariosDescriptografados,
+				cod_comentario
+			);
+			const comentario = this.professor.avaliacoes.find(
+				(avaliacao) => avaliacao.cod_comentario === cod_comentario
+			);
+			if (comentario) {
+				comentario.num_likes += result.num_likes;
+				comentario.num_dislikes += result.num_dislikes;
+			}
+			await this.getComentariosCurtidosPeloUsuario();
 		},
 		async handleLike(cod_comentario) {
 			const comentariosDescriptografados = await descriptarDados(
 				sessionStorage.getItem("likes_dislikes_professores")
 			);
-			await verificacaoCurtida(comentariosDescriptografados, cod_comentario);
+			const result = await verificacaoCurtida(
+				comentariosDescriptografados,
+				cod_comentario
+			);
+			const comentario = this.professor.avaliacoes.find(
+				(avaliacao) => avaliacao.cod_comentario === cod_comentario
+			);
+			if (comentario) {
+				comentario.num_likes += result.num_likes;
+				comentario.num_dislikes += result.num_dislikes;
+			}
+			await this.getComentariosCurtidosPeloUsuario();
 		},
 
 		async getComentariosCurtidosPeloUsuario() {
 			this.comentariosCurtidos = await descriptarDados(
 				sessionStorage.getItem("likes_dislikes_professores")
 			);
-			console.log(this.comentariosCurtidos);
 		},
 		isLiked(cod_comentario) {
 			let comentario = this.comentariosCurtidos.find(

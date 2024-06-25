@@ -81,6 +81,11 @@ export default {
 		},
 		handleLogOut() {
 			sessionStorage.setItem("matricula", "");
+			sessionStorage.setItem("foto_perfil", "");
+			sessionStorage.setItem("professores_avaliados", "");
+			sessionStorage.setItem("materias_avaliadas", "");
+			sessionStorage.setItem("likes_dislikes_materias", "");
+			sessionStorage.setItem("likes_dislikes_professores", "");
 			window.location.reload();
 		},
 		togglePopUpEdit() {

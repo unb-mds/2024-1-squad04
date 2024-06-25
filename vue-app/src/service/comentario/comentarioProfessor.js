@@ -58,6 +58,8 @@ async function curtirComentario(cod_comentario, comentariosCurtidos) {
 		"likes_dislikes_professores",
 		comentariosAtualizadosEncriptados
 	);
+
+	return { num_likes: 1, num_dislikes: 0, liked: true, disliked: false };
 }
 
 async function curtirComentarioComDislike(cod_comentario, comentariosCurtidos) {
@@ -82,7 +84,7 @@ async function curtirComentarioComDislike(cod_comentario, comentariosCurtidos) {
 	};
 
 	const comentariosAtualizados = comentariosCurtidos.filter(
-		(comentario) => comentario.cod_comentario !== cod_comentario
+		(comentario) => comentario.cod_comentario != cod_comentario
 	);
 
 	const curtidasAtualizadas = [...comentariosAtualizados, novaCurtida];
@@ -95,6 +97,7 @@ async function curtirComentarioComDislike(cod_comentario, comentariosCurtidos) {
 		"likes_dislikes_professores",
 		comentariosAtualizadosEncriptados
 	);
+	return { num_likes: 1, num_dislikes: -1, liked: true, disliked: false };
 }
 
 async function descurtirComentario(cod_comentario, comentariosCurtidos) {
@@ -120,6 +123,7 @@ async function descurtirComentario(cod_comentario, comentariosCurtidos) {
 		"likes_dislikes_professores",
 		comentariosAtualizadosEncriptados
 	);
+	return { num_likes: -1, num_dislikes: 0, liked: false, disliked: false };
 }
 
 export async function verificacaoCurtida(comentariosCurtidos, cod_comentario) {
@@ -127,13 +131,15 @@ export async function verificacaoCurtida(comentariosCurtidos, cod_comentario) {
 		(comentario) => comentario.cod_comentario == cod_comentario
 	);
 	if (!comentarioProcurado) {
-		await curtirComentario(cod_comentario, comentariosCurtidos);
-		return;
+		return await curtirComentario(cod_comentario, comentariosCurtidos);
 	} else {
 		if (comentarioProcurado.like == 1) {
-			await descurtirComentario(cod_comentario, comentariosCurtidos);
+			return await descurtirComentario(cod_comentario, comentariosCurtidos);
 		} else {
-			await curtirComentarioComDislike(cod_comentario, comentariosCurtidos);
+			return await curtirComentarioComDislike(
+				cod_comentario,
+				comentariosCurtidos
+			);
 		}
 	}
 }
