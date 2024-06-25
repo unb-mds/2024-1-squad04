@@ -351,11 +351,15 @@
                                 </div>
 
                                 <div id="avaliacao-icons">
-                                    <div id="like-container">
+                                    <div id="like-container"
+                                    @click="
+											handleLike(avaliacao.cod_comentario, avaliacao.num_likes)
+										">
                                         <div id="avaliacao-likes">
                                             <p>{{ avaliacao.num_likes }}</p>
                                         </div>
-                                        <div id="like-icon">
+                                        <div id="like-icon"
+                                        :class="{ liked: isLiked(avaliacao.cod_comentario) }">
                                             <svg
                                                 width="17"
                                                 height="17"
@@ -377,11 +381,15 @@
                                         </div>
                                     </div>
 
-                                    <div id="dislike-container">
+                                    <div id="dislike-container"
+                                    @click="handleDislike(avaliacao.cod_comentario)">
                                         <div id="avaliacao-deslikes">
                                             <p>{{ avaliacao.num_dislikes }}</p>
                                         </div>
-                                        <div id="dislike-icon">
+                                        <div id="dislike-icon"
+                                        :class="{
+												disliked: isDisliked(avaliacao.cod_comentario),
+											}">
                                             <svg
                                                 width="17"
                                                 height="17"
@@ -390,7 +398,7 @@
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
                                                 <g
-                                                    transform="scale(-1,1) translate(-17,0)"
+                                                    transform="scale(-1, -1) translate(-17, -20)"
                                                 >
                                                     <path
                                                         d="M5.94287 13.0973V5.90059C5.94287 5.61726 6.02787 5.34101 6.1837 5.10726L8.11745 2.23143C8.42204 1.77101 9.17995 1.44518 9.82454 1.68601C10.5187 1.91976 10.9791 2.69893 10.8304 3.39309L10.462 5.70934C10.4337 5.92184 10.4904 6.11309 10.6108 6.26184C10.7312 6.39643 10.9083 6.48143 11.0995 6.48143H14.0108C14.5704 6.48143 15.052 6.70809 15.3354 7.10476C15.6045 7.48726 15.6541 7.98309 15.477 8.48601L13.7345 13.7914C13.515 14.6698 12.5587 15.3852 11.6095 15.3852H8.84704C8.37245 15.3852 7.70662 15.2223 7.40204 14.9177L6.49537 14.2164C6.14829 13.9543 5.94287 13.5364 5.94287 13.0973Z"
@@ -424,120 +432,180 @@ import { getProfessoresByID } from "@/repositories/professor/obterProfessor.js";
 import PopUp from "./PopupAvaliaProfessor.vue";
 import { ref } from "vue";
 import router from "@/routes/index";
+import { verificacaoCurtida } from "@/service/comentario/comentarioProfessor";
+import { descriptarDados } from "@/generals/descriptografarDados";
+import { verificacaoDislike } from "@/service/comentario/descurtirComentarioProfessor";
 
 export default {
-    name: "UserProfile",
+	name: "UserProfile",
 
-    components: {
-        PopUp,
-    },
+	components: {
+		PopUp,
+	},
 
-    data() {
-        return {
-            professor: Object,
-            materia: "",
-        };
-    },
-    setup() {
-        const popupTrigger = ref({
-            buttonTrigger: false,
-        });
+	data() {
+		return {
+			professor: Object,
+			materia: "",
+			comentariosCurtidos: [],
+		};
+	},
 
-        const TogglePopup = (trigger) => {
-            popupTrigger.value[trigger] = !popupTrigger.value[trigger];
-        };
+	setup() {
+		const popupTrigger = ref({
+			buttonTrigger: false,
+		});
 
-        return {
-            popupTrigger,
-            TogglePopup,
-        };
-    },
-    methods: {
-        async fetchProfessor(id, materia) {
-            try {
-                const data = await getProfessoresByID(id, materia);
-                this.professor = data[0];
-            } catch (error) {
-                console.error("Erro ao obter professor", error);
-            }
-        },
-        carregarImgAlternativa(event) {
-            event.target.src =
-                "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
-        },
-        verificarUrlUsuario(url_profile_picture) {
-            if (!url_profile_picture) {
-                return "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
-            }
-            return url_profile_picture;
-        },
+		const TogglePopup = (trigger) => {
+			popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+		};
 
-        voltarPagina() {
-            router.go(-1);
-        },
+		return {
+			popupTrigger,
+			TogglePopup,
+		};
+	},
+	methods: {
+		async fetchProfessor(id, materia) {
+			try {
+				const data = await getProfessoresByID(id, materia);
+				this.professor = data[0];
+			} catch (error) {
+				console.error("Erro ao obter professor", error);
+			}
+		},
+		carregarImgAlternativa(event) {
+			event.target.src =
+				"https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
+		},
+		verificarUrlUsuario(url_profile_picture) {
+			if (!url_profile_picture) {
+				return "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
+			}
+			return url_profile_picture;
+		},
 
-        verificarUrl(urlProfessor) {
-            if (
-                urlProfessor === "https://sigaa.unb.br/sigaa/img/no_picture.png"
-            ) {
-                return "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
-            }
-            return urlProfessor;
-        },
+		voltarPagina() {
+			router.go(-1);
+		},
 
-        getStarClass(index, nota_total) {
-            const notaPorEstrela = 2;
-            // const totalEstrelas = 5;
-            const notaAtual = nota_total / notaPorEstrela;
+		verificarUrl(urlProfessor) {
+			if (urlProfessor === "https://sigaa.unb.br/sigaa/img/no_picture.png") {
+				return "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png";
+			}
+			return urlProfessor;
+		},
 
-            if (notaAtual >= index) {
-                return "full-star";
-            } else if (notaAtual > index - 1 && notaAtual < index) {
-                return "partial-star";
-            } else {
-                return "empty-star";
-            }
-        },
+		getStarClass(index, nota_total) {
+			const notaPorEstrela = 2;
+			// const totalEstrelas = 5;
+			const notaAtual = nota_total / notaPorEstrela;
 
-        getStarClassProfessor(nota_total) {
-            const notaPorEstrela = 1;
-            const totalEstrelas = 5;
-            let notaAtual = nota_total / notaPorEstrela;
+			if (notaAtual >= index) {
+				return "full-star";
+			} else if (notaAtual > index - 1 && notaAtual < index) {
+				return "partial-star";
+			} else {
+				return "empty-star";
+			}
+		},
 
-            // Arredonda a parte decimal para a metade mais próxima
-            notaAtual = Math.round(notaAtual * 2) / 2;
+		getStarClassProfessor(nota_total) {
+			const notaPorEstrela = 1;
+			const totalEstrelas = 5;
+			let notaAtual = nota_total / notaPorEstrela;
 
-            let estrelaClasses = [];
+			// Arredonda a parte decimal para a metade mais próxima
+			notaAtual = Math.round(notaAtual * 2) / 2;
 
-            for (let i = 1; i <= totalEstrelas; i++) {
-                if (notaAtual >= i) {
-                    estrelaClasses.push("full-star");
-                } else if (notaAtual > i - 1 && notaAtual < i) {
-                    estrelaClasses.push("partial-star");
-                } else {
-                    estrelaClasses.push("empty-star");
-                }
-            }
+			let estrelaClasses = [];
 
-            return estrelaClasses;
-        },
-    },
-    watch: {
-        materia() {
-            const cod_professor = this.$route.params.id;
-            this.fetchProfessor(cod_professor, this.materia);
-        },
-    },
-    mounted() {
-        const cod_professor = this.$route.params.id;
-        this.fetchProfessor(cod_professor);
-    },
+			for (let i = 1; i <= totalEstrelas; i++) {
+				if (notaAtual >= i) {
+					estrelaClasses.push("full-star");
+				} else if (notaAtual > i - 1 && notaAtual < i) {
+					estrelaClasses.push("partial-star");
+				} else {
+					estrelaClasses.push("empty-star");
+				}
+			}
+
+			return estrelaClasses;
+		},
+
+		async handleDislike(cod_comentario) {
+			const comentariosDescriptografados = await descriptarDados(
+				sessionStorage.getItem("likes_dislikes_professores")
+			);
+			const result = await verificacaoDislike(
+				comentariosDescriptografados,
+				cod_comentario
+			);
+			const comentario = this.professor.avaliacoes.find(
+				(avaliacao) => avaliacao.cod_comentario === cod_comentario
+			);
+			if (comentario) {
+				comentario.num_likes += result.num_likes;
+				comentario.num_dislikes += result.num_dislikes;
+			}
+			await this.getComentariosCurtidosPeloUsuario();
+		},
+		async handleLike(cod_comentario) {
+			const comentariosDescriptografados = await descriptarDados(
+				sessionStorage.getItem("likes_dislikes_professores")
+			);
+			const result = await verificacaoCurtida(
+				comentariosDescriptografados,
+				cod_comentario
+			);
+			const comentario = this.professor.avaliacoes.find(
+				(avaliacao) => avaliacao.cod_comentario === cod_comentario
+			);
+			if (comentario) {
+				comentario.num_likes += result.num_likes;
+				comentario.num_dislikes += result.num_dislikes;
+			}
+			await this.getComentariosCurtidosPeloUsuario();
+		},
+
+		async getComentariosCurtidosPeloUsuario() {
+			this.comentariosCurtidos = await descriptarDados(
+				sessionStorage.getItem("likes_dislikes_professores")
+			);
+		},
+		isLiked(cod_comentario) {
+			let comentario = this.comentariosCurtidos.find(
+				(comentario) =>
+					comentario.cod_comentario == cod_comentario && comentario.like == 1
+			);
+			return comentario ? true : false;
+		},
+		isDisliked(cod_comentario) {
+			let comentario = this.comentariosCurtidos.find(
+				(comentario) =>
+					comentario.cod_comentario == cod_comentario && comentario.dislike == 1
+			);
+			return comentario ? true : false;
+		},
+	},
+	watch: {
+		materia() {
+			const cod_professor = this.$route.params.id;
+			this.fetchProfessor(cod_professor, this.materia);
+		},
+	},
+	async mounted() {
+		const cod_professor = this.$route.params.id;
+		this.fetchProfessor(cod_professor);
+		this.getComentariosCurtidosPeloUsuario();
+	},
 };
 </script>
 
 <style scoped>
 html,
 body {
+
     height: 100%;
     margin: 0;
     padding: 0;
@@ -684,6 +752,7 @@ select option.opcao {
 
 .academic-info,
 .professor-contact-info {
+
     margin-top: 20px;
     overflow: auto;
 }
@@ -732,6 +801,7 @@ select option.opcao {
 
 #content1,
 #content2 {
+
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -778,10 +848,12 @@ select option.opcao {
 #ajuste-estrelas-metricas {
     width: 90%;
     height: 90%;
+
 }
 
 #given-subjects,
 #general-reviews {
+
     background-color: #f5f5f5;
     height: 50%;
 }
@@ -967,25 +1039,35 @@ select option.opcao {
 
 #like-icon,
 #dislike-icon {
-    padding-left: 5%;
+
+	padding-left: 5%;
 }
 
-#dislike-icon {
-    width: 10rem;
+#like-icon.liked path {
+	fill: #013d2c; /* Muda a cor do ícone de "like" para verde quando curtido */
+}
+
+#dislike-icon.disliked path {
+	fill: #013d2c; /* Muda a cor do ícone de "like" para verde quando curtido */
+
 }
 
 h3,
 h2 {
+
     color: #4d4d4d;
     font-family: "Open Sans", sans-serif;
 }
 
 li,
 p {
-    font-family: Inter, sans-serif;
+
+	font-family: Inter, sans-serif;
+
 }
 
 .full-star {
+
     filter: none;
 }
 
@@ -1103,5 +1185,6 @@ p {
     .estrela {
         width: 10%; /* Ajusta o tamanho das estrelas */
     }
+
 }
 </style>
