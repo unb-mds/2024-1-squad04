@@ -425,7 +425,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -672,7 +671,6 @@ select option.opcao {
         hsla(209, 63%, 17%, 1) 0%,
         hsla(183, 71%, 16%, 1) 100%
     );
-
 }
 
 #sidebar {
@@ -722,7 +720,6 @@ select option.opcao {
 }
 
 .role-button {
-
     background: -webkit-linear-gradient(
         90deg,
         hsla(209, 63%, 17%, 1) 0%,
@@ -738,7 +735,6 @@ select option.opcao {
     font-family: Inter, sans-serif;
     cursor: pointer;
     align-self: center;
-
 }
 
 .quote {
@@ -781,7 +777,6 @@ select option.opcao {
     background-color: #f5f5f5;
     border-radius: 10px;
 }
-
 .academic-info ul {
     list-style: none;
     padding: 0;
@@ -829,10 +824,8 @@ select option.opcao {
 }
 
 #estrela-media-professor {
-
     width: 125%; /* Aumenta a largura */
     height: 125%; /* Aumenta a altura */
-
 }
 
 .estrelas-metricas-container {
@@ -884,9 +877,7 @@ select option.opcao {
 }
 
 .info-text {
-
     margin-left: 15%; /* Ajuste conforme necessário */
-
 }
 
 .titulo-avaliacoes-gerais {
@@ -972,7 +963,6 @@ select option.opcao {
     flex-direction: column; /* This ensures the children elements stack vertically */
     align-items: center; /* This centers the children horizontally */
     justify-content: center; /* This centers the children vertically */
-
 }
 
 .container-avaliacao {
@@ -1195,139 +1185,6 @@ p {
     .estrela {
         width: 10%; /* Ajusta o tamanho das estrelas */
     }
-
-.estrela {
-	width: 12%;
-}
-
-@media only screen and (max-width: 768px) {
-	.container {
-		grid-template-columns: 1fr;
-		/* Altera para uma única coluna */
-		gap: 20px;
-		/* Reduz o espaçamento entre os elementos */
-		padding: 20px;
-		/* Reduz o preenchimento */
-	}
-
-	#sidebar {
-		margin-bottom: 0px;
-		/* Remove a margem inferior */
-	}
-
-	.role-button {
-		width: 100%;
-		/* Faz o botão ocupar toda a largura */
-		margin-top: 10px;
-		/* Adiciona um espaçamento superior */
-	}
-
-	.profile-pic {
-		width: 100%;
-		/* Faz a imagem do perfil ocupar toda a largura */
-	}
-
-	.academic-info,
-	.professor-contact-info {
-		margin-top: 10px;
-		/* Reduz a margem superior */
-	}
-
-	.container-academic-info {
-		padding-top: 20%;
-		/* Reduz o espaçamento superior */
-	}
-
-	.five-estrelas {
-		width: 100%;
-		/* Faz as estrelas ocuparem toda a largura */
-		justify-content: space-around;
-		/* Distribui as estrelas uniformemente */
-		gap: 5px;
-		/* Reduz o espaçamento entre as estrelas */
-	}
-
-	.estrela {
-		width: 10%;
-		/* Ajusta o tamanho das estrelas */
-	}
-}
-
-@media only screen and (max-width: 480px) {
-	.container {
-		grid-template-columns: 1fr;
-		/* Altera para uma única coluna */
-		gap: 10px;
-		/* Reduz o espaçamento entre os elementos */
-		padding: 10px;
-		/* Reduz o preenchimento */
-	}
-
-	.profile-pic {
-		width: 100%;
-		/* Faz a imagem do perfil ocupar toda a largura */
-	}
-
-	.role-button {
-		width: 100%;
-		/* Faz o botão ocupar toda a largura */
-		margin-top: 10px;
-		/* Adiciona um espaçamento superior */
-		font-size: 14px;
-		/* Reduz o tamanho da fonte */
-	}
-
-	.section {
-		padding: 10px;
-		/* Reduz o preenchimento das seções */
-	}
-
-	.academic-info,
-	.professor-contact-info {
-		margin-top: 10px;
-		/* Reduz a margem superior */
-	}
-
-	.container-academic-info {
-		padding-top: 10%;
-		/* Reduz o espaçamento superior */
-	}
-
-	.five-estrelas {
-		width: 100%;
-		/* Faz as estrelas ocuparem toda a largura */
-		justify-content: space-around;
-		/* Distribui as estrelas uniformemente */
-		gap: 5px;
-		/* Reduz o espaçamento entre as estrelas */
-	}
-
-	.estrela {
-		width: 10%;
-		/* Ajusta o tamanho das estrelas */
-	}
-
-	.subjects-title h3 {
-		font-size: 16px;
-		/* Reduz o tamanho do título */
-	}
-
-	#semestre-atual {
-		font-size: 14px;
-		/* Reduz o tamanho do texto */
-		padding-left: 20px;
-		/* Ajusta o recuo */
-	}
-
-	#materias_dadas {
-		padding-left: 20px;
-		/* Ajusta o recuo */
-	}
-
-	#materias_dadas li {
-		font-size: 14px;
-		/* Reduz o tamanho do texto */
-	}
 
 }
 </style>
