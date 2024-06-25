@@ -1,28 +1,18 @@
 <template>
 	<div class="container-frame">
 		<div class="container">
-			<PopUp
-				v-if="popupTrigger.buttonTrigger"
-				:TogglePopup="() => TogglePopup('buttonTrigger')"
-				:professor="professor"
-			/>
+			<PopUp v-if="popupTrigger.buttonTrigger" :TogglePopup="() => TogglePopup('buttonTrigger')"
+				:professor="professor" />
 			<!-- Sidebar -->
 			<div id="sidebar">
 				<a href="http://localhost:8080/professores">
 					<div id="botao-voltar-professores">
-						<img
-							src="../../assets/icons/avaliacao/icon-voltar-professores.svg"
-							alt=""
-						/>
+						<img src="../../assets/icons/avaliacao/icon-voltar-professores.svg" alt="" />
 					</div>
 				</a>
 
 				<div id="image-content">
-					<img
-						:src="verificarUrl(professor.foto_professor)"
-						alt="Foto do Professor"
-						class="profile-pic"
-					/>
+					<img :src="verificarUrl(professor.foto_professor)" alt="Foto do Professor" class="profile-pic" />
 					<h2>{{ professor.nome_professor }}</h2>
 					<h3>Faculdade do Gama</h3>
 				</div>
@@ -39,10 +29,8 @@
 
 								<div class="local-professor">
 									<div class="container-linha-info">
-										<img
-											src="../../assets/icons/avaliacao/icon-localizacao-sala-professor.svg"
-											alt=""
-										/>
+										<img src="../../assets/icons/avaliacao/icon-localizacao-sala-professor.svg"
+											alt="" />
 										<p class="info-text" id="ajuste-localizacao-professor">
 											Brasília, UnB Gama
 										</p>
@@ -51,10 +39,7 @@
 
 								<div class="graduacao-cursada">
 									<div class="container-linha-info">
-										<img
-											src="../../assets/icons/avaliacao/icon-formacao-professor.svg"
-											alt=""
-										/>
+										<img src="../../assets/icons/avaliacao/icon-formacao-professor.svg" alt="" />
 										<p class="info-text">
 											2003-2007: Ciência da Computação
 											<br />
@@ -69,20 +54,15 @@
 
 								<div class="email-container">
 									<div class="container-linha-info">
-										<img
-											src="../../assets/icons/avaliacao/icon-email-professor.svg"
-											alt=""
-										/>
+										<img src="../../assets/icons/avaliacao/icon-email-professor.svg" alt="" />
 										<p>daniel.sundfeld@unb.br</p>
 									</div>
 								</div>
 
 								<div class="sala-professor-container">
 									<div class="container-linha-info">
-										<img
-											src="../../assets/icons/avaliacao/icon-localizacao-sala-professor.svg"
-											alt=""
-										/>
+										<img src="../../assets/icons/avaliacao/icon-localizacao-sala-professor.svg"
+											alt="" />
 										<p id="ajuste-sala-professor">FGA/UED36</p>
 									</div>
 								</div>
@@ -101,97 +81,50 @@
 						</div>
 
 						<div v-if="professor.medias" class="five-estrelas">
-							<img
-								id="estrela-media-professor"
-								v-for="(starClass, index) in getStarClassProfessor(
-									professor.medias.media_nota_total
-								)"
-								:key="index"
-								src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-								alt=""
-								class="estrela"
-								:class="starClass"
-							/>
+							<img id="estrela-media-professor" v-for="(starClass, index) in getStarClassProfessor(
+								professor.medias.media_nota_total
+							)" :key="index" src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg" alt=""
+								class="estrela" :class="starClass" />
 						</div>
 
 						<div class="estrelas-metricas-container">
 							<div class="metricas-ajustes">
 								<p>Acesso</p>
-								<div
-									v-if="professor.medias"
-									class="five-estrelas estrelas-metricas"
-								>
-									<img
-										id="ajuste-estrelas-metricas"
-										v-for="(starClass, index) in getStarClassProfessor(
-											professor.medias.media_nota_acesso
-										)"
-										:key="index"
-										src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-										alt=""
-										class="estrela"
-										:class="starClass"
-									/>
+								<div v-if="professor.medias" class="five-estrelas estrelas-metricas">
+									<img id="ajuste-estrelas-metricas" v-for="(starClass, index) in getStarClassProfessor(
+										professor.medias.media_nota_acesso
+									)" :key="index" src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
+										alt="" class="estrela" :class="starClass" />
 								</div>
 							</div>
 
 							<div class="metricas-ajustes">
 								<p>Didática</p>
-								<div
-									v-if="professor.medias"
-									class="five-estrelas estrelas-metricas"
-								>
-									<img
-										id="ajuste-estrelas-metricas"
-										v-for="(starClass, index) in getStarClassProfessor(
-											professor.medias.media_nota_didatica
-										)"
-										:key="index"
-										src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-										alt=""
-										class="estrela"
-										:class="starClass"
-									/>
+								<div v-if="professor.medias" class="five-estrelas estrelas-metricas">
+									<img id="ajuste-estrelas-metricas" v-for="(starClass, index) in getStarClassProfessor(
+										professor.medias.media_nota_didatica
+									)" :key="index" src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
+										alt="" class="estrela" :class="starClass" />
 								</div>
 							</div>
 
 							<div class="metricas-ajustes">
 								<p>Metodologia</p>
-								<div
-									v-if="professor.medias"
-									class="five-estrelas estrelas-metricas"
-								>
-									<img
-										id="ajuste-estrelas-metricas"
-										v-for="(starClass, index) in getStarClassProfessor(
-											professor.medias.media_nota_metodologia
-										)"
-										:key="index"
-										src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-										alt=""
-										class="estrela"
-										:class="starClass"
-									/>
+								<div v-if="professor.medias" class="five-estrelas estrelas-metricas">
+									<img id="ajuste-estrelas-metricas" v-for="(starClass, index) in getStarClassProfessor(
+										professor.medias.media_nota_metodologia
+									)" :key="index" src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
+										alt="" class="estrela" :class="starClass" />
 								</div>
 							</div>
 
 							<div class="metricas-ajustes">
 								<p>Método de Ensino</p>
-								<div
-									v-if="professor.medias"
-									class="five-estrelas estrelas-metricas"
-								>
-									<img
-										id="ajuste-estrelas-metricas"
-										v-for="(starClass, index) in getStarClassProfessor(
-											professor.medias.media_nota_metodo_ensino
-										)"
-										:key="index"
-										src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-										alt=""
-										class="estrela"
-										:class="starClass"
-									/>
+								<div v-if="professor.medias" class="five-estrelas estrelas-metricas">
+									<img id="ajuste-estrelas-metricas" v-for="(starClass, index) in getStarClassProfessor(
+										professor.medias.media_nota_metodo_ensino
+									)" :key="index" src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
+										alt="" class="estrela" :class="starClass" />
 								</div>
 							</div>
 						</div>
@@ -202,33 +135,20 @@
 				<div class="section" id="given-subjects">
 					<div class="subjects_container">
 						<div class="subjects-title">
-							<img
-								src="@/assets/icons/pagina_professor/purpose.png"
-								alt=""
-								id="subjects_icon"
-							/>
+							<img src="@/assets/icons/pagina_professor/purpose.png" alt="" id="subjects_icon" />
 							<h3>Disciplinas Ministradas</h3>
 						</div>
 
 						<p id="semestre-atual">2024.1</p>
 
-						<ul
-							id="materias_dadas"
-							v-if="professor.materias && professor.materias.length > 0"
-						>
+						<ul id="materias_dadas" v-if="professor.materias && professor.materias.length > 0">
 							<div id="materias">
-								<li
-									v-for="materia in professor.materias"
-									:key="materia.cod_materia"
-								>
+								<li v-for="materia in professor.materias" :key="materia.cod_materia">
 									{{ materia.nome_materia }}
 								</li>
 							</div>
 							<div id="codigos-materias">
-								<li
-									v-for="materia in professor.materias"
-									:key="materia.cod_materia"
-								>
+								<li v-for="materia in professor.materias" :key="materia.cod_materia">
 									{{ materia.cod_materia }}
 								</li>
 							</div>
@@ -241,15 +161,9 @@
 			<div id="content2">
 				<div class="section" id="teacher-review">
 					<h3>Avaliações</h3>
-					<div
-						id="avaliacoes"
-						v-if="professor.avaliacoes && professor.avaliacoes.length > 0"
-					>
-						<div
-							v-for="avaliacao in professor.avaliacoes"
-							:key="avaliacao.usuario.matricula"
-							class="avaliacao"
-						>
+					<div id="avaliacoes" v-if="professor.avaliacoes && professor.avaliacoes.length > 0">
+						<div v-for="avaliacao in professor.avaliacoes" :key="avaliacao.usuario.matricula"
+							class="avaliacao">
 							<div class="container-avaliacao">
 								<div id="foto-de-usuario-container">
 									<div id="card-user-container">
@@ -263,21 +177,13 @@
 										</div>
 									</div>
 									<div id="foto-de-usuario">
-										<img
-											src="../../assets/provisorio/foto-perfil-navbar-provisoria.svg"
-											alt=""
-										/>
+										<img src="../../assets/provisorio/foto-perfil-navbar-provisoria.svg" alt="" />
 									</div>
 								</div>
 								<div class="five-estrelas">
-									<img
-										v-for="n in 5"
-										:key="n"
+									<img v-for="n in 5" :key="n"
 										src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-										alt=""
-										class="estrela"
-										:class="getStarClass(n, avaliacao.nota_total)"
-									/>
+										alt="" class="estrela" :class="getStarClass(n, avaliacao.nota_total)" />
 								</div>
 
 								<div id="avaliacao-comentario">
@@ -290,23 +196,14 @@
 											<p>{{ avaliacao.num_likes }}</p>
 										</div>
 										<div id="like-icon">
-											<svg
-												width="17"
-												height="17"
-												viewBox="0 0 17 17"
-												fill="none"
-												xmlns="http://www.w3.org/2000/svg"
-											>
+											<svg width="17" height="17" viewBox="0 0 17 17" fill="none"
+												xmlns="http://www.w3.org/2000/svg">
 												<path
 													d="M5.94287 13.0973V5.90059C5.94287 5.61726 6.02787 5.34101 6.1837 5.10726L8.11745 2.23143C8.42204 1.77101 9.17995 1.44518 9.82454 1.68601C10.5187 1.91976 10.9791 2.69893 10.8304 3.39309L10.462 5.70934C10.4337 5.92184 10.4904 6.11309 10.6108 6.26184C10.7312 6.39643 10.9083 6.48143 11.0995 6.48143H14.0108C14.5704 6.48143 15.052 6.70809 15.3354 7.10476C15.6045 7.48726 15.6541 7.98309 15.477 8.48601L13.7345 13.7914C13.515 14.6698 12.5587 15.3852 11.6095 15.3852H8.84704C8.37245 15.3852 7.70662 15.2223 7.40204 14.9177L6.49537 14.2164C6.14829 13.9543 5.94287 13.5364 5.94287 13.0973Z"
-													fill="#171717"
-													fill-opacity="0.5"
-												/>
+													fill="#171717" fill-opacity="0.5" />
 												<path
 													d="M3.6905 4.51953H2.96091C1.863 4.51953 1.41675 4.94453 1.41675 5.99286V13.1187C1.41675 14.167 1.863 14.592 2.96091 14.592H3.6905C4.78841 14.592 5.23466 14.167 5.23466 13.1187V5.99286C5.23466 4.94453 4.78841 4.51953 3.6905 4.51953Z"
-													fill="#171717"
-													fill-opacity="0.5"
-												/>
+													fill="#171717" fill-opacity="0.5" />
 											</svg>
 										</div>
 									</div>
@@ -316,24 +213,15 @@
 											<p>{{ avaliacao.num_dislikes }}</p>
 										</div>
 										<div id="dislike-icon">
-											<svg
-												width="17"
-												height="17"
-												viewBox="0 0 17 17"
-												fill="none"
-												xmlns="http://www.w3.org/2000/svg"
-											>
+											<svg width="17" height="17" viewBox="0 0 17 17" fill="none"
+												xmlns="http://www.w3.org/2000/svg">
 												<g transform="scale(-1,1) translate(-17,0)">
 													<path
 														d="M5.94287 13.0973V5.90059C5.94287 5.61726 6.02787 5.34101 6.1837 5.10726L8.11745 2.23143C8.42204 1.77101 9.17995 1.44518 9.82454 1.68601C10.5187 1.91976 10.9791 2.69893 10.8304 3.39309L10.462 5.70934C10.4337 5.92184 10.4904 6.11309 10.6108 6.26184C10.7312 6.39643 10.9083 6.48143 11.0995 6.48143H14.0108C14.5704 6.48143 15.052 6.70809 15.3354 7.10476C15.6045 7.48726 15.6541 7.98309 15.477 8.48601L13.7345 13.7914C13.515 14.6698 12.5587 15.3852 11.6095 15.3852H8.84704C8.37245 15.3852 7.70662 15.2223 7.40204 14.9177L6.49537 14.2164C6.14829 13.9543 5.94287 13.5364 5.94287 13.0973Z"
-														fill="#171717"
-														fill-opacity="0.5"
-													/>
+														fill="#171717" fill-opacity="0.5" />
 													<path
 														d="M3.6905 4.51953H2.96091C1.863 4.51953 1.41675 4.94453 1.41675 5.99286V13.1187C1.41675 14.167 1.863 14.592 2.96091 14.592H3.6905C4.78841 14.592 5.23466 14.167 5.23466 13.1187V5.99286C5.23466 4.94453 4.78841 4.51953 3.6905 4.51953Z"
-														fill="#171717"
-														fill-opacity="0.5"
-													/>
+														fill="#171717" fill-opacity="0.5" />
 												</g>
 											</svg>
 										</div>
@@ -485,11 +373,9 @@ body {
 	gap: 40px;
 	padding: 40px;
 
-	background: -webkit-linear-gradient(
-		90deg,
-		hsla(209, 63%, 17%, 1) 0%,
-		hsla(183, 71%, 16%, 1) 100%
-	);
+	background: -webkit-linear-gradient(90deg,
+			hsla(209, 63%, 17%, 1) 0%,
+			hsla(183, 71%, 16%, 1) 100%);
 }
 
 #sidebar {
@@ -535,11 +421,9 @@ body {
 }
 
 .role-button {
-	background: -webkit-linear-gradient(
-		90deg,
-		hsla(209, 63%, 17%, 1) 0%,
-		hsla(183, 71%, 16%, 1) 100%
-	);
+	background: -webkit-linear-gradient(90deg,
+			hsla(209, 63%, 17%, 1) 0%,
+			hsla(183, 71%, 16%, 1) 100%);
 	color: white;
 	border: none;
 	height: 4.5rem;
@@ -592,6 +476,7 @@ body {
 	background-color: #f5f5f5;
 	border-radius: 10px;
 }
+
 .academic-info ul {
 	list-style: none;
 	padding: 0;
@@ -638,8 +523,10 @@ body {
 }
 
 #estrela-media-professor {
-	width: 125%; /* Aumenta a largura */
-	height: 125%; /* Aumenta a altura */
+	width: 125%;
+	/* Aumenta a largura */
+	height: 125%;
+	/* Aumenta a altura */
 }
 
 .estrelas-metricas-container {
@@ -689,7 +576,8 @@ body {
 }
 
 .info-text {
-	margin-left: 50px; /* Ajuste conforme necessário */
+	margin-left: 50px;
+	/* Ajuste conforme necessário */
 }
 
 #ajuste-localizacao-professor {
@@ -776,9 +664,12 @@ body {
 
 #avaliacoes {
 	display: flex;
-	flex-direction: column; /* This ensures the children elements stack vertically */
-	align-items: center; /* This centers the children horizontally */
-	justify-content: center; /* This centers the children vertically */
+	flex-direction: column;
+	/* This ensures the children elements stack vertically */
+	align-items: center;
+	/* This centers the children horizontally */
+	justify-content: center;
+	/* This centers the children vertically */
 }
 
 .container-avaliacao {
@@ -861,6 +752,7 @@ h2 {
 li,
 p {
 	font-family: Inter, sans-serif;
+	font-size: medium;
 }
 
 /* Estilos para dispositivos móveis */
@@ -911,99 +803,131 @@ p {
 
 @media only screen and (max-width: 768px) {
 	.container {
-		grid-template-columns: 1fr; /* Altera para uma única coluna */
-		gap: 20px; /* Reduz o espaçamento entre os elementos */
-		padding: 20px; /* Reduz o preenchimento */
+		grid-template-columns: 1fr;
+		/* Altera para uma única coluna */
+		gap: 20px;
+		/* Reduz o espaçamento entre os elementos */
+		padding: 20px;
+		/* Reduz o preenchimento */
 	}
 
 	#sidebar {
-		margin-bottom: 0px; /* Remove a margem inferior */
+		margin-bottom: 0px;
+		/* Remove a margem inferior */
 	}
 
 	.role-button {
-		width: 100%; /* Faz o botão ocupar toda a largura */
-		margin-top: 10px; /* Adiciona um espaçamento superior */
+		width: 100%;
+		/* Faz o botão ocupar toda a largura */
+		margin-top: 10px;
+		/* Adiciona um espaçamento superior */
 	}
 
 	.profile-pic {
-		width: 100%; /* Faz a imagem do perfil ocupar toda a largura */
+		width: 100%;
+		/* Faz a imagem do perfil ocupar toda a largura */
 	}
 
 	.academic-info,
 	.professor-contact-info {
-		margin-top: 10px; /* Reduz a margem superior */
+		margin-top: 10px;
+		/* Reduz a margem superior */
 	}
 
 	.container-academic-info {
-		padding-top: 20%; /* Reduz o espaçamento superior */
+		padding-top: 20%;
+		/* Reduz o espaçamento superior */
 	}
 
 	.five-estrelas {
-		width: 100%; /* Faz as estrelas ocuparem toda a largura */
-		justify-content: space-around; /* Distribui as estrelas uniformemente */
-		gap: 5px; /* Reduz o espaçamento entre as estrelas */
+		width: 100%;
+		/* Faz as estrelas ocuparem toda a largura */
+		justify-content: space-around;
+		/* Distribui as estrelas uniformemente */
+		gap: 5px;
+		/* Reduz o espaçamento entre as estrelas */
 	}
 
 	.estrela {
-		width: 10%; /* Ajusta o tamanho das estrelas */
+		width: 10%;
+		/* Ajusta o tamanho das estrelas */
 	}
 }
 
 @media only screen and (max-width: 480px) {
 	.container {
-		grid-template-columns: 1fr; /* Altera para uma única coluna */
-		gap: 10px; /* Reduz o espaçamento entre os elementos */
-		padding: 10px; /* Reduz o preenchimento */
+		grid-template-columns: 1fr;
+		/* Altera para uma única coluna */
+		gap: 10px;
+		/* Reduz o espaçamento entre os elementos */
+		padding: 10px;
+		/* Reduz o preenchimento */
 	}
 
 	.profile-pic {
-		width: 100%; /* Faz a imagem do perfil ocupar toda a largura */
+		width: 100%;
+		/* Faz a imagem do perfil ocupar toda a largura */
 	}
 
 	.role-button {
-		width: 100%; /* Faz o botão ocupar toda a largura */
-		margin-top: 10px; /* Adiciona um espaçamento superior */
-		font-size: 14px; /* Reduz o tamanho da fonte */
+		width: 100%;
+		/* Faz o botão ocupar toda a largura */
+		margin-top: 10px;
+		/* Adiciona um espaçamento superior */
+		font-size: 14px;
+		/* Reduz o tamanho da fonte */
 	}
 
 	.section {
-		padding: 10px; /* Reduz o preenchimento das seções */
+		padding: 10px;
+		/* Reduz o preenchimento das seções */
 	}
 
 	.academic-info,
 	.professor-contact-info {
-		margin-top: 10px; /* Reduz a margem superior */
+		margin-top: 10px;
+		/* Reduz a margem superior */
 	}
 
 	.container-academic-info {
-		padding-top: 10%; /* Reduz o espaçamento superior */
+		padding-top: 10%;
+		/* Reduz o espaçamento superior */
 	}
 
 	.five-estrelas {
-		width: 100%; /* Faz as estrelas ocuparem toda a largura */
-		justify-content: space-around; /* Distribui as estrelas uniformemente */
-		gap: 5px; /* Reduz o espaçamento entre as estrelas */
+		width: 100%;
+		/* Faz as estrelas ocuparem toda a largura */
+		justify-content: space-around;
+		/* Distribui as estrelas uniformemente */
+		gap: 5px;
+		/* Reduz o espaçamento entre as estrelas */
 	}
 
 	.estrela {
-		width: 10%; /* Ajusta o tamanho das estrelas */
+		width: 10%;
+		/* Ajusta o tamanho das estrelas */
 	}
 
 	.subjects-title h3 {
-		font-size: 16px; /* Reduz o tamanho do título */
+		font-size: 16px;
+		/* Reduz o tamanho do título */
 	}
 
 	#semestre-atual {
-		font-size: 14px; /* Reduz o tamanho do texto */
-		padding-left: 20px; /* Ajusta o recuo */
+		font-size: 14px;
+		/* Reduz o tamanho do texto */
+		padding-left: 20px;
+		/* Ajusta o recuo */
 	}
 
 	#materias_dadas {
-		padding-left: 20px; /* Ajusta o recuo */
+		padding-left: 20px;
+		/* Ajusta o recuo */
 	}
 
 	#materias_dadas li {
-		font-size: 14px; /* Reduz o tamanho do texto */
+		font-size: 14px;
+		/* Reduz o tamanho do texto */
 	}
 }
 </style>
