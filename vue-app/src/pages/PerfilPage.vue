@@ -109,7 +109,6 @@ export default {
 		getInfoUserProfileService()
 			.then((userInfo) => {
 				this.userInfo = userInfo;
-				console.log(this.userInfo);
 			})
 			.catch((erro) => {
 				console.error("Erro ao obter meus dados", erro);

@@ -11,9 +11,7 @@ export async function editarDadosPerfil(dados_formulario) {
 		const response = await fetch(url, options);
 		const data = await response.json();
 
-		if (response.ok) {
-			console.log("Informações atualizadas com sucesso:", data);
-		} else {
+		if (!response.ok) {
 			console.error("Erro ao atualizar informações:", data);
 		}
 	} catch (error) {

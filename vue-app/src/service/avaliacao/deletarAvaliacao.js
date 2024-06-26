@@ -21,8 +21,7 @@ export async function deletarAvaliacaoProfessor(cod_avaliacao, cod_comentario) {
     const matricula_url = parseInt(matriculadec, 10);
 
     // Chama a função para deletar a avaliação e o comentário
-    const result = await deletarAvaliacaoComentarioProfessor(matricula_url, cod_avaliacao, cod_comentario);
-    console.log(result.message); // Sucesso
+    await deletarAvaliacaoComentarioProfessor(matricula_url, cod_avaliacao, cod_comentario);
   } catch (error) {
     console.error('Erro ao deletar a avaliação e comentário do professor:', error.message);
   }
@@ -48,8 +47,7 @@ export async function deletarAvaliacaoMateria(cod_avaliacao, cod_comentario) {
       const matricula_url = parseInt(matriculadec, 10);
   
       // Chama a função para deletar a avaliação e o comentário
-      const result = await deletarAvaliacaoComentarioMateria(matricula_url, cod_avaliacao, cod_comentario);
-      console.log(result.message); // Sucesso
+      await deletarAvaliacaoComentarioMateria(matricula_url, cod_avaliacao, cod_comentario);
     } catch (error) {
       console.error('Erro ao deletar a avaliação e comentário da matéria:', error.message);
     }

@@ -7,7 +7,7 @@
 
             <div class="professor-texts">
                 <span class="materia">{{avaliacao.nome_professor}}</span>
-                <span class="professor">MÉTODOS DE DESENVOLVIMENTO DE SOFTWARE</span>
+                <span class="professor">{{avaliacao.cod_materia}}</span>
             </div>
 
           </div>
@@ -93,7 +93,9 @@
         },
 
         onDelete(){
+
             deletarAvaliacaoProfessor(this.avaliacao.cod_avaliacao, this.avaliacao.cod_comentario);
+
             this.$emit('deleteProfessor', this.avaliacao.cod_avaliacao); //emite o código de avaliação para que o elemento pai, a página, consiga fiiltrar o array e atuaçliozar ele sem necessidade de recarregamento da página
 
         }
@@ -183,10 +185,9 @@
   }
   
   .professor {
-    font-weight: lighter;
     font-family: 'Inter', sans-serif;
-    font-size: 1.4
-    rem;
+    font-size: 1.4rem;
+    font-weight: 500;
     color: #555555;
   }
   
@@ -209,7 +210,7 @@
     margin-bottom: 10px;
     font-family: 'Inter', sans-serif;
     font-size: 1.8rem;
-    font-weight: lighter;
+    font-weight: 400;
     color: #333333
   }
   

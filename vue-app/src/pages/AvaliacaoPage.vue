@@ -53,6 +53,7 @@ import CardMinhaAvaliacao from "@/components/Avaliacao/CardMinhaAvaliacao.vue";
 import CardMinhaAvaliacaoProfessor from "@/components/Avaliacao/CardMinhaAvaliacaoProfessor.vue";
 import { obterMinhasAvaliacoesProfessores } from "@/service/usuario/getMInhasAvaliacoes";
 import { obterMinhasAvaliacoesMaterias } from "@/service/usuario/getMInhasAvaliacoes";
+import { encriptarDados } from "@/generals/encripitarDados";
 
 export default {
   name: "AvaliacaoPage",
@@ -77,21 +78,36 @@ export default {
     toggleMaterias() {
       this.isToggled = false;
     },
-    deletarAvaliacaoProfessor(cod_avaliacao) {
+    async deletarAvaliacaoProfessor(cod_avaliacao) {
       //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+      const avaliacoesDoSession = this.avaliacoes_professores.avaliacoes_professor
+      .filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao)
+      .map(avaliacao => ({
+        cod_professor: avaliacao.cod_professor,
+        cod_materia: avaliacao.cod_materia
+      }));
       this.avaliacoes_professores.avaliacoes_professor =
         this.avaliacoes_professores.avaliacoes_professor.filter(
-          (avaliacao) => avaliacao.cod_avaliacao !== cod_avaliacao
+          avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao
         );
+      sessionStorage.setItem("professores_avaliados", await encriptarDados(avaliacoesDoSession))
       this.avaliacoes_professores.qtd_avaliacoes--;
     },
 
-    deletarAvaliacaoMateria(cod_avaliacao) {
+    async deletarAvaliacaoMateria(cod_avaliacao) {
       //essa função atualiza a listagem de avaliações de professores e a quantidade de avaliações sem a necessidade de carregamento da página
+
+      const avaliacoesDoSession = this.avaliacoes_professores.avaliacoes_professor
+      .filter(avaliacao => avaliacao.cod_avaliacao !== cod_avaliacao)
+      .map(avaliacao => ({
+        cod_materia: avaliacao.cod_materia
+      }));
+
       this.avaliacoes_materia.avaliacoesMateria =
         this.avaliacoes_materia.avaliacoesMateria.filter(
           (avaliacao) => avaliacao.cod_avaliacao !== cod_avaliacao
         );
+      sessionStorage.setItem("materias_avaliadas", await encriptarDados(avaliacoesDoSession))
       this.avaliacoes_materia.qtdAvaliacoes--;
     },
   },
@@ -108,7 +124,6 @@ export default {
     obterMinhasAvaliacoesProfessores()
       .then((avaliacoes_professores) => {
         this.avaliacoes_professores = avaliacoes_professores;
-        console.log(this.avaliacoes_professores);
       })
       .catch((erro) => {
         console.error("Erro ao obter avaliação de professores:", erro);
@@ -116,8 +131,7 @@ export default {
 
     obterMinhasAvaliacoesMaterias() // Chame a função correta
       .then((avaliacoes_materia) => {
-        this.avaliacoes_materia = avaliacoes_materia; // Defina os dados corretamente
-        console.log(this.avaliacoes_materia);
+        this.avaliacoes_materia = avaliacoes_materia; 
       })
       .catch((erro) => {
         console.error("Erro ao obter avaliações de matérias:", erro);

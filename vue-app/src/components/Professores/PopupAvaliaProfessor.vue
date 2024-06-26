@@ -70,8 +70,10 @@ import { enviarAvaliacaoProfessor } from "@/repositories/professor/enviarAvaliac
 import { getUsuarioLogado } from "@/generals/getUsuarioLogado.js";
 import { getUsuarios } from "../../repositories/usuario/obterUsuarios.js";
 import ratingStars from "./RatingStarsProfessor.vue";
-//matricula-int, cod_prof-char, materia-char, resto-int
+import { descriptarDados } from "@/generals/descriptografarDados";
+import { encriptarDados } from "@/generals/encripitarDados";
 let nota_acesso, nota_didatica, nota_metodologia, nota_carisma;
+//matricula-int, cod_prof-char, materia-char, resto-int
 export default {
   name: "PopUp",
   components: {
@@ -105,6 +107,7 @@ export default {
     },
 
     async SubmitAvaliacao() {
+      this.erro = "";
       if (
         isNaN(nota_acesso) ||
         isNaN(nota_didatica) ||
@@ -114,14 +117,22 @@ export default {
         this.erro = "Preencha todas as avaliações antes de enviar!";
         return;
       }
+      let professoresAvaliados = await descriptarDados(sessionStorage.getItem("professores_avaliados"))
+      for (let i = 0; i < professoresAvaliados.length; i++){
+        if (professoresAvaliados[i].cod_professor === this.professor.cod_professor && professoresAvaliados[i].cod_materia === this.comentario_materia.materia){
+          return this.erro = "Você ja avaliou esse professor nessa materia"
+        }
+      }
+      professoresAvaliados = [...professoresAvaliados, {cod_materia: this.comentario_materia.materia ,cod_professor: this.professor.cod_professor}]
+      sessionStorage.setItem("professores_avaliados", await encriptarDados(professoresAvaliados))
       try {
         // carisma no banco vai ser metodo de ensino pq vai dar mt trabalho pra mudar o nome
         const matriculaLogadaStr = await getUsuarioLogado();
         const matriculaLogada = parseInt(matriculaLogadaStr, 10);
         const usuarios = await getUsuarios();
-        this.erro = "";
         for (let i = 0; i < usuarios.length; i++) {
           if (matriculaLogada === usuarios[i].matricula) {
+           
             await enviarAvaliacaoProfessor(
               matriculaLogada,
               this.professor.cod_professor,
