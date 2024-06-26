@@ -10,6 +10,7 @@ export const getAvaliacoesProfessorUsuario = (app, sequelize) => {
             p.foto_url AS foto_professor,
             pau.cod_materia,
             pau.cod_avaliacao,
+            p.cod_professor,
             COALESCE(pau.cod_comentario, 0) AS cod_comentario,
             COALESCE(ap.nota_total, 0) AS nota_total,
             COALESCE(ap.nota_didatica, 0) AS nota_didatica,

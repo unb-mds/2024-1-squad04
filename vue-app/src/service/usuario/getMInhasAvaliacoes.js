@@ -27,6 +27,7 @@ export async function obterMinhasAvaliacoesProfessores() {
 			num_dislikes: avaliacao.num_dislikes,
 			cod_comentario: avaliacao.cod_comentario,
 			cod_avaliacao: avaliacao.cod_avaliacao,
+			cod_professor: avaliacao.cod_professor,
 		}));
 
 		return {

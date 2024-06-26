@@ -44,6 +44,8 @@ import { enviarAvaliacaoMateria } from "@/repositories/materias/enviarAvaliacaoM
 import ratingStars from "./RatingStarsMaterias.vue";
 import { getUsuarioLogado } from "@/generals/getUsuarioLogado";
 import { getUsuarios } from "@/repositories/usuario/obterUsuarios";
+import { descriptarDados } from "@/generals/descriptografarDados";
+import { encriptarDados } from "@/generals/encripitarDados";
 //matricula-int, cod_prof-char, materia-char, resto-int
 
 export default {
@@ -62,13 +64,21 @@ export default {
         return;
       }
       try {
-        // carisma no banco vai ser metodo de ensino pq vai dar mt trabalho pra mudar o nome
+        // carisma no banco vai ser metodo de ensino pq vai dar mt t  rabalho pra mudar o nome
         const matriculaLogadaStr = await getUsuarioLogado();
         const matriculaLogada = parseInt(matriculaLogadaStr, 10);
         const usuarios = await getUsuarios();
         this.erro = "";
         for (let i = 0; i < usuarios.length; i++) {
           if (matriculaLogada === usuarios[i].matricula) {
+            let materiasAvaliadas = await descriptarDados(sessionStorage.getItem("materias_avaliadas"))
+            for (let i = 0; i < materiasAvaliadas.length; i++){
+              if (materiasAvaliadas[i].cod_materia === this.materia.cod_materia){
+                return this.erro = "Você ja avaliou essa materia"
+              }
+            }
+            materiasAvaliadas = [...materiasAvaliadas, {cod_materia: this.materia.cod_materia}]
+            sessionStorage.setItem("materias_avaliadas", await encriptarDados(materiasAvaliadas))
             await enviarAvaliacaoMateria(
               nota_dif,
               nota_exp,

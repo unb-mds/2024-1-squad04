@@ -83,7 +83,9 @@ export default {
             });
         },
         onDelete(){
+
             deletarAvaliacaoMateria(this.avaliacao.cod_avaliacao, this.avaliacao.cod_comentario);
+
             this.$emit('deleteMateria', this.avaliacao.cod_avaliacao); //emite o código de avaliação para que o elemento pai, a página, consiga fiiltrar o array e atuaçliozar ele sem necessidade de recarregamento da página
 
         }
@@ -159,7 +161,7 @@ export default {
 }
 
 .codMateria {
-  font-weight: lighter;
+  font-weight: 500;
   font-family: 'Inter', sans-serif;
   font-size: 1.6rem;
   color: #555555;
@@ -184,7 +186,7 @@ export default {
   margin-bottom: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 1.8rem;
-  font-weight: lighter;
+  font-weight: 500;
   color: #333333
 }
 

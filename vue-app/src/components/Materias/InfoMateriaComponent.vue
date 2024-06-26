@@ -243,11 +243,9 @@ export default {
 	},
 	mounted() {
 		const cod_materia = this.$route.params.cod;
-		console.log(cod_materia);
 		obterMateriaByID(cod_materia)
 			.then((materia) => {
 				this.materia = materia;
-				console.log(this.materia);
 			})
 			.catch((erro) => {
 				console.error("Erro ao obter matéria:", erro);
