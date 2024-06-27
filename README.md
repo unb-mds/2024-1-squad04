@@ -32,12 +32,13 @@ A documentação do projeto pode ser acessada pelo link: https://unb-mds.github.
 
 ## Tecnologias Utilizadas
 
-- **Linguagem de Programação:** Javascript, Typescript, HTML e CSS.
+- **Linguagem de Programação:** Javascript, HTML e CSS.
 - **Prototipação:** Figma.
 - **Framework Web:** VueJS.
+- **Framework BackEnd:** NodeJS.
 - **Banco de Dados:** Google cloud mySQL storage.
 - **Ferramenta de Coleta de Dados:** Axios, ExpressJS, Google OAtuh API, JSON Web Tokens.
-- **Tecnologias Adicionais:** Figma, miro, Git e Github, Helmet, Heroku e Vercel, React e Tailwind.
+- **Tecnologias Adicionais:** Figma, miro, Git e Github, Helmet, Heroku e Vercel.
 
 
 
@@ -67,7 +68,7 @@ A documentação do projeto pode ser acessada pelo link: https://unb-mds.github.
         </td>
         <td align="center">
             <a href="https://github.com/Atyrson">
-                <img style="border-radius: 50%;" src="https://cdn.discordapp.com/attachments/1070861833596055612/1225892037916753980/IMG-20240318-WA0058_1.jpg?ex=6622c7ed&is=661052ed&hm=aa37234d79b92b929703cafc1aaf2d25ad22e6d020e93677c744ef609c0ac478&" width="150px;"/>
+                <img style="border-radius: 50%;" src="https://i.pinimg.com/564x/3f/b7/ca/3fb7caa94eca8d62a14d4f23d5b623ac.jpg" width="150px;"/>
                 <h5 class="text-center">Atyrson Souto</h5>
             </a>
         </td>
