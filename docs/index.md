@@ -63,7 +63,7 @@ Facilita a busca por informações desejadas.
         </td>
         <td align="center">
             <a href="https://github.com/Atyrson">
-                <img style="border-radius: 50%;" src="https://cdn.discordapp.com/attachments/1070861833596055612/1225892037916753980/IMG-20240318-WA0058_1.jpg?ex=6622c7ed&is=661052ed&hm=aa37234d79b92b929703cafc1aaf2d25ad22e6d020e93677c744ef609c0ac478&" width="150px;"/>
+                <img style="border-radius: 50%;" src="https://i.pinimg.com/564x/73/cf/34/73cf34b2395aff9911d217fbb6c73d91.jpg" width="150px;"/>
                 <h5 class="text-center">Atyrson Souto</h5>
             </a>
         </td>
