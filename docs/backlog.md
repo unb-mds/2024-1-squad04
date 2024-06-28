@@ -1,5 +1,14 @@
 ## Descrição
 A aba de backlog contém todas as user stories e requisitos do projeto Avalia UnB. Aqui estão listadas as funcionalidades a serem desenvolvidas e os requisitos detalhados que guiarão o desenvolvimento do sistema.
+## Autores e Versões
+| **Autor(a)** | **Detalhamento**                        | **Versão**                                                                 |  
+|-------------------|---------------------------------------------|-------------------------------------------------------------------------------|
+| Vitor Hoffmann   | Criação do documento                       |1.0 |
+| Vitor Hoffmann   | Adicionando RF’s restantes                       |1.1 |
+| Leticia Torres   | Atualização e adição  User Story                     |1.2 |
+| Atyrson Souto   | Atualização e adição Requisitos                     |1.3 |
+
+
 
 ## User Stories
 
