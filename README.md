@@ -1,8 +1,24 @@
-# 2024-1-squad04
+# [AvaliaUnB]()
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/unb-mds/2024-1-squad04)](https://img.shields.io/github/issues/unb-mds/2024-1-squad04)
+[![GitHub contributors](https://img.shields.io/github/contributors/unb-mds/2024-1-squad04)](https://img.shields.io/github/contributors/unb-mds/2024-1-squad04)
+[![GitHub stars](https://img.shields.io/github/stars/unb-mds/2024-1-squad04)](https://img.shields.io/github/stars/unb-mds/2024-1-squad04)
+[![Hit Counter](https://views.whatilearened.today/views/github/unb-mds/2024-1-squad04.svg)](https://views.whatilearened.today/views/github/unb-mds/2024-1-squad04.svg)
+
+</br>
+
+[![Python version](https://img.shields.io/badge/python-3.11.6-blue)](https://www.python.org/downloads/release/python-3116/)
+[![Node version](https://img.shields.io/badge/node-20.12.2-blue)](https://nodejs.org/en/download/)
+[![npm version](https://img.shields.io/badge/npm-10.5.0-blue)](https://nodejs.org/en/download/)
+[![MySQL version](https://img.shields.io/badge/mysql-3.9.7-blue)](https://www.npmjs.com/package/mysql2/v/3.9.7)
+
 
 ## Projeto de Avaliação de professores e matérias
 
-A Plataforma de Avaliação de Professores e Matérias, desenvolvida como parte da disciplina *Métodos de Desenvolvimento de Software* (MDS) é um projeto dedicado à comunidade estudantil da Universidade de Brasília (UnB). Nosso objetivo é fornecer informações úteis e relevantes para os alunos, facilitando a escolha de professores e matérias. A plataforma permitirá avaliações detalhadas, feedback construtivo e transparência na busca por conhecimento.
+A Plataforma de Avaliação de Professores e Matérias, desenvolvida como parte da disciplina *Métodos de Desenvolvimento de Software* (MDS) é um projeto dedicado à comunidade estudantil da Universidade de Brasília (UnB). Nosso objetivo é fornecer informações úteis e relevantes para os alunos, facilitando a escolha de professores e matérias através de avaliações dos professores feitas pelos proprios alunos. A plataforma permitirá avaliações detalhadas, feedback construtivo e transparência na busca por conhecimento.
+
+O projeto é software livre e está sob a licença [MIT](./LICENSE).
 
 ### Funcionalidades
 - **Busca de Professores e Matérias**:
@@ -27,7 +43,7 @@ Facilita a busca por informações desejadas.
 
 ## Documentação
 
-A documentação do projeto pode ser acessada pelo link: https://unb-mds.github.io/2024-1-squad04/
+A documentação do projeto está disponivel no nosso [Github Pages](https://unb-mds.github.io/2024-1-squad04/)
 
 
 ## Tecnologias Utilizadas
@@ -37,8 +53,9 @@ A documentação do projeto pode ser acessada pelo link: https://unb-mds.github.
 - **Framework Web:** VueJS.
 - **Framework BackEnd:** NodeJS.
 - **Banco de Dados:** Google cloud mySQL storage.
-- **Ferramenta de Coleta de Dados:** Axios, ExpressJS, Google OAtuh API, JSON Web Tokens.
-- **Tecnologias Adicionais:** Figma, miro, Git e Github, Helmet, Heroku e Vercel.
+- **Tecnologias usadas no back-end:** Axios, ExpressJS, Cors, CryptoJS, Dotenv, MySQL2, Pg e Sequelize.
+- **Tecnologias usadas no front-end:** Axios, CoreJS, CryptoJS, Scrollreveal, Babel e Eslint.
+- **Outras tecnologias:** Figma, miro, Helmet, Heroku e Vercel.
 
 
 
