@@ -14,13 +14,13 @@
 [![MySQL version](https://img.shields.io/badge/mysql-3.9.7-blue)](https://www.npmjs.com/package/mysql2/v/3.9.7)
 
 
-## 📝 Projeto de Avaliação de professores e matérias
+## Projeto de Avaliação de professores e matérias
 
 A Plataforma de Avaliação de Professores e Matérias, desenvolvida como parte da disciplina *Métodos de Desenvolvimento de Software* (MDS) é um projeto dedicado à comunidade estudantil da Universidade de Brasília (UnB). Nosso objetivo é fornecer informações úteis e relevantes para os alunos, facilitando a escolha de professores e matérias através de avaliações dos professores feitas pelos proprios alunos. A plataforma permitirá avaliações detalhadas, feedback construtivo e transparência na busca por conhecimento.
 
 O projeto é software livre e está sob a licença [MIT](./LICENSE).
 
-### 📥 Funcionalidades
+### Funcionalidades
 - **Busca de Professores e Matérias**:
 Os usuários podem pesquisar por professores e matérias específicas.
 Filtros como nome do professor, departamento e disciplina ajudam a encontrar informações relevantes.
@@ -41,11 +41,11 @@ Opção de anonimato garante liberdade de expressão.
 Os usuários podem filtrar por data, relevância e popularidade.
 Facilita a busca por informações desejadas.
 
-## 📚 Documentação
+## Documentação
 
 A documentação do projeto está disponivel no nosso [Github Pages](https://unb-mds.github.io/2024-1-squad04/)
 
-## ⚙️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Linguagem de Programação:** Javascript, Python, MySQL, HTML e CSS.
 - **Prototipação:** Figma.
@@ -56,7 +56,7 @@ A documentação do projeto está disponivel no nosso [Github Pages](https://unb
 - **Tecnologias usadas no front-end:** Axios, CoreJS, CryptoJS, Scrollreveal, Babel e Eslint.
 - **Outras tecnologias:** Figma, miro, Helmet, Heroku e Vercel.
 
-## ✨ Clonar o repositório
+## Clonar o repositório
 
 Você pode clonar o repositório do projeto com o seguinte comando:
 
@@ -64,7 +64,7 @@ Você pode clonar o repositório do projeto com o seguinte comando:
 git clone https://github.com/unb-mds/2024-1-squad04.git
 ```
 
-### 📋 Pré-requisitos
+### Pré-requisitos
 
 Para rodar o projeto, você precisa instalar as dependências globais, que são:
 
@@ -108,7 +108,7 @@ Depois de fazer as alterações, execute o script para preencher o banco de dado
 python preencher.py
 ```
 
-### 📁 Dependências do projeto
+### Dependências do projeto
 
 Para instalar as dependências do projeto, você pode rodar os seguintes comando:
 
@@ -130,7 +130,7 @@ Você também precisará configurar as chaves de conexão com o banco de dados n
     database=SUA_BASE
 ```
 
-### 💾 Execução
+### Execução
 
 Para executar o projeto, você pode rodar o seguinte comando:
 
@@ -144,7 +144,7 @@ cd .\vue-app\
 npm run serve
 ```
 
-## 📎 Extra
+## Extra
 
 ### Story Map e Activity Flow
 
@@ -158,7 +158,7 @@ npm run serve
 
 - Para acessar o protótipo do projeto, clique [aqui](https://www.figma.com/file/6BcQCT1c0pREyonYsJAO34/Untitled?type=design&node-id=0%3A1&mode=design&t=LBSpRoPY9kiFO9uD-1)
 
-## 👥 Desenvolvedores
+## Desenvolvedores
 
 <center>
 <table style="margin-left: auto; margin-right: auto;">
