@@ -1,4 +1,5 @@
 <template>
+	<LoadingComponent :isLoading="loading"/>
 	<div class="container-fluid p-0">
 		<div class="row m-0">
 			<div class="col-lg-6 d-none d-lg-block">
@@ -33,7 +34,7 @@
 						</div>
 					</form>
 					<div class="buttons-login">
-						<button class="login-button" @click.prevent="HandleLogin">
+						<button class="login-button" @click.prevent="teste">
 							Entrar
 						</button>
 					</div>
@@ -49,15 +50,24 @@
 import { authGuard } from "../guards/authGuard.js";
 import router from "../routes/index";
 import { getUsuarios } from "@/repositories/usuario/obterUsuarios.js";
+import LoadingComponent from "../components/Navegacao/LoadingComponent.vue"
 
 export default {
 	name: "LoginPage",
+	components: {
+    LoadingComponent,
+  },
 	data() {
 		return {
 			erro: "",
+			loading: false,
 		};
 	},
 	methods: {
+		teste(){
+			this.loading = true;
+		},
+
 		async HandleCadastro() {
 			router.push("/cadastro");
 		},
@@ -199,7 +209,7 @@ export default {
 	margin-top: 10px;
 }
 
-.login-button {
+.login-button p, .loading{
 	width: 160px; /* Defina a largura desejada para o botão */
 	height: fit-content; /* Defina a altura desejada para o botão */
 	padding: 3%;
@@ -213,7 +223,7 @@ export default {
 	transition: background-color 0.3s ease; /* Adiciona uma transição suave para a cor de fundo */
 }
 
-.login-button:hover {
+.login-button p:hover {
 	background-color: #003366;
 }
 
