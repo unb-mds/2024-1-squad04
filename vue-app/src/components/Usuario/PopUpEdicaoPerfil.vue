@@ -53,6 +53,9 @@
 					<button type="submit">Salvar</button>
 					<button class="cancelar" @click="closePopUp">Cancelar</button>
 				</div>
+				<div v-if="error_message" class="error-message">
+					{{ error_message }}
+				</div>
 			</form>
 		</div>
 	</div>
@@ -60,6 +63,8 @@
 
 <script>
 import { editarDadosPerfil } from "@/service/usuario/editarDadosPerfil";
+import { getUsuarios } from "@/repositories/usuario/obterUsuarios.js";
+import { verificarEmail, verificarUrl } from "@/generals/verificarInputs.js";
 export default {
 	name: "PopUpEdicaoPerfil",
 	props: {
@@ -74,6 +79,7 @@ export default {
 				email: this.usuarioInfo ? this.usuarioInfo.email : "",
 				curso: this.usuarioInfo ? this.usuarioInfo.curso : "",
 			},
+			error_message: "",
 		};
 	},
 	methods: {
@@ -82,22 +88,50 @@ export default {
 		},
 
 		async submitForm() {
-			try {
-				const usuarioAtualizado = {
-					matricula: this.usuarioInfo.matricula,
-					nome: this.form.nome,
-					sobrenome: this.form.sobrenome,
-					email: this.form.email,
-					foto_url: this.form.foto_url,
-					curso: this.form.curso,
-				};
-				await editarDadosPerfil(usuarioAtualizado);
-				sessionStorage.setItem("foto_perfil", usuarioAtualizado.foto_url);
-				this.$emit("dados-atualizados", usuarioAtualizado);
-				this.closePopUp();
-			} catch (error) {
-				console.error("Erro ao atualizar usuário:", error);
+			if (this.verificarInputs()) {
+				if (!(await this.verificaExistencia(this.form.email))) {
+					try {
+						const usuarioAtualizado = {
+							matricula: this.usuarioInfo.matricula,
+							nome: this.form.nome,
+							sobrenome: this.form.sobrenome,
+							email: this.form.email,
+							foto_url: this.form.foto_url,
+							curso: this.form.curso,
+						};
+						await editarDadosPerfil(usuarioAtualizado);
+						sessionStorage.setItem("foto_perfil", usuarioAtualizado.foto_url);
+						this.$emit("dados-atualizados", usuarioAtualizado);
+						this.closePopUp();
+					} catch (error) {
+						console.error("Erro ao atualizar usuário:", error);
+					}
+				} else {
+					this.error_message = "Esse email já existe! Escolha outro email.";
+				}
+			} else return;
+		},
+
+		async verificaExistencia(email) {
+			const usuarios = await getUsuarios();
+			for (let i = 0; i < usuarios.length; i++) {
+				if (usuarios[i].email === email && this.usuarioInfo.email != email)
+					return true;
 			}
+			return false;
+		},
+
+		verificarInputs() {
+			if (!verificarEmail(this.form.email)) {
+				this.error_message = "Insira um email válido.";
+				return false;
+			}
+			if (!verificarUrl(this.form.foto_url)) {
+				this.error_message = "Insira uma url de foto válida";
+				return false;
+			}
+
+			return true;
 		},
 	},
 };
@@ -180,6 +214,12 @@ button {
 	font-size: 1.4rem;
 	font-family: "Open Sans", sans-serif;
 	transition: 100ms;
+}
+
+.error-message {
+	font-family: "Open Sans", sans-serif;
+	margin-top: 20px;
+	font-size: 1.6rem;
 }
 
 .cancelar {
