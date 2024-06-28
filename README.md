@@ -14,13 +14,13 @@
 [![MySQL version](https://img.shields.io/badge/mysql-3.9.7-blue)](https://www.npmjs.com/package/mysql2/v/3.9.7)
 
 
-## Projeto de Avaliação de professores e matérias
+## 📝 Projeto de Avaliação de professores e matérias
 
 A Plataforma de Avaliação de Professores e Matérias, desenvolvida como parte da disciplina *Métodos de Desenvolvimento de Software* (MDS) é um projeto dedicado à comunidade estudantil da Universidade de Brasília (UnB). Nosso objetivo é fornecer informações úteis e relevantes para os alunos, facilitando a escolha de professores e matérias através de avaliações dos professores feitas pelos proprios alunos. A plataforma permitirá avaliações detalhadas, feedback construtivo e transparência na busca por conhecimento.
 
 O projeto é software livre e está sob a licença [MIT](./LICENSE).
 
-### Funcionalidades
+### 📥 Funcionalidades
 - **Busca de Professores e Matérias**:
 Os usuários podem pesquisar por professores e matérias específicas.
 Filtros como nome do professor, departamento e disciplina ajudam a encontrar informações relevantes.
@@ -41,12 +41,11 @@ Opção de anonimato garante liberdade de expressão.
 Os usuários podem filtrar por data, relevância e popularidade.
 Facilita a busca por informações desejadas.
 
-## Documentação
+## 📚 Documentação
 
 A documentação do projeto está disponivel no nosso [Github Pages](https://unb-mds.github.io/2024-1-squad04/)
 
-
-## Tecnologias Utilizadas
+## ⚙️ Tecnologias Utilizadas
 
 - **Linguagem de Programação:** Javascript, HTML e CSS.
 - **Prototipação:** Figma.
@@ -57,9 +56,51 @@ A documentação do projeto está disponivel no nosso [Github Pages](https://unb
 - **Tecnologias usadas no front-end:** Axios, CoreJS, CryptoJS, Scrollreveal, Babel e Eslint.
 - **Outras tecnologias:** Figma, miro, Helmet, Heroku e Vercel.
 
+## ✨ Clonar o repositório
 
+Você pode clonar o repositório do projeto com o seguinte comando:
 
-## Desenvolvedores
+```bash
+git clone https://github.com/unb-mds/2024-1-squad04.git
+```
+
+### 📋 Pré-requisitos
+
+Para rodar o projeto, você precisa instalar as dependências globais, que são:
+
+- Python v3.11.6 e Pip v22.0.2 (ou superior)
+- Node v20.12.2 e NPM v10.5.0 (ou superior)
+- MySQL v3.9.7 (ou superior)
+
+### 📁 Dependências do projeto
+
+Para instalar as dependências do projeto, você pode rodar os seguintes comando:
+
+```bash
+# Instale as dependências do node
+cd .\node-app\
+npm install
+
+# Instale as dependências do vue
+cd .\vue-app\
+npm install
+```
+
+### 💾 Execução
+
+Para executar o projeto, você pode rodar o seguinte comando:
+
+```bash
+# Inicie o node
+cd .\node-app\
+npm run start
+
+# Inicie o vue
+cd .\vue-app\
+npm run serve
+```
+
+## 👥 Desenvolvedores
 
 <center>
 <table style="margin-left: auto; margin-right: auto;">
