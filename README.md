@@ -128,7 +128,7 @@ npm run serve
         <td align="center">
             <a href="https://github.com/vitor-hoffmann">
                 <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/137011464?v=4" width="150px;"/>
-                <h5 class="text-center">Vitor Valério</h5>
+                <h5 class="text-center">Vitor Hoffmann</h5>
             </a>
         </td>
         <td align="center">
