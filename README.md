@@ -72,6 +72,42 @@ Para rodar o projeto, você precisa instalar as dependências globais, que são:
 - Node v20.12.2 e NPM v10.5.0 (ou superior)
 - MySQL v3.9.7 (ou superior)
 
+### Configuração do banco de dados
+#### 1. Criar o Banco de Dados MySQL
+Primeiro, você precisa criar um banco de dados MySQL onde os dados serão armazenados.
+#### 2. Executar o Script de Criação do Banco
+Na branch web-scrapping-professores, navegue até o diretório onde o script `criaBanco.sql` está localizado e execute o seguinte comando para criar as tabelas necessárias no banco de dados:
+```sh
+mysql -u seu_usuario -p < criarBanco.sql 
+```
+O valor seu_usuario será o usuário criado para o banco de dados e após rodar o comando, sua senha será solicitada.
+#### 3. Executar o Script Python para Web Scraping
+Ainda na branch web-scrapping-professores, navegue até o diretório onde o script `script-professores.py` está localizado e execute o seguinte comando para gerar o arquivo json com os dados do scraping:
+```sh
+python script-professores.py
+```
+Após isso, navegue até o diretório onde o script `script-url-fotos.py` está localizado e execute o seguinte comando para gerar o arquivo json com os dados do scraping:
+```sh
+python script-url-fotos.py
+```
+#### 4. Configurar e Executar o Script de Preenchimento do Banco
+Antes de executar o script de preenchimento do banco de dados, você precisará editar as chaves de conexão com o banco de dados no script. Abra o script preencher.py e altere as variáveis de conexão conforme necessário:
+
+```sh
+    host=SEU_HOST,
+    user=SEU_USER,
+    password=SUA_SENHA,
+    database=SUA_BASE,
+    charset='utf8mb3',
+    cursorclass=pymysql.cursors.DictCursor
+```
+
+Depois de fazer as alterações, execute o script para preencher o banco de dados:
+
+```sh
+python preencher.py
+```
+
 ### 📁 Dependências do projeto
 
 Para instalar as dependências do projeto, você pode rodar os seguintes comando:
@@ -84,6 +120,14 @@ npm install
 # Instale as dependências do vue
 cd .\vue-app\
 npm install
+```
+### Conexão com o banco de dados
+Você também precisará configurar as chaves de conexão com o banco de dados no arquivo index.js do backend. Abra o arquivo index.js e altere as variáveis de conexão conforme necessário:
+```sh
+    host=SEU_HOST,
+    user=SEU_USER,
+    password=SUA_SENHA,
+    database=SUA_BASE
 ```
 
 ### 💾 Execução
