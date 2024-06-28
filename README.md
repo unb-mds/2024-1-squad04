@@ -47,7 +47,7 @@ A documentação do projeto está disponivel no nosso [Github Pages](https://unb
 
 ## ⚙️ Tecnologias Utilizadas
 
-- **Linguagem de Programação:** Javascript, HTML e CSS.
+- **Linguagem de Programação:** Javascript, Python, MySQL, HTML e CSS.
 - **Prototipação:** Figma.
 - **Framework Web:** VueJS.
 - **Framework BackEnd:** NodeJS.
