@@ -100,6 +100,20 @@ cd .\vue-app\
 npm run serve
 ```
 
+## 📎 Extra
+
+### Story Map e Activity Flow
+
+- Para acessar o Story Map e o Activity Flow, clique [aqui](https://miro.com/app/board/uXjVKd3-q78=/#tpicker-content).
+
+### Arquitetura
+
+- Para acessar a arquitetura do projeto, clique [aqui](https://miro.com/app/board/uXjVKd3-q78=/#tpicker-content).
+
+### Protótipo
+
+- Para acessar o protótipo do projeto, clique [aqui](https://www.figma.com/file/6BcQCT1c0pREyonYsJAO34/Untitled?type=design&node-id=0%3A1&mode=design&t=LBSpRoPY9kiFO9uD-1)
+
 ## 👥 Desenvolvedores
 
 <center>
