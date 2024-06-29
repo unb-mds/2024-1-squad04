@@ -1,5 +1,4 @@
 <template>
-	<LoadingComponent :isLoading="loading"/>
 	<div class="container-fluid p-0">
 		<div class="row m-0">
 			<div class="col-lg-6 d-none d-lg-block">
@@ -34,8 +33,9 @@
 						</div>
 					</form>
 					<div class="buttons-login">
-						<button class="login-button" @click.prevent="teste">
-							Entrar
+						<button class="login-button" @click.prevent="HandleLogin">
+							<LoadingComponent class="loading" v-if="loading" :isLoading="loading"/>
+              <span v-else>Entrar</span>
 						</button>
 					</div>
 					<p class="login-error">{{ erro }}</p>
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-//import  axios  from "axios";
 import { authGuard } from "../guards/authGuard.js";
 import router from "../routes/index";
 import { getUsuarios } from "@/repositories/usuario/obterUsuarios.js";
@@ -64,10 +63,6 @@ export default {
 		};
 	},
 	methods: {
-		teste(){
-			this.loading = true;
-		},
-
 		async HandleCadastro() {
 			router.push("/cadastro");
 		},
@@ -95,6 +90,7 @@ export default {
 
 		async HandleLogin() {
 			try {
+				this.loading = true;
 				this.erro = "";
 				const response = await this.autenticarLogin(
 					this.$refs.emailInput.value,
@@ -103,11 +99,13 @@ export default {
 				if (response == 0) {
 					this.erro =
 						"Erro ao fazer login. Por favor, verifique suas credenciais.";
+						this.loading = false
 				}
 				setTimeout(() => {
 					this.erro = "";
 				}, 5000);
 			} catch (error) {
+				this.loading = false;
 				console.error("Erro ao executar o login:", error);
 			}
 		},
@@ -209,7 +207,7 @@ export default {
 	margin-top: 10px;
 }
 
-.login-button p, .loading{
+.login-button{
 	width: 160px; /* Defina a largura desejada para o botão */
 	height: fit-content; /* Defina a altura desejada para o botão */
 	padding: 3%;
@@ -223,7 +221,7 @@ export default {
 	transition: background-color 0.3s ease; /* Adiciona uma transição suave para a cor de fundo */
 }
 
-.login-button p:hover {
+.login-button:hover {
 	background-color: #003366;
 }
 

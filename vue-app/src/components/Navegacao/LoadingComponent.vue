@@ -21,21 +21,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  padding: 0;
   height: 100%;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: none;
 }
 
 .spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 2s linear infinite;
+  width: 13px;
+  margin: 0 auto;
+  padding: 0;
+  height: 13px;
+  animation: spin .8s linear infinite;
 }
 
 @keyframes spin {
