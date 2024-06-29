@@ -99,11 +99,6 @@ const router = createRouter({
 			beforeEnter: beforeEnterCheck,
 		},
 		{
-			path: "/loading",
-			name: "loading",
-			component: LoadingComponent,
-		},
-		{
 			path: "/:catchAll(.*)",
 			redirect: () => {
 				return "/landingpage";
