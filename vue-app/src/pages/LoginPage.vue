@@ -33,7 +33,7 @@
 						</div>
 					</form>
 					<div class="buttons-login">
-						<button class="login-button" @click.prevent="HandleLogin">
+						<button class="login-button" @click.prevent="HandleLogin" :disabled="loading">
 							<LoadingComponent class="loading" v-if="loading" :isLoading="loading"/>
               <span v-else>Entrar</span>
 						</button>
