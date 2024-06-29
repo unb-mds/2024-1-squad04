@@ -1,6 +1,7 @@
 <template>
 	<div class="profile-wraper">
-		<div class="card-profile">
+		<LoadingComponent v-if="loading" :isLoading="loading"/>
+		<div v-if="!loading" class="card-profile">
 			<img
 				src="../assets/icons/navegacao/back_arrow.svg"
 				alt="back-arrow"
@@ -63,15 +64,18 @@
 import { getInfoUserProfileService } from "@/service/usuario/getInfoUserProfile";
 import PopUpEdicaoPerfil from "@/components/Usuario/PopUpEdicaoPerfil.vue";
 import router from "../routes/index";
+import LoadingComponent from "@/components/Navegacao/LoadingComponent.vue";
 export default {
 	components: {
 		PopUpEdicaoPerfil,
+		LoadingComponent,
 	},
 	name: "ProfilePage",
 	data() {
 		return {
 			userInfo: {},
 			togglePopUp: false,
+			loading: true
 		};
 	},
 
@@ -106,9 +110,11 @@ export default {
 		},
 	},
 	mounted() {
+		this.loading = true
 		getInfoUserProfileService()
 			.then((userInfo) => {
 				this.userInfo = userInfo;
+				this.loading = false
 			})
 			.catch((erro) => {
 				console.error("Erro ao obter meus dados", erro);
