@@ -11,7 +11,6 @@ import Avaliacao from "../pages/AvaliacaoPage.vue";
 import PerfilPage from "../pages/PerfilPage.vue";
 import axios from "axios";
 import { descriptarDados } from "@/generals/descriptografarDados";
-import LoadingComponent from "@/components/Navegacao/LoadingComponent.vue";
 
 const beforeEnterCheck = async () => {
 	if (sessionStorage.getItem("matricula") != null) {

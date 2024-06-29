@@ -10,13 +10,11 @@
 
                     <div class="card-professores">
                         <div class="professores-image">
-                            <div class="professores">
+                            <div v-if="!loading" class="professores">
                                 <Top3ProfessoresComponent 
-                                v-if="!loading"
                                 :professor1="professores[0]" :professor2="professores[1]" :professor3="professores[2]
                                 "/>
                                 <CardRankingProfessorComponent
-                                v-if="!loading"
                                 v-for="(professor, index) in professores.slice(3,6)"
                                 :key="index"
                                 :professor="professor"
@@ -38,9 +36,8 @@
 
                     <div class="card-materias">
                         <div class="materias-image">
-                            <div class="materias">
+                            <div  v-if="!loading" class="materias">
                                 <CardMateriaRankingComponent
-                                v-if="!loading"
                                 v-for="(materia, index) in materias.slice(0,4)"
                                 :key="index"
                                 :materia="materia"

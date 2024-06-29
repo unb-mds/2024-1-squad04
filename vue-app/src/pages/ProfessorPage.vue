@@ -6,7 +6,8 @@
       <FiltroProfessores @materiaSelecionada="handleMateriaSelecionada" />
     </div>
 
-    <div class="listagem-professores">
+    <LoadingComponent v-if="loading" :isLoading="loading"/>
+    <div v-if="!loading" class="listagem-professores">
       <CardListagemProfessoresComponent
         v-for="(professor, index) in filteredProfessores"
         :key="index"
@@ -28,6 +29,7 @@ import { obterInformacoesProfessoresFiltrados } from "@/service/professor/Manipu
 import BarraDePesquisaComponente from "../components/Navegacao/BarraDePesquisaComponent.vue";
 import { obterMateriasParaFiltragem } from "@/service/materia/PegarMateriasParaFiltragemDeProfessores";
 import FiltroProfessores from "@/components/Navegacao/FiltroProfessoresPorMateriaComponent.vue";
+import LoadingComponent from "@/components/Navegacao/LoadingComponent.vue";
 
 export default {
   components: {
@@ -36,6 +38,7 @@ export default {
     CardListagemProfessoresComponent,
     BarraDePesquisaComponente,
     FiltroProfessores,
+    LoadingComponent,
   },
 
   name: "ProfessorPage",
@@ -44,6 +47,7 @@ export default {
       professores: [],
       materia_para_filtragem: "",
       searchQuery: "",
+      loading: true,
     };
   },
 
@@ -73,13 +77,14 @@ export default {
     handleSearch(query) {
       this.searchQuery = query;
     },
-
     handleMateriaSelecionada(materiaSelecionada) {
+      this.loading = true;
       this.materia_para_filtragem = materiaSelecionada;
 
       obterInformacoesProfessoresFiltrados(this.materia_para_filtragem)
         .then((professores) => {
           this.professores = professores;
+          this.loading = false;
         })
         .catch((erro) => {
           console.error("Erro ao obter professores:", erro);
@@ -87,17 +92,20 @@ export default {
     },
   },
   mounted() {
+    this.loading = true;
     obterInformacoesProfessoresFiltrados()
       .then((professores) => {
         this.professores = professores;
+        this.loading = false;
       })
       .catch((erro) => {
         console.error("Erro ao obter professores:", erro);
       });
-
+    this.loading = true;
     obterMateriasParaFiltragem()
       .then((materias) => {
         this.materias = materias;
+        this.loading = false;
       })
       .catch((erro) => {
         console.error("Erro ao obter materias:", erro);
