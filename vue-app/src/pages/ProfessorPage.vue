@@ -9,7 +9,7 @@
     <LoadingComponent v-if="loading" :isLoading="loading"/>
     <div v-if="!loading" class="listagem-professores">
       <CardListagemProfessoresComponent
-        v-for="(professor, index) in filteredProfessores"
+        v-for="(professor, index) in filteredProfessores.slice(0, 10)"
         :key="index"
         :professor="professor"
       />

@@ -4,10 +4,10 @@
 		<div class="search">
 			<BarraDePesquisaComponente @search="handleSearch" />
 		</div>
-
-		<div class="listagem-materias">
+		<LoadingComponent v-if="loading" :isLoading="loading"/>
+		<div v-if="!loading" class="listagem-materias">
 			<CardListagemMateriasComponente
-				v-for="(materia, index) in filteredMaterias"
+				v-for="(materia, index) in filteredMaterias.slice(0, 10)"
 				:key="index"
 				:materia="materia"
 			/>
@@ -23,6 +23,7 @@ import FooterBar from "../components/Navegacao/FooterBar.vue";
 import { obterInformacoesMaterias } from "@/service/materia/ManipularDadosMateriaListagem";
 import CardListagemMateriasComponente from "../components/Materias/CardListagemMateriasComponent.vue";
 import BarraDePesquisaComponente from "../components/Navegacao/BarraDePesquisaComponent.vue";
+import LoadingComponent from "@/components/Navegacao/LoadingComponent.vue";
 
 export default {
 	components: {
@@ -30,6 +31,7 @@ export default {
 		FooterBar,
 		CardListagemMateriasComponente,
 		BarraDePesquisaComponente,
+		LoadingComponent,
 	},
 
 	name: "MateriasPage",
@@ -38,6 +40,7 @@ export default {
 		return {
 			materias: [],
 			searchQuery: "",
+			loading: true,
 		};
 	},
 
@@ -67,9 +70,11 @@ export default {
 	},
 
 	mounted() {
+		this.loading = true;
 		obterInformacoesMaterias()
 			.then((materias) => {
 				this.materias = materias;
+				this.loading = false;
 			})
 			.catch((erro) => {
 				console.error("Erro ao obter materias:", erro);
@@ -92,6 +97,7 @@ export default {
 }
 
 .materias {
+	gap: 30px;
 	background: hsla(209, 63%, 17%, 1);
 	background: linear-gradient(
 		90deg,
