@@ -20,7 +20,8 @@
       </div>
     </div>
     <p class="reviews">{{ reviews }} Avaliações</p>
-    <div v-if="isToggled">
+    <LoadingComponent v-if="loading" :isLoading="loading"/>
+    <div v-if="isToggled && !loading">
       <div class="listagem-avaliacoes-professores">
         <CardMinhaAvaliacaoProfessor
           v-for="(
@@ -32,8 +33,9 @@
         />
       </div>
     </div>
-    <div v-else>
-      <div class="listagem-avaliacoes-materias">
+    <div v-if="!isToggled && !loading">
+      <LoadingComponent v-if="loading" :isLoading="loading"/>
+      <div v-if="!loading" class="listagem-avaliacoes-materias">
         <CardMinhaAvaliacao
           v-for="(avaliacao, index) in avaliacoes_materia.avaliacoesMateria"
           :key="index"
@@ -54,6 +56,7 @@ import CardMinhaAvaliacaoProfessor from "@/components/Avaliacao/CardMinhaAvaliac
 import { obterMinhasAvaliacoesProfessores } from "@/service/usuario/getMInhasAvaliacoes";
 import { obterMinhasAvaliacoesMaterias } from "@/service/usuario/getMInhasAvaliacoes";
 import { encriptarDados } from "@/generals/encripitarDados";
+import LoadingComponent from "@/components/Navegacao/LoadingComponent.vue";
 
 export default {
   name: "AvaliacaoPage",
@@ -62,12 +65,14 @@ export default {
     FooterBar,
     CardMinhaAvaliacao,
     CardMinhaAvaliacaoProfessor,
+    LoadingComponent,
   },
   data() {
     return {
       isToggled: true,
       avaliacoes_professores: [],
       avaliacoes_materia: [],
+      loading: true,
     };
   },
 
@@ -121,17 +126,21 @@ export default {
   },
 
   mounted() {
+    this.loading = true;
     obterMinhasAvaliacoesProfessores()
       .then((avaliacoes_professores) => {
         this.avaliacoes_professores = avaliacoes_professores;
+        this.loading = false;
       })
       .catch((erro) => {
         console.error("Erro ao obter avaliação de professores:", erro);
       });
 
+    this.loading = true;
     obterMinhasAvaliacoesMaterias() // Chame a função correta
       .then((avaliacoes_materia) => {
         this.avaliacoes_materia = avaliacoes_materia; 
+        this.loading = false
       })
       .catch((erro) => {
         console.error("Erro ao obter avaliações de matérias:", erro);
