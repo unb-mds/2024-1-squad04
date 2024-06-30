@@ -147,7 +147,12 @@
 									type="submit"
 									class="btn btn-primary btn-block btn-cadastrar"
 								>
-									Cadastrar
+									<LoadingComponent
+										class="loading"
+										v-if="loading"
+										:isLoading="loading"
+									/>
+									<span v-else>Cadastrar</span>
 								</button>
 								<button
 									class="btn btn-secondary btn-block btn-cancelar"
@@ -175,9 +180,13 @@ import {
 	verificarNomeSobrenome,
 	verificarMatricula,
 } from "@/generals/verificarInputs.js";
+import LoadingComponent from "../components/Navegacao/LoadingComponent.vue";
 
 export default {
 	name: "CadastroComponent",
+	components: {
+		LoadingComponent,
+	},
 	data() {
 		return {
 			mensagemErro: "",
@@ -191,6 +200,7 @@ export default {
 				senha: "",
 				curso: "",
 			},
+			loading: false,
 		};
 	},
 
@@ -238,16 +248,19 @@ export default {
 
 		async handleCadastro() {
 			try {
+				this.loading = true;
 				this.mensagemErro = "";
 
 				const existe = await this.verificarExistenciaEValidar();
 				if (existe) {
 					this.mensagemErro = existe;
+					this.loading = false;
 					return;
 				}
 
 				if (this.formData.senha !== this.confirmacao_senha) {
 					this.mensagemErro = "As senhas são diferentes! Confirme sua senha.";
+					this.loading = false;
 					return;
 				}
 
