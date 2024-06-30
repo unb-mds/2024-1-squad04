@@ -3,7 +3,7 @@ export const getDados = (app, sequelize) => {
 	app.get("/usuario", async (req, res) => {
 		try {
 			const [results] = await sequelize.query(
-				"SELECT email, senha, matricula FROM usuario"
+				"SELECT email, senha, matricula, cpf FROM usuario"
 			);
 			res.json(results);
 		} catch (error) {
