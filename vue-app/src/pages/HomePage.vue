@@ -10,21 +10,22 @@
 
                     <div class="card-professores">
                         <div class="professores-image">
-                            <div class="professores">
-                                <Top3ProfessoresComponent :professor1="professores[0]" :professor2="professores[1]" :professor3="professores[2]"/>
+                            <div v-if="!loading" class="professores">
+                                <Top3ProfessoresComponent 
+                                :professor1="professores[0]" :professor2="professores[1]" :professor3="professores[2]
+                                "/>
                                 <CardRankingProfessorComponent
-                                
                                 v-for="(professor, index) in professores.slice(3,6)"
                                 :key="index"
                                 :professor="professor"
                                 :position="index + 4"
                             />
                             </div>
-
-                            <div class="image-1">
+                            <div v-if="!loading" class="image-1">
                                 <img src="../assets/images/images_home/home-section-1.svg">
                             </div>
                         </div>
+                        <LoadingComponent class="loading" v-if="loading" :isLoading="loading"/>
                         <button class="veja-mais" @click.prevent = "HandleProfessors"> Veja Mais</button>
                     </div>
                 </div>
@@ -35,7 +36,7 @@
 
                     <div class="card-materias">
                         <div class="materias-image">
-                            <div class="materias">
+                            <div  v-if="!loading" class="materias">
                                 <CardMateriaRankingComponent
                                 v-for="(materia, index) in materias.slice(0,4)"
                                 :key="index"
@@ -44,7 +45,7 @@
                                 />
                             </div>
 
-                            <div class="image-title">
+                            <div v-if="!loading" class="image-title">
                                 <div class="title-subtitle">
                                     <div class="title">Top 4 Matérias</div>
                                     <div class="subtitle">Explore as favoritas dos estudantes.</div>
@@ -55,6 +56,7 @@
                             </div>
                             
                         </div>
+                        <LoadingComponent class="loading" v-if="loading" :isLoading="loading"/>
                         <button class="veja-mais"> Veja Mais</button>
                     </div>
                 </div>
@@ -79,7 +81,7 @@
     import CardMateriaRankingComponent from '../components/RankingMaterias/CardMateriaRankingComponent.vue'
     import { getProfessoresAvaliadosNotaTotal} from '@/repositories/professor/obterProfessor'
     import { getMateriasAvaliadasNotaTotal } from '@/repositories/materias/obterMaterias'
-
+    import LoadingComponent from "../components/Navegacao/LoadingComponent.vue"
 
 
     export default {
@@ -92,27 +94,31 @@
             CardRankingProfessorComponent,
             FooterBar,
             CardMateriaRankingComponent,
+            LoadingComponent,
         },
 
         data() {
             return {
                 professores: [], 
                 materias:[],
+                loading: true,
             };
         },
         mounted() {
-    
+            this.loading = true
             getProfessoresAvaliadosNotaTotal()
             .then(professores => {
                 this.professores = professores;
+                this.loading = false
             })
             .catch(erro => {
                 console.error('Erro ao obter professores:', erro);
             });
-
+            this.loading = true
             getMateriasAvaliadasNotaTotal()
             .then(materias => {
                 this.materias = materias;
+                this.loading = false
             })
             .catch(erro => {
                 console.error('Erro ao obter materias:', erro);

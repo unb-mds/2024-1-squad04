@@ -229,7 +229,7 @@ export default {
 }
 .container-2-div-texto {
   font-family: "Inter", sans-serif;
-  font-weight: lighter;
+  font-weight: 300;
   font-size: 2.5rem;
   line-height: 5rem;
   text-align: center;
@@ -244,7 +244,7 @@ export default {
   padding-top: 8px;
   padding-bottom: 8px;
   color: #102c46;
-  font-weight: lighter;
+  font-weight: 400;
   font-family: "Inter", sans-serif;
   transition: 0.3s;
 }
