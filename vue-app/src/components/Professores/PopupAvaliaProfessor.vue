@@ -50,7 +50,14 @@
         </div>
         <p v-if="erro" class="error-message">{{ erro }}</p>
         <div class="btn-container">
-          <button type="submit" class="send-btn">Enviar</button>
+          <button type="submit" class="send-btn">
+            <LoadingComponent
+              class="loading"
+              v-if="loading"
+              :isLoading="loading"
+            />
+            <span v-if="!loading">Enviar</span>
+          </button>
           <button
             type="button"
             class="close-btn"
@@ -72,12 +79,14 @@ import { getUsuarios } from "../../repositories/usuario/obterUsuarios.js";
 import ratingStars from "./RatingStarsProfessor.vue";
 import { descriptarDados } from "@/generals/descriptografarDados";
 import { encriptarDados } from "@/generals/encripitarDados";
+import LoadingComponent from "../Navegacao/LoadingComponent.vue";
 let nota_acesso, nota_didatica, nota_metodologia, nota_carisma;
 //matricula-int, cod_prof-char, materia-char, resto-int
 export default {
   name: "PopUp",
   components: {
     ratingStars,
+    LoadingComponent,
   },
   props: {
     TogglePopup: Function,
@@ -89,6 +98,7 @@ export default {
         comentario: "",
         materia: "",
       },
+      loading: false,
       erro: "",
     };
   },
@@ -107,6 +117,7 @@ export default {
     },
 
     async SubmitAvaliacao() {
+      this.loading = true;
       this.erro = "";
       if (
         isNaN(nota_acesso) ||
@@ -114,17 +125,35 @@ export default {
         isNaN(nota_metodologia) ||
         isNaN(nota_carisma)
       ) {
+        this.loading = false;
         this.erro = "Preencha todas as avaliações antes de enviar!";
         return;
       }
-      let professoresAvaliados = await descriptarDados(sessionStorage.getItem("professores_avaliados"))
-      for (let i = 0; i < professoresAvaliados.length; i++){
-        if (professoresAvaliados[i].cod_professor === this.professor.cod_professor && professoresAvaliados[i].cod_materia === this.comentario_materia.materia){
-          return this.erro = "Você ja avaliou esse professor nessa materia"
+      let professoresAvaliados = await descriptarDados(
+        sessionStorage.getItem("professores_avaliados")
+      );
+      for (let i = 0; i < professoresAvaliados.length; i++) {
+        if (
+          professoresAvaliados[i].cod_professor ===
+            this.professor.cod_professor &&
+          professoresAvaliados[i].cod_materia ===
+            this.comentario_materia.materia
+        ) {
+          this.loading = false;
+          return (this.erro = "Você ja avaliou esse professor nessa materia");
         }
       }
-      professoresAvaliados = [...professoresAvaliados, {cod_materia: this.comentario_materia.materia ,cod_professor: this.professor.cod_professor}]
-      sessionStorage.setItem("professores_avaliados", await encriptarDados(professoresAvaliados))
+      professoresAvaliados = [
+        ...professoresAvaliados,
+        {
+          cod_materia: this.comentario_materia.materia,
+          cod_professor: this.professor.cod_professor,
+        },
+      ];
+      sessionStorage.setItem(
+        "professores_avaliados",
+        await encriptarDados(professoresAvaliados)
+      );
       try {
         // carisma no banco vai ser metodo de ensino pq vai dar mt trabalho pra mudar o nome
         const matriculaLogadaStr = await getUsuarioLogado();
@@ -132,7 +161,6 @@ export default {
         const usuarios = await getUsuarios();
         for (let i = 0; i < usuarios.length; i++) {
           if (matriculaLogada === usuarios[i].matricula) {
-           
             await enviarAvaliacaoProfessor(
               matriculaLogada,
               this.professor.cod_professor,
@@ -143,13 +171,16 @@ export default {
               nota_carisma,
               this.comentario_materia.comentario
             );
+            this.loading = false;
             this.TogglePopup();
             location.reload();
             return;
           }
         }
+        this.loading = false;
         this.erro = "Você precisa logar para avaliar!";
       } catch (error) {
+        this.loading = false;
         this.erro = "Erro ao enviar avaliação, tente novamente!";
       }
     },
@@ -158,6 +189,9 @@ export default {
 </script>
 
 <style scoped>
+.loading {
+  padding: 0 30px 0 0;
+}
 .select-container {
   display: flex;
   justify-content: center;

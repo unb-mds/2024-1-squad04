@@ -23,7 +23,14 @@
         </div>
         <p v-if="erro" class="error-message">{{ erro }}</p>
         <div class="btn-container">
-          <button type="submit" class="send-btn">Enviar</button>
+          <button type="submit" class="send-btn">
+            <LoadingComponent
+              class="loading"
+              v-if="loading"
+              :isLoading="loading"
+            />
+            <span v-if="!loading">Enviar</span>
+          </button>
           <button
             type="button"
             class="close-btn"
@@ -46,12 +53,14 @@ import { getUsuarioLogado } from "@/generals/getUsuarioLogado";
 import { getUsuarios } from "@/repositories/usuario/obterUsuarios";
 import { descriptarDados } from "@/generals/descriptografarDados";
 import { encriptarDados } from "@/generals/encripitarDados";
+import LoadingComponent from "../Navegacao/LoadingComponent.vue";
 //matricula-int, cod_prof-char, materia-char, resto-int
 
 export default {
   name: "PopUp",
   components: {
     ratingStars,
+    LoadingComponent,
   },
   props: {
     TogglePopup: Function,
@@ -59,7 +68,9 @@ export default {
   },
   methods: {
     async SubmitAvaliacaoMaterias() {
+      this.loading = true;
       if (isNaN(nota_exp) || isNaN(nota_dif)) {
+        this.loading = false;
         this.erro = "Preencha todas as avaliações antes de enviar!";
         return;
       }
@@ -71,14 +82,25 @@ export default {
         this.erro = "";
         for (let i = 0; i < usuarios.length; i++) {
           if (matriculaLogada === usuarios[i].matricula) {
-            let materiasAvaliadas = await descriptarDados(sessionStorage.getItem("materias_avaliadas"))
-            for (let i = 0; i < materiasAvaliadas.length; i++){
-              if (materiasAvaliadas[i].cod_materia === this.materia.cod_materia){
-                return this.erro = "Você ja avaliou essa materia"
+            let materiasAvaliadas = await descriptarDados(
+              sessionStorage.getItem("materias_avaliadas")
+            );
+            for (let i = 0; i < materiasAvaliadas.length; i++) {
+              if (
+                materiasAvaliadas[i].cod_materia === this.materia.cod_materia
+              ) {
+                this.loading = false;
+                return (this.erro = "Você ja avaliou essa materia");
               }
             }
-            materiasAvaliadas = [...materiasAvaliadas, {cod_materia: this.materia.cod_materia}]
-            sessionStorage.setItem("materias_avaliadas", await encriptarDados(materiasAvaliadas))
+            materiasAvaliadas = [
+              ...materiasAvaliadas,
+              { cod_materia: this.materia.cod_materia },
+            ];
+            sessionStorage.setItem(
+              "materias_avaliadas",
+              await encriptarDados(materiasAvaliadas)
+            );
             await enviarAvaliacaoMateria(
               nota_dif,
               nota_exp,
@@ -86,6 +108,7 @@ export default {
               matriculaLogada,
               this.materia.cod_materia
             );
+            this.loading = false;
             this.TogglePopup();
             location.reload();
             return;
@@ -105,12 +128,16 @@ export default {
     return {
       comentario: "",
       erro: "",
+      loading: false,
     };
   },
 };
 </script>
 
 <style scoped>
+.loading {
+  padding: 0 30px 0 0;
+}
 .inputs {
   display: flex;
   flex-direction: column;
