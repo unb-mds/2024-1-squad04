@@ -41,14 +41,38 @@ A aba de backlog contém todas as user stories e requisitos do projeto Avalia Un
 | RF02                       |O sistema deverá pedir em caso de cadastro: nome, sobrenome, e-mail , CPF, senha, confirmação de senha, matrícula e curso. |
 | RF03                       |O sistema deve validar o CPF do usuario. |
 | RF04                       |O sistema deve verificar se a matricula é valida e se já não foi cadastrada. |
-| RF05                       |Desenvolver o front end da Landing Page para o projeto.|
+| RF05                       |O sistema deverá permitir a edição das informações de cadastro.|
+| RF06                       |O sistema deverá permitir o acesso a usuários não cadastrados, mas apenas para a visualização de avaliações.|
+| RF07                       |O sistema deverá listar todas as matérias ministradas na universidade.|
+| RF08                       |O sistema deverá listar todos os professores que ministram na universidade.|
+| RF09                       |O sistema deverá buscar e filtrar as matérias e os professores.|
+| RF10                       |O sistema deverá permitir avaliações de professores, em notas de 0 a 5, mas feitas apenas por usuários cadastrados, com os critérios de: didática, metodologia, carisma e acesso para dúvidas.|
+| RF11                       |O sistema deverá permitir avaliações comentadas de usuários cadastrados.|
+| RF12                       |O sistema deverá listar as avaliações, comentadas ou não, de cada professor, com o nome do usuário que o avaliou,o código da matéria referente à avaliação e o conteúdo do avaliação.|
+| RF13                       |O sistema deverá permitir a avaliação de matérias, pelos critérios: experiência e dificuldade.|
+| RF14                       |O sistema deverá listar para os usuários as matérias ordenadas pela melhor nota de avaliação total.|
+| RF15                       |O sistema deverá listar as avaliações de matérias.|
+| RF16                       |O sistema deverá listar todos os professores que ofertam determinada disciplina.|
+| RF17                       |O sistema deverá listar para os usuários os professores ordenados pela melhor nota de avaliação total.|
+| RF18                       |O sistema deverá apresentar a média das avaliações de determinado professor e matéria.|
+| RF19                       |O sistema deverá apresentar informações de contato e a formação acadêmica de determinado professor.|
+| RF20                       |O sistema deverá permitir a visualização de todas as avaliações feitas pelo usuário, tanto de matérias, quanto de professores.|
+| RF21                       |O sistema deverá listar a quantidade de avaliações feitas pelo usuário.|
+| RF22                       |O sistema deverá permitir um sistema de ranqueamento de avaliações a partir de "likes" ou "dislikes".|
 
 
 ## Requisitos Não-Funcionais
 
 | **Requisito Não-Funcional ID** | **Descrição**                                                                 |
 |--------------------------------|-------------------------------------------------------------------------------|
-| RNF01                          |  |
-| RNF02                          |  |
+| RNF01                          |A aplicação deverá ser web.|
+| RNF02                          |A aplicação deverá ter responsividade bem ajustada.|
+| RNF03                          |A aplicação deverá ser projetada levando em consideração a experiência de usuário.|
+| RNF04                          |A interface de usuário deverá ser concisa, intuitiva e visualmente atrativa.|
+| RNF05                          |O banco de dados deverá ser desenvolvido em MySQL.|
+| RNF06                          |O front-end deverá ser desenvolvido em Vue.js.|
+| RNF07                          |O back-end deverá ser desenvolvido com Node.js e Python.|
+| RNF08                          |O sistema deverá ser alimentado pela listagem de professores do SIGAA.|
+
 
 
