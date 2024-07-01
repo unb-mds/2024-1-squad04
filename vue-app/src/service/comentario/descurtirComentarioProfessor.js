@@ -132,14 +132,9 @@ export async function verificacaoDislike(comentariosCurtidos, cod_comentario) {
 	);
 	if (!comentarioProcurado) {
 		return await dislikeComentario(cod_comentario, comentariosCurtidos);
+	} else if (comentarioProcurado.dislike == 1) {
+		return await tirarDislikeComentario(cod_comentario, comentariosCurtidos);
 	} else {
-		if (comentarioProcurado.dislike == 1) {
-			return await tirarDislikeComentario(cod_comentario, comentariosCurtidos);
-		} else {
-			return await dislikeComentarioComLike(
-				cod_comentario,
-				comentariosCurtidos
-			);
-		}
+		return await dislikeComentarioComLike(cod_comentario, comentariosCurtidos);
 	}
 }

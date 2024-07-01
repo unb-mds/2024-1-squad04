@@ -132,14 +132,12 @@ export async function verificacaoCurtida(comentariosCurtidos, cod_comentario) {
 	);
 	if (!comentarioProcurado) {
 		return await curtirComentario(cod_comentario, comentariosCurtidos);
+	} else if (comentarioProcurado.like == 1) {
+		return await descurtirComentario(cod_comentario, comentariosCurtidos);
 	} else {
-		if (comentarioProcurado.like == 1) {
-			return await descurtirComentario(cod_comentario, comentariosCurtidos);
-		} else {
-			return await curtirComentarioComDislike(
-				cod_comentario,
-				comentariosCurtidos
-			);
-		}
+		return await curtirComentarioComDislike(
+			cod_comentario,
+			comentariosCurtidos
+		);
 	}
 }

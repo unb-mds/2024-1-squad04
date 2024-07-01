@@ -12,15 +12,32 @@
 			</div>
 		</div>
 
-		<div class="five-estrelas">
-			<img
-				v-for="index in 5"
+		<div class="five-estrelas" v-if="avaliacao">
+			<svg
+				v-for="(starClass, index) in getStarClassMateria(
+					avaliacao.nota_total / 2
+				)"
 				:key="index"
-				ref="estrelas"
-				src="../../assets/icons/avaliacao/icone-estrela-azul.svg"
 				alt=""
 				class="estrela"
-			/>
+				:class="starClass"
+				width="112"
+				height="104"
+				viewBox="0 0 112 104"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M63.7069 15.1759L71.8732 30.3947C72.9868 32.5132 75.9564 34.5453 78.462 34.9344L93.2634 37.2259C102.729
+ 38.6959 104.956 45.0947 98.1354 51.4071L86.6283 62.1294C84.6795 63.9453 83.6123 67.4474 84.2155 69.955L87.5099 
+ 83.2282C90.1083 93.7344 84.1227 97.7985 74.1468 92.3077L60.2733 84.655C57.7678 83.2715 53.6382 83.2715 51.0862
+  84.655L37.2127 92.3077C27.2832 97.7985 21.2513 93.6912 23.8497 83.2282L27.144 69.955C27.7472 67.4474 26.68
+   63.9453 24.7313 62.1294L13.2242 51.4071C6.44983 45.0947 8.63061 38.6959 18.0961 37.2259L32.8976 
+   34.9344C35.3568 34.5453 38.3263 32.5132 39.4399 30.3947L47.6063 15.1759C52.0606 6.91794 59.2989
+    6.91794 63.7069 15.1759Z"
+					fill="#0a745b"
+				/>
+			</svg>
 		</div>
 
 		<div class="comment-content" v-if="avaliacao.comentario !== ''">
@@ -95,7 +112,6 @@
 </template>
 
 <script>
-import { nextTick } from "vue";
 import { descriptarDados } from "@/generals/descriptografarDados";
 import { verificacaoCurtida } from "@/service/comentario/curtirComentarioMateria";
 import { verificacaoDislike } from "@/service/comentario/descurtirComentarioMateria";
@@ -113,22 +129,26 @@ export default {
 	},
 
 	methods: {
-		handleEstrelasProfessor() {
-			const estrelas = this.$refs.estrelas;
-			const media = this.avaliacao.nota_total;
+		getStarClassMateria(nota_total) {
+			const notaPorEstrela = 1;
+			const totalEstrelas = 5;
+			let notaAtual = nota_total / notaPorEstrela;
 
-			estrelas.forEach((estrela, index) => {
-				// Remove todas as classes para garantir que começamos com uma estrela "limpa"
-				estrela.classList.remove("full-star", "partial-star", "empty-star");
+			notaAtual = Math.round(notaAtual * 2) / 2;
 
-				if (media >= index + 1) {
-					estrela.classList.add("full-star");
-				} else if (media > index) {
-					estrela.classList.add("partial-star");
+			let estrelaClasses = [];
+
+			for (let i = 1; i <= totalEstrelas; i++) {
+				if (notaAtual >= i) {
+					estrelaClasses.push("full-star");
+				} else if (notaAtual > i - 1 && notaAtual < i) {
+					estrelaClasses.push("partial-star");
 				} else {
-					estrela.classList.add("empty-star");
+					estrelaClasses.push("empty-star");
 				}
-			});
+			}
+
+			return estrelaClasses;
 		},
 		carregarImgAlternativa(event) {
 			event.target.src =
@@ -178,30 +198,17 @@ export default {
 				(comentario) =>
 					comentario.cod_comentario == cod_comentario && comentario.like == 1
 			);
-			return comentario ? true : false;
+			return !!comentario;
 		},
 		isDisliked(cod_comentario) {
 			let comentario = this.comentariosCurtidos.find(
 				(comentario) =>
 					comentario.cod_comentario == cod_comentario && comentario.dislike == 1
 			);
-			return comentario ? true : false;
-		},
-	},
-	watch: {
-		professor: {
-			handler() {
-				this.$nextTick(() => {
-					this.handleEstrelasProfessor();
-				});
-			},
-			deep: true,
+			return !!comentario;
 		},
 	},
 	mounted() {
-		nextTick(() => {
-			this.handleEstrelasProfessor();
-		});
 		this.getComentariosCurtidosPeloUsuario();
 	},
 };
@@ -303,7 +310,9 @@ export default {
 	justify-content: flex-start; /* Alterado para flex-start */
 	align-items: center;
 }
-
+svg {
+	height: fit-content;
+}
 .reaction {
 	margin-top: 10px;
 	display: flex;
@@ -343,6 +352,24 @@ export default {
 	font-size: 1.8rem;
 	color: #ffffffa9;
 	font-weight: lighter;
+}
+
+.full-star {
+	filter: none;
+}
+
+.full-star path {
+	fill: rgb(245, 255, 112);
+}
+
+.partial-star {
+	filter: none;
+	-webkit-mask-image: linear-gradient(to left, transparent 40%, black 60%);
+	opacity: 1;
+}
+
+.empty-star {
+	filter: invert(50%) opacity(30%);
 }
 
 .like-button.liked svg path {
