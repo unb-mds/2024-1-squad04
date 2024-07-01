@@ -6,17 +6,18 @@ export const getProfessoresAvaliados = (app, sequelize) => {
             SELECT 
                 p.nome AS nome_professor,
                 p.foto_url AS foto_professor,
-                ROUND(AVG(ap.nota_total), 1) AS nota_media
+                COALESCE(ROUND(AVG(ap.nota_total), 1), 0) AS nota_media
             FROM 
                 professor p
-            INNER JOIN 
+            LEFT JOIN 
                 professor_avaliacao_usuario pau ON p.cod_professor = pau.cod_professor
-            INNER JOIN 
+            LEFT JOIN 
                 avaliacao_professor ap ON pau.cod_avaliacao = ap.cod_avaliacao
             GROUP BY 
                 p.nome, p.foto_url
             ORDER BY 
-                nota_media DESC;
+              nota_media DESC
+            LIMIT 7;
         `;
 
 		sequelize

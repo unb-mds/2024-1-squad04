@@ -21,22 +21,22 @@ Para curtir um comentário:
 import { descriptarDados } from "@/generals/descriptografarDados";
 import { encriptarDados } from "@/generals/encripitarDados";
 import {
-	curtirDescurtirComentarioProfessor,
-	relacionamentoUsuarioCurtidaProfessor,
-} from "@/repositories/comentario/enviarLikeDislikeProfessor";
-import { deletarRelacionamentoUsuarioComentarioProfessor } from "@/repositories/comentario/deletarLikeDislikeProfessor";
-import { editarRelacionamentoUsuarioComentarioProfessor } from "@/repositories/comentario/editarRelacionamentoUsuarioComentario";
+	curtirDescurtirComentarioMateria,
+	relacionamentoUsuarioCurtidaMateria,
+} from "@/repositories/comentario/enviarLikeDislikeMateria";
+import { deletarRelacionamentoUsuarioComentarioMateria } from "@/repositories/comentario/deletarLikeDislikeMateria";
+import { editarRelacionamentoUsuarioComentarioMateria } from "@/repositories/comentario/editarRelacionamentoUsuarioComentario";
 
 async function curtirComentario(cod_comentario, comentariosCurtidos) {
 	const matriculaDescriptografada = await descriptarDados(
 		sessionStorage.getItem("matricula")
 	);
-	await curtirDescurtirComentarioProfessor(
+	await curtirDescurtirComentarioMateria(
 		parseInt(1),
 		parseInt(0),
 		parseInt(cod_comentario)
 	);
-	await relacionamentoUsuarioCurtidaProfessor(
+	await relacionamentoUsuarioCurtidaMateria(
 		parseInt(cod_comentario),
 		parseInt(matriculaDescriptografada),
 		parseInt(1),
@@ -55,7 +55,7 @@ async function curtirComentario(cod_comentario, comentariosCurtidos) {
 	);
 
 	sessionStorage.setItem(
-		"likes_dislikes_professores",
+		"likes_dislikes_materias",
 		comentariosAtualizadosEncriptados
 	);
 
@@ -66,12 +66,12 @@ async function curtirComentarioComDislike(cod_comentario, comentariosCurtidos) {
 	const matriculaDescriptografada = await descriptarDados(
 		sessionStorage.getItem("matricula")
 	);
-	await curtirDescurtirComentarioProfessor(
+	await curtirDescurtirComentarioMateria(
 		parseInt(1),
 		parseInt(-1),
 		parseInt(cod_comentario)
 	);
-	await editarRelacionamentoUsuarioComentarioProfessor(
+	await editarRelacionamentoUsuarioComentarioMateria(
 		parseInt(cod_comentario),
 		parseInt(matriculaDescriptografada),
 		parseInt(1),
@@ -94,7 +94,7 @@ async function curtirComentarioComDislike(cod_comentario, comentariosCurtidos) {
 	);
 
 	sessionStorage.setItem(
-		"likes_dislikes_professores",
+		"likes_dislikes_materias",
 		comentariosAtualizadosEncriptados
 	);
 	return { num_likes: 1, num_dislikes: -1, liked: true, disliked: false };
@@ -104,12 +104,12 @@ async function descurtirComentario(cod_comentario, comentariosCurtidos) {
 	const matriculaDescriptografada = await descriptarDados(
 		sessionStorage.getItem("matricula")
 	);
-	await curtirDescurtirComentarioProfessor(
+	await curtirDescurtirComentarioMateria(
 		parseInt(-1),
 		parseInt(0),
 		parseInt(cod_comentario)
 	);
-	await deletarRelacionamentoUsuarioComentarioProfessor(
+	await deletarRelacionamentoUsuarioComentarioMateria(
 		parseInt(cod_comentario),
 		parseInt(matriculaDescriptografada)
 	);
@@ -120,7 +120,7 @@ async function descurtirComentario(cod_comentario, comentariosCurtidos) {
 		comentariosAtualizados
 	);
 	sessionStorage.setItem(
-		"likes_dislikes_professores",
+		"likes_dislikes_materias",
 		comentariosAtualizadosEncriptados
 	);
 	return { num_likes: -1, num_dislikes: 0, liked: false, disliked: false };
