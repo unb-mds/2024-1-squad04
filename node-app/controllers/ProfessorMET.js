@@ -1,5 +1,3 @@
-import Sequelize from "sequelize";
-
 export const getProfessoresAvaliados = (app, sequelize) => {
 	app.get("/professores_avaliados", (req, res) => {
 		const sqlQuery = `
