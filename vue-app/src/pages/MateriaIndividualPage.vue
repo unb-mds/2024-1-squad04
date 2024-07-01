@@ -195,7 +195,7 @@ import { obterMateriaByID } from "@/service/materia/ManipularDadosMateriaIndivid
 import { ref } from "vue";
 import { obterInformacoesProfessoresFiltrados } from "@/service/professor/ManipulaDadosProfessorCardListagem";
 import CardProfMateria from "../components/Materias/ProfessorPorMateria.vue";
-import PopUp from "../components/Professores/PopupAvaliaProfessor.vue";
+import PopUp from "../components/Materias/PopupAvaliaMaterias.vue";
 import AvaliacaoMateria from "../components/Avaliacao/AvaliacaoMateriaComponent.vue";
 import router from "@/routes/index";
 
@@ -205,7 +205,6 @@ export default {
 			materia: {},
 			professores: [],
 			comentariosCurtidos: [],
-			loading: true,
 		};
 	},
 
