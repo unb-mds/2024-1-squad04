@@ -430,8 +430,8 @@ h2 {
 	font-family: "Open Sans", sans-serif;
 	font-size: 1.6rem;
 	margin: 0;
-	font-weight: 300;
-	color: rgb(242, 242, 242, 0.4);
+	font-weight: 400;
+	color: rgba(242, 242, 242, 0.438);
 	margin-top: 10px;
 }
 

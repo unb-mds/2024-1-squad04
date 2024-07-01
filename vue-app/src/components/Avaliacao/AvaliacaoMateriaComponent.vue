@@ -342,7 +342,8 @@ svg {
 
 .like-button svg path,
 .deslike-button svg path {
-	fill: rgb(255, 255, 255);
+	fill: none;
+	stroke: #ffffff8f;
 }
 
 .like-count,
@@ -373,11 +374,13 @@ svg {
 }
 
 .like-button.liked svg path {
-	fill: #013d2c; /* Muda a cor do ícone de "like" para verde quando curtido */
+	fill: #ffffff;
+	stroke: none; /* Muda a cor do ícone de "like" para verde quando curtido */
 }
 
 .deslike-button.disliked svg path {
-	fill: #013d2c; /* Muda a cor do ícone de "like" para verde quando curtido */
+	fill: #ffffff;
+	stroke: none; /* Muda a cor do ícone de "like" para verde quando curtido */
 }
 
 .rotated {
