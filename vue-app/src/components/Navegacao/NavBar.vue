@@ -194,7 +194,7 @@ export default {
 
 .profile {
 	width: 8rem;
-	height: auto;
+	height: 8rem;
 	border-radius: 8rem;
 }
 
