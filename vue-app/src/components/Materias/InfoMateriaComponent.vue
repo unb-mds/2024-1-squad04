@@ -1,179 +1,130 @@
 <template>
-	<div class="container-frame">
+	<div class="materia-wraper">
 		<PopUp
 			v-if="popupTrigger.buttonTrigger"
 			:TogglePopup="() => TogglePopup('buttonTrigger')"
 			:materia="materia"
 		/>
-		<div class="container">
-			<div class="container-avaliacao">
-				<div class="titulo-notas-gerais">
-					<h3>Notas Gerais</h3>
-					<div v-if="materia.medias" class="five-estrelas">
-						<img
-							id="estrela-media-materia"
-							v-for="(starClass, index) in getStarClassMateria(
-								materia.medias.media_nota_total
-							)"
-							:key="index"
-							src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-							alt=""
-							class="estrela"
-							:class="starClass"
-						/>
+		<div class="info-materia">
+			<div class="materia-details-rating">
+				<div class="voltar" @click="voltarPagina">
+					<div class="icon">
+						<svg
+							width="22"
+							height="39"
+							viewBox="0 0 22 39"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M19.3128 37.7848C19.8284 38.2535 20.6253 38.2066 21.094 37.691C21.5628 37.1754 21.5159 36.3785 21.0003 35.9098L2.85963 19.5035C2.39088 19.0816 2.39088 18.4723 2.85963 18.0504L21.0003 2.20664C21.5159 1.73789 21.5628 0.941015 21.1409 0.42539C20.6721 -0.0902346 19.8753 -0.137109 19.3596 0.284766L1.21901 16.1754C-0.374742 17.5816 -0.421616 19.9254 1.17213 21.3785L19.3128 37.7848Z"
+								fill="#A4A4A4"
+							/>
+						</svg>
 					</div>
-
-					<p>Experiência</p>
-					<div v-if="materia.medias" class="five-estrelas estrelas-metricas">
-						<img
-							id="ajuste-estrelas-metricas"
-							v-for="(starClass, index) in getStarClassMateria(
-								materia.medias.media_nota_experiencia
-							)"
-							:key="index"
-							src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-							alt=""
-							class="estrela"
-							:class="starClass"
-						/>
-					</div>
-
-					<p>Dificuldade</p>
-					<div v-if="materia.medias" class="five-estrelas estrelas-metricas">
-						<img
-							id="ajuste-estrelas-metricas"
-							v-for="(starClass, index) in getStarClassMateria(
-								materia.medias.media_nota_dificuldade
-							)"
-							:key="index"
-							src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-							alt=""
-							class="estrela"
-							:class="starClass"
-						/>
-					</div>
+					<p class="voltar-text">Voltar</p>
 				</div>
-			</div>
-
-			<div
-				class="container-notas-gerais"
-				@click="() => TogglePopup('buttonTrigger')"
-			>
-				<div class="section" id="general-reviews">
-					<div class="avaliacoes-gerais-container">
-						<div class="titulo-avaliacoes-gerais">
-							<h3>Avaliações Gerais</h3>
+				<div class="details-rating">
+					<div class="details">
+						<div class="nome-codigo">
+							<p class="nome-materia">
+								{{ materia.nome_materia }}
+							</p>
+							<p class="materia-codigo">{{ materia.cod_materia }}</p>
+							<p class="qtd-hora">
+								Carga horária: {{ materia.quantidade_horas }}
+							</p>
 						</div>
-
-						<div class="container-avaliacoes-alunos-cards">
-							<div v-if="materia.avaliacoes && materia.avaliacoes.length > 0">
-								<div
-									v-for="avaliacao in materia.avaliacoes"
-									:key="avaliacao.id"
-									class="avaliacao"
-								>
-									<div id="foto-de-usuario-container">
-										<div id="card-user-container">
-											<div id="avaliacao-nome">
-												<p>{{ avaliacao.usuario.nome_usuario }}</p>
-											</div>
-										</div>
-										<div id="foto-de-usuario">
-											<img
-												src="../../assets/provisorio/foto-perfil-navbar-provisoria.svg"
-												alt=""
-											/>
-										</div>
-									</div>
-									<div class="five-estrelas">
-										<img
-											v-for="n in 5"
-											:key="n"
-											src="../../assets/icons/avaliacao/icone-estrela-azul-pagina-individual-professores.svg"
-											alt=""
-											class="estrela"
-											:class="getStarClassMateria(avaliacao.nota_total)"
-										/>
-									</div>
-									<div id="avaliacao-comentario">
-										<p>{{ avaliacao.comentario }}</p>
-									</div>
-									<div id="avaliacao-icons">
-										<div id="like-container">
-											<div id="avaliacao-likes">
-												<p>{{ avaliacao.num_likes }}</p>
-											</div>
-											<div id="like-icon">
-												<svg
-													width="17"
-													height="17"
-													viewBox="0 0 17 17"
-													fill="none"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														d="M5.94287 13.0973V5.90059C5.94287 5.61726 6.02787 5.34101 6.1837 5.10726L8.11745 2.23143C8.42204 1.77101 9.17995 1.44518 9.82454 1.68601C10.5187 1.91976 10.9791 2.69893 10.8304 3.39309L10.462 5.70934C10.4337 5.92184 10.4904 6.11309 10.6108 6.26184C10.7312 6.39643 10.9083 6.48143 11.0995 6.48143H14.0108C14.5704 6.48143 15.052 6.70809 15.3354 7.10476C15.6045 7.48726 15.6541 7.98309 15.477 8.48601L13.7345 13.7914C13.515 14.6698 12.5587 15.3852 11.6095 15.3852H8.84704C8.37245 15.3852 7.70662 15.2223 7.40204 14.9177L6.49537 14.2164C6.14829 13.9543 5.94287 13.5364 5.94287 13.0973Z"
-														fill="#171717"
-														fill-opacity="0.5"
-													/>
-													<path
-														d="M3.6905 4.51953H2.96091C1.863 4.51953 1.41675 4.94453 1.41675 5.99286V13.1187C1.41675 14.167 1.863 14.592 2.96091 14.592H3.6905C4.78841 14.592 5.23466 14.167 5.23466 13.1187V5.99286C5.23466 4.94453 4.78841 4.51953 3.6905 4.51953Z"
-														fill="#171717"
-														fill-opacity="0.5"
-													/>
-												</svg>
-											</div>
-										</div>
-										<div id="dislike-container">
-											<div id="avaliacao-deslikes">
-												<p>{{ avaliacao.num_dislikes }}</p>
-											</div>
-											<div id="dislike-icon">
-												<svg
-													width="17"
-													height="17"
-													viewBox="0 0 17 17"
-													fill="none"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<g transform="scale(-1,1) translate(-17,0)">
-														<path
-															d="M5.94287 13.0973V5.90059C5.94287 5.61726 6.02787 5.34101 6.1837 5.10726L8.11745 2.23143C8.42204 1.77101 9.17995 1.44518 9.82454 1.68601C10.5187 1.91976 10.9791 2.69893 10.8304 3.39309L10.462 5.70934C10.4337 5.92184 10.4904 6.11309 10.6108 6.26184C10.7312 6.39643 10.9083 6.48143 11.0995 6.48143H14.0108C14.5704 6.48143 15.052 6.70809 15.3354 7.10476C15.6045 7.48726 15.6541 7.98309 15.477 8.48601L13.7345 13.7914C13.515 14.6698 12.5587 15.3852 11.6095 15.3852H8.84704C8.37245 15.3852 7.70662 15.2223 7.40204 14.9177L6.49537 14.2164C6.14829 13.9543 5.94287 13.5364 5.94287 13.0973Z"
-															fill="#171717"
-															fill-opacity="0.5"
-														/>
-														<path
-															d="M3.6905 4.51953H2.96091C1.863 4.51953 1.41675 4.94453 1.41675 5.99286V13.1187C1.41675 14.167 1.863 14.592 2.96091 14.592H3.6905C4.78841 14.592 5.23466 14.167 5.23466 13.1187V5.99286C5.23466 4.94453 4.78841 4.51953 3.6905 4.51953Z"
-															fill="#171717"
-															fill-opacity="0.5"
-														/>
-													</g>
-												</svg>
-											</div>
-										</div>
-									</div>
+						<p class="nota-geral-materia" v-if="materia.medias">
+							{{ (materia.medias.media_nota_total / 2).toFixed(2) }}
+							<span class="nota-total">/5</span>
+						</p>
+						<button class="avaliar" @click="() => TogglePopup('buttonTrigger')">
+							Avaliar
+						</button>
+					</div>
+					<div class="rating">
+						<div class="criterio">
+							<p class="nome-criterio">Geral:</p>
+							<div class="stars-nota">
+								<div class="stars">
+									<img
+										v-for="index in 5"
+										:key="index"
+										ref="estrelas"
+										src="../../assets/icons/avaliacao/icone-estrela-azul.svg"
+										alt=""
+										class="estrela"
+									/>
+								</div>
+								<div class="nota-criterio" v-if="materia.medias">
+									{{ (materia.medias.media_nota_total / 2).toFixed(2) }}
+									<span class="nota-total-criterio">/5</span>
 								</div>
 							</div>
-							<div v-else>
-								<p>Não há avaliações ainda.</p>
+						</div>
+						<div class="criterio">
+							<p class="nome-criterio">Experiência:</p>
+							<div class="stars-nota">
+								<div class="stars">
+									<img
+										v-for="index in 5"
+										:key="index"
+										ref="estrelas"
+										src="../../assets/icons/avaliacao/icone-estrela-azul.svg"
+										alt=""
+										class="estrela"
+									/>
+								</div>
+								<div class="nota-criterio" v-if="materia.medias">
+									{{ (materia.medias.media_nota_experiencia / 2).toFixed(2) }}
+									<span class="nota-total-criterio">/5</span>
+								</div>
+							</div>
+						</div>
+						<div class="criterio">
+							<p class="nome-criterio">Dificuldade:</p>
+							<div class="stars-nota">
+								<div class="stars">
+									<img
+										v-for="index in 5"
+										:key="index"
+										ref="estrelas"
+										src="../../assets/icons/avaliacao/icone-estrela-azul.svg"
+										alt=""
+										class="estrela"
+									/>
+								</div>
+								<div class="nota-criterio" v-if="materia.medias">
+									{{ (materia.medias.media_nota_dificuldade / 2).toFixed(2)
+									}}<span class="nota-total-criterio"> /5</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="container-professores">
-				<div class="section" id="teacher-review">
-					<h3>Professores</h3>
-
-					<!-- Coloque aqui os cards dos professores que ofertam essa disciplina -->
-					<div class="container-card-professores">
-						<CardProfMateria
-							v-for="(professor, index) in professores"
+			<div class="materias-professores-avaliacoes">
+				<div class="materias-avaliacoes">
+					<h2>Avaliações</h2>
+					<div
+						class="avaliacoes"
+						v-if="materia.avaliacoes && materia.avaliacoes.length > 0"
+					>
+						<AvaliacaoMateria
+							v-for="(avaliacao, index) in materia.avaliacoes"
 							:key="index"
-							:professor="professor"
+							:avaliacao="avaliacao"
 						/>
 					</div>
+				</div>
+				<div class="materias-professores">
+					<h2>Professores</h2>
+					<CardProfMateria
+						v-for="(professor, index) in professores"
+						:key="index"
+						:professor="professor"
+					/>
 				</div>
 			</div>
 		</div>
@@ -183,10 +134,11 @@
 <script>
 import { obterMateriaByID } from "@/service/materia/ManipularDadosMateriaIndividual";
 import { ref } from "vue";
-import PopUp from "./PopupAvaliaMaterias.vue";
-import CardProfMateria from "./ProfessorPorMateria.vue";
 import { obterInformacoesProfessoresFiltrados } from "@/service/professor/ManipulaDadosProfessorCardListagem";
-//import router from '../routes/index';
+import CardProfMateria from "./ProfessorPorMateria.vue";
+import PopUp from "./PopupAvaliaMaterias.vue";
+import AvaliacaoMateria from "../Avaliacao/AvaliacaoMateriaComponent.vue";
+import router from "@/routes/index";
 
 export default {
 	name: "infoMateria",
@@ -195,12 +147,14 @@ export default {
 		return {
 			materia: {},
 			professores: [],
+			comentariosCurtidos: [],
 		};
 	},
 
 	components: {
-		PopUp,
 		CardProfMateria,
+		PopUp,
+		AvaliacaoMateria,
 	},
 
 	methods: {
@@ -224,6 +178,9 @@ export default {
 			}
 
 			return estrelaClasses;
+		},
+		voltarPagina() {
+			router.go(-1);
 		},
 	},
 
@@ -263,201 +220,299 @@ export default {
 </script>
 
 <style scoped>
-html,
-body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-
-.container-frame {
-	height: 100%;
-	background-color: #f5f5f5;
-	overflow: hidden;
-}
-
-.container {
-	height: calc(100% - 60px);
-	width: calc(100% - 60px);
-	display: grid;
-	grid-template-columns: 0.7fr 1fr 0.7fr;
-	gap: 40px;
-	padding: 40px;
+.materia-wraper {
 	background: -webkit-linear-gradient(
 		90deg,
 		hsla(209, 63%, 17%, 1) 0%,
 		hsla(183, 71%, 16%, 1) 100%
 	);
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
-.container-avaliacao {
-	background-color: #f5f5f5;
+.info-materia {
+	width: 90%;
+	height: 96%;
+	max-width: 1200px;
+	max-height: 1200px;
 	display: flex;
 	flex-direction: column;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	overflow: auto;
-	padding-bottom: 0px;
-	margin-bottom: 20px;
+	align-items: center;
+	gap: 20px;
 }
 
-.container-notas-gerais,
-.container-professores {
+.materia-details-rating {
+	width: 100%;
+	height: 35%;
+	background-color: rgba(236, 236, 236, 0.129);
+	border-radius: 20px;
+	position: relative;
+	padding: 4rem;
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
-	margin-bottom: 20px;
+	justify-content: flex-end;
+	min-height: 360px;
 }
 
-.section {
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-	overflow: auto;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	height: 90vh;
+.materias-professores-avaliacoes {
+	width: 100%;
+	height: 50%;
+	display: flex;
+	gap: 20px;
 }
 
-.section {
+.materias-avaliacoes {
+	height: 100%;
+	width: 60%;
+	background-color: rgba(236, 236, 236, 0.129);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 3rem;
+	box-sizing: border-box;
+	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
-.section::-webkit-scrollbar {
-	display: none; /* Safari and Chrome */
-}
-
-#general-reviews h3 {
-	font-size: 2.17em;
-}
-
-.avaliacoes-gerais-container {
+.avaliacoes {
+	width: 80%;
 	display: flex;
 	flex-direction: column;
-	justify-items: center;
-	height: 100%;
-}
-
-#teacher-review h3 {
-	font-size: 2.17em;
-	text-align: center;
-}
-
-.titulo-notas-gerais h3,
-.titulo-avaliacoes-gerais h3 {
-	font-size: 2.17em;
-	text-align: center;
-	color: #4d4d4d;
-	font-family: "Open Sans", sans-serif;
-}
-
-li,
-h3,
-p {
-	font-family: Inter, sans-serif;
-	color: #4d4d4d;
-}
-
-.five-estrelas {
-	display: flex;
 	align-items: center;
-	gap: 5px;
-}
-.five-estrelas img.estrela {
-	width: 30px;
-	/* Ajuste para estrelas maiores */
-	height: 30px;
-}
-.five-estrelas.estrelas-metricas img.estrela {
-	width: 20px;
-	/* Ajuste para estrelas menores */
-	height: 20px;
-}
-.metricas-ajustes {
-	display: flex;
-	flex-direction: column;
 }
 
-li,
-h3,
-p {
-	font-family: Inter, sans-serif;
-	color: #4d4d4d;
-	font-family: Inter, sans-serif;
-	font-size: 15px;
-	color: #4d4d4d;
-}
-.full-star {
-	filter: brightness(1);
-	/* Estrela totalmente brilhante */
-}
-.partial-star {
-	filter: brightness(0.5);
-	/* Estrela meio brilhante */
-}
-.empty-star {
-	filter: brightness(1) grayscale(1);
-	/* Estrela apagada em cinza claro */
-	opacity: 0.3;
-}
-/* CSS para o card de comentário */
-/* CSS para o card de comentário */
-.avaliacao {
-	background-color: #f5f5f5;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	padding: 15px;
+h2 {
+	font-family: "Open Sans", sans-serif;
+	font-size: 2.4rem;
+	margin: 0;
+	font-weight: 600;
+	color: rgb(242, 242, 242, 0.9);
 	margin-bottom: 20px;
 }
-#foto-de-usuario {
-	display: inline-flex;
+
+.materias-professores {
+	height: 100%;
+	width: 40%;
+	background-color: rgba(236, 236, 236, 0.129);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 3rem;
+	box-sizing: border-box;
+	overflow-y: auto;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.voltar {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: fit-content;
-	height: fit-content;
-}
-#foto-de-usuario img {
-	width: 40px;
-	/* Tamanho da foto de perfil */
-	height: 40px;
-	/* Tamanho da foto de perfil */
-	border-radius: 50%;
-	/* Para tornar a imagem redonda */
-	object-fit: cover;
-}
-#avaliacao-nome {
-	font-size: 0.9rem;
-	font-weight: bold;
-	margin-bottom: 5px;
-}
-#avaliacao-codigo {
-	font-size: 0.8rem;
-	color: #666;
 	margin-bottom: 10px;
+	height: 20px;
+	gap: 5px;
+	cursor: pointer;
 }
-#avaliacao-comentario {
-	font-size: 0.9rem;
-	color: #4d4d4d;
-	margin-bottom: 10px;
+
+.icon svg {
+	width: 1.4rem;
+	height: 1.4rem;
 }
-#avaliacao-icons {
+.icon svg path {
+	fill: rgb(242, 242, 242, 0.758);
+}
+
+.voltar-text {
+	font-family: "Inter", sans-serif;
+	font-size: 1.4rem;
+	margin: 0;
+	color: rgb(242, 242, 242, 0.758);
+}
+
+.details-rating {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 10px;
 }
-#like-container,
-#dislike-container {
+
+.details {
+	height: 100%;
+	width: 50%;
+	gap: 20px;
 	display: flex;
-	align-items: center;
-	width: fit-content;
-	/* Ajuste para o tamanho do conteúdo */
+	flex-direction: column;
 }
-#like-icon,
-#dislike-icon {
-	width: 18px;
-	/* Tamanho dos ícones de like e dislike */
-	height: 18px;
-	/* Tamanho dos ícones de like e dislike */
+.nome-codigo {
+	width: fit-content;
+}
+.nome-materia {
+	font-family: "Open Sans", sans-serif;
+	font-size: 2.4rem;
+	margin: 0;
+	font-weight: 600;
+	color: rgb(242, 242, 242, 0.9);
+}
+
+.materia-codigo {
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.8rem;
+	margin: 0;
+	font-weight: 300;
+	color: rgb(242, 242, 242, 0.6);
+}
+
+.qtd-hora {
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.6rem;
+	margin: 0;
+	font-weight: 300;
+	color: rgb(242, 242, 242, 0.4);
+	margin-top: 10px;
+}
+
+.nota-geral-materia {
+	font-family: "Open Sans", sans-serif;
+	font-size: 3rem;
+	margin: 0;
+	font-weight: 600;
+	color: rgb(242, 242, 242, 0.9);
+	margin-top: 10px;
+}
+
+.nota-total {
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.6rem;
+	margin: 0;
+	font-weight: 300;
+	color: rgb(242, 242, 242, 0.6);
+	margin-left: -2px;
+}
+
+.avaliar {
+	width: fit-content;
+	padding: 10px 40px 10px 40px;
+	font-size: 1.4rem;
+	background-color: #ffffff1f;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	font-family: "Inter", sans-serif;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+.rating {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 40%;
+}
+
+.criterio {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+	justify-content: space-between;
+}
+.estrela {
+	width: 3.4rem;
+}
+
+.nome-criterio {
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.6rem;
+	margin: 0;
+	font-weight: 300;
+	color: rgb(242, 242, 242, 0.6);
+}
+.nota-criterio {
+	font-family: "Open Sans", sans-serif;
+	font-size: 2rem;
+	margin: 0;
+	font-weight: 600;
+	color: rgb(242, 242, 242, 0.9);
+}
+
+.nota-total-criterio {
+	font-family: "Open Sans", sans-serif;
+	font-size: 1.4rem;
+	margin: 0;
+	font-weight: 300;
+	color: rgb(242, 242, 242, 0.6);
+	margin-left: -2px;
+}
+
+.stars-nota {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+	.info-materia {
+		height: fit-content;
+		max-height: fit-content;
+	}
+	.materia-wraper {
+		height: fit-content;
+		padding: 30px;
+		box-sizing: border-box;
+	}
+	.materias-professores-avaliacoes {
+		flex-direction: column;
+	}
+	.materias-avaliacoes,
+	.materias-professores {
+		width: 100%;
+		height: fit-content;
+		overflow: hidden;
+	}
+}
+@media only screen and (max-width: 950px) {
+	.details-rating {
+		flex-direction: column;
+		height: fit-content;
+		gap: 10px;
+	}
+	.rating {
+		width: 100%;
+	}
+	.materia-details-rating {
+		height: fit-content;
+		width: 100%;
+		padding: 7rem;
+	}
+	.details {
+		width: 100%;
+		align-items: center;
+	}
+	.nome-codigo {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.nome-materia {
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	.criterio {
+		flex-direction: column;
+	}
 }
 </style>

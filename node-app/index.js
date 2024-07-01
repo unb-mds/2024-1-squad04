@@ -75,4 +75,11 @@ Comentario.deletarRelacionamentoUsuarioComentarioProfessor(app, sequelize);
 
 Comentario.editarRelacionamentoUsuarioComentarioProfessor(app, sequelize);
 
+Comentario.curtirDescurtirComentarioMateria(app, sequelize);
+
+Comentario.usuarioCurteDescurteComentarioMateria(app, sequelize);
+
+Comentario.deletarRelacionamentoUsuarioComentarioMateria(app, sequelize);
+
+Comentario.editarRelacionamentoUsuarioComentarioMateria(app, sequelize);
 app.listen(3000);

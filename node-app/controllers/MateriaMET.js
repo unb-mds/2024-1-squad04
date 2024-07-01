@@ -27,12 +27,10 @@ export const getMateriasAvaliadss = (app, sequelize) => {
 			})
 			.catch((error) => {
 				console.error("Erro ao consultar materias avaliadas:", error);
-				res
-					.status(500)
-					.json({
-						success: false,
-						message: "Erro ao consultar materias avaliadas",
-					});
+				res.status(500).json({
+					success: false,
+					message: "Erro ao consultar materias avaliadas",
+				});
 			});
 	});
 };
@@ -72,12 +70,10 @@ export const getMaterias = (app, sequelize) => {
 			res.json({ success: true, data: materias });
 		} catch (error) {
 			console.error("Erro ao consultar materias avaliadas:", error);
-			res
-				.status(500)
-				.json({
-					success: false,
-					message: "Erro ao consultar materias avaliadas",
-				});
+			res.status(500).json({
+				success: false,
+				message: "Erro ao consultar materias avaliadas",
+			});
 		}
 	});
 };
@@ -124,11 +120,13 @@ export const getMateriaById = (app, sequelize) => {
                   'nota_experiencia', COALESCE(am.nota_experiencia, 0),
                   'nota_dificuldade', COALESCE(am.nota_dificuldade, 0),
                   'comentario', COALESCE(cam.comentario, ''),
+                  'cod_comentario', cam.cod_comentario,
                   'num_likes', COALESCE(cam.num_likes, 0),
                   'num_dislikes', COALESCE(cam.num_dislikes, 0),
                   'usuario', JSON_OBJECT(
                     'nome_usuario', u.nome,
-                    'matricula', u.matricula
+                    'matricula', u.matricula,
+                    'foto_url', u.foto_url
                   )
                 ))
               FROM materia_avaliacao_usuario mau
