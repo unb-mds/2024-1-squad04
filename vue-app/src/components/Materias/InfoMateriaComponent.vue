@@ -170,14 +170,20 @@
 							:avaliacao="avaliacao"
 						/>
 					</div>
+					<p v-else class="qtd-hora">Não existem avaliações ainda.</p>
 				</div>
 				<div class="materias-professores">
 					<h2>Professores</h2>
-					<CardProfMateria
-						v-for="(professor, index) in professores"
-						:key="index"
-						:professor="professor"
-					/>
+					<div v-if="professores.length > 0">
+						<CardProfMateria
+							v-for="(professor, index) in professores"
+							:key="index"
+							:professor="professor"
+						/>
+					</div>
+					<p v-else class="qtd-hora">
+						Não existem professores ministrando a disciplina.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -201,6 +207,7 @@ export default {
 			materia: {},
 			professores: [],
 			comentariosCurtidos: [],
+			loading: true,
 		};
 	},
 
